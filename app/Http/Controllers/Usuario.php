@@ -90,13 +90,15 @@ class Usuario extends Controller
      */
     public function update(Request $request, $id)
     {   $request->validate([
+        'nombre'   => 'required| string |max:255 ',
         'mail'     => 'required| string |email |max:255 ',
         'tipo'     => 'required| string',
      ]);
 
         $usuario = user::find($id);
-        $usuario->email    = $request->mail;
-        $usuario->tipo     = $request->tipo;
+        $usuario->name   = $request->nombre;
+        $usuario->email  = $request->mail;
+        $usuario->tipo   = $request->tipo;
         $usuario->save();
         return redirect('/usuario');
     }

@@ -10,11 +10,15 @@
     };
 </style>
 
-<body>
-         
+<body>         
     <div class="cuerpo main_content ">
     <div class= "container m-5">  
     <h2> Informacion pagina principal</h2>
+    <ul>
+    @foreach ($errors->get('email') as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+</ul>
 
     <form  id ="formEdit"action="/storeEmpresa" method="POST">
         @csrf
@@ -30,6 +34,10 @@
         <div class=" mb-3 ml-2 mr-2">
             <label for="" class="form-label">Celular de la empresa</label>
             <input id="celular" name="celular" type="text" class="form-control" value="{{$empresa[0]->celular}}"  tabindex="3" disabled>
+        </div>
+        <div class=" mb-3 ml-2 mr-2">
+            <label for="" class="form-label">Teléfono fijo de la empresa</label>
+            <input id="telefonoFijo" name="telefonoFijo" type="text" class="form-control" value="{{$empresa[0]->telefonoFijo}}"  tabindex="3" disabled>
         </div>
         
         <div class=" mb-3 ml-2 mr-2">
@@ -97,6 +105,7 @@ botonCancelar.addEventListener('click',function(){
         let inputDescripcion = document.getElementById('descripcion');
         let inputDireccion   = document.getElementById('direccion');
         let inputCelular     = document.getElementById('celular');
+        let inputTelefonoFijo   = document.getElementById('telefonoFijo');
         let inputInstagram   = document.getElementById('instagram');
         let inputMapa        = document.getElementById('mapa');
         let botonCancelar    = document.getElementById('cancelar');
@@ -105,6 +114,7 @@ botonCancelar.addEventListener('click',function(){
         inputDescripcion.disabled = false;
         inputDireccion.disabled   = false;
         inputCelular.disabled     = false;
+        inputTelefonoFijo.disabled     = false;
         inputInstagram.disabled   = false;
         inputMapa.disabled        = false;
 
