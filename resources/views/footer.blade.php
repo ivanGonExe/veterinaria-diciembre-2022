@@ -14,7 +14,8 @@
             <div class="container-fluid d-flex justify-content-center p-2">
               <p>
         <a>Dirección<br> {{$empresa[0]->direccion}}<br> <a href="{{$empresa[0]->mapa}}" id="mapa" target="_blank"> <i class="fa-solid fa-location-dot"></i> Ubicación Maps</a><br>
-        Teléfono<br>{{$empresa[0]->telefonoFijo}} 
+        <i class="fa-solid fa-phone"></i> Teléfono<br>{{$empresa[0]->telefonoFijo}} 
+        
       
         </div>
      </div>

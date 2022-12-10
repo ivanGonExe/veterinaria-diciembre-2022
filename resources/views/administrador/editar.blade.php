@@ -20,6 +20,10 @@
         @csrf
         @method('Post')
         <div class=" mb-3 ml-2 mr-2">
+            <label for="" class="form-label">Nombre </label>
+            <input id="nombre" name="nombre" type="text" class="form-control" value="{{$usuario->name}}"  tabindex="3" required>
+        </div>
+        <div class=" mb-3 ml-2 mr-2">
             <label for="" class="form-label">Mail</label>
             <input id="mail" name="mail" type="text" class="form-control" value="{{$usuario->email}}"  tabindex="3" required>
         </div>

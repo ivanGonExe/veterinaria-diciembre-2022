@@ -154,7 +154,7 @@
         <a href="/articulos" class="btn btn-secondary m-2 " tabindex="6">Cancelar</a>
         
         <button type="submit" class="btn btn-primary  m-2 " tabindex="7">Guardar</button>
-        <BUTTON class="btn btn-primary" >DIEGO</BUTTON>
+    
           </div>
       </form>
   </div>
