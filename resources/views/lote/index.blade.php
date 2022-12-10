@@ -27,8 +27,8 @@
            
             <tr>
                 
-                <th sacope="col">Unidad</th>
-                <th scope="col">Precio Costo</th>
+                <th sacope="col">Unidades</th>
+                <th scope="col">Precio Costo ($)</th>
                 <th scope="col">Vencimiento</th>
                 <th scope="col">Acciones</th>
             </tr>

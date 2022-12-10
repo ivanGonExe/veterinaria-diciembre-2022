@@ -21,8 +21,8 @@
             <tr>
                 
                 <th scope="col">Fecha</th>
-                <th scope="col">Total</th>
-                <th scope="col">Monto pagado</th>
+                <th scope="col">Total ($) </th>
+                <th scope="col">Monto pagado ($)</th>
                 <th scope="col">Tipo de pago</th>
                 <th scope="col">Detalle de Venta</th>
             </tr>
@@ -33,8 +33,8 @@
                 <tr>
                     
                     <td>{{$unaVenta->fecha}}</td>
-                    <td>{{$unaVenta->total}}</td>
-                    <td>{{$unaVenta->montoPagado}}</td>
+                    <td>${{$unaVenta->total}}</td>
+                    <td>${{$unaVenta->montoPagado}}</td>
                     <td>{{$unaVenta->tipoPago}}</td>
                     <td>
                         
