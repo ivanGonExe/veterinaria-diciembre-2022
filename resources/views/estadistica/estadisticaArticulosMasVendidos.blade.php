@@ -5,6 +5,7 @@
 @section('contenido')
 @php 
     $añoActual=Carbon\Carbon::now()->format('Y');
+    $mesActual=Carbon\Carbon::now()->format('m');
 @endphp
 
  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
@@ -35,7 +36,6 @@
             <a class="btn" id="masAnio" href="/estadistica/articulos/MasVendidos/{{$mes+1}}"><i class="fa-regular fa-circle-right"></i></a></a>
      
         <div class="col-2"> </div>
-        
        
         <div>
     </div>
@@ -49,14 +49,26 @@
 </div></div>
 <div class="col-1"></div>
 
+<script>
+    let botonMas  = document.getElementById('masAnio');
+    let mes       = @json($mes);
+    let mesActual = @json($mesActual)-1+1;
+    
+    mes++;
+    if( mes >= mesActual){
+        botonMas.style.display ='none';
+    }
+
+    let botonMenos  = document.getElementById('menosAnio');
+    alert(mes);
+    if( mes==2){
+        alert(mes);
+        botonMenos.style.display ='none';}
+</script>
 
 
 
 <script>
-
-
-
-
 
 let arregloAux = @json($arreglo);
 let arreglo    = Object.values(arregloAux);
