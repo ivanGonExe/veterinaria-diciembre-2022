@@ -5,6 +5,15 @@
  <link rel= "stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
  <link rel= "stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 @section('contenido')
+<style>
+
+.dt-button {
+  padding: 0px !important;
+  border: none !important;
+  top:-10px;
+}
+</style>
+
 <div class="container-fluid d-flex justify-content-end">
     <a href="/ventas" class="btn btn-secondary rounded-pill m-3"><i class="fa-solid fa-arrow-rotate-left"></i></a>
 </div>
@@ -95,13 +104,36 @@
 
 $(document).ready(function() {
     $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-             'pdf',  'excel', 'print',
-        ],
-        language: {
-url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-}
+        dom:  'Bfrtip',
+        buttons: [{
+          //Botón para Excel
+          extend: 'excel',
+        footer: true,
+        title: 'Archivo',
+        filename: 'Export_File',
+
+        //Aquí es donde generas el botón personalizado
+        text: '<button class="btn btn-success p-2 m-1 " title="Exporta a excel"><i class="fas fa-file-excel"></i></button>'
+      },
+      //Botón para PDF
+      {
+        extend: 'pdf',
+        footer: true,
+        title: 'Archivo PDF',
+        filename: 'Export_File_pdf',
+        text: '<button class="btn btn-danger p-2 m-1" title="exporta a pdf"><i class="far fa-file-pdf"></i></button>'
+      },
+      {
+        extend: 'print',
+        footer: true,
+        title: 'Archivo para imprimir',
+        filename: 'Export_File_pdf',
+        text: '<button class="btn btn-light p-2 m-1" title="imprimir"><i class="fa-solid fa-print"></i> </button>'
+      
+    },
+    
+     ],
+        language: { url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}
         
     } );
 } );

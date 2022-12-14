@@ -1,7 +1,14 @@
 @extends('layouts.plantillaBase2') 
 
 @section('contenido')
+<style>
+.acciones{
+padding-right: 0px;
+padding-left: 0px;
+}
 
+
+</style>
 
 <div class="caja_tabla-2">
     <div class="container-fluid d-flex justify-content-center  text-light">
@@ -24,9 +31,9 @@
                 <th scope="col">Descripcion</th>
                 <th scope="col">Marca</th>
                 <!-- <th scope="col">Lote</th> -->
-                <th scope="col">Precio</th>
-                <th scope="col">precio especial</th>
-                <th scope="col">Categoria</th>
+                <th scope="col">Precio ($)</th>
+                <th scope="col">Precio especial ($)</th>
+                <th scope="col">Categoría</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -37,14 +44,14 @@
                     <td>{{$unArticulo->codigo}}</td>
                     <td>{{$unArticulo->descripcion}}</td>
                     <td>{{$unArticulo->marca}}</td>
-                    <td>{{$unArticulo->precioVenta}}</td>
-                    <td>{{$unArticulo->precioEspecial}}</td>
+                    <td>${{$unArticulo->precioVenta}}</td>
+                    <td>${{$unArticulo->precioEspecial}}</td>
                     @if (empty($unArticulo->categoria->descripcion))
                         <td></td>
                     @else
                     <td>{{$unArticulo->categoria->descripcion}}</td>
                     @endif
-                    <td>    
+                    <td class="acciones">    
                             <a href="Lotes/{{$unArticulo->id}}/lote" name="lotes" class="btn " title="lotes"><i class="fa fa-archive"></i></a>
                            {{--  <a href="{{ route('articulos.show', $unArticulo->id)}}" name="ver" class="btn " title="Ver"><i class="fa-solid fa-eye"></i></a> --}}
                             <a href="articulos/{{$unArticulo->id}}/edit " name="Editar" class="btn " title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>

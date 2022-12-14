@@ -27,8 +27,8 @@
            
             <tr>
                 
-                <th sacope="col">Unidad</th>
-                <th scope="col">Precio Costo</th>
+                <th sacope="col">Unidades</th>
+                <th scope="col">Precio Costo ($)</th>
                 <th scope="col">Vencimiento</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -43,7 +43,7 @@
                 @endif
                     
                     <td>{{$unLote->unidad}}</td>
-                    <td>{{$unLote->precioCompra}}</td>
+                    <td>${{$unLote->precioCompra}}</td>
                     <td>{{$unLote->vencimiento}}</td>
                     <td>
                             <a href="/lotes/{{$unLote->id}}/edit " name="Editar" class="btn" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -59,6 +59,7 @@
     
     </table>
     </div>
+    <script src="{{asset('validarLote.js')}}" defer></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="  https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>

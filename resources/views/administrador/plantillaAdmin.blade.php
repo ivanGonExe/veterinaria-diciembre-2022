@@ -157,6 +157,14 @@ a{
   text-decoration: none;
 }
 
+.form-group{
+    background-color: rgba(100, 83, 153, 1) !important;
+    margin: 0px;
+    padding: 15px;
+    font-size: 20px;
+    color:#ffffff;
+    
+}
 </style> 
 @php
     $añoActual= Carbon\Carbon::now()->format('y');

@@ -59,12 +59,12 @@ class EmpresaController extends Controller
         ]);
         $empresa= Empresa::all();
 
-        $empresa[0]->descripcion    = $request->descripcion;
-        $empresa[0]->direccion      = $request->direccion;
-        $empresa[0]->celular        = $request->celular;
+        $empresa[0]->descripcion = $request->descripcion;
+        $empresa[0]->direccion   = $request->direccion;
+        $empresa[0]->celular     = $request->celular;
         $empresa[0]->telefonoFijo   = $request->telefonoFijo;
-        $empresa[0]->instagram      = $request->instagram;
-        $empresa[0]->mapa           = $request->mapa;
+        $empresa[0]->instagram   = $request->instagram;
+        $empresa[0]->mapa        = $request->mapa;
         $empresa[0]->save();
 
         return redirect('/login/administrador'); 
