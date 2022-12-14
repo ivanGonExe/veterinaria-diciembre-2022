@@ -8,6 +8,15 @@ background-color:#f3dcf3;
  font-size: 18px;
 
 }
+.form-group{
+    background-color: rgba(100, 83, 153, 1) !important;
+    margin: 5px;
+    padding: 5px;
+    width:100% !important;
+    height:100%!important;
+    color:#ffffff;
+    
+}
 
 label{
     font-size: 20px;
@@ -15,6 +24,7 @@ label{
 }
 </style>
 @section('contenido')
+
 <div class="row m-2 p-2">
 <div class="col-3 text-center pt-2"><img src="/iconos/logo_salud.png" alt="logo_salud" height="160" width="200" class="iconos" id="boton"> </div>
 <div class="col-6 text-center pt-5"><h2 class="text-center fw-bold" >Detalle Clínico</h2></div>
