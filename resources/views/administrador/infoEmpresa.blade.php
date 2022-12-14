@@ -2,61 +2,59 @@
  
 @section('contenido')
 
-<style>
-    .cuerpo{
-        margin-top: 10% ;
-        margin-left: 10% ;
-        margin-Right: 10% ;
-    };
-</style>
-
-<body>
-         
-    <div class="cuerpo main_content ">
-    <div class= "container m-5">  
-    <h2> Informacion pagina principal</h2>
-
-    <form  id ="formEdit"action="/storeEmpresa" method="POST">
+<div class="main_content">
+  <div class="content">
+  <div class="header"><h2 class="text-dark fw-bold text-center">Información de la Empresa en la página principal</h2></div>    
+    <div class="content text-center p-2">
+      <div class="row">
+          <div class="col-12 content-fluid d-flex justify-content-center p-2 "></div>
+  
+          <div class="form-group">
+            <div class=" container-fluid d-flex justify-content-center">
+    <div class="col-md-6 ">
+   <div class="row">
+    <form  id ="formEdit"action="/storeEmpresa" method="POST" >
         @csrf
         @method('Post')
-        <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label">Descripcion de la empresa</label>
+        <div class="mb-3">
+            <label for="" class="form-label" title="descripcion general de la empresa"><i class="fa-solid fa-list-check"></i> Descripción*</label>
             <input id="descripcion" name="descripcion" type="text" class="form-control" value="{{$empresa[0]->descripcion}}"  tabindex="3" disabled>
         </div>
-        <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label">Direccion de la empresa</label>
+        <div class="mb-3">
+            <label for="" class="form-label"title="dirección de la empresa"><i class="fa-solid fa-signs-post"></i> Dirección*</label>
             <input id="direccion" name="direccion" type="text" class="form-control" value="{{$empresa[0]->direccion}}"  tabindex="3" disabled>
         </div>
-        <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label">Celular de la empresa</label>
+        <div class="mb-3">
+            <label for="" class="form-label" title="n° de celular de la empresa"><i class="fa-brands fa-whatsapp"></i> WhatsApp*</label>
             <input id="celular" name="celular" type="text" class="form-control" value="{{$empresa[0]->celular}}"  tabindex="3" disabled>
         </div>
-        <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label">Teléfono fijo de la empresa</label>
+        <div class="mb-3">
+            <label for="" class="form-label" title="n° fijo de la empresa"><i class="fa-solid fa-phone"></i> Teléfono fijo* </label>
             <input id="telefonoFijo" name="telefonoFijo" type="text" class="form-control" value="{{$empresa[0]->telefonoFijo}}"  tabindex="3" disabled>
         </div>
         
-        <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label">Instagram</label>
+        <div class="mb-3">
+            <label for="" class="form-label"><i class="fa-brands fa-instagram"></i> Instagram*</label>
             <input id="instagram" name="instagram" type="text" class="form-control" value="{{$empresa[0]->instagram}}"  tabindex="3" disabled>
         </div>
-        <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label">Mapa</label>
+        <div class="mb-3">
+            <label for="" class="form-label"><i class="fa-solid fa-location-dot"></i> Google Maps*</label>
             <input id="mapa" name="mapa" type="text" class="form-control" value="{{$empresa[0]->mapa}}"  tabindex="3" disabled>
         </div>
         
         <button id="cancelar"class="btn btn-secondary" tabindex="6" style="display:none" >Cancelar</button>
         <button type="submit" id="guardar"class="btn btn-primary" tabindex="7" style="display:none" >Guardar</button>
-        
+
     </form>
+   </div>
+    </div>
+   </div>
     <button  id="botonEditar" class="btn btn-primary" tabindex="7">Editar</button>
 </div>
-</div>
-</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-</body>
 
 <script>
     var formEdit     = document.getElementById('formEdit');
