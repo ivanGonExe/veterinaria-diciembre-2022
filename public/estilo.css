@@ -329,6 +329,7 @@ img.btn-whatsapp {
 .footer a{
 display: block;
 color:#ffffff;
+
 }
 .footer a:hover{
    display: block;
@@ -340,7 +341,7 @@ font-weight: bold;
 
 }
 .navegadorFooter a:hover{
- color: rgba(0, 0, 0, 0.5);
+ color: yellow;
 }
 #mapa{
    color:#ffffff;

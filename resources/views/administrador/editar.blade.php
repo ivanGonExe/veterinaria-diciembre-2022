@@ -2,33 +2,39 @@
  
 
 @section('contenido')
-<style>
-    .cuerpo{
-        margin-top: 10% ;
-        margin-left: 10% ;
-        margin-Right: 10% ;
-    };
-</style>
+
 <body>
-    
+    <div class="main_content">
+        <div class="content">
+       
+          <div class="header"><h2 class="text-dark fw-bold text-center">Editar Usuario</h2></div>    
+         
+          <div class="content text-center p-2">
+            <div class="row">
+                <div class="col-12 content-fluid d-flex justify-content-center p-2 "></div>
+       
+ 
+        <div class="form-group">
         
-    <div class="cuerpo main_content ">
-    
+            <div class=" container-fluid d-flex justify-content-center">
     <div class= "container m-5">  
-    <h2>Editar usuario: {{$usuario->name}}</h2>
+   {{--  <h2><i class="fa-solid fa-user-pen"></i> Editar {{--  {{$usuario->name}} --}}
     <form action="/usuario/guardar/{{$usuario->id}}" method="POST">
         @csrf
         @method('Post')
         <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label">Nombre </label>
+            <label for="" class="form-label">Nombre y Apellido *</label>
             <input id="nombre" name="nombre" type="text" class="form-control" value="{{$usuario->name}}"  tabindex="3" required>
+            <p class="text-white">*Campo obligatorio</p>
         </div>
+
         <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label">Mail</label>
+            <label for="" class="form-label"> Mail *</label>
             <input id="mail" name="mail" type="text" class="form-control" value="{{$usuario->email}}"  tabindex="3" required>
+          <p class="text-white">*Campo obligatorio</p>
         </div>
         
-        <label for="tipo" class=" col-form-label text-md-right">Rol</label>
+        <label for="tipo" class=" col-form-label text-md-right">Rol*</label>
             
                             <div class= "ml-2 mr-2">
                                 <select class='form-select selecTipo' name= 'tipo'>
@@ -53,7 +59,9 @@
                                     <option class='form-option' value ='cajero'>Cajero</option>
                                 @endif
                                 </select>
+                                <p class="text-white">*Campo obligatorio</p>
                             <div>
+                                <br>
 
         <a href="/usuario" class="btn btn-secondary" tabindex="6">Cancelar</a>
         

@@ -104,7 +104,7 @@
                         
 
                         <div class="form-group m-4 container-fluid d-flex">
-                            <button  class="btn btn-dark m-3">
+                            <button  class="btn btn-secondary m-3">
                                 {{ __('Cancelar') }}
                                     </button>
                          {{--    <div class="col-md-6 offset-md-4"> --}}

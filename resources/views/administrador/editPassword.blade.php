@@ -2,32 +2,36 @@
  
 
 @section('contenido')
-<style>
-    .cuerpo{
-        margin-top: 10% ;
-        margin-left: 10% ;
-        margin-Right: 10% ;
-    };
-</style>
-<body>
-    
-        
-    <div class="cuerpo main_content ">
-    <div class= "container m-5">  
-    <ul>
+<body>  
+  
     @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
     @endforeach
-</ul>
-    <h2>Editar usuario: {{$usuario->name}}</h2>
+
+
+    <div class="main_content">
+        <div class="content">
+       
+          <div class="header"><h2 class="text-dark fw-bold text-center">Editar Password</h2></div>    
+         
+          <div class="content text-center p-2">
+            <div class="row">
+                <div class="col-12 content-fluid d-flex justify-content-center p-2 "></div>
+       
+ 
+        <div class="form-group">
+        
+            <div class=" container-fluid d-flex justify-content-center">
+    <div class= "container m-5">  
+
     <form action="/usuario/guardarPassword/{{$usuario->id}}" method="POST">
         @csrf
         @method('Post')
-        <div class=" mb-3 ml-2 mr-2">
+        <div class=" mb-3 ">
             <label for="" class="form-label">Mail</label>
             <input id="mail" name="mail" type="text" class="form-control" value="{{$usuario->email}}"  tabindex="3" disabled>
         </div>
-        <div class=" mb-3 ml-2 mr-2">
+        <div class=" mb-3">
             <label for="" class="form-label">Contraseña nueva</label>
             <input id="password" name="password" type="password" class="form-control"  tabindex="3">
         </div>

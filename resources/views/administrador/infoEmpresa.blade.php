@@ -49,6 +49,7 @@
    </div>
     </div>
    </div>
+   <br>
     <button  id="botonEditar" class="btn btn-primary" tabindex="7">Editar</button>
 </div>
 

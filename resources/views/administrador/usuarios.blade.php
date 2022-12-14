@@ -16,7 +16,7 @@
                
       </div>
       <div class="content text-center m-2">
-      <a href="/registro/usuario" type="button" class="btn btn-primary rounded-pill " title="Crear Usuario">+ Usuario <i class="fa-solid fa-user"></i></a>
+      <a href="/registro/usuario" type="button" class="btn btn-primary rounded-pill " title="Crear Usuario">+ <i class="fa-solid fa-user"></i> Nuevo</a>
       </div>
      <div class="row">
       <div class="col-1"></div>
