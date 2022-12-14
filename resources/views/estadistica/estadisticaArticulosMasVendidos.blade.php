@@ -60,9 +60,7 @@
     }
 
     let botonMenos  = document.getElementById('menosAnio');
-    alert(mes);
     if( mes==2){
-        alert(mes);
         botonMenos.style.display ='none';}
 </script>
 
