@@ -138,9 +138,9 @@ body{
             <input name="fecha_hora" id="fecha_hora" class="text-center fs-4" type="text" value="Fecha: {{$fecha}} &nbsp; Hora: {{$hora}}" disabled>
           
         </div>
-        <div class="box-input" >
+        <div class="box-input m-2" >
             <label>Mensaje</label>
-            <input name="mensaje" id="mensaje" class="text-center" type="areatext" value=" Gracias por elegirnos.🐶🐱"disabled >
+            <input name="mensaje" id="mensaje" class="text-center" type="areatext" value="Su turno es el día {{$fecha}} y la hora {{$hora}}. Muchas Gracias por elegirnos.🐶🐱" >
             
         </div>
        
@@ -178,7 +178,7 @@ formulario.addEventListener('submit', (event) => {
        
         let mensajeFormulario = document.querySelector('#mensaje').value;
         let mensaje = 'send?phone=' + telefono + '&text=*‼️Recordario de Turno‼️*%0A' 
-        +'Estimado/a: '+ nombre + '%0A'+ fecha +'%0A'+ mensajeFormulario +'%0A*VETERINARIA SAN AGUSTIN*%0A' ;
+        +'Estimado/a: '+ nombre + '%0A'+'%0A'+ mensajeFormulario +'%0A*VETERINARIA SAN AGUSTIN*%0A' ;
         if(isMobile()) {
             window.open(urlMobile + mensaje, '_blank')
         }else{
