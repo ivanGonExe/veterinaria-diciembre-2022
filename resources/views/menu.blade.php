@@ -20,7 +20,7 @@
    <!-- Cabezera barra -->
     <header class="container-fluid d-flex justify-content-center m-0 p-1" id="barra">
     
-    <p class="text-light fs-6" >Contacto $empresa->celular</p>
+    <p class="text-light fs-6" > </p> 
     </header>
 
     <!-- Menú -->

@@ -31,7 +31,7 @@
    <!-- Cabezera barra -->
     <header class="container-fluid d-flex justify-content-center m-0 p-1" id="barra">
     <!-- <p class="text-light fs-6" >Contacto(0343) 407-7466</p> -->
-    <p class="text-light fs-6 celu" ><i class="fa-solid fa-mobile-screen-button"></i>  <a href="tel:{{$empresa[0]->celular}}" class="text-white ">{{$empresa[0]->celular}}</a></p>
+    <p class="text-light fs-6 celu" ><i class="fa-solid fa-mobile-screen-button"></i>  <a href="tel:{{$empresa[0]->celular}}" class="text-white">{{$empresa[0]->celular}}</a></p>
     </header>
 
     <!-- Menú -->

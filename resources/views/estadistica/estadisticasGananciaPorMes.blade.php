@@ -35,8 +35,8 @@
         <div class="container-fluid d-flex justify-content-end ">
         <div class="col-2 "> 
                      <div class="input-group">
-            <input type="number" id="inputAño" placeholder=" " min="1990" max ="{{$añoActual}}"class="form-control"> 
-            <button class="btn btn-dark" id="buscar" tite="buscar"  ><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button> 
+            <input type="number" id="inputAño" placeholder="ingresar año" min="1990" max ="{{$añoActual}}"class="form-control"> 
+            <button class="btn btn-dark" id="buscar" tite="buscar"  ><i class="fa-sharp fa-solid fa-magnifying-glass" title="utilizar valores positivos"></i></button> 
             </div>
             </div>
         </div> 
@@ -62,8 +62,12 @@
 var botonBuscar = document.getElementById('buscar');
 botonBuscar.addEventListener('click',function(){
     var inputAño = document.getElementById('inputAño');
-    location.href ='/estadistica/ganancia/por_mes/'+inputAño.value;
-    
+    if(inputAño.value>1990){
+        location.href ='/estadistica/ganancia/por_mes/'+inputAño.value;
+    }
+   
+   
+   
 })
 
 

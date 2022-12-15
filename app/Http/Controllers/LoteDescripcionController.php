@@ -40,7 +40,8 @@ class LoteDescripcionController extends Controller
      */
     public function crear_por_id($id)
     {
-        return view('lote.create')->with('ArticuloId',$id);
+        $articulos = Articulo::find($id);
+        return view('lote.create')->with('ArticuloId',$id)->with('articulos',$articulos);
     }
 
 
