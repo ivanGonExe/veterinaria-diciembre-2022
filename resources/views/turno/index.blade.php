@@ -20,15 +20,7 @@
     background-color: rgba(100, 83, 153, 1) !important;
 }
 
-/* #selectEstado .inactivo{
-  background-color: rgba(100, 83, 153, 1) !important;
-  color:red;
-}
-#selectEstado .activo{
-  background-color: rgb(15, 235, 19) !important;
-  color:green;
-}
- */
+
 </style>
 
 @section('contenido')
@@ -49,7 +41,8 @@
     <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos</h2>
 @endif
 
-    <a href="/turnos/create"  class="btn btn-primary rounded-pill" title="Agregar Turno">+ Turno <i class="fa-solid fa-calendar-days"></i></a>
+    <a href="/turnos/create"  class="btn btn-primary rounded-pill" title="Agregar Jornada">+ Jornada <i class="fa-solid fa-calendar-days"></i></a>
+    <a href="/turnos/createUnTurno"  class="btn btn-primary rounded-pill" title="Agregar Turno">+ Turno <i class="fa-solid fa-calendar-days"></i></a>
     <br>
     <br>
     <table id="example" class="table table-striped" style="width:100%">
@@ -81,6 +74,7 @@
                         <td>
         
                             <a href="/turnos/{{$unTurno->id}}/edit" class="btn " title="editar" ><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="{{ route('verMascotas', $unTurno->persona_id)}}" name="mascota" class="btn btn" title="Ver Mascotas"><i class="fa-solid fa-dog"></i></a> 
 
                             <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'><i class="fa-solid fa-ban"></i></button>
                             

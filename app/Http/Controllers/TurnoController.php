@@ -194,8 +194,21 @@ class TurnoController extends Controller
         return view('turno.create')->with('fechaActual',$fechaActual);
     }
 
+
+    /**
+      * Show the form for creating a new resource.
+      * @return \Illuminate\Http\Response  
+      */
+      public function crearUnTurno()
+      {
+          $fechaActual  = Carbon::now();
+          $fechaActual  = $fechaActual->format('Y-m-d');
+    
+          return view('turno.crearUnTurno')->with('fechaActual',$fechaActual);
+      }
+
      /**
-      * Store a newly created resource in storage.
+      * Creacion de jornada.
       * @param  \Illuminate\Http\Request  $request
       * @return \Illuminate\Http\Response
       */
@@ -257,7 +270,104 @@ class TurnoController extends Controller
          return redirect('/tipoTurno/3');
      }
 
+     /**
+      * Crear un turno.
+      * @param  \Illuminate\Http\Request  $request
+      * @return \Illuminate\Http\Response
+      */
+      public function storeUnTurno(Request $request)
+      {
+        //validaciones de inputs
+        $request->validate([
+            'desde'     => 'required| date_format:H:i',
+            'hasta'     => 'required| date_format:H:i|after:desde',
+            'fecha'     => 'required| date',
+        ]);
+        //condicion que el desde no sea mayor al hasta
+        if($request->hasta < $request->desde){
+            return redirect(url()->previous());
+        }
+
+        //evaluacion de que tipo de turno crear
+        if(auth()->user()->tipo == 'veterinario'){
+            $tipoTurno   ='v';
+            $tituloTurno ='Veterinario';
+        }
+
+        if(auth()->user()->tipo == 'peluquero'){
+            $tipoTurno   ='p';
+            $tituloTurno ='Peluquero';
+        }
+        if(auth()->user()->estadoIngreso == 'veterinario'){
+            $tipoTurno   ='v';
+            $tituloTurno ='Veterinario';
+        }
+
+        if(auth()->user()->estadoIngreso == 'peluquero'){
+            $tipoTurno   ='p';
+            $tituloTurno ='Peluquero';
+        }
+
+        //incersion de datos guardado del turno
+        $turno         = new Turno();
+        $inicioTurno   = new Carbon($request->fecha.' '.$request->desde);
+        $finTurno      = new Carbon($request->fecha.' '.$request->hasta);
+        $turno->start  = $inicioTurno->format('Y-m-d H:i:s');
+        $turno->end    = $finTurno->format('Y-m-d H:i:s');
+        $turno->title  = $tituloTurno;
+        $turno->tipo   = $tipoTurno;
+        $turno->estado = 0;
+        
+        $turno->save();
+
+        return redirect('/tipoTurno/3');
+
+
+
+      }
+
+       /**
+     * verificar si hay un turno superpuesto
+     *
+     * @param  \Illuminate\Http\Request  $request 
+     * @return \Illuminate\Http\Response
+     */
+    public function unTurnoSuperpuesto(Request  $request)
+    {
+      //Condiciones para traer los turnos
+      if(auth()->user()->tipo == 'veterinario'){
+          $tipoTurno   ='v';
+      }
+
+      if(auth()->user()->tipo == 'peluquero'){
+          $tipoTurno   ='p';
+      }
+      
+      if(auth()->user()->estadoIngreso == 'veterinario'){
+          $tipoTurno   ='v';
+      }
+
+      if(auth()->user()->estadoIngreso == 'peluquero'){
+          $tipoTurno   ='p';
+      }
+
+      // dar formato de fecha a tipo date time bd para la condicion
+      $inicio   = new Carbon($request->fecha.' '.$request->desde);
+      $fin      = new Carbon($request->fecha.' '.$request->hasta);
+
+      //traigo los turnos ocupados
+      $turnosTraidos = turno::where('tipo',$tipoTurno)
+                            ->where('estado','!=',3)
+                            ->where('start','>=',$inicio)
+                            ->where('start','<=',$fin)  
+                            ->get();
+
+      $salida=FAlSE;
+      //debolucion si hay un turno superpuesto
+      return response(json_encode($turnosTraidos),200)->header('Content-type','text/plain');
      
+    }
+
  /**
      * Store a newly 
      *
@@ -286,8 +396,6 @@ class TurnoController extends Controller
             $tituloTurno ='Peluquero';
         }
 
-       
-        
         $to_time   = strtotime($request->hasta);
         $from_time = strtotime($request->desde);
         $minutes   = round(abs($to_time - $from_time) / 60);
@@ -317,7 +425,6 @@ class TurnoController extends Controller
         $finTraido         = new Carbon($request->get('fecha'));
         $finTraido         = $finTraido->format('Y-m-d 11:59:59');
 
-        
         $turnosTraidos = turno::where('tipo',$tipoTurno)
                                ->where('estado','!=',3)
                                ->where('start','>=',$inicioTraido)
@@ -348,10 +455,6 @@ class TurnoController extends Controller
          return response(json_encode($salida),200)->header('Content-type','text/plain');
                 
     }
-
-     
-
-
 
 
      /**

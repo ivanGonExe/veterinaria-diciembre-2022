@@ -224,6 +224,3 @@ $mesActual= Carbon\Carbon::now()->format('m');
 
 
 </body>
-<SCRIPT LANGUAGE="JavaScript">
-history.forward()
-</SCRIPT>

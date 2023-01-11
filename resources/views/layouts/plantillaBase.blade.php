@@ -198,6 +198,3 @@ body{
 
 
 </body>
-<SCRIPT LANGUAGE="JavaScript">
-history.forward()
-</SCRIPT>

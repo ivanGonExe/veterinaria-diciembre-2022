@@ -109,8 +109,13 @@ Route::group(['middleware' => 'auth'], function () {
 
             /*Rutas turno peluquero y veterinario*/
             Route::post('/turnos/superpuesto','App\Http\Controllers\TurnoController@turnoSuperpuesto');
+            Route::post('/turnos/unTurnoSuperpuesto','App\Http\Controllers\TurnoController@unTurnoSuperpuesto');
+            Route::get('/turnos/createUnTurno','App\Http\Controllers\TurnoController@crearUnTurno');
             
             Route::post('/turnos/darTurno/{id}','App\Http\Controllers\TurnoController@DarTurno');
+            Route::post('/unTurno','App\Http\Controllers\TurnoController@storeUnTurno');
+            
+            
             /*Rutas personas*/
             Route::resource('/personas','App\Http\Controllers\PersonaController');
             Route::get('/personas/{id}/delete','App\Http\Controllers\PersonaController@destroy');
