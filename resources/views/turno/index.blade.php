@@ -34,11 +34,14 @@
 @if($styleTurno == 3)
     <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos libres</h2>
 @endif
+@if($styleTurno == 4)
+    <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos</h2>
+@endif
 @if($styleTurno == 5)
     <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos pasados</h2>
 @endif
-@if($styleTurno == 4)
-    <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos</h2>
+@if($styleTurno == 6)
+    <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Turnos asignados</h2>
 @endif
 
     <a href="/turnos/create"  class="btn btn-primary rounded-pill" title="Agregar Jornada">+ Jornada <i class="fa-solid fa-calendar-days"></i></a>
