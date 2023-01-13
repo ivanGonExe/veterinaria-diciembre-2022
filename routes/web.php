@@ -24,8 +24,8 @@ Route::get('register','App\Http\Controllers\Auth\LoginController@redirecion');
 //     return view('index');
 // });
 Route::get('/', [App\Http\Controllers\EmpresaController::class,'index']);
-Route::get('/fechaVacunacion', function () {
-    return view('fechaVacunacion');
+Route::get('/noticias', function () {
+    return view('noticias');
 });
 Route::post('/turnos/agregar', [App\Http\Controllers\TurnoController::class,'agregar']);
 Route::post('turnos/mostrarTurno','App\Http\Controllers\TurnoController@mostrarTurno');

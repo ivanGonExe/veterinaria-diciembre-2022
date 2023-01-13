@@ -45,16 +45,17 @@
     <a href="/turnos/createUnTurno"  class="btn btn-primary rounded-pill" title="Agregar Turno">+ Turno <i class="fa-solid fa-calendar-days"></i></a>
     <br>
     <br>
+    <div class="table-responsive">
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                <th scope="col">Fecha</th>
+                <th scope="col" >Fecha</th>
                 <th scope="col">Hora</th>
                 <th scope="col">Persona</th>
                 <th scope="col">DNI</th>
-                <th scope="col">Asunto</th>
-                <th scope="col">Acciones</th>
-                <th scope="col">Env. Mensaje</th>
+                <th scope="col" style="width:auto">Asunto</th>
+                <th scope="col" style="width:auto">Acciones</th>
+             
                
             </tr>
         </thead>
@@ -67,11 +68,14 @@
                      @endforeach
                   
                 @if($unTurno->persona_id)
-                        <td>{{$unTurno->persona->nombre}} {{$unTurno->persona->apellido}}</td>
-                        <td>{{$unTurno->persona->dni}}</td>
+               
+                        <td style="width:10%">{{$unTurno->persona->nombre}} {{$unTurno->persona->apellido}}</td>
+                        
+                        <td style="width:10%">{{$unTurno->persona->dni}}</td> 
+              
                    {{--      <td>{{$unTurno->persona->telefonos->codigoArea}}  {{$unTurno->persona->telefonos->numero}}</td>  --}}
-                   <td>  <div class="container-fluid d-flex justify-content-start">{{$unTurno->asunto}} </div></td>
-                        <td>
+                   <td style="width:20%">  <div class="container-fluid d-flex justify-content-start">{{$unTurno->asunto}} </div></td>
+                        <td style="width:20%">
         
                             <a href="/turnos/{{$unTurno->id}}/edit" class="btn " title="editar" ><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href="{{ route('verMascotas', $unTurno->persona_id)}}" name="mascota" class="btn btn" title="Ver Mascotas"><i class="fa-solid fa-dog"></i></a> 
@@ -81,37 +85,39 @@
                         
                             <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}*-1" value='{{$unTurno->id}}*-1'><i class="fa-solid fa-trash-can"></i></button>
                         
-                        <td>
-                       <a class="bnt btn-success border border-success rounded-pill m-1 p-2 " title="Enviar WhatsApp" href="/turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar"  ><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                 
+                       <a class="bnt btn-success border border-success rounded-pill   p-1" title="Enviar WhatsApp" href="/turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar"  ><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                     </td>
                         
                 @else 
-                    <td class="text-center"> 
+                    <td class="text-center"  style="width:30%"> 
                        <!--boton modal  -->
-<button type="button" class="btn btn-outline-primary rounded-pill p-2 modalTurno " id ="{{$unTurno->id}}modal" value='{{$unTurno->id}}' data-toggle="modal" data-target="#exampleModal" title="Agendar persona al turno">
-    <i class="fa-solid fa-user-plus"></i>
-  </button>
-
+<button type="button" class="btn btn-outline-primary rounded-pill p-2 modalTurno " id ="{{$unTurno->id}}modal" value='{{$unTurno->id}}' data-toggle="modal" data-target="#exampleModal" title="Agendar persona al turno"><i class="fa-solid fa-user-plus"></i></button>
+ 
                        
-                    <td></td>
-                    <td> </td>
-                    <td colspan="1">
+                     <td></td>
+                    <td></td> 
+                    <td style="width:22%">
                         
                             <button class="btn btn edit" title="editar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'disabled><i class="fa-solid fa-pen-to-square"></i></button>
                             <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'disabled><i class="fa-solid fa-ban"></i></button>
                             <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}E" value='{{$unTurno->id}}'>  <i class="fa-solid fa-trash-can"></i>  </button>
                         
-                     </td>
-                        <td>
-                       <button class="bnt btn-success border border-success rounded-pill m-1 p-2 whatsappDisabled " title="Enviar WhatsApp" href="turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar" disabled ><i class="fa fa-whatsapp" aria-hidden="true"></i></button>
+                     
+                       <button class="bnt btn-success border border-success rounded-pill   p-1 whatsappDisabled " title="Enviar WhatsApp" href="turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar" disabled ><i class="fa fa-whatsapp" aria-hidden="true"></i></button>
                     </td>  
                 @endif
                 </tr>
             @endforeach
            
         </tbody>
+       </div>
+      </div>
     </table>
-     
+  </div>
+  
+
+</div>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="  https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -287,7 +293,7 @@
             </div>
         </div>
     </div>
-</div>
+
   </button> 
 {{--   <script src="{{asset('Calles.js')}}" defer></script> --}}
   <script src="{{asset('validarModal.js')}}" defer></script>
