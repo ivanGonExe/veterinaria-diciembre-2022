@@ -35,7 +35,7 @@
     <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos libres</h2>
 @endif
 @if($styleTurno == 4)
-    <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos</h2>
+    <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Histórico de turnos”</h2>
 @endif
 @if($styleTurno == 5)
     <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos pasados</h2>
@@ -56,7 +56,9 @@
                 <th scope="col">Persona</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Asunto</th>
+                @if($styleTurno != 5)
                 <th scope="col">Acciones</th>
+                @endif
                 <th scope="col">Env. Mensaje</th>
                
             </tr>
@@ -73,31 +75,30 @@
                         <td>{{$unTurno->persona->nombre}} {{$unTurno->persona->apellido}}</td>
                         <td>{{$unTurno->persona->dni}}</td>
                    {{--      <td>{{$unTurno->persona->telefonos->codigoArea}}  {{$unTurno->persona->telefonos->numero}}</td>  --}}
-                   <td>  <div class="container-fluid d-flex justify-content-start">{{$unTurno->asunto}} </div></td>
+                        <td>  
+                            <div class="container-fluid d-flex justify-content-start">{{$unTurno->asunto}} </div>
+                        </td>
+                      @if($styleTurno != 5)
                         <td>
-        
                             <a href="/turnos/{{$unTurno->id}}/edit" class="btn " title="editar" ><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href="{{ route('verMascotas', $unTurno->persona_id)}}" name="mascota" class="btn btn" title="Ver Mascotas"><i class="fa-solid fa-dog"></i></a> 
-
                             <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'><i class="fa-solid fa-ban"></i></button>
-                            
-                        
                             <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}*-1" value='{{$unTurno->id}}*-1'><i class="fa-solid fa-trash-can"></i></button>
-                        
+                        </td>
+                      @endif
                         <td>
-                       <a class="bnt btn-success border border-success rounded-pill m-1 p-2 " title="Enviar WhatsApp" href="/turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar"  ><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
-                    </td>
+                            <a class="bnt btn-success border border-success rounded-pill m-1 p-2 " title="Enviar WhatsApp" href="/turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar"  ><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                       </td>
                         
                 @else 
                     <td class="text-center"> 
                        <!--boton modal  -->
-<button type="button" class="btn btn-outline-primary rounded-pill p-2 modalTurno " id ="{{$unTurno->id}}modal" value='{{$unTurno->id}}' data-toggle="modal" data-target="#exampleModal" title="Agendar persona al turno">
-    <i class="fa-solid fa-user-plus"></i>
-  </button>
-
-                       
+                    <button type="button" class="btn btn-outline-primary rounded-pill p-2 modalTurno " id ="{{$unTurno->id}}modal" value='{{$unTurno->id}}' data-toggle="modal" data-target="#exampleModal" title="Agendar persona al turno">
+                      <i class="fa-solid fa-user-plus"></i>
+                    </button>   
                     <td></td>
                     <td> </td>
+                @if($styleTurno != 5)
                     <td colspan="1">
                         
                             <button class="btn btn edit" title="editar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'disabled><i class="fa-solid fa-pen-to-square"></i></button>
@@ -105,6 +106,7 @@
                             <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}E" value='{{$unTurno->id}}'>  <i class="fa-solid fa-trash-can"></i>  </button>
                         
                      </td>
+                @endif
                         <td>
                        <button class="bnt btn-success border border-success rounded-pill m-1 p-2 whatsappDisabled " title="Enviar WhatsApp" href="turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar" disabled ><i class="fa fa-whatsapp" aria-hidden="true"></i></button>
                     </td>  

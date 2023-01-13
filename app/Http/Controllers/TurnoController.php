@@ -124,7 +124,7 @@ class TurnoController extends Controller
                                 ->where('tipo',$tipoTurno)
                                 ->get();
         }
-    //Listado de turnos generales
+    //Histórico de turnos
         if($id == 4){
 
             $turnos = Turno::where('tipo',$tipoTurno)->get();
