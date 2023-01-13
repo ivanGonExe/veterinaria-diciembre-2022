@@ -26,27 +26,33 @@ botonAnda.addEventListener("change", () => {
                 start: arregloDatos[x].start,
                 navLinks: false,
                 editable: false,
-                /*  height: 100,
-                 width: 400 ,  */
-                color: "purple",
+                        color: "purple",
                 /*   backgroundColor: '#ffffff',
                  textColor:'#000000' */
             };
             /*      console.log(turnos[x].start+" tipo start " + typeof(turnos[x].start));
         console.log(turnos[x].end+" tipo end " + typeof(turnos[x].end));     */
         }
+      
+           
+   
 
         let calendarEl = document.getElementById("agenda");
         calendarEl.style.display = "block";
         let calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: "timeGridWeek",
             locale: "es",
-
+           
+           
+        
             headerToolbar: {
                 left: "prev,next", // izquieda anterior y siguiente
                 center: "title", //titulo en el centro
                 /*  right: 'today,dayGridMonth,timeGridWeek',  */
-                right: "timeGridWeek", //derecha hoy , mes, semana
+                right: "today", //derecha hoy , mes, semana
+             
+               
+
             },
             eventClick: function (info) {
                 /*     info.el.style.borderColor = 'red'; */
@@ -123,9 +129,9 @@ botonAnda.addEventListener("change", () => {
             views: {
                 timeGridWeek: {
                     type: "timeGridWeek",
-                    duration: { days: 3 },
+                    duration: { days: 1 },
                     buttonText: "Semana",
-                    display: "inverse-background",
+                 
                 },
             },
             events: turnos,

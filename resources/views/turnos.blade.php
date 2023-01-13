@@ -155,6 +155,20 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
 
 }
 
+/*full calendar */ 
+
+.fc .fc-toolbar-title{
+   font-size: 1.2em;
+}
+/* .fc-media-screen-m .fc-event {
+    margin-bottom: 10px;
+}  */
+
+ .fc-media-screen-sm .fc-event {
+    margin-bottom: 10px;
+} 
+
+
 </style>
 
 <!-- Formulario -->
@@ -165,7 +179,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
   @endforeach
   
 <div class="container-fluid d-flex justify-content-center ">
-  <div class="container  calendario p-3 formulario_turno"> 
+  <div class="container  calendario p-3 "> 
  <!-- formulario-->
   <form action="/turnos/agregar" method="POST" id="formulario" name="formulario" > 
     @csrf
@@ -174,8 +188,10 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
      <div class="form-group">
       <div class="row">
       <div class="row container-fluid d-flex justify-content-center">
-        <h4 class="text-white text-center p-2 fs-3">Complete el formulario y seleccione el turno</h4>
-          <div class="col-md-8">
+      
+          <div class="col-md-4 formulario_turno">
+            <h4 class="text-white text-center p-2 fs-3">Complete el formulario y seleccione el turno</h4>
+            <p class="text-info">*Este campo es obligatoria</p>
           <!--Grupo Nombre -->
             <div class="formulario__grupo " id="grupo__nombre">
           <label for="nombre" class="formulario__label">Nombre *</label>
@@ -185,7 +201,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
    
         	<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-        <p class="text-info">*Esta pregunta es obligatoria</p>
+   
 				<p class="formulario__input-error">El Nombre tiene que ser de 4 a 16 dígitos y solo puede contener letras</p>
 			</div>
     
@@ -196,7 +212,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
           <input type="text" class="form-control formulario__input" id="apellido" name="apellido" placeholder="Carrasco" maxlength="16" required>
           <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
-        <p class="text-info ">*Esta pregunta es obligatoria</p>
+    
         <p class="formulario__input-error">El Apellido tiene que ser de 4 a 20 dígitos y solo puede contener letras</p>
       </div>
         <!-- Grupo: DNI-->
@@ -206,7 +222,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
               <input type="text" class="form-control formulario__input" name="dni" id="dni"  maxlength="8" placeholder="12673999" aria-describedby="addon-wrapping" required>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
          </div>
-         <p class="text-info ">*Esta pregunta es obligatoria</p>
+        
 				<p class="formulario__input-error">El DNI solo puede contener numeros y el maximo son 8 dígitos</p>
 			</div>
       
@@ -240,12 +256,8 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
               </div>  
             </div>
    </div>
-    <p class="text-info ">*Esta pregunta es obligatoria</p> 
    
-
  
-
-  </div>
 
           <!--Grupo Asunto del turno-->
           <div class="formulario__grupo" id="grupo__asunto">
@@ -254,7 +266,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
             <input type="text" class="form-control formulario__input" id="asunto" name="asunto"  placeholder="Ejemplo: A mi perro le duele la pata izquierda" maxlength="80" required>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
           </div>
-          <p class="text-info ">*Esta pregunta es obligatoria</p>
+        
           <p class="formulario__input-error">El asunto solo puede contener letra y número con un máximo de 80 caracteres</p>
         </div>
 
@@ -267,41 +279,37 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
           <option class="text-center" value="v">Veterinaria</option>
           <option class="text-center" value="p">Peluqueria Canina</option>
           </select>
-          <p class="text-info ">*Esta pregunta es obligatoria</p>
+    
           <p class="formulario__input-error">&nbsp; Recordar que tiene que seleccionar un turno</p>
         <div id="textoTurno" value="false"></div>
           <div id="textAsunto" style="display:none;" >
 {{--             <label for="turno" class="formulario__label">Asunto </label>
             <textarea class = "col-md-12 col-4 form-control" name="asunto" placeholder="Motivo de reservación de turno"></textarea> --}}
-          </div>  
-          </div> 
+         
           </div>
     </div>
   
           <br>
-          <div class="container-fluid d-flex justify-content-center"></div>
+     {{--      <div class="container-fluid d-flex justify-content-center"></div> --}}
   
-          <div class="container" id="area" name="area">
-          <div class="row">
-          <div class="col-md-2"></div> 
-          <div class="col-sm-12 col-md-8 bg-white"><div id="agenda">
-          </div></div>
+   {{--        <div class="container" id="area" name="area"> --}}
+          <div class="row bg-light">
+         <div class="col-md-2"></div>  
+        {{--   <div class="col-sm-12 col-md-8 bg-white"> --}}<div id="agenda" ></div>
           <div class="col-md-2"></div>
           </div>
-        
-          
-</div> 
-           
+       
 
-      </div>
-     <div class="modal fade" id="myModal" name="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true">
+
+ {{--     ventana modal --}}
+  <div class="modal fade" id="myModal" name="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop" aria-hidden="true">
            <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header-center">
             <div id="tituloTipo"></div>
             <h5 class="modal-title text-center" id="staticBackdropLabel">Día y Horario</h5>
          
-            </div>
+            </div> 
             
           
 
@@ -325,7 +333,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
             </div>
           
             <br>
-            <div class="formulario__grupo formulario__btn-enviar">
+            <div class="formulario__grupo formulario__btn-enviar text-center">
             <button class="btn btn-dark btn-success"  type="reset" id="cancelar">Borrar</button>
             <button class="btn  btn-dark btn-success" id="botonAceptar" type="submit">Aceptar</button>
                <!-- Menesaje de Exitoso -->
