@@ -48,7 +48,7 @@
     <a href="/turnos/createUnTurno"  class="btn btn-primary rounded-pill" title="Agregar Turno">+ Turno <i class="fa-solid fa-calendar-days"></i></a>
     <br>
     <br>
-    <table id="example" class="table table-striped" style="width:100%">
+    <table id="example" class="table table-striped dataTable" style="width:100%">
         <thead>
             <tr>
                 <th scope="col">Fecha</th>
@@ -493,6 +493,9 @@
 
 });
  $('#example').DataTable({
+  "bSort": true, // Con esto le estás diciendo que se pueda ordenar, ponlo a 'true'
+  "order": [], // Aquí le dices que el criterio de ordenación primero esté vació , o lo que es lo mismo, ninguno
+
 language: {
 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
 }
@@ -586,6 +589,10 @@ $(document).ready(function (){
 });
 
  </script> 
+ 
+
+
+ 
 @endsection
 
 

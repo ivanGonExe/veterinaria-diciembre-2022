@@ -102,6 +102,7 @@ class TurnoController extends Controller
                                   ->where('start','<',$unDiaDespues)
                                   ->where('estado','1')
                                   ->where('tipo',$tipoTurno)
+                                  ->orderBy('start','Asc')
                                   ->get();
             }
     //Listado de turnos restantes en la semana
@@ -115,19 +116,24 @@ class TurnoController extends Controller
              $turnos       = Turno::where('start','>',$fechaActual)
                                   ->where('start','<',$sabado)
                                   ->where('tipo',$tipoTurno)
-                                  ->where('estado','1')->get(); 
+                                  ->where('estado','1')
+                                  ->orderBy('start','Asc')
+                                  ->get(); 
             }
     //Listado de turnos libres
         if($id == 3){
 
             $turnos = Turno::Where('estado',0)
                                 ->where('tipo',$tipoTurno)
+                                ->orderBy('start','Asc')
                                 ->get();
         }
     //Histórico de turnos
         if($id == 4){
 
-            $turnos = Turno::where('tipo',$tipoTurno)->get();
+            $turnos = Turno::where('tipo',$tipoTurno)
+                           ->orderBy('start','desc')
+                           ->get();
         }
     //Listado de turnos pasados
         if($id == 5){
@@ -142,10 +148,13 @@ class TurnoController extends Controller
 
                 $turnos = Turno::where('turnos.estado','!=',2)
                                ->where('tipo',$tipoTurno)
-                               ->orderBy('turnos.updated_at','desc')
+                               ->orderBy('turnos.updated_at','Desc')
                                ->join('personas', 'personas.id', '=', 'turnos.persona_id')
                                ->get();
+                               
             }
+
+            
     //traigo a las personas por si debo asignar 
             $personas = DB::table('personas')
                           ->join('telefonos', 'telefonos.persona_id', '=', 'personas.id')
