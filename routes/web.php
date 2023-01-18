@@ -197,11 +197,18 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
 
 /*vista administrador */
 
+/* posteo ckeditor */
+//noticias 
+Route::get('/entradaNoticia', function () {
+    return view('administrador.home');
+});
 
 
 Route::get('/estadisticas', function () {
     return view('estadistica.estadisticas');
 });
+
+Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
 
 
 Auth::routes();
@@ -211,3 +218,6 @@ Route::get('logout','App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/estadistica/ganancia/por_mes/{id}','App\Http\Controllers\VentaController@gananciaPorMes');
 Route::get('/estadistica/articulos/MasVendidos/{id}','App\Http\Controllers\VentaController@articulosMasVendidos');
 Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
+
+
+
