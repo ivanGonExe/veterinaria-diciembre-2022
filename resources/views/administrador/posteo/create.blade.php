@@ -36,6 +36,7 @@
 
                  
                 </div>
+                <a class="btn btn-danger" href="/entradaNoticia">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </form>
         </div>

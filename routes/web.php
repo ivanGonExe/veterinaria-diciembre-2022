@@ -199,9 +199,11 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
 
 /* posteo ckeditor */
 //noticias 
+Route::post('/guardarNoticia', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
+Route::post('/actualizarNoticia/{id}', [App\Http\Controllers\HomeController::class, 'update'])->name('update');
 Route::get('/entradaNoticia', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
-Route::post('/guardarNoticia', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
+
 Route::get('/eliminarNoticia/{id}',[App\Http\Controllers\HomeController::class, 'destroy']);
 Route::get('/editarNoticia/{id}',[App\Http\Controllers\HomeController::class, 'edit']);
 

@@ -28,7 +28,11 @@ class HomeController extends Controller
     }
     public function store(Request $request)
     {  
+        $request->validate([
+            'titulo'   => 'required| string ',
+            'asunto'   => 'required| string ',
         
+        ]); 
         
         $data = new Post(); 
         $data->titulo = $request->titulo;
@@ -64,6 +68,30 @@ class HomeController extends Controller
      
     return view('administrador.posteo.edit')->with ('dato',$dato);
                                 
+    }
+
+       /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'titulo'   => 'required| string ',
+            'asunto'   => 'required| string ',
+        
+        ]); 
+        
+    $dato = Post::find($id);  
+    $dato->titulo = $request->titulo;
+    $dato->asunto = $request->asunto;
+    $dato->fecha = Carbon::now()->format('Y-m-d H:i:s');
+    $dato->save(); 
+
+    return redirect('/entradaNoticia');  
     }
 
 

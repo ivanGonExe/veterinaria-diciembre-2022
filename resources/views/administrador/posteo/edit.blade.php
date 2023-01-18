@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <form action="/guardarNoticia" method="POST">
+        <form action="/actualizarNoticia/{{$dato->id}}" method="POST">
                 @csrf
       
            <!--      <script>
@@ -36,6 +36,7 @@
 
                  
                 </div>
+                <a class="btn btn-danger" href="/entradaNoticia">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </form>
         </div>
