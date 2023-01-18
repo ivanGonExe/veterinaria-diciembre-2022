@@ -209,7 +209,7 @@ Route::get('/estadisticas', function () {
 });
 
 Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
-
+Route::post('/create', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
 
 Auth::routes();
 Route::get('logout','App\Http\Controllers\Auth\LoginController@logout');

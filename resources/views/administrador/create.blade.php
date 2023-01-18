@@ -17,7 +17,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form>
+        <form action="{{ route('store') }}" method="POST">
+                @csrf
       
            <!--      <script>
                         CKEDITOR.replace( 'desc' );
