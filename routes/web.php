@@ -199,21 +199,20 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
 
 /* posteo ckeditor */
 //noticias 
-Route::get('/entradaNoticia', function () {
-    return view('administrador.home');
-});
+Route::get('/entradaNoticia', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
+Route::post('/guardarNoticia', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
+Route::get('/eliminarNoticia/{id}',[App\Http\Controllers\HomeController::class, 'destroy']);
+Route::get('/editarNoticia/{id}',[App\Http\Controllers\HomeController::class, 'edit']);
+
+Auth::routes();
+Route::get('logout','App\Http\Controllers\Auth\LoginController@logout');
+
 
 
 Route::get('/estadisticas', function () {
     return view('estadistica.estadisticas');
 });
-
-Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
-Route::post('/create', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
-
-Auth::routes();
-Route::get('logout','App\Http\Controllers\Auth\LoginController@logout');
-
 
 Route::get('/estadistica/ganancia/por_mes/{id}','App\Http\Controllers\VentaController@gananciaPorMes');
 Route::get('/estadistica/articulos/MasVendidos/{id}','App\Http\Controllers\VentaController@articulosMasVendidos');

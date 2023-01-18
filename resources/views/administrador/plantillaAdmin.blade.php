@@ -176,10 +176,12 @@ a{
 <head>
     <meta charset="UTF-8">
     <title>Menu Administrador </title>
-
+    <!-- jquery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin ="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" type="text/css" href="{{asset('estiloAdmin.css')}}">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
 </head>
 <body>
 
