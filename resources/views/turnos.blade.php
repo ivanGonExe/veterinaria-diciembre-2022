@@ -121,10 +121,6 @@ color:#0075ff;
 opacity: 1; 
 }
 
-
-
-
-
 /*---estilo validaciones circle y check--*/ 
 .formulario__grupo-correcto .formulario__validacion-estado
 {
