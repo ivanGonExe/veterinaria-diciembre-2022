@@ -77,6 +77,16 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
 /*estilo laravel*/ 
 
 body{
@@ -255,12 +265,19 @@ img.btn-whatsapp {
 
 .formulario_turno{
 
-   margin: 30px;
-   padding:50px;
+  /*  margin: 30px; */
+/*   width: auto;
+  height: auto; */
+/*    padding:10px;
+   margin: 10px; */
    text-align:center;
-   background-color: rgba(100, 83, 153, 0.9);
-   border-radius: 5px;
+   border: 10px solid #05000000;
+   background-color: rgba(100, 83, 153, 1); 
+ /*   border-radius: 5px; */
 }
+
+
+
 .formulario_turno label{
    padding:10px;
    color:#ffffff;

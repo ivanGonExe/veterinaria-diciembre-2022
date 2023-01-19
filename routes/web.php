@@ -24,8 +24,8 @@ Route::get('register','App\Http\Controllers\Auth\LoginController@redirecion');
 //     return view('index');
 // });
 Route::get('/', [App\Http\Controllers\EmpresaController::class,'index']);
-Route::get('/fechaVacunacion', function () {
-    return view('fechaVacunacion');
+Route::get('/noticias', function () {
+    return view('noticias');
 });
 Route::post('/turnos/agregar', [App\Http\Controllers\TurnoController::class,'agregar']);
 Route::post('turnos/mostrarTurno','App\Http\Controllers\TurnoController@mostrarTurno');
@@ -197,17 +197,28 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
 
 /*vista administrador */
 
+/* posteo ckeditor */
+//noticias 
+Route::post('/guardarNoticia', [App\Http\Controllers\HomeController::class, 'store'])->name('store');
+Route::post('/actualizarNoticia/{id}', [App\Http\Controllers\HomeController::class, 'update'])->name('update');
+Route::get('/entradaNoticia', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
+
+Route::get('/eliminarNoticia/{id}',[App\Http\Controllers\HomeController::class, 'destroy']);
+Route::get('/editarNoticia/{id}',[App\Http\Controllers\HomeController::class, 'edit']);
+
+Auth::routes();
+Route::get('logout','App\Http\Controllers\Auth\LoginController@logout');
+
 
 
 Route::get('/estadisticas', function () {
     return view('estadistica.estadisticas');
 });
 
-
-Auth::routes();
-Route::get('logout','App\Http\Controllers\Auth\LoginController@logout');
-
-
 Route::get('/estadistica/ganancia/por_mes/{id}','App\Http\Controllers\VentaController@gananciaPorMes');
 Route::get('/estadistica/articulos/MasVendidos/{id}','App\Http\Controllers\VentaController@articulosMasVendidos');
 Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
+
+
+

@@ -51,17 +51,17 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{'/seleccionTurno'}}">Turnos</a>
                 </li>
-             <a class="nav-link" href="{{'/fechaVacunacion'}}">Crónograma de Vacunación</a>
+             <a class="nav-link" href="{{'/noticias'}}">Noticias</a>
               </li>
               
             
               
              {{--  <li class="nav-item">
                 <a class="nav-link" href="{{'/fechaVacunacion'}}">Quienes Somos</a>
-              </li> --}}
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="/login">Iniciar sesión</a>
-              </li>
+              </li> --}}
               
             </ul>
             

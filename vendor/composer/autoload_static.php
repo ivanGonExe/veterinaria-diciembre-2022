@@ -575,6 +575,7 @@ class ComposerStaticInit706d1e2366e9b4c3d5cf3847a6f0930f
         'App\\Models\\HistorialClinico' => __DIR__ . '/../..' . '/app/Models/HistorialClinico.php',
         'App\\Models\\Mascota' => __DIR__ . '/../..' . '/app/Models/Mascota.php',
         'App\\Models\\Persona' => __DIR__ . '/../..' . '/app/Models/Persona.php',
+        'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
         'App\\Models\\Telefono' => __DIR__ . '/../..' . '/app/Models/Telefono.php',
         'App\\Models\\Turno' => __DIR__ . '/../..' . '/app/Models/Turno.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

@@ -54,6 +54,7 @@ return array(
     'App\\Models\\HistorialClinico' => $baseDir . '/app/Models/HistorialClinico.php',
     'App\\Models\\Mascota' => $baseDir . '/app/Models/Mascota.php',
     'App\\Models\\Persona' => $baseDir . '/app/Models/Persona.php',
+    'App\\Models\\Post' => $baseDir . '/app/Models/Post.php',
     'App\\Models\\Telefono' => $baseDir . '/app/Models/Telefono.php',
     'App\\Models\\Turno' => $baseDir . '/app/Models/Turno.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
