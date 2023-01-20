@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-ramaMartinNueva',
-        'version' => 'dev-ramaMartinNueva',
+        'pretty_version' => 'dev-ramaAlexis',
+        'version' => 'dev-ramaAlexis',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '01bcbd1bff5bbb974108f6e2b4022450ebe885f3',
+        'reference' => 'cc192da7663069c5eb0c7132c7c0b1dbefcce02d',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -395,12 +395,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'dev-ramaMartinNueva',
-            'version' => 'dev-ramaMartinNueva',
+            'pretty_version' => 'dev-ramaAlexis',
+            'version' => 'dev-ramaAlexis',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '01bcbd1bff5bbb974108f6e2b4022450ebe885f3',
+            'reference' => 'cc192da7663069c5eb0c7132c7c0b1dbefcce02d',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(

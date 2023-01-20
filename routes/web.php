@@ -42,7 +42,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/appblade', function () {
             return view('layouts.app');
         });
-
+    
+    Route::get('logout','App\Http\Controllers\Auth\LoginController@logout');
+    });  
+    
+    //Rutas de usuario cajero
     Route::group(['middleware' => 'UsuarioCajero'], function () {
 
             Route::get('/vistaRoles/cajero', function () {
@@ -80,6 +84,9 @@ Route::group(['middleware' => 'auth'], function () {
         /* ruta de notificacion */
             Route::resource('/notificaciones','App\Http\Controllers\notificacionesController');
             Route::get('/notificacion/{id}/delete','App\Http\Controllers\notificacionesController@destroy');
+        /* rutas de estadísticas */
+            Route::get('/estadistica/ganancia/por_mes/{id}','App\Http\Controllers\VentaController@gananciaPorMes');
+            Route::get('/estadistica/articulos/MasVendidos/{id}','App\Http\Controllers\VentaController@articulosMasVendidos');
     });
 
 
@@ -126,6 +133,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::resource('/historialesClinicos','App\Http\Controllers\HistorialClinicoController');
             Route::resource('/detallesClinicos','App\Http\Controllers\DetalleClinicoController');
             Route::get('DetallesClinicos/create/{id}',[DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
+            Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
     });
 //-------------------------------------------------------------------------------------------------------
     Route::group(['middleware' => 'UsuarioPeluquero'], function () {
@@ -141,8 +149,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
             return view('dashboard');
     })->name('dashboard');
-     
-    });
+
 
 Route::group(['middleware' => 'UsuarioAdministrador'], function () {
   
@@ -170,20 +177,22 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
         Route::get('/eliminarNoticia/{id}',[App\Http\Controllers\HomeController::class, 'destroy']);
         Route::get('/editarNoticia/{id}',[App\Http\Controllers\HomeController::class, 'edit']);
+
+        Route::get('/estadisticas', function () {
+            return view('estadistica.estadisticas');
+    });
+    
+    Route::get('/estadistica/ganancia/por_mes/{id}','App\Http\Controllers\VentaController@gananciaPorMes');
+    Route::get('/estadistica/articulos/MasVendidos/{id}','App\Http\Controllers\VentaController@articulosMasVendidos');
+    Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
+    
     });
 
 
 //estan dentro de los que estan registrados
     Auth::routes();
-    Route::get('logout','App\Http\Controllers\Auth\LoginController@logout');
-//Estadisticas
-    Route::get('/estadisticas', function () {
-        return view('estadistica.estadisticas');
-    Route::get('/estadistica/ganancia/por_mes/{id}','App\Http\Controllers\VentaController@gananciaPorMes');
-    Route::get('/estadistica/articulos/MasVendidos/{id}','App\Http\Controllers\VentaController@articulosMasVendidos');
-    Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
     
-});
+//Estadisticas
 
 
 
