@@ -1,6 +1,9 @@
 @extends('administrador.plantillaAdmin')
 
 
+
+
+
 @section('contenido')
 
 <div class="main_content">
@@ -18,7 +21,7 @@
             <a href="{{ route('create') }}" class="btn btn-primary btn-sm mb-2">+ Crear Posteo</a>
             <br>
             <br>
-            <table class="table">
+            <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
                   <tr>
                    
@@ -64,6 +67,13 @@
 </body>
 
 <script>
+  $(document).ready(function() {
+    var table = $('#example').DataTable( {
+        responsive: true
+    } );
+ 
+    new $.fn.dataTable.FixedHeader( table );
+} );
 /*------------------------------------------------ */
 $(document).ready(function (){
 var id = 0;

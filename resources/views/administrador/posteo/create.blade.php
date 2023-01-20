@@ -31,12 +31,13 @@
                <script>
                         CKEDITOR.replace( 'asunto' );
                 </script>
-                <div class="container bg-white">
+               
+                <div class="container ">
                 <div class="row w-50">
                 <img id="imgPreview" > 
-             <input type="file" accept="image/*" height="600" width="900"  onchange="previewImage(event, '#imgPreview')">
+             <input type="file" accept="image/*" height="600" width="700"  onchange="previewImage(event, '#imgPreview')">
                 </div>
-                </div>
+               
                 <br>
                 <a class="btn btn-danger" href="/entradaNoticia">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Enviar</button>

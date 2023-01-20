@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <form action="/actualizarNoticia/{{$dato->id}}" method="POST">
+        <form action="/actualizarNoticia/{{$dato->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
       
            <!--      <script>
@@ -33,15 +33,62 @@
                   <script>
                         CKEDITOR.replace( 'asunto' );
                 </script>
-
-                 
+    
+                <div class="row w-50">
+                <img id="imgPreview" > 
+             <input type="file" accept="image/*" height="600" width="900"  onchange="previewImage(event, '#imgPreview')">
                 </div>
+           
+              
+
+                  <br>
                 <a class="btn btn-danger" href="/entradaNoticia">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </form>
         </div>
     </div>
 </div> 
+
+
+
+
+
+
+
+<script>
+
+  function previewImage(event, querySelector){
+  
+  //Recuperamos el input que desencadeno la acción
+  const input = event.target;
+  
+  //Recuperamos la etiqueta img donde cargaremos la imagen
+  $imgPreview = document.querySelector(querySelector);
+  
+  // Verificamos si existe una imagen seleccionada
+  if(!input.files.length) return
+  
+  //Recuperamos el archivo subido
+  file = input.files[0];
+  
+  //Creamos la url
+  objectURL = URL.createObjectURL(file);
+  
+  //Modificamos el atributo src de la etiqueta img
+  $imgPreview.src = objectURL;
+                
+  }
+  
+  
+  
+   
+      CKEDITOR.editorConfig = function( config ) {
+  
+    config.removeButtons = 'Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Anchor,Language,BidiRtl,BidiLtr,Blockquote,CreateDiv,Indent,Outdent,CopyFormatting,RemoveFormat,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Scayt,SelectAll,Find,Replace,Undo,Redo,Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteFromWord,PasteText';
+  };
+  
+      </script>
+
 @endsection
 
 
