@@ -1,6 +1,6 @@
 @extends('administrador.plantillaAdmin')
 
-<script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+
 @section('contenido')
 
 <div class="main_content">
