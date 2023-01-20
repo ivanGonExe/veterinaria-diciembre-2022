@@ -123,6 +123,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/telefonos/{id}/delete','App\Http\Controllers\TelefonoController@destroy');
             Route::post('telefono/ver','App\Http\Controllers\TelefonoController@ver');
             Route::get('telefonos/create/{id}',[TelefonoController::class, 'create'] )->name('creartelefono');
+            //Ruta de estadística
+            Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
 
         });
 //-------------------------------------------------------------------------------------------------------
@@ -133,14 +135,10 @@ Route::group(['middleware' => 'auth'], function () {
             Route::resource('/historialesClinicos','App\Http\Controllers\HistorialClinicoController');
             Route::resource('/detallesClinicos','App\Http\Controllers\DetalleClinicoController');
             Route::get('DetallesClinicos/create/{id}',[DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
-            Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
     });
 //-------------------------------------------------------------------------------------------------------
     Route::group(['middleware' => 'UsuarioPeluquero'], function () {
 
-            Route::get('/vistaRoles/peluquero', function () {
-                return view('empresa.peluquero.peluquero');
-            });
             Route::get('/vistaRoles/peluquero', function () {
                 return view('empresa.peluquero.peluquero');
             });
