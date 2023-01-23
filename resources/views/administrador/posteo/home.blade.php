@@ -27,6 +27,7 @@
                    
                     <th scope="col">Fecha</th>
                     <th scope="col">Titulo</th>
+                    <th scope="col">Imagen</th>
                     <th scope="col">Asunto</th>
                     <th scope="col">Acciones</th>
                   </tr>
@@ -45,7 +46,7 @@
                    
                     <td>{{ $data->fecha }}</td>
                     <td>{{ $data->titulo }}</td>
-                    
+                    <td><img src='{{$data->file}}' height="100" width="100"></td>
                     <td>{!! Str::limit( strip_tags( $data->asunto ), 50 ) !!}</td>
                     <td><button class="btn btn eliminar" title="Eliminar" id="{{$data->id}}" value= '{{$data->id}}'><i class="fa-solid fa-trash-can"></i></button>
                     

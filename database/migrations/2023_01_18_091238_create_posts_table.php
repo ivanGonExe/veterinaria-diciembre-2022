@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('titulo');
             $table->longText('asunto');
             $table->date('fecha');
+            $table->string('file'); 
             $table->timestamps();
         });
     }

@@ -17,13 +17,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
         <form action="/actualizarNoticia/{{$dato->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
-      
-           <!--      <script>
-                        CKEDITOR.replace( 'desc' );
-                </script> -->
-                <div class="mb-3">
+                    <div class="mb-3">
                   <label for="titulo" class="form-label"><h3>Titulo</h3></label>
                   <input type="text" name="titulo" class="form-control" id="titulo" value='{{$dato->titulo}}'>
                 </div>
@@ -34,17 +31,19 @@
                         CKEDITOR.replace( 'asunto' );
                 </script>
     
-                <div class="row w-50">
-                <img id="imgPreview" > 
-             <input type="file" accept="image/*" height="600" width="900"  onchange="previewImage(event, '#imgPreview')">
-                </div>
+             <div class="row w-50">
+               
+                <td> <img id="imgPreview" src='{{$dato->file}}'>
+               
+             <input type="file" accept="image/*" height="600" width="900" onchange="previewImage(event, '#imgPreview')">
+                </div> 
            
               
 
                   <br>
                 <a class="btn btn-danger" href="/entradaNoticia">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Enviar</button>
-              </form>
+</form>
         </div>
     </div>
 </div> 

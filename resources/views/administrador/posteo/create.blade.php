@@ -35,8 +35,8 @@
                 <div class="container ">
                 <div class="row w-50">
                 <img id="imgPreview" > 
-             <input type="file" accept="image/*" height="600" width="700"  onchange="previewImage(event, '#imgPreview')">
-                </div>
+             <input type="file" accept="image/*" name="file" id="file" height="600" width="700"  onchange="previewImage(event, '#imgPreview')">
+                </div> 
                
                 <br>
                 <a class="btn btn-danger" href="/entradaNoticia">Cancelar</a>
