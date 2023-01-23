@@ -39,16 +39,17 @@
                     @endphp
                   @if($data->isEmpty())
                   
-                  <th colspan="3"><p class="text-center">no hay dato</p> </th>
+                  <th colspan="5"><p class="text-center">no hay dato</p> </th>
                   @else 
                   @foreach ($data as $data)
                    <tr> 
                    
                     <td>{{ $data->fecha }}</td>
                     <td>{{ $data->titulo }}</td>
-                    <td><img src='{{$data->file}}' height="100" width="100"></td>
+                    <td><img src='{{$data->file}}' height="60" width="60"></td>
                     <td>{!! Str::limit( strip_tags( $data->asunto ), 50 ) !!}</td>
-                    <td><button class="btn btn eliminar" title="Eliminar" id="{{$data->id}}" value= '{{$data->id}}'><i class="fa-solid fa-trash-can"></i></button>
+                    <td>
+                      <button class="btn btn eliminar" title="Eliminar" id="{{$data->id}}" value= '{{$data->id}}'><i class="fa-solid fa-trash-can"></i></button>
                     
                     <a href="/editarNoticia/{{$data->id}}" name="Editar" class="btn btn " title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
 

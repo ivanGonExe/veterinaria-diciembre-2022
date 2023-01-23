@@ -2,6 +2,9 @@
 
 <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 @section('contenido')
+<style>
+
+</style>
 
 <div class="main_content">
         <div class="content">
@@ -18,7 +21,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-        <form action="/actualizarNoticia/{{$dato->id}}" method="POST" enctype="multipart/form-data">
+        <form action="/actualizarNoticia/{{$dato->id}}" method="POST" name="formulario" enctype="multipart/form-data">
                 @csrf
                     <div class="mb-3">
                   <label for="titulo" class="form-label"><h3>Titulo</h3></label>
@@ -33,10 +36,15 @@
     
              <div class="row w-50">
                
-                <td> <img id="imgPreview" src='{{$dato->file}}'>
+                <td> <img id="imgPreview" src="{{$dato->file}}" >
                
-             <input type="file" accept="image/*" height="600" width="900" onchange="previewImage(event, '#imgPreview')">
-                </div> 
+             <input type="file" accept="image/*" height="600" width="900"  name="file" id="file" onchange="previewImage(event, '#imgPreview')" >
+              <input type = "hidden" name='imagen' value='{{$dato->file}}'>  
+              @error('file')
+               <h3 class="text-danger">{{$message}}</h3>
+              @enderror
+            
+            </div> 
            
               
 
@@ -56,26 +64,37 @@
 
 <script>
 
+let formulario= document.getElementById('formulario');
+
+formulario.addEventListener('submit',function(event){
+    event.preventDefault();
+let oculto = document.getElementById('imagen');
+oculto.style.display = 'block';
+formulario.submit();
+
+}); 
+
+
   function previewImage(event, querySelector){
   
-  //Recuperamos el input que desencadeno la acción
+//Recuperamos el input que desencadeno la acción
   const input = event.target;
   
   //Recuperamos la etiqueta img donde cargaremos la imagen
   $imgPreview = document.querySelector(querySelector);
   
   // Verificamos si existe una imagen seleccionada
+
   if(!input.files.length) return
   
   //Recuperamos el archivo subido
   file = input.files[0];
-  
-  //Creamos la url
+    //Creamos la url
   objectURL = URL.createObjectURL(file);
-  
-  //Modificamos el atributo src de la etiqueta img
+   //Modificamos el atributo src de la etiqueta img
   $imgPreview.src = objectURL;
-                
+           
+ 
   }
   
   

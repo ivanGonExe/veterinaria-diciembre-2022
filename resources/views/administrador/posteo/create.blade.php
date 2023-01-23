@@ -2,6 +2,14 @@
 
 <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 @section('contenido')
+<style>
+.file{
+  background-color: red;
+}.imput {
+  background-color: red;
+}
+
+</style>
 
 <div class="main_content">
         <div class="content">
@@ -35,7 +43,7 @@
                 <div class="container ">
                 <div class="row w-50">
                 <img id="imgPreview" > 
-             <input type="file" accept="image/*" name="file" id="file" height="600" width="700"  onchange="previewImage(event, '#imgPreview')">
+             <input type="file" aria-label="Archivo" accept="image/*" class="file" name="file" id="file" height="600" width="700"  onchange="previewImage(event, '#imgPreview')">
                 </div> 
                
                 <br>
@@ -52,6 +60,7 @@
 
 function previewImage(event, querySelector){
 
+console.log("entro perro");
 //Recuperamos el input que desencadeno la acción
 const input = event.target;
 

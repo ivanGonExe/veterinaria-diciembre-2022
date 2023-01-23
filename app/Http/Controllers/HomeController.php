@@ -28,21 +28,26 @@ class HomeController extends Controller
 
     }
     public function store(Request $request)
-    {  
+    {    
+         
+
          $request->validate([
             'titulo'   => 'required| string ',
             'asunto'   => 'required| string ',
-             'file'  =>    'required| image | max:2048 ',
+             'file'    =>  'required | image',
         
         ]); 
-      
+
+     
         $data = new Post(); 
         $data->titulo = $request->titulo;
         $data->asunto = $request->asunto;
         $data->fecha = Carbon::now()->format('Y-m-d H:i:s');
         $imagen = $request->file('file')->store('public/imagenes'); 
-        $data->file = Storage::url($imagen);
-       
+        if($imagen){
+            $data->file = Storage::url($imagen);
+        }       
+      
         $data->save();  
         
        return redirect('/entradaNoticia');  
@@ -83,23 +88,54 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
   public function update(Request $request, $id)
-    {
-        $request->validate([
-            'titulo'   => 'required| string ',
-            'asunto'   => 'required| string ',
-             'file'  =>    'required| image | max:2048 ',
-        
-        ]); 
-        dd($request); 
-    $dato = Post::find($id);  
-    $dato->titulo = $request->titulo;
-    $dato->asunto = $request->asunto;
-    $dato->fecha = Carbon::now()->format('Y-m-d H:i:s');
-    $imagen = $request->file('file')->store('public/imagenes'); 
-    $dato->file = Storage::url($imagen);
-   
-    $dato->save();  
+    { 
 
+
+        if($request->file ==''){
+            $request->validate([
+                'titulo'   => 'required| string ',
+                'asunto'   => 'required| string ',
+                'imagen'   => 'required| string ',
+             ]); 
+
+             $dato = Post::find($id);  
+             $dato->titulo = $request->titulo;
+             $dato->asunto = $request->asunto;
+             $dato->fecha = Carbon::now()->format('Y-m-d H:i:s');
+             
+            $dato->file = $request->imagen; 
+              
+            
+            
+             $dato->save();  
+
+
+        }else {
+    
+            $request->validate([
+                'titulo'   => 'required| string ',
+                'asunto'   => 'required| string ',
+                 'file'    =>  'required | image',
+            
+            ]); 
+            $dato = Post::find($id);  
+            $dato->titulo = $request->titulo;
+            $dato->asunto = $request->asunto;
+            $dato->fecha = Carbon::now()->format('Y-m-d H:i:s');
+            $imagen = $request->file('file')->store('public/imagenes'); 
+            $dato->file = Storage::url($imagen);
+             
+           
+            $dato->save();  
+        
+
+
+
+        }
+    
+        
+      
+   
    
 
      return redirect('/entradaNoticia');   
