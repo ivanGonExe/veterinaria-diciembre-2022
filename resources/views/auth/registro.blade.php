@@ -22,6 +22,9 @@
       
     }
 
+    #mostrarContrasenia:hover{
+        color: white !important;
+    }
     
     </style> 
 
@@ -84,8 +87,10 @@
                         <div class="form-group row m-2">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="col-md-6" >
+                                <input id="password-confirm"   type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <br>
+                                <a id="mostrarContrasenia">Mostrar Contraseñas</a>
                             </div>
                         </div>
 
@@ -104,9 +109,8 @@
                         
 
                         <div class="form-group m-4 container-fluid d-flex">
-                            <button  class="btn btn-secondary m-3">
-                                {{ __('Cancelar') }}
-                                    </button>
+                            <a   href="/usuario" class="btn btn-secondary m-3"> Cancelar
+                            </a>
                          {{--    <div class="col-md-6 offset-md-4"> --}}
                                 <button type="submit" class="btn btn-primary m-3">
                                     {{ __('Guardar') }}
@@ -123,5 +127,24 @@
         <div class="col-md-2"></div>
     </div>
  
-
+<script>
+let mostrar        = document.getElementById("mostrarContrasenia");
+let password       = document.getElementById("password");
+let passwordConfir = document.getElementById("password-confirm");
+mostrar.style.color ="gray";
+mostrar.addEventListener('click',function(){
+    if(password.type =="password"){
+            password.type      ="text";
+            passwordConfir.type ="text";
+            mostrar.style.color ="#D0D3D4 ";
+            mostrar.innerHTML  ="Ocultar contraseñas"
+    }
+    else{
+        password.type       ="password";
+        passwordConfir.type ="password";
+        mostrar.innerHTML   ="Mostrar contraseñas"
+        mostrar.style.color ="gray";
+    }
+})
+</script>
 @endsection
