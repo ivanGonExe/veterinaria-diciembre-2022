@@ -27,7 +27,7 @@ class VentaController extends Controller
 
         return view('venta.index')->with('ventas', $ventas);
     }
-
+//-----------------------------------------------------------
     /**
      * Show the form for creating a new resource.
      *
@@ -43,13 +43,12 @@ class VentaController extends Controller
                                  ->orWhere('vencimiento',null)
                                  ->where('unidad','>',0)
                                  ->where('estado','1')
-                                ->get();
-        
-                                //no traer articulos vencidos
+                                 ->get();
 
-        return view('venta.create')->with('lotes', $lotes);
+        return view('venta.create')
+                   ->with('lotes', $lotes);
     }
-
+//-----------------------------------------------------------
     /**
      * Store a newly created resource in storage.
      *
@@ -60,7 +59,7 @@ class VentaController extends Controller
     {
         
     }
-
+//-----------------------------------------------------------
     /**
      * estadistica ganancia por mes.
      * @param  int  $id
@@ -69,25 +68,24 @@ class VentaController extends Controller
     public function gananciaPorMes($id)
     {  
         $año = $id;
-
         $fechaActual = Carbon::createFromDate($id.'-12-31');
         $mesfor      = $fechaActual->format('m')-1+1;
         $año         = $fechaActual->format('Y');
         $arreglo     = []; 
         
-         for($i=12; $i>0; $i--){
+        for($i=12; $i>0; $i--){
             $mesFecha    = $fechaActual->format('m');
             $mesInicio   = $año."-".$mesFecha."-01";
             $diasFin     = $fechaActual->lastOfMonth()->endOfday()->format('d');
             $mesFin      = $año."-".$mesFecha."-".$diasFin;
             
             $ganancia = DB::table('ventas')
-                                      ->join('detalle_ventas','ventas.id','=','detalle_ventas.idVenta')
-                                      ->join('lote_descripcions','detalle_ventas.idLote','=','lote_descripcions.id')
-                                      ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
-                                      ->select(DB::raw('SUM(detalle_ventas.subtotal-((detalle_ventas.cantidad*lote_descripcions.precioCompra)+(detalle_ventas.subtotal*articulos.iva / 100))) AS ganancia'))
-                                      ->whereBetween('fecha',[$mesInicio, $mesFin ])
-                                      ->get();
+                                ->join('detalle_ventas','ventas.id','=','detalle_ventas.idVenta')
+                                ->join('lote_descripcions','detalle_ventas.idLote','=','lote_descripcions.id')
+                                ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
+                              ->select(DB::raw('SUM(detalle_ventas.subtotal-((detalle_ventas.cantidad*lote_descripcions.precioCompra)+(detalle_ventas.subtotal*articulos.iva / 100))) AS ganancia'))
+                              ->whereBetween('fecha',[$mesInicio, $mesFin ])
+                              ->get();
 
            if($ganancia[0]->ganancia == null){
                 $arreglo[$i]=0;
@@ -98,18 +96,15 @@ class VentaController extends Controller
             $mesFecha    = $mesFecha-1;
             $fechaActual = Carbon::createFromDate($año,$mesFecha,12);
          }
+
         $labels      = array('Enero','febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'); 
         $orientecion ='x';
         return view('estadistica.estadisticasGananciaPorMes')
-                                ->with('arreglo', $arreglo)
-                                ->with('labels',$labels)
-                                ->with('año',$año);
-                                
-
+                    ->with('arreglo', $arreglo)
+                    ->with('labels',$labels)
+                    ->with('año',$año);                            
     }
-
-
-
+//-----------------------------------------------------------
     /**
      * estadistica articulos mas vendidos historicamente.
      * @param  int  $id
@@ -117,24 +112,22 @@ class VentaController extends Controller
      */
     public function  articulosMasVendidos($id)
     {   $fechaActual = Carbon::now();
-        $año    = $fechaActual->format('Y');
-        $ultDia = $fechaActual->lastOfMonth()->endOfday()->format('d');
-        
-        $mes    = $id;
-        $inicio = $año."-".$mes."-01";
-        $fin    = $año."-".$mes."-".$ultDia;
+        $año         = $fechaActual->format('Y');
+        $ultDia      = $fechaActual->lastOfMonth()->endOfday()->format('d');
+        $mes         = $id;
+        $inicio      = $año."-".$mes."-01";
+        $fin         = $año."-".$mes."-".$ultDia;
 
-        
         $articuloCant = DB::table('ventas')
                             ->join('detalle_ventas','ventas.id','=','detalle_ventas.idVenta')
                             ->join('lote_descripcions','detalle_ventas.idLote','=','lote_descripcions.id')
                             ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
-                        ->select('articulos.descripcion','articulos.marca',DB::raw('SUM(detalle_ventas.cantidad)AS cantVend'))
-                        ->whereBetween('fecha',[$inicio, $fin ])
-                        ->groupBy('articulos.descripcion','articulos.marca')
-                        ->orderByDesc('cantVend')
-                        ->take(20)
-                        ->get();
+                          ->select('articulos.descripcion','articulos.marca',DB::raw('SUM(detalle_ventas.cantidad)AS cantVend'))
+                          ->whereBetween('fecha',[$inicio, $fin ])
+                          ->groupBy('articulos.descripcion','articulos.marca')
+                          ->orderByDesc('cantVend')
+                          ->take(20)
+                          ->get();
         $labels  =[];
         $arreglo =[]; 
 
@@ -144,19 +137,14 @@ class VentaController extends Controller
             $labels[$i]  = $articuloCant[$i]->marca.'/'.$articuloCant[$i]->descripcion;
         }
        $fecha = Carbon::createFromDate($año.'-'.$mes.'-01');
-       
-
+    
         return view('estadistica.estadisticaArticulosMasVendidos')
-                                ->with('arreglo', $arreglo)
-                                ->with('labels',$labels)
-                                ->with('mes',$mes)
-                                ->with('fecha',$fecha->monthName);
+                    ->with('arreglo', $arreglo)
+                    ->with('labels',$labels)
+                    ->with('mes',$mes)
+                    ->with('fecha',$fecha->monthName);
     }
-    
-   
-    
-
-
+//-----------------------------------------------------------
     /**
      * Display the specified resource.
      *
@@ -164,15 +152,17 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $venta = venta::find($id);
+    {   $venta    = venta::find($id);
         $detalles = DB::Table('detalle_ventas')
                             ->join('lote_descripcions', 'lote_descripcions.id','=','detalle_ventas.idLote')
                             ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
                         ->select('detalle_ventas.*','lote_descripcions.vencimiento','articulos.codigo','articulos.descripcion','articulos.marca','articulos.precioVenta',)
                         ->where('detalle_ventas.idVenta','=',$id)
-                    ->get();
+                        ->get();
         
-        return view("venta.show")->with('detalles',$detalles)->with('venta',$venta);
+        return view("venta.show")
+                   ->with('detalles',$detalles)
+                   ->with('venta',$venta);
     }
 
     /**
@@ -185,7 +175,7 @@ class VentaController extends Controller
     {
         //
     }
-
+//-----------------------------------------------------------
     /**
      * Update the specified resource in storage.
      *
@@ -197,7 +187,7 @@ class VentaController extends Controller
     {
         //
     }
-
+//-----------------------------------------------------------
     /**
      * Remove the specified resource from storage.
      * @param int $id
@@ -206,13 +196,9 @@ class VentaController extends Controller
      */
     public function destroy($id)
     {
-        // $venta = venta::find($id);
-        // $venta->delete();
-        // return redirect()->route("ventas.index");
+    
     }
-
-
-
+//-----------------------------------------------------------
     //A partir de acá son los métodos a implementar
 
     private function obtenerArticulos()
@@ -223,8 +209,7 @@ class VentaController extends Controller
         }
         return $articulos;
     }
-
-
+//-----------------------------------------------------------
     private function obtenerEstados()
     {
         $estado = session("estado");
@@ -233,27 +218,20 @@ class VentaController extends Controller
         }
         return $estado;
     }
-
+//-----------------------------------------------------------
     private function vaciarArticulos()
     {
         $this->guardarArticulos(null);
         $this->guardarEstado(null);
     }
-
+//-----------------------------------------------------------
     private function guardarArticulos($articulos)
     {
         session(["articulos" => $articulos,
                 
         ]);
-
-        // session(["estado" => $estado,
-                
-        // ]);
-        
-    
     }
-
-
+//-----------------------------------------------------------
     private function guardarEstado($estado)
     {
          session(["estado" => $estado,
@@ -262,7 +240,7 @@ class VentaController extends Controller
         
     
     }
-
+//-----------------------------------------------------------
     public function cancelarVenta()
     {
         $this->vaciarArticulos();
@@ -270,16 +248,16 @@ class VentaController extends Controller
         return redirect()
             ->route("ventas.index");
     }
-
+//-----------------------------------------------------------
     /**
-     * Update the specified resource in storage.
+     * Sacar articulo de la venta.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function quitarArticuloDeVenta(Request $request)
     {   
-        $indice    = $request->get('articulo')- 1;
+        $indice    = $request->get('articulo') - 1;
         $articulos = $this->obtenerArticulos();
         $estado    = $this->obtenerEstados();
 
@@ -293,9 +271,9 @@ class VentaController extends Controller
     }
     
 
-/********************************************************* */
+//-----------------------------------------------------------
  /**
-     * Update the specified resource in storage.
+     * Reducir en un articulo.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  $id
@@ -309,22 +287,17 @@ class VentaController extends Controller
         $articulos[$posibleIndice]->unidad--;
         
         return redirect()
-            ->route("ventas.create");
+                    ->route("ventas.create");
     }
-
-
-/*********************************** */
-
-
+//-----------------------------------------------------------
     /**
-     * Update the specified resource in storage.
+     * Cambio de precio especial o original
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  $id
      * @return \Illuminate\Http\Response
      */
 
-    
     public function cambiarEstadoPrecio($id){
         $estado        =  $this->obtenerEstados();
         $articulos     =  $this->obtenerArticulos();
@@ -333,19 +306,18 @@ class VentaController extends Controller
         if($estado[$posibleIndice] == 0){
             $estado[$posibleIndice] = 1;
         }
-        else{ $estado[$posibleIndice] = 0;}
+        else{ 
+            $estado[$posibleIndice] = 0;
+        }
         $this->guardarEstado($estado);
 
         return redirect()
-            ->route("ventas.create");
+                    ->route("ventas.create");
 
     }
-
-
-
-
+//-----------------------------------------------------------
     /**
-     * Update the specified resource in storage.
+     * Agregar un articulo a la tienda
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  $id
@@ -354,9 +326,10 @@ class VentaController extends Controller
 
     public function agregarArticuloVenta($id)
     {  
-        //$articulo = loteDescripcion::find($id);
-        $articuloSelecionado = loteDescripcion::where('id', $id)->where('estado','1')->get();
-        $articulo           = $articuloSelecionado[0];
+        $articuloSelecionado = loteDescripcion::where('id', $id)
+                                              ->where('estado','1')
+                                              ->get();
+        $articulo            = $articuloSelecionado[0];
         if (!$articulo) {
             Session::flash('message','Articulo no existente');
             return redirect()
@@ -365,9 +338,9 @@ class VentaController extends Controller
 
         $this->agregarArticuloACarrito($articulo);
         return redirect()
-            ->route("ventas.create");
+                    ->route("ventas.create");
     }
-
+//-----------------------------------------------------------
 private function agregarArticuloACarrito($articulo)
 {  
     if ($articulo->unidad <=0) {
@@ -375,14 +348,15 @@ private function agregarArticuloACarrito($articulo)
         Session::flash('message',$mensaje);
         return redirect()->route("ventas.create");
     }
-    $articulos = $this->obtenerArticulos();
+    $articulos     = $this->obtenerArticulos();
     $posibleIndice = $this->buscarIndiceDeArticulo($articulo->id, $articulos);
     
     // Es decir, producto no fue encontrado
     if ($posibleIndice === -1) {
-        $articulo->unidad = 1;
-         $estado = $this->obtenerEstados();
-         $estadoAux = 0;
+
+         $articulo->unidad = 1;
+         $estado           = $this->obtenerEstados();
+         $estadoAux        = 0;
          array_push($estado,$estadoAux);
          array_push($articulos, $articulo);
          $this->guardarEstado($estado);
@@ -391,18 +365,20 @@ private function agregarArticuloACarrito($articulo)
         if ($articulos[$posibleIndice]->unidad + 1 > $articulo->unidad) {
             $mensaje="No se pueden agregar más productos de este tipo, se quedarían sin existencia";
             Session::flash('message',$mensaje);
-            return redirect()->route("ventas.create");
+            return redirect()
+                        ->route("ventas.create");
         }
         $articulos[$posibleIndice]->unidad++;
 
     }
     $this->guardarArticulos($articulos);
    
-    
-    return redirect()->route("ventas.create")->with('$articulos',$articulos);
+    return redirect()
+                ->route("ventas.create")
+                        ->with('$articulos',$articulos);
     
 }
-
+//-----------------------------------------------------------
 private function buscarIndiceDeArticulo(string $id, array &$articulos)
 {  
     $indice = 0;
@@ -417,25 +393,25 @@ private function buscarIndiceDeArticulo(string $id, array &$articulos)
     return -1;
 }
 
-
+//-----------------------------------------------------------
 //terminar venta
 
 public function terminarVenta()
 {
     // Crear una venta
-    $venta = new Venta();
+    $venta        = new Venta();
     $venta->saveOrFail();
     $idVenta      = $venta->id;
     $venta->fecha = Carbon::now();
 
-    $articulos = $this->obtenerArticulos();
-    $estado    = $this->obtenerEstados();
-    $indice    = 0;
-    $total     = 0;
+    $articulos    = $this->obtenerArticulos();
+    $estado       = $this->obtenerEstados();
+    $indice       = 0;
+    $total        = 0;
     // Recorrer carrito de compras
     foreach ($articulos as $unArticulo) {
         // El producto que se vende...
-        $detalleVenta = new detalleVenta();
+        $detalleVenta           = new detalleVenta();
         $detalleVenta->idVenta  = $idVenta;
         $detalleVenta->cantidad = $unArticulo->unidad;
 
@@ -453,15 +429,16 @@ public function terminarVenta()
         $detalleVenta->idLote = $unArticulo->id;
         // Lo guardamos
         if($detalleVenta->subtotal>0){
-        $detalleVenta->saveOrFail();
+            $detalleVenta->saveOrFail();
         }
         else {
             $this->vaciarArticulos();
             return redirect(url()->previous());
         }
         // Y restamos la existencia del original
-        $loteActualizado = loteDescripcion::find($unArticulo->id);
+        $loteActualizado          = loteDescripcion::find($unArticulo->id);
         $loteActualizado->unidad -= $detalleVenta->cantidad;
+
         if ($loteActualizado->unidad <= 0){
             $loteActualizado->estado = 0;
         }
@@ -488,27 +465,24 @@ public function terminarVenta()
         }
     
         $loteActualizado->saveOrFail();
-        if($loteActualizado->unidad <= 0){
-            $loteActualizado->delete();
-        }
     }
+    
     $venta->total = $total;
+
     if($venta->total>=0){
-        $venta->saveOrFail();
-        $this->vaciarArticulos();
+            $venta->saveOrFail();
+            $this->vaciarArticulos();
     }
     else{
-        $this->vaciarArticulos();
-        return redirect(url()->previous());
+            $this->vaciarArticulos();
+            return redirect(url()->previous());
     }
-    
-    
-    
+
     return redirect()->route('ventasTotal', ['id' => $venta->id]);
 }
-
+//-----------------------------------------------------------
 /**
-      * Display the specified resource.
+      * Trae todas las ventas.
       *
       * @param  int  $id
       * @return \Illuminate\Http\Response
@@ -517,10 +491,10 @@ public function terminarVenta()
       {   
           $venta = Venta::find($id);
  
-          
-          return view('venta.ventasTotal')->with('venta', $venta);
+          return view('venta.ventasTotal')
+                    ->with('venta', $venta);
       }
-
+//-----------------------------------------------------------
     /**
     * Display the specified resource.
     *@param  \Illuminate\Http\Request  $request
@@ -530,14 +504,19 @@ public function terminarVenta()
     public function confirmarVenta(Request $request, $id)
     {
         $venta = Venta::find($id);
+
         if($request->get('pago')<$venta->total){
-        return redirect(url()->previous());  
+
+            return redirect(url()->previous());  
         }
-        $venta->tipoPago = $request->get('tipoPago');
+        
+        $venta->tipoPago    = $request->get('tipoPago');
         $venta->montoPagado = $request->get('pago');
         $venta->save();
-        $ventas = venta::all();
-        return redirect('/ventas')->with('ventas', $ventas);
-        // return view('venta.index')->with('ventas', $ventas);
+
+        $ventas             = venta::all();
+
+        return redirect('/ventas')
+                        ->with('ventas', $ventas);
     }
 }

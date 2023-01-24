@@ -44,9 +44,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{'/noticias'}}">Noticias</a>
               </li>
-             {{--  <li class="nav-item">
-                <a class="nav-link" href="{{'/login'}}">Iniciar sesión</a>
-              </li> --}}
+             
               
             </ul>
             
