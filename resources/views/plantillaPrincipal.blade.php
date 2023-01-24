@@ -53,16 +53,16 @@
                 </li>
              <a class="nav-link" href="{{'/noticias'}}">Noticias</a>
               </li>
-              
-            
-              
-             {{--  <li class="nav-item">
-                <a class="nav-link" href="{{'/fechaVacunacion'}}">Quienes Somos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Iniciar sesión</a>
-              </li> --}}
-              
+              @if(auth()->user())
+                   @if(auth()->user()->tipo == 'admin')
+                      <li class="nav-item">
+                        <a class="nav-link"  href="/usuario/Admin/ingresoAOtro/4">
+                              <i class="fa-solid fa-house"></i> Volver a admin 
+                        </a>
+                      </li>
+                   @endif
+              @endif
+
             </ul>
             
           </div>
