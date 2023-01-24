@@ -20,19 +20,15 @@ class ArticuloController extends Controller
     public function index()
     {
 
-        $articulos = Articulo::where('estado',1)->get();
-        
-        // foreach($articulos[0]->lotes as $unLote)
-        // {
-        //         dump($unLote);
-        // }
-        // dd('finalizo');
-        
+        $articulos = Articulo::where('estado',1)
+                             ->orderBy('descripcion','Asc')
+                             ->get();
 
-      return view ('articulo.index')->with('articulos',$articulos); 
+      return view ('articulo.index')
+                ->with('articulos',$articulos); 
     }
-
-    /**
+//-------------------------------------------------------------------------
+    /** traigo los articulos vencidos
      
      *
      * @param  \Illuminate\Http\Request  $request
@@ -45,10 +41,11 @@ class ArticuloController extends Controller
 
         $resultados = DB::select('select lote_descripcions. *, articulos.codigo, articulos.descripcion, articulos.marca,articulos.alerta, TIMESTAMPDIFF(DAY,CURDATE(), lote_descripcions.vencimiento) AS dias from lote_Descripcions inner join articulos on (articulos.id = lote_Descripcions.articulo_id) where ((lote_descripcions.vencimiento <= CURDATE())and(lote_Descripcions.estado = 1)) or ((articulos.alerta >= TIMESTAMPDIFF(DAY,CURDATE(), lote_descripcions.vencimiento) )and(lote_Descripcions.estado = 1)and(articulos.alerta <> 0))');
         session()->forget('notificacionVencido');
-        return view('articulo.vencidos')->with('resultados',$resultados);
+
+        return view('articulo.vencidos')
+                  ->with('resultados',$resultados);
     }
-
-
+//-------------------------------------------------------------------------
     /**
      * Show the form for creating a new resource.
      *
@@ -57,9 +54,10 @@ class ArticuloController extends Controller
     public function create()
     {
         $categorias = categoria::all();
-        return view('articulo.create')->with('categorias',$categorias);
+        return view('articulo.create')
+                  ->with('categorias',$categorias);
     }
-
+//-------------------------------------------------------------------------
     /**
      * Store a newly created resource in storage.
      *
@@ -68,7 +66,6 @@ class ArticuloController extends Controller
      */
     public function store( Request  $request)
     {   
-       
         $request->validate([
             'codigo'         => 'required| numeric',
             'descripcion'    => 'required| string | max:256 |min:2',
@@ -80,31 +77,35 @@ class ArticuloController extends Controller
             'alerta'         => 'nullable| integer |max:100',
         ]);
 
-
-
         $articulosAux = DB::TABLE('articulos')
-        ->where('codigo','=',$request->get('codigo'))
-        ->get();
+                                ->where('codigo','=',$request->codigo)
+                                ->get();
 
         if(count($articulosAux) == 0){
-            $Articulos = new Articulo();
-            $Articulos->codigo         = $request->get('codigo');
-            $Articulos->descripcion    = $request->get('descripcion');
-            $Articulos->precioVenta    = $request->get('precioVenta');
-            $Articulos->precioEspecial = $request->get('precioEspecial');
-            $Articulos->marca          = $request->get('marca');
-            $Articulos->minimoStock    = $request->get('minimoStock');
-            $Articulos->alerta         = $request->get('alerta');
-            $Articulos->iva            = $request->get('iva');
+
+            $Articulos                 = new Articulo();
+            $Articulos->codigo         = $request->codigo;
+            $Articulos->descripcion    = $request->descripcion;
+            $Articulos->precioVenta    = $request->precioVenta;
+            $Articulos->precioEspecial = $request->precioEspecial;
+            $Articulos->marca          = $request->marca;
+            $Articulos->minimoStock    = $request->minimoStock;
+            $Articulos->alerta         = $request->alerta;
+            $Articulos->iva            = $request->iva;
             $Articulos->estado         = 1;
-            $Articulos->categoria_id   = $request->get('categoria');
+            $Articulos->categoria_id   = $request->categoria;
             $Articulos->save();
             
          }
-            return redirect('/articulos');
 
+    $articulos = Articulo::where('estado',1)
+                         ->orderBy('updated_at','Desc')
+                         ->get();
+
+    return view ('articulo.index')
+              ->with('articulos',$articulos); 
         }
-
+//-------------------------------------------------------------------------
     /**
      * Display the specified resource.
      *
@@ -113,10 +114,12 @@ class ArticuloController extends Controller
      */
     public function show($id )
     {   
-        $Articulos = Articulo::find($id);     
-        return view('articulo.show')->with ('articulos',$Articulos);
-    }
+        $Articulos = Articulo::find($id);
 
+        return view('articulo.show')
+                   ->with ('articulos',$Articulos);
+    }
+//-------------------------------------------------------------------------
     /**
      * Show the form for editing the specified resource.
      *
@@ -125,13 +128,15 @@ class ArticuloController extends Controller
      */
     public function edit($id)
     {
-        $articulos = Articulo::find($id);
-        $categorias =categoria::all();
-    return view('articulo.edit')->with ('articulos',$articulos)
-                                ->with ('estado',1)
-                                ->with('categorias',$categorias);
-    }
+        $articulos  = Articulo::find($id);
+        $categorias = categoria::all();
 
+    return view('articulo.edit')
+                ->with ('articulos',$articulos)
+                ->with ('estado',1)
+                ->with('categorias',$categorias);
+    }
+//-------------------------------------------------------------------------
     /**
      * Update the specified resource in storage.
      *
@@ -152,22 +157,27 @@ class ArticuloController extends Controller
             'alerta'         => 'nullable| integer |max:100',
         ]);
         
-    $Articulos = Articulo::find($id);  
-    $Articulos->codigo         = $request->get('codigo');
-    $Articulos->descripcion    = $request->get('descripcion');
-    $Articulos->precioVenta    = $request->get('precioVenta');
-    $Articulos->precioEspecial = $request->get('precioEspecial');
-    $Articulos->marca          = $request->get('marca');
-    $Articulos->minimoStock    = $request->get('minimoStock');
-    $Articulos->alerta         = $request->get('alerta');
-    $Articulos->iva            = $request->get('iva');
-    $Articulos->categoria_id   = $request->get('categoria');
+    $Articulos                 = Articulo::find($id);  
+    $Articulos->codigo         = $request->codigo;
+    $Articulos->descripcion    = $request->descripcion;
+    $Articulos->precioVenta    = $request->precioVenta;
+    $Articulos->precioEspecial = $request->precioEspecial;
+    $Articulos->marca          = $request->marca;
+    $Articulos->minimoStock    = $request->minimoStock;
+    $Articulos->alerta         = $request->alerta;
+    $Articulos->iva            = $request->iva;
+    $Articulos->categoria_id   = $request->categoria;
     $Articulos->save();
     
 
-    return redirect('/articulos');  
-    }
+    $articulos = Articulo::where('estado',1)
+                         ->orderBy('updated_at','Desc')
+                         ->get();
 
+    return view ('articulo.index')
+              ->with('articulos',$articulos); 
+    }
+//-------------------------------------------------------------------------
     /**
      * Remove the specified resource from storage.
      *
@@ -177,7 +187,9 @@ class ArticuloController extends Controller
     public function destroy($id)
     {
         $articulos = Articulo::find($id);
-        $lote = loteDescripcion::where('articulo_id',$id)->get();
+        
+        $lote      = loteDescripcion::where('articulo_id',$id)
+                                    ->get();
         if( $lote == null){
             $articulos->delete();  
         }else{

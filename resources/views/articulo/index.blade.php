@@ -84,6 +84,8 @@ padding-left: 0px;
 
         });
             $('#example').DataTable({
+                "bSort": true, // Con esto le estás diciendo que se pueda ordenar, ponlo a 'true'
+                "order": [], // Aquí le dices que el criterio de ordenación primero esté vació , o lo que es lo mismo, ninguno
             language: {
                 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             }
