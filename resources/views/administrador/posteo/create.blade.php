@@ -2,14 +2,8 @@
 
 <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 @section('contenido')
-<style>
-.file{
-  background-color: red;
-}.imput {
-  background-color: red;
-}
 
-</style>
+
 
 <div class="main_content">
         <div class="content">
