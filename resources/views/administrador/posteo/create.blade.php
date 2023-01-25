@@ -4,7 +4,6 @@
 @section('contenido')
 
 
-
 <div class="main_content">
         <div class="content">
        
@@ -47,6 +46,12 @@
         </div>
     </div>
 </div> 
+
+<ul>
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+</ul>
 
 <!-- data table javacript-->
 

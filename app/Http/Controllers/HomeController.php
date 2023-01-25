@@ -32,6 +32,23 @@ class HomeController extends Controller
         return view('noticias')
                   ->with('noticias', $noticias);
     }
+
+//-----------------------------------------------------------------------
+    /**
+     * Trae un posteo segun un id
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unPosteo($id)
+    {
+        $noticia = Post::find($id);
+                 
+        return view('post')
+                  ->with('noticia', $noticia);
+    }
+
+
+    
 //-----------------------------------------------------------------------
 
     public function create()
@@ -45,21 +62,20 @@ class HomeController extends Controller
     }
     public function store(Request $request)
     {    
-         
 
          $request->validate([
             'titulo'   => 'required| string ',
             'asunto'   => 'required| string ',
-             'file'    =>  'required | image',
-        
+            'file'     => 'required | image',
         ]); 
 
      
-        $data = new Post(); 
+        $data         = new Post(); 
         $data->titulo = $request->titulo;
         $data->asunto = $request->asunto;
-        $data->fecha = Carbon::now()->format('Y-m-d H:i:s');
-        $imagen = $request->file('file')->store('public/imagenes'); 
+        $data->fecha  = Carbon::now()->format('Y-m-d H:i:s');
+        $imagen       = $request->file('file')->store('public/imagenes'); 
+
         if($imagen){
             $data->file = Storage::url($imagen);
         }       

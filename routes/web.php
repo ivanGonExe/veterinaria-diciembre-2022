@@ -186,10 +186,7 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
     
     });
     Route::get('/noticias', [App\Http\Controllers\HomeController::class, 'posteos']);
-    
-    Route::get('/noticias/posteo', function () {
-        return view('post');
-    });
+    Route::get('/noticias/posteo/{id}', [App\Http\Controllers\HomeController::class, 'unPosteo']);
 //estan dentro de los que estan registrados
     Auth::routes();
     
