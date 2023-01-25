@@ -104,11 +104,6 @@
                         
                          location.href = '/usuario/'+cod+'/delete'; 
 
-                         /*  Swal.fire(
-                        'Eliminado',
-                        'Your file has been deleted.',
-                        'success'
-                        ) */
                           }
                         })
 
