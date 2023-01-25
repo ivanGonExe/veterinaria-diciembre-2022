@@ -37,13 +37,10 @@
                     @php
                         $no = 0;
                     @endphp
-                  @if($data->isEmpty())
-                  
-                  <th colspan="5"><p class="text-center">no hay dato</p> </th>
-                  @else 
+                  @if(!$data->isEmpty())
+                
                   @foreach ($data as $data)
                    <tr> 
-                   
                     <td>{{ $data->fecha }}</td>
                     <td>{{ $data->titulo }}</td>
                     <td><img src='{{$data->file}}' height="60" width="60"></td>
@@ -81,16 +78,15 @@
 <script>
   $(document).ready(function() {
     var table = $('#example').DataTable( {
-        responsive: true
+        responsive: true,
+        language: {
+          url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        }
     } );
  
     new $.fn.dataTable.FixedHeader( table );
 } );
-$('#example').DataTable({
-  language: {
-  url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-  }
-  }); 
+
 /*------------------------------------------------ */
 $(document).ready(function (){
 var id = 0;
