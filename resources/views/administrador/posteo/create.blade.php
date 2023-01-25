@@ -3,6 +3,8 @@
 <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 @section('contenido')
 
+
+
 <div class="main_content">
         <div class="content">
        
@@ -17,36 +19,69 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        <form action="/guardarNoticia" method="POST">
+        
+
+        <form action="/guardarNoticia" method="POST"  enctype="multipart/form-data">
                 @csrf
-      
-           <!--      <script>
-                        CKEDITOR.replace( 'desc' );
-                </script> -->
-                <div class="mb-3">
-                  <label for="titulo" class="form-label">Titulo</label>
+                    <div class="mb-3">
+                  <label for="titulo" class="form-label"><h3>Titulo</h3></label>
                   <input type="text" name="titulo" class="form-control" id="titulo">
                 </div>
                 <div class="mb-3">
-                  <label for="asunto" class="form-label">Parrafo</label>
+                  <label for="asunto" class="form-label"><h3>Parrafo</h3></label>
                   <textarea name="asunto" class="my-editor form-control" id="my-editor" cols="30" rows="10"> </textarea>
-                  <script>
+               <script>
                         CKEDITOR.replace( 'asunto' );
                 </script>
-
-                 
-                </div>
+               
+                <div class="container ">
+                <div class="row w-50">
+                <img id="imgPreview" > 
+             <input type="file" aria-label="Archivo" accept="image/*" class="file" name="file" id="file" height="600" width="700"  onchange="previewImage(event, '#imgPreview')">
+                </div> 
+               
+                <br>
                 <a class="btn btn-danger" href="/entradaNoticia">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </form>
         </div>
     </div>
 </div> 
-@endsection
 
-@push('scripts')
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+
+
 <script>
-    CKEDITOR.replace('my-editor');
+
+function previewImage(event, querySelector){
+
+console.log("entro perro");
+//Recuperamos el input que desencadeno la acción
+const input = event.target;
+
+//Recuperamos la etiqueta img donde cargaremos la imagen
+$imgPreview = document.querySelector(querySelector);
+
+// Verificamos si existe una imagen seleccionada
+if(!input.files.length) return
+
+//Recuperamos el archivo subido
+file = input.files[0];
+
+//Creamos la url
+objectURL = URL.createObjectURL(file);
+
+//Modificamos el atributo src de la etiqueta img
+$imgPreview.src = objectURL;
+              
+}
+
+
+
+ 
+    CKEDITOR.editorConfig = function( config ) {
+
+	config.removeButtons = 'Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Anchor,Language,BidiRtl,BidiLtr,Blockquote,CreateDiv,Indent,Outdent,CopyFormatting,RemoveFormat,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Scayt,SelectAll,Find,Replace,Undo,Redo,Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteFromWord,PasteText';
+};
+
     </script>
-@endpush
+@endsection

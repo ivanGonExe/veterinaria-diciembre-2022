@@ -185,8 +185,12 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
     Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
     
     });
-
-
+    Route::get('/noticias', function () {
+        return view('noticias');
+    });
+    Route::get('/noticias/posteo', function () {
+        return view('post');
+    });
 //estan dentro de los que estan registrados
     Auth::routes();
     
