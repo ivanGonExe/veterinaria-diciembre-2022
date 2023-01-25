@@ -18,6 +18,22 @@ class HomeController extends Controller
        
         return view('administrador.posteo.home',['data' => $data]);
     }
+//-----------------------------------------------------------------------
+    /**
+     * Se trae todas las noticias en la vista noticias del cliente
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function posteos()
+    {
+        $noticias = Post::orderBy('fecha')
+                        ->get();
+                 
+        return view('noticias')
+                  ->with('noticias', $noticias);
+    }
+//-----------------------------------------------------------------------
+
     public function create()
     {
 

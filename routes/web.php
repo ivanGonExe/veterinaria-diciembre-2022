@@ -185,9 +185,8 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
     Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
     
     });
-    Route::get('/noticias', function () {
-        return view('noticias');
-    });
+    Route::get('/noticias', [App\Http\Controllers\HomeController::class, 'posteos']);
+    
     Route::get('/noticias/posteo', function () {
         return view('post');
     });

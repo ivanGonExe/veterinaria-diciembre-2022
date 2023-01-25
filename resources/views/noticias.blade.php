@@ -40,21 +40,8 @@ p{
       a{
         text-decoration: none;
       }
- 
- /*    p{
-      color:#000000;
-      size: 14px;
-      text-align: justify;
-    }
-    table th{
-      background-color: rgb(127, 6, 113,0.7) !important;
-      color:#ffffff;
-  }
-  table td{
-      background-color: rgba(215, 61, 238, 0.2) !important;
-      color:#000000;
-  } */
-     </style>
+</style>
+
 <body>
   <body>
     <!--   Tarjetas-->
@@ -64,40 +51,29 @@ p{
     <div class="title-cards">
     
 
-  <div class="container-card">
-    
-  <div class="card">
-    <figure>
-      <!--imagen-->      
-<img src="https://tn.com.ar/resizer/dgJ4gZ6mjsDDgUTIZ0YQ7hjZCs0=/1440x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/OHLM5W5P6BHIJOCVUWH7WELEQE.jpg" >
-    </figure>
-    <div class="contenido-card">
-      <h4 type="text" id="titulo" name="titulo">Cómo entender las emociones de tu perro</h4><!--titulo abajo copete--> 
-      <p type="type" id="asunto" class="limitar-texto-principal" name="asunto">Los perros, tal vez como ninguna otra mascota, son muy expresivos. Y su expresión favorita es la de la felicidad.</p>
-      <a href="#">Leer Más</a>
+<div class="container-card">
+    @foreach($noticias as $unaNoticia)
+
+    <div class="card">
+      <figure>
+        <!--imagen-->      
+  <img src="{{$unaNoticia->file}}" >
+      </figure>
+      <div class="contenido-card">
+        <h4 type="text" id="titulo" name="titulo">{{$unaNoticia->titulo}}</h4><!--titulo abajo copete--> 
+        <p type="type" id="asunto" class="limitar-texto-principal" name="asunto">{{$unaNoticia}}</p>
+        <a href="#">Leer Más</a>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <figure>
-      <img src="https://www.infobae.com/new-resizer/eEw2j_Z1yjD2rds0xprHDunleOs=/768x432/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/Y6CUURF5LFDABO4GDCSPFLXH2Y.jpg">
-    </figure>
-    <div class="contenido-card">
-      <h4 type="text" id="titulo" name="titulo">¿Las dietas veganas son viables para las mascotas?</h4>
-       <p type="type" id="asunto" class="limitar-texto-principal" name="asunto">Las tendencias globales hacia una dieta libre de carne se han vuelto un tópico en la población</p>
-      <a href="#">Leer Más</a>
-    </div>
-  </div>
-  <div class="card">
-    <figure>
-      <img src="https://www.infobae.com/new-resizer/iWR_l0gfJrkq554PBf41C_Gmoq4=/265x149/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/IRF7JT2DLFG3RP6WVHKC6EKMTA.png">
-    </figure>
-    <div class="contenido-card">
-      <h4 type="text" id="titulo"  name="titulo">Vacaciones con mascotas: cuáles son los trámites necesarios para viajar al exterior</h4>
-      <p type="type" id="asunto" class="limitar-texto-principal" name="asunto">Quienes viajen fuera del país deberán cumplir con una serie de requisitos del Senasa además de los que exija el país de destino. </p>
-      <a href="#">Leer Más</a>
-    </div>
-  </div>
+
+
+    @endforeach
 </div>
+
+
+
+
+
 <br>
   <div style="border-top: 1px solid black; width:100%;"></div>
   <h4 class="tituloNoticias"> Leer Más Noticias </h4>
