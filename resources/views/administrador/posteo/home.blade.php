@@ -1,6 +1,9 @@
 @extends('administrador.plantillaAdmin')
 
-<script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+
+
+
+
 @section('contenido')
 
 <div class="main_content">
@@ -18,12 +21,13 @@
             <a href="{{ route('create') }}" class="btn btn-primary btn-sm mb-2">+ Crear Posteo</a>
             <br>
             <br>
-            <table class="table">
+            <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
                   <tr>
                    
                     <th scope="col">Fecha</th>
                     <th scope="col">Titulo</th>
+                    <th scope="col">Imagen</th>
                     <th scope="col">Asunto</th>
                     <th scope="col">Acciones</th>
                   </tr>
@@ -35,16 +39,17 @@
                     @endphp
                   @if($data->isEmpty())
                   
-                  <th colspan="3"><p class="text-center">no hay dato</p> </th>
+                  <th colspan="5"><p class="text-center">no hay dato</p> </th>
                   @else 
                   @foreach ($data as $data)
                    <tr> 
                    
                     <td>{{ $data->fecha }}</td>
                     <td>{{ $data->titulo }}</td>
-                    
+                    <td><img src='{{$data->file}}' height="60" width="60"></td>
                     <td>{!! Str::limit( strip_tags( $data->asunto ), 50 ) !!}</td>
-                    <td><button class="btn btn eliminar" title="Eliminar" id="{{$data->id}}" value= '{{$data->id}}'><i class="fa-solid fa-trash-can"></i></button>
+                    <td>
+                      <button class="btn btn eliminar" title="Eliminar" id="{{$data->id}}" value= '{{$data->id}}'><i class="fa-solid fa-trash-can"></i></button>
                     
                     <a href="/editarNoticia/{{$data->id}}" name="Editar" class="btn btn " title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
 
@@ -64,6 +69,13 @@
 </body>
 
 <script>
+  $(document).ready(function() {
+    var table = $('#example').DataTable( {
+        responsive: true
+    } );
+ 
+    new $.fn.dataTable.FixedHeader( table );
+} );
 /*------------------------------------------------ */
 $(document).ready(function (){
 var id = 0;
