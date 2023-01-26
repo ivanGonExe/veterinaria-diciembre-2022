@@ -19,8 +19,11 @@ font-family: 'Gluten', cursive;
 p{
    color:#000000b2;
    size: 14px;
-   text-align: center;
+   text-align: justify;
    padding:10px ;
+ }
+ .limitar-texto{
+  text-align: justify;
  }
 .tituloNoticias{
 

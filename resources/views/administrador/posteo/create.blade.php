@@ -90,12 +90,42 @@ $imgPreview.src = objectURL;
 }
 
 
-
+/* 
  
-    CKEDITOR.editorConfig = function( config ) {
+CKEDITOR.replace('asunto', {
+      // Define the toolbar groups as it is a more accessible solution.
+      toolbarGroups: [{
+          "name": "basicstyles",
+          "groups": ["basicstyles"]
+        },
+        {
+          "name": "links",
+          "groups": ["links"]
+        },
+        {
+          "name": "paragraph",
+          "groups": ["list", "blocks"]
+        },
+        {
+          "name": "document",
+          "groups": ["mode"]
+        },
+        {
+          "name": "insert",
+          "groups": ["insert"]
+        },
+        {
+          "name": "styles",
+          "groups": ["styles"]
+        },
+        {
+          "name": "about",
+          "groups": ["about"]
+        }
+      ],
+      // Remove the redundant buttons from toolbar groups defined above.
+      removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
+    }); */
+  </script>
 
-	config.removeButtons = 'Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Anchor,Language,BidiRtl,BidiLtr,Blockquote,CreateDiv,Indent,Outdent,CopyFormatting,RemoveFormat,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Scayt,SelectAll,Find,Replace,Undo,Redo,Source,Save,NewPage,Preview,Print,Templates,Cut,Copy,Paste,PasteFromWord,PasteText';
-};
-
-    </script>
 @endsection
