@@ -33,8 +33,9 @@ line-height: 3em;
 }
  
 .zoom:hover {
-    transform: scale(1.2); 
-    border: 10px solid #000000;
+    transform: scale(1.4); 
+    cursor: zoom-in;
+    border: 2px solid #000000;
 }
      </style> 
 <body>
@@ -75,7 +76,6 @@ line-height: 3em;
 
 
   </div>
-  <div class="row"> 
  
 
 

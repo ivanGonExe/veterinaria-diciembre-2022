@@ -1,9 +1,18 @@
 @extends('administrador.plantillaAdmin')
 
 <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @section('contenido')
 <style>
-
+.caja{
+  padding-top: 10px;
+  margin: 0px;
+  background-color: #ffffff;
+}
+h3{
+  font-weight: bolder;
+  font-size: 30px;
+}
 </style>
 
 <div class="main_content">
@@ -21,11 +30,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-        <form action="/actualizarNoticia/{{$dato->id}}" method="POST" name="formulario" enctype="multipart/form-data">
+        <form action="/actualizarNoticia/{{$dato->id}}" method="POST" id="formulario" enctype="multipart/form-data">
                 @csrf
                     <div class="mb-3">
                   <label for="titulo" class="form-label"><h3>Titulo</h3></label>
-                  <input type="text" name="titulo" class="form-control" id="titulo" value='{{$dato->titulo}}'>
+                  <input type="text" name="titulo" class="form-control" id="titulo" value='{{$dato->titulo}}' placeholder="Titulo hasta 60 caracteres"  maxlength="60">
                 </div>
                 <div class="mb-3">
                   <label for="asunto" class="form-label"><h3>Parrafo</h3></label>
@@ -34,23 +43,26 @@
                         CKEDITOR.replace( 'asunto' );
                 </script>
     
-             <div class="row w-50">
+               <div class="row caja"> 
+                  <div class="container-fluid d-flex justify-content-center">
+                  <div class="mb-3">
+                  <img id="imgPreview" height="200" width="300" src="{{$dato->file}}" >
+                
+                  <br>
+                  <input type="file"  accept="image/*"   name="file" id="file" onchange="previewImage(event, '#imgPreview')" >
+                  <input type = "hidden" name='imagen' value='{{$dato->file}}'>  
+                  @error('file')
+                  <h3 class="text-danger">{{$message}}</h3>
+                  @enderror
                
-                <td> <img id="imgPreview" src="{{$dato->file}}" >
-               
-             <input type="file" accept="image/*" height="600" width="900"  name="file" id="file" onchange="previewImage(event, '#imgPreview')" >
-              <input type = "hidden" name='imagen' value='{{$dato->file}}'>  
-              @error('file')
-               <h3 class="text-danger">{{$message}}</h3>
-              @enderror
-            
-            </div> 
            
               
 
                   <br>
                 <a class="btn btn-danger" href="/entradaNoticia">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+
+                
 </form>
         </div>
     </div>
@@ -73,12 +85,20 @@
 
 <script>
 
+
 let formulario= document.getElementById('formulario');
 
 formulario.addEventListener('submit',function(event){
     event.preventDefault();
-let oculto = document.getElementById('imagen');
-oculto.style.display = 'block';
+/* let oculto = document.getElementById('imagen');
+oculto.style.display = 'block'; */
+Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'Nota Guardada',
+  showConfirmButton: false,
+  timer: 1500
+})
 formulario.submit();
 
 }); 

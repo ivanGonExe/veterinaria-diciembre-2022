@@ -7,13 +7,16 @@
  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
  
+ <!-- estilos font google -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&display=swap" rel="stylesheet">
+  
+  
   <style>
 
 
-h1,h2,p,a{
+h1,h2,h3,h4,h4,h6,p,a{
 font-family: 'Gluten', cursive;
 }
 p{
@@ -23,6 +26,7 @@ p{
    padding:10px ;
  }
  .limitar-texto{
+  font-family: 'Gluten', cursive;
   text-align: justify;
  }
 .tituloNoticias{
@@ -120,6 +124,8 @@ p{
 
 
 <script>
+
+
 
 let elements = document.getElementsByClassName("limitar-texto");
 // Establecemos el número máximo de caracteres permitidos

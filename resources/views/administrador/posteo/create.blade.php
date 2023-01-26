@@ -24,7 +24,7 @@
                 @csrf
                     <div class="mb-3">
                   <label for="titulo" class="form-label"><h3>Titulo</h3></label>
-                  <input type="text" name="titulo" class="form-control" id="titulo">
+                  <input type="text" name="titulo" class="form-control" id="titulo" placeholder="Titulo.." maxlength="60">
                 </div>
                 <div class="mb-3">
                   <label for="asunto" class="form-label"><h3>Parrafo</h3></label>
@@ -65,6 +65,24 @@
 <script src="https://cdn.datatables.net/responsive/2.4.0/js/responsive.bootstrap.min.js"></script>
 
 <script>
+
+let formulario= document.getElementById('formulario');
+
+formulario.addEventListener('submit',function(event){
+    event.preventDefault();
+/* let oculto = document.getElementById('imagen');
+oculto.style.display = 'block'; */
+Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'Nota Guardada',
+  showConfirmButton: false,
+  timer: 1500
+})
+formulario.submit();
+
+}); 
+
 
 function previewImage(event, querySelector){
 

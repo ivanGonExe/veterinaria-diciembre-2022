@@ -15,6 +15,18 @@
       <!-- estilos CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('estilo.css')}}">
     <link rel="icon" href={{asset('iconos/huella.png')}} >
+
+ <!-- estilos font google -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&display=swap" rel="stylesheet">
+  
+<style>
+h1,h2,h3,h4,h4,h6,p,a{
+font-family: 'Gluten', cursive;
+}
+</style>
+
 <title>Clínica Veterinaria San Agustín</title>
   </head>
    <!-- Cabezera barra -->
@@ -35,16 +47,24 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                <li class="nav-item">
-                <a class="nav-link" href="{{'/'}}">Inicio</a>
+                <a class="nav-link" href="{{'/'}}"><i class="fa-solid fa-arrow-rotate-left"></i> Inicio</a>
               </li>
                 <li class="nav-item">
-                <a class="nav-link" href="{{'/seleccionTurno'}}">Turnos</a>
+                <a class="nav-link" href="{{'/seleccionTurno'}}"><i class="fa-solid fa-calendar-week"></i>  Turnos</a>
                 </li>
                 <li class="nav-item">
               <li class="nav-item">
-                <a class="nav-link" href="{{'/noticias'}}">Noticias</a>
+                <a class="nav-link" href="{{'/noticias'}}"><i class="fa-solid fa-newspaper"></i> Noticias</a>
               </li>
-             
+              @if(auth()->user())
+                   @if(auth()->user()->tipo == 'admin')
+                      <li class="nav-item">
+                        <a class="nav-link"  href="/usuario/Admin/ingresoAOtro/4">
+                              <i class="fa-solid fa-house"></i> Admin 
+                        </a>
+                      </li>
+                   @endif
+              @endif
               
             </ul>
             
