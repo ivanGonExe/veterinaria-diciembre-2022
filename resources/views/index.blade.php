@@ -1,10 +1,13 @@
 
-@extends('plantillaPrincipal')
 
+
+@extends('plantillaPrincipal')
+ 
 
 @section('contenido')
+<span class="loader"></span>
 
-
+<link rel="stylesheet" type="text/css" href="{{asset('spinner.css')}}">
 <!-- Slider de imagenes  -->
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
@@ -59,6 +62,15 @@
    <a class="entypo-instagrem" href="{{$empresa[0]->instagram}}"><span>Instagram</span></a>
 
 </ul>
+
+{{--  <div class="loading show" id="figura">
+ 
+
+  <span class="loader"></span>
+  <div class="texto"><p> Veterinaria San Agustin</p></div>
+
+</div>  --}}
+
 
 <!--Introduccion  -->
 <section class="w-auto mx-auto text-center p-1 border-top 1 border-bottom 1 " id="intro">
@@ -121,8 +133,25 @@ marcas y tenemos todos los accesorios para tus mascotas</p>
 
 </section>
 
-<script type="text/javascript">
-  
+<script>
+
+
+
+/*  setTimeout(function() {
+    document.getElementById("figura").style.display = "none";
+  }, 2000); 
+ */
+/*   window.addEventListener('load', function() {
+    document.getElementById("figura").style.display = "none";
+});
+ */
+/* document.getElementById('figura').addEventListener('click',() => {
+
+})
+ */
+
+
+
   const boton =document.getElementsByClassName("iconos");
   for(let i=0;i<boton.length;i++){
     boton[i].addEventListener('click', hacerVibrar);

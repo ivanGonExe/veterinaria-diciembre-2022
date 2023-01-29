@@ -15,7 +15,7 @@
       <!-- estilos CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('estilo.css')}}">
     <link rel="icon" href={{asset('iconos/huella.png')}} >
-
+    <link rel="stylesheet" type="text/css" href="{{asset('spinner.css')}}">
  <!-- estilos font google -->
  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,9 +72,19 @@ font-family: 'Gluten', cursive;
         </div>
       </nav>
       @yield('formulario')
+      <div class="loading show" id="figura">
+        <span class="loader"></span>
+       <div class="texto"><p class="text-white"> Veterinaria San Agustin</p></div>
+           </div> 
+
       @yield('turnos')
 
+      <script>
 
+setTimeout(function() {
+    document.getElementById("figura").style.display = "none";
+  }, 1000); 
+           </script>
    
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
  

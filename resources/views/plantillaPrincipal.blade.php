@@ -8,7 +8,7 @@
  .celu a:hover{
    color: yellow !important;
 }
-h1,h2,h3,h4,h4,h6,p,a{
+h1,h2,h3,h4,h4,h5,h6,p,a{
 font-family: 'Gluten', cursive;
 }
 
@@ -28,6 +28,7 @@ font-family: 'Gluten', cursive;
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
       <!-- estilos CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('estilo.css')}}">
+   
     <link rel="icon" href={{asset('iconos/huella.png')}} >
 
  <!-- estilos font google -->
@@ -80,11 +81,39 @@ font-family: 'Gluten', cursive;
           </div>
         </div>
       </nav>
+   
       
       @yield('contenido') 
+
+      <div class="loading show" id="figura">
+         <span class="loader"></span>
+        <div class="texto"><p> Veterinaria San Agustin</p></div>
+            </div> 
+
+
       @yield('footer') 
      
-      
+   <script>
+/* 
+document.addEventListener("DOMContentLoaded", function() {
+    var loading = document.getElementById("figura");
+    loading.style.display = "block";
+});
+
+// Ocultar animación de carga cuando se haya cargado la página
+window.addEventListener("load", function() {
+    var loading = document.getElementById("figura");
+    loading.style.display = "none";
+});
+ */
+
+setTimeout(function() {
+    document.getElementById("figura").style.display = "none";
+  }, 1000); 
+   </script>
+ 
+
+   
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
  
