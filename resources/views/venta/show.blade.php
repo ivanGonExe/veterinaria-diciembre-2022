@@ -30,7 +30,7 @@
     </div>
   
     <div class="container-fluid d-flex justify-content-center  text-light p-2">
-    <button type="button" class="btn btn-primary bg-danger tex-end m-2 p-2" id="pdf"><i class="fa-solid fa-file-pdf"></i> pdf</button>
+    <button type="button" class="btn btn-primary bg-danger tex-end m-2 p-2" id="pdf"><i class="fa-solid fa-file-pdf"></i> Ticket</button>
     
 </div>
 <table id="example" class="table table-striped" style="width:100%">
@@ -88,8 +88,8 @@
     <div class="container">
         <div class="text-end">
             <h3 id="total">Total: ${{$venta->total}}</h3>
-            <h3 id="pago">Cobrado: ${{$venta->montoPagado}}</h3>
-            <h3 id="vuelto">Cambio: ${{$montoAdeudado}}</h3>
+            <h3 id="pago">Pago: ${{$venta->montoPagado}}</h3>
+            <h3 id="vuelto">Vuelto: ${{$montoAdeudado}}</h3>
         </div>
     </div> 
 
