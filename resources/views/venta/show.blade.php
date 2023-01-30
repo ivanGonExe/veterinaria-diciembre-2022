@@ -24,7 +24,7 @@
 
         <div class="container-fluid d-flex justify-content-center  text-light p-2">
            
-            <h3 class="text-center p-2 m-2 fw-bold text-dark" >Fecha de la venta: {{$venta->fecha}}
+            <h3 class="text-center p-2 m-2 fw-bold text-dark">Fecha de la venta: <span id="fecha">{{$venta->fecha}}</span>
             </h3>
 
     </div>
@@ -38,7 +38,6 @@
         <thead>
            
            <tr>
-               <th scope="col">Fecha</th>
                <th scope="col">Cod. Artículo</th>
                <th scope="col">Nombre</th>
                <th scope="col">Marca</th>
@@ -48,16 +47,13 @@
                <th scope="col">Subtotal</th>
                <th scope="col">Descuento</th>
               
-               <th scope="col">Monto Pagado</th>
               
-               <th scope="col">Total</th>
            </tr>
         </thead>
         <tbody>
         
             @foreach($detalles as $unDetalle)
             <tr class="text-center">
-                <td id="fecha">{{$venta->fecha}}</td>
                 <td id="codigo">{{$unDetalle->codigo}}</td>
 
                 <td id="descripcion">{{$unDetalle->descripcion}}</td>
@@ -74,9 +70,8 @@
                 <td id="descuento">{{$unDetalle->descuento}}</td>
                
               
-            <td id="montoPagado">{{$venta->montoPagado}}</td>
            
-            <td id="venta">{{$venta->total}}</td>
+        
    
             </tr>
             @endforeach
@@ -88,12 +83,13 @@
    
    @php
      $montoAdeudado = -($venta->total-$venta->montoPagado);
+     $montoAdeudado = abs($montoAdeudado);
     @endphp
     <div class="container">
         <div class="text-end">
             <h3 id="total">Total: ${{$venta->total}}</h3>
-            <h3 id="pago">Pagó: ${{$venta->montoPagado}}</h3>
-            <h3 id="vuelto">Vuelto: ${{$montoAdeudado}}</h3>
+            <h3 id="pago">Cobrado: ${{$venta->montoPagado}}</h3>
+            <h3 id="vuelto">Cambio: ${{$montoAdeudado}}</h3>
         </div>
     </div> 
 
