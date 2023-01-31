@@ -28,7 +28,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="asunto" class="form-label"><h3>Parrafo</h3></label>
-                  <textarea name="asunto" class="my-editor form-control" id="my-editor" cols="30" rows="10"> </textarea>
+                  <textarea name="asunto" class="my-editor form-control" pattern="[A-Z]" id="my-editor" cols="30" rows="10"> </textarea>
                <script>
                         CKEDITOR.replace( 'asunto' );
                 </script>

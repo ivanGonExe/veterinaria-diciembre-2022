@@ -23,7 +23,8 @@ class VentaController extends Controller
     public function index()
     {
         $this->vaciarArticulos();
-        $ventas = Venta::all();
+        $ventas = Venta::orderby('fecha','Desc')
+                        ->get();
 
         return view('venta.index')->with('ventas', $ventas);
     }
