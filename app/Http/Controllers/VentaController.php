@@ -21,10 +21,10 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         $this->vaciarArticulos();
         $ventas = Venta::orderby('fecha','Desc')
-                        ->get();
+                       ->get();
 
         return view('venta.index')->with('ventas', $ventas);
     }
