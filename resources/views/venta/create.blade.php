@@ -4,14 +4,72 @@
 .idArticulos p{
     color:red !important;
 }
+
+
+
 </style>
 <!-- select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
- 
+    
+    <link rel="stylesheet" type="text/css" href="{{asset('estiloVentas.css')}}">
 @section('contenido')
 <body>
-    <div class="marco m-3 p-2 ">
+   <h2 class="d-flex justify-content-center p-2">Sector de Ventas</h2>
+    <div class="container">
+       
+        <div id="buscar-container" class="text-center">
+            <img src="https://i.pinimg.com/originals/e7/31/3c/e7313cf4e2648d7170a034bdfe99894e.gif" height="70" width="80">
+          <input type="search" id="buscar-input" placeholder="buscar productor por nombre.."/>
+          <button id="buscar">Buscar</button>
+        </div>
+        <div class="d-flex justify-content-center">
+                <div id="botones">
+                    <button class="boton-value"id="todo">Todo</button>
+                    <button class="boton-value" id="alimentos">
+                    Alimentos
+                    </button>
+                    <button class="boton-value" id="asesorios">
+                    Asesorios 
+                    </button>
+                    <button class="boton-value" id="medicamentos">
+                    Medicamentos 
+                    </button>
+                
+                </div>
+        </div>
+         <div class="row">
+                      <div class="col-1"></div>
+                     <div class="col-7"> <div id="productos"></div></div> 
+                     
+                     <div class="col-4">
+                                    <div class="d-flex justify-content-end">
+                                            <div class="card d-flex" style="width: 18rem;" >
+                                                <div class="card-body ">
+                                                <h5 class="card-title">Medio de Pago</h5>
+                                                <input type="radio" id="debito" name="debito" value="debito">
+                                                  <label for="debito"><img src ="https://www.visa.com.co/dam/VCOM/regional/lac/SPA/Default/Pay%20With%20Visa/propuesta-pagina-de-tarjetas/visa-debit-classic-800x450.jpg" alt="debito" height="60" width="100"> Debito</label><br>
+                                                <br>
+                                                <input type="radio" id="efectivo" name="efectivo" value="efectivo">
+                                                  <label for="html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUp8FsrX1BxY0pAKzW6CWBfQf4s7DMaNLMtQ&usqp=CAU" height="60" width="100" > Efectivo</label><br>
+                                                <br>
+                                                <input type="radio" id="credito" name="credito"  value="credito">
+                                                  <label for="html"><img src="https://www.macro.com.ar/imagen/imagen-tc-mastercard-gold.png" height="60" width="100" > Credito</label><br>
+                                              
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                       </div>
+                  
+         </div>
+   
+        <!-- Script -->
+        <script src="script.js"></script>
+      </body>
+
+
+    {{-- <div class="marco m-3 p-2 ">
     <div class="container-fluid d-flex justify-content-center  text-light">
         <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Seleccione Artículos</h2>
     
@@ -70,7 +128,7 @@
                 
                 <th scope="col">Artículo</th>
             {{--     <th scope="col">Marca</th> --}}
-                <th scope="col">Cantidad</th>
+                {{-- <th scope="col">Cantidad</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Descuento</th>
                 <th scope="col">Subtotal</th>
@@ -190,6 +248,7 @@
         
 
     
-        </script>
+        </script> --}} 
+        
 </body>
 @endsection
