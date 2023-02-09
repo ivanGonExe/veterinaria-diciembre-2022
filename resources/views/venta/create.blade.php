@@ -17,32 +17,45 @@
 <body>
    <h2 class="d-flex justify-content-center p-2">Sector de Ventas</h2>
     <div class="container">
+        
+        
+    <div id="buscar-container">
+        <div class="row">
+        <div class="col-md-1 col-sm-2 col-xs-4 border">    <img src="https://i.pinimg.com/originals/e7/31/3c/e7313cf4e2648d7170a034bdfe99894e.gif" height="50" width="50"></div>
+        <div class="col-md-9 col-sm-6 col-xs-4 border"> <input type="search" id="buscar-input" placeholder="buscar productor por nombre.."/></div>
+        <div class="col-md-2 col-sm-4 col-xs-4 border"><button id="buscar">Buscar</button> </div>
+         </div>
+</div>
+
+
        
-        <div id="buscar-container" class="text-center">
-            <img src="https://i.pinimg.com/originals/e7/31/3c/e7313cf4e2648d7170a034bdfe99894e.gif" height="70" width="80">
-          <input type="search" id="buscar-input" placeholder="buscar productor por nombre.."/>
-          <button id="buscar">Buscar</button>
-        </div>
-        <div class="d-flex justify-content-center">
+        
                 <div id="botones">
-                    <button class="boton-value"id="todo">Todo</button>
-                    <button class="boton-value" id="alimentos">
-                    Alimentos
-                    </button>
-                    <button class="boton-value" id="asesorios">
-                    Asesorios 
-                    </button>
-                    <button class="boton-value" id="medicamentos">
-                    Medicamentos 
-                    </button>
-                
+                    <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12 border text-end">
+                                <button class="boton-value"id="todo">Todo</button>
+                                <button class="boton-value" id="alimentos">
+                                Alimentos
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 border">
+                                <button class="boton-value" id="asesorios">
+                                Asesorios 
+                                </button>
+                                <button class="boton-value" id="medicamentos">
+                                Medicamentos 
+                            </button>
+                            </div>
+              
+
                 </div>
         </div>
-         <div class="row">
-                      <div class="col-1"></div>
-                     <div class="col-7"> <div id="productos"></div></div> 
+        <br>
+         <div class="row d-flex">
                      
-                     <div class="col-4">
+                     <div class="col-8 border"> <div id="productos"></div></div> 
+                     
+                     <div class="col-4 border">
                                     <div class="d-flex justify-content-end">
                                             <div class="card d-flex" style="width: 18rem;" >
                                                 <div class="card-body ">
@@ -63,6 +76,13 @@
                        </div>
                   
          </div>
+         <div class="row">
+            <div class="col-md-3 col-sm-2 col-xs-4 border"> nuestro bloque </div>
+            <div class="col-md-6 col-sm-6 col-xs-4 border"> nuestro bloque </div>
+            <div class="col-md-3 col-sm-4 col-xs-4 border"> nuestro bloque </div>
+          
+            </div>
+
    
         <!-- Script -->
         <script src="script.js"></script>

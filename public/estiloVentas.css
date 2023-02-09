@@ -5,7 +5,7 @@ body{
 .cointainer{
     width: 90% !important;
     margin: 0 auto;
-
+  
    
   }
   #buscar-container {
@@ -15,7 +15,7 @@ body{
   #buscar-container input {
     background-color: transparent ;
     width: 70%;
-    /* border-bottom: 2px solid rgb(9, 9, 9); */
+  border-bottom: 2px solid rgb(9, 9, 9);
     padding: 1em 0.3em;
     margin-left: 5em;
   }
@@ -30,7 +30,14 @@ body{
     border-radius: 10px;
     margin-top: 0.5em;
   }
-
+  #buscar-container button:hover {
+    
+    background: #c0392b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+   
+  }
   .boton-value {
     border: 2px solid #ff2323;
     padding: 1em 1.5em;
