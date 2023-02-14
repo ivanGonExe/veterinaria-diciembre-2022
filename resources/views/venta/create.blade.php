@@ -85,18 +85,101 @@
             <div class="col-md-3 col-sm-4 col-xs-4 border">Total: </div>
     </div> </div>
           
+    @foreach($lotes as $unLote)
+                    <option value="{{$unLote->id}}" class="seleccion"><table class="text-center"><tr><td colspan=" ">{{$unLote->articulo->descripcion}}</td><td colspan="2">&nbsp;&nbsp;</td><td colspan="1">({{$unLote->articulo->marca}})</td><td colspan="2">&nbsp;  </td><td class="fs-bold text-danger"><p class="text-danger">{{$unLote->vencimiento}}</p></td></tr></table></option>
+                    
+                @endforeach
+
             </div>
 
    
         <!-- Script -->
-        <script src="{{asset('carrito.js')}}" defer></script>
+      <!--   <script src="{{asset('carrito.js')}}" defer></script> -->
+ <script>
 
+
+/*creamos el lugar donde se van a ver los productos*/
+let arreglo =Object.values(@json($lotes));
+
+/* console.log(Object.values(arreglo)) */
+let i=0;
+console.log( arreglo);
+arreglo.forEach(elementos =>{
+    console.log ("indice:" + i) 
+    console.log( elementos['articulo'].marca)
+    console.log( elementos['articulo'].precioVenta)
+i++;
+})
+
+const listaProductos = document.querySelector('#listaProductos');
+
+const fragmento = document.createDocumentFragment(); 
+
+const carro2 = [];
+let productos =Object.values(@json($lotes));
+productos.forEach(productos => {
+    /*recorremos el arreglo, luego sera el que venga de la base de datos*/
+
+    /*creeate elemente crea la la etiqueta de forma dinamica*/ 
+    
+const card = document.createElement('div');
+card.className ="card "
+card.id=productos['articulo'].id
+const titulo = document.createElement('div');
+titulo.className = "card-titulo"
+titulo.textContent = productos['articulo'].marca
+const cuerpo = document.createElement('div');
+cuerpo.className = "card-cuerpo"
+cuerpo.textContent = productos['articulo'].descripcion 
+const imagen = document.createElement('img');
+imagen.className = "card-imagen";
+imagen.src='https://ardiaprod.vtexassets.com/arquivos/ids/230974/Alimento-para-Perros-Dog-Chow-Cachorros-15-Kg-_1.jpg?v=638026465703870000'
+const precio = document.createElement('p')
+precio.innerHTML = `precio: <strong>$${productos['articulo'].precioVenta} </strong>`
+const agregar = document.createElement('button');
+agregar.innerHTML = `+ Agregar <i class="fa-solid fa-cart-shopping"></i>`
+agregar.className = "card-agregar"
+agregar.title=`Agregar ${productos.nombre} al carrito`
+
+/*cada elemento tiene que tener un padre*/ 
+card.appendChild(titulo);
+card.appendChild(cuerpo);
+
+card.appendChild(imagen);
+card.appendChild(precio);
+card.appendChild(agregar);
+fragmento.appendChild(card);
+const carro = document.querySelector('.carrito');
+const alertaCarrito = document.querySelector('.alertaCarrito');
+let contador =0; 
+agregar.addEventListener('click',function(){
+contador ++;
+carro.innerHTML="";
+carro2.push(productos); 
+let tamanio = carro2.length;
+ carro2.forEach(elementos => {
+carro.innerHTML += `<div class="card"><p>id:${elementos['articulo'].id} <br>${elementos['articulo'].marca}  <br> <div class="text-danger">$${elementos['articulo'].precioVenta}  <br> cantidad:${contador}</div><br> </p></div>`;
+
+}); 
+console.log(carro2)
+alertaCarrito.innerHTML = ` ${tamanio}`
+   
+}); 
+
+
+
+});
+/*manda el listado del fragmento a la etiqueta listaProductos*/ 
+listaProductos.appendChild(fragmento);
+
+
+</script> 
 
 
       </body>
 
 
-    {{-- <div class="marco m-3 p-2 ">
+    <!-- {{-- <div class="marco m-3 p-2 ">
     <div class="container-fluid d-flex justify-content-center  text-light">
         <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Seleccione Artículos</h2>
     
@@ -226,7 +309,7 @@
     </div>
 @endif
 
-    <!-- ************************************************************ -->
+    ************************************************************ 
     @if(Session::has('message'))
 
         <div class="alert
@@ -277,5 +360,5 @@
     
         </script> --}} 
         
-</body>
+</body> -->
 @endsection

@@ -37,6 +37,19 @@ productos = [
 
 ]; 
 
+/*
+  let arreglo = @json($lotes);
+
+  console.log(Object.values(arreglo)) 
+let i=0;
+ arreglo.forEach(elementos =>{
+    console.log ("indice:" + i) 
+    console.log( elementos )
+i++;
+})
+ */
+
+ 
 
 /*creamos el lugar donde se van a ver los productos*/
 
