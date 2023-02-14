@@ -1,43 +1,62 @@
 body{
     background-color: #ffffff !important;
 }
-
+img{
+  height: 50px;
+  width: 70px;
+  
+}
+.carro_gif{
+  height: 120px;
+  display: flex;
+  width: 100px;
+  padding-bottom: 60px;
+}
+p{
+  text-align: center;
+  font-size: larger;
+ 
+}
 .cointainer{
     width: 90% !important;
     margin: 0 auto;
-  
+   
    
   }
   #buscar-container {
-    margin: 1em 0;
+    margin: 2em 0;
 
   }
   #buscar-container input {
     background-color: transparent ;
-    width: 70%;
+    width: 100%;
+    text-align: center;
+   
   border-bottom: 2px solid rgb(9, 9, 9);
-    padding: 1em 0.3em;
-    margin-left: 5em;
+  padding: 1em ;
+  /*   padding: 1em 0.3em;
+    margin-left: 5em; */
   }
   #buscar-container input:focus {
     border-bottom-color: #f5660d;
   }
   #buscar-container button {
-    padding: 1em 1em;
+    padding: 1em;
     margin-left: 1em;
     background-color: #ff2323;
     color: #ffffff;
     border-radius: 10px;
-    margin-top: 0.5em;
+    margin-bottom: 1em;
   }
   #buscar-container button:hover {
     
-    background: #c0392b;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #8e44ad, #c0392b);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #8e44ad, #c0392b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-   
+    background-color: #ffffff;
+    color:#ff2323;
+    border-color:#f71a02;
+    box-shadow: 0 2px 2px #f71a02;
   }
+   
+
   .boton-value {
     border: 2px solid #ff2323;
     padding: 1em 1.5em;
@@ -50,13 +69,14 @@ body{
     transform: translateY(-3px);
     background-color: #ff2323;
     color: #ffffff;
+    box-shadow: 0 1px 2px #000000;
   }
   .boton-value:active {
     transform: translateY(-1px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-  #productos{
+  #listaProductos{
     display: grid;
     grid-template-columns: auto auto auto;
     grid-column-gap: 1.5em;
@@ -64,9 +84,53 @@ body{
   }
   .card {
     background-color: #ffffff;
-    max-width: 18em;
+    text-align:center;
+      max-width: 18em;
     margin-top: 1em;
     padding: 1em;
     border-radius: 5px;
     box-shadow: 1em 2em 2.5em rgba(1, 2, 68, 0.08);
   }
+  .card button{
+  background-color: #f71a02;
+  color: #ffffff;
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 1em 2em 2.5em rgba(1, 2, 68, 0.08);
+  }
+  .card-imagen{
+    text-align: center;
+    text-align: center;
+    height: 140px;
+    width: 120px;
+    padding: 10px;
+    
+  }
+  .card-titulo{
+    text-align:justify;
+    padding: 10px;
+    font-weight:bold;
+    color:#000;
+
+    
+  }
+  .tituloCarrito{
+    text-align: center;
+  }
+ .alertaCarrito{
+  background: red;
+   border-radius: 1em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.6em;
+  margin-right: 20px;
+  text-align: center;
+  width: 1.6em;
+ 
+ 
+
+ }
