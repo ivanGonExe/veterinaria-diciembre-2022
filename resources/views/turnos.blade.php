@@ -187,7 +187,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
       
           <div class="col-md-4 formulario_turno">
             <h4 class="text-white text-center p-2 fs-3">Complete el formulario y seleccione el turno</h4>
-            <p class="text-info">*Este campo es obligatoria</p>
+            <p class="text-info">*Este campo es obligatorio</p>
           <!--Grupo Nombre -->
             <div class="formulario__grupo " id="grupo__nombre">
           <label for="nombre" class="formulario__label">Nombre *</label>

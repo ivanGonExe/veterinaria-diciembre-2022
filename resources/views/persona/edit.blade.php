@@ -25,6 +25,7 @@
     <form action="/personas/{{$persona->id}}" method="POST" id="formulario">
         @csrf
         @method('PUT')
+        <p class="text-info">*Este campo es obligatorio</p>
         <div class="mb-3">
             <!--Grupo Nombre -->
               <div class="formulario__grupo " id="grupo__nombre">
@@ -35,7 +36,7 @@
      
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
                   </div>
-          <p class="text-info ">*Campo obligatorio</p>
+          <br>
                   <p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
               </div>
 
@@ -56,7 +57,7 @@
      <input type="text" class="form-control formulario__input" id="apellido" name="apellido" value="{{$persona->apellido}}" maxlength="25" required>
      <i class="formulario__validacion-estado fas fa-times-circle"></i>
    </div>
-   <p class="text-info ">*Campo obligatorio</p>
+   <br>
    <p class="formulario__input-error">El Apellido tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
  </div>
 
@@ -76,7 +77,7 @@
           <input type="text" class="form-control formulario__input" name="dni" id="dni"  maxlength="8"  value="{{$persona->dni}}"  aria-describedby="addon-wrapping" required>
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
      </div>
-     <p class="text-info ">*Campo obligatorio</p>
+     <br>
             <p class="formulario__input-error">El DNI solo puede contener numeros y el maximo son 8 dígitos.</p>
         </div>
 
@@ -112,7 +113,7 @@
   </div>  
 </div>
 </div>
-<p class="text-info ">*Campo obligatorio</p>
+<br>
 
          <div class="mb-3">
             <div class="row ">

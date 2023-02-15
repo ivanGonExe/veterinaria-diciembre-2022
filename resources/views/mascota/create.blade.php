@@ -58,28 +58,28 @@ ul {
 
     <form action="/mascotas" method="POST">
         @csrf
-       
+        <p class="text-info">*Este campo es obligatorio</p>
         <div class="mb-3">
-            <label for="" class="form-label">Nombre del Animal</label>
+            <label for="" class="form-label">Nombre del Animal*</label>
             <input id="nombre" name="nombre" type="text" class="form-control" maxlength="30" tabindex="1" required>
         </div>
-        <p class="text-info ">*Campo obligatorio</p>
+       <br>
         <div class="mb-3">
-            <label for="" class="form-label">Color</label>
+            <label for="" class="form-label">Color*</label>
             <input id="color" name="color" type="text" class="form-control" maxlength="40" tabindex="1" required>
         </div>
-        <p class="text-info ">*Campo obligatorio</p>
+       <br>
 
         <div class="mb-3">
-            <label for="" class="form-label">Esterilizado</label>
+            <label for="" class="form-label">Esterilizado*</label>
             <select class="form-select" aria-label="Default select example" name="esterilizado" id="esterilizado" required>
                 <option value="no">No </option>
                 <option value="Si">Si </option>
              </select> 
         </div>   
-        <p class="text-info ">*Campo obligatorio</p>
+       <br>
         <div class=" ">
-            <label for="" class="form-label">Especie</label>
+            <label for="" class="form-label">Especie*</label>
             <select class="form-select" aria-label="Default select example" name="especie" id="especie" required>
                 <option value="s/n">Selecionar Especie</option>
                 <option value="Perro">🐶 Perro</option>
@@ -90,40 +90,40 @@ ul {
                 <option value="Otros">Otro </option>
               </select> 
         </div> 
-        <p class="text-info ">*Campo obligatorio</p>
+       <br>
         <div class="mb-3">
          {{--    <label for="" class="form-label">Raza</label>
             <input id="raza" name="raza" type="text" class="form-control" tabindex="2">
         </div>
         <div> --}}
-            <label for="" class="form-label">Raza</label>
+            <label for="" class="form-label">Raza*</label>
             <input type="text" id="input" name="raza" class="form-control" maxlength="30" placeholder="Busque la raza del animal..." required />
           </div>
      
           <ul class="list"></ul>
-          <p class="text-info ">*Campo obligatorio</p>
+         <br>
         <div class="container-fluid d-flex justify-content-center ">
 
                  
             <div class="form-check m-4">
             <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="macho" required>
             <label class="form-check-label" for="sexo1">
-                Macho
+                Macho*
             </label>
         </div>
         <div class="form-check m-4">
             <input class="form-check-input" type="radio" name="sexo" id="sexo2" value="hembra" required>
             <label class="form-check-label" for="sexo2">
-                Hembra
+                Hembra*
             </label>
         </div>
     </div>
-    <p class="text-info ">*Campo obligatorio</p>
+   <br>
     <div class="mb-3">
-            <label for="" class="form-label">Nacimiento</label>
+            <label for="" class="form-label">Nacimiento*</label>
             <input id="anioNacimiento" name="anioNacimiento" type="date" class="form-control" value="" tabindex="4" required>
         </div>
-        <p class="text-info ">*Campo obligatorio</p>
+       <br>
         <div class="mb-3">
             <label for="" class="form-label"></label>
             <input id="id" name="id" type="hidden" class="form-control" tabindex="5" value="{{$persona_id}} ">
