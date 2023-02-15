@@ -98,18 +98,18 @@
  <script>
 
 
-/*creamos el lugar donde se van a ver los productos*/
-let arreglo =Object.values(@json($lotes));
+// /*creamos el lugar donde se van a ver los productos*/
+// let arreglo =Object.values(@json($lotes));
 
-/* console.log(Object.values(arreglo)) */
-let i=0;
-console.log( arreglo);
-arreglo.forEach(elementos =>{
-    console.log ("indice:" + i) 
-    console.log( elementos['articulo'].marca)
-    console.log( elementos['articulo'].precioVenta)
-i++;
-})
+// /* console.log(Object.values(arreglo)) */
+// let i=0;
+// console.log( arreglo);
+// arreglo.forEach(elementos =>{
+//     console.log ("indice:" + i) 
+//     console.log( elementos['articulo'].marca)
+//     console.log( elementos['articulo'].precioVenta)
+// i++;
+// })
 
 const listaProductos = document.querySelector('#listaProductos');
 
@@ -117,6 +117,7 @@ const fragmento = document.createDocumentFragment();
 
 const carro2 = [];
 let productos =Object.values(@json($lotes));
+console.log(productos)
 productos.forEach(productos => {
     /*recorremos el arreglo, luego sera el que venga de la base de datos*/
 
@@ -124,7 +125,8 @@ productos.forEach(productos => {
     
 const card = document.createElement('div');
 card.className ="card "
-card.id=productos['articulo'].id
+card.id=productos['articulo'].id 
+card.innerHTML= `id:${productos['articulo'].id}`
 const titulo = document.createElement('div');
 titulo.className = "card-titulo"
 titulo.textContent = productos['articulo'].marca
@@ -155,13 +157,21 @@ let contador =0;
 agregar.addEventListener('click',function(){
 contador ++;
 carro.innerHTML="";
-carro2.push(productos); 
+carro2.push(productos); /*arreglo vacio donde coloco los productos*/ 
 let tamanio = carro2.length;
- carro2.forEach(elementos => {
-carro.innerHTML += `<div class="card"><p>id:${elementos['articulo'].id} <br>${elementos['articulo'].marca}  <br> <div class="text-danger">$${elementos['articulo'].precioVenta}  <br> cantidad:${contador}</div><br> </p></div>`;
 
-}); 
-console.log(carro2)
+const nuevoArreglo = carro2.filter(function(element){
+  return  element['articulo'].id !=productos['articulo'].id 
+});
+
+
+
+
+nuevoArreglo.forEach(elementos => {
+carro.innerHTML += `<div class="card"><p>id:${elementos['articulo'].id} <br>${elementos['articulo'].marca}  <br> <div class="text-danger">$${elementos['articulo'].precioVenta}  <br> cantidad:${contador}</div><br> </p></div>`;
+console.log(nuevoArreglo.length)
+});  
+/* console.log(carro2) */
 alertaCarrito.innerHTML = ` ${tamanio}`
    
 }); 
