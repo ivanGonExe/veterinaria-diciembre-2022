@@ -16,5 +16,9 @@ public function cliente(){
     return $this->belongsTo(Persona::class);
 }
 
+public function caja(){
+    return $this->belongsTo(Caja::class);
+}
+
 }
 

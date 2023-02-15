@@ -23,6 +23,7 @@ class CreateVentasTable extends Migration
             $table->boolean('estado')->nullable();
             $table->timestamps();
             $table->foreignId('idCliente')->nullable()->constrained('personas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('idCaja')->nullable()->constrained('cajas')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -51,6 +51,7 @@ return array(
     'App\\Http\\Middleware\\UsuarioVeterinario' => $baseDir . '/app/Http/Middleware/UsuarioVeterinario.php',
     'App\\Http\\Middleware\\Usuario_Vet_pel' => $baseDir . '/app/Http/Middleware/Usuario_Vet_pel.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Models\\Caja' => $baseDir . '/app/Models/Caja.php',
     'App\\Models\\DetalleClinico' => $baseDir . '/app/Models/DetalleClinico.php',
     'App\\Models\\HistorialClinico' => $baseDir . '/app/Models/HistorialClinico.php',
     'App\\Models\\Mascota' => $baseDir . '/app/Models/Mascota.php',

@@ -189,6 +189,10 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
     Route::get('/noticias/posteo/{id}', [App\Http\Controllers\HomeController::class, 'unPosteo']);
 //estan dentro de los que estan registrados
     Auth::routes();
+
+    Route::post('/abrirCaja','App\Http\Controllers\CajaController@abrirCaja');
+    Route::post('/cerrarJornada','App\Http\Controllers\CajaController@cerrarJornada');
+    Route::post('/abrirCajaAnterior','App\Http\Controllers\CajaController@abrirCajaAnterior');
     
 //Estadisticas
 

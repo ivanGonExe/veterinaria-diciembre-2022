@@ -6,6 +6,7 @@ use App\Models\Venta;
 use App\Models\loteDescripcion;
 use App\Models\articulo;
 use App\Models\detalleVenta;
+use App\Models\Caja;
 use App\Models\notificaciones;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
@@ -25,7 +26,28 @@ class VentaController extends Controller
         $this->vaciarArticulos();
         $ventas = Venta::all();
 
-        return view('venta.index')->with('ventas', $ventas);
+        $fecha = Carbon::now();
+        $cajaExistente = Caja::where('user_id',auth()->user()->id)
+        ->whereDate('fecha','=',$fecha)
+        ->get();
+
+        //Éstos if son para saber qué botones mostrar en la plantilla, boton de abrir caja y cerrar caja
+        if(count($cajaExistente) == 0){
+
+            //no hay caja abierta
+            $estado = 0;
+        }
+        else{
+            if($cajaExistente[0]->estado == 1){
+                //la caja está abierta
+                $estado = 1;
+            }
+            if($cajaExistente[0]->estado == 2){
+                $estado = 2;
+            }
+        }
+
+        return view('venta.index')->with('ventas', $ventas)->with('estado', $estado);
     }
 //-----------------------------------------------------------
     /**
@@ -35,18 +57,24 @@ class VentaController extends Controller
      */
     public function create()
     {   
-         $fechaActual = Carbon::now();
+        if(session()->has('cajaId')){
+            $fechaActual = Carbon::now();
 
-         $lotes = loteDescripcion::where('unidad','>',0)
-                                 ->where('estado','1')
-                                 ->where('vencimiento','>',$fechaActual)
-                                 ->orWhere('vencimiento',null)
-                                 ->where('unidad','>',0)
-                                 ->where('estado','1')
-                                 ->get();
+            $lotes = loteDescripcion::where('unidad','>',0)
+                                    ->where('estado','1')
+                                    ->where('vencimiento','>',$fechaActual)
+                                    ->orWhere('vencimiento',null)
+                                    ->where('unidad','>',0)
+                                    ->where('estado','1')
+                                    ->get();
 
-        return view('venta.create')
-                   ->with('lotes', $lotes);
+            return view('venta.create')
+                    ->with('lotes', $lotes);
+        }
+        else{
+            Session::flash('message','Debe abrir una caja para realizar una venta!');
+            return redirect(url()->previous());
+        }
     }
 //-----------------------------------------------------------
     /**
@@ -202,51 +230,61 @@ class VentaController extends Controller
     //A partir de acá son los métodos a implementar
 
     private function obtenerArticulos()
-    {
-        $articulos = session("articulos");
-        if (!$articulos) {
-            $articulos = [];
+    {   
+        if(session()->has('cajaId')){
+            $articulos = session("articulos");
+            if (!$articulos) {
+                $articulos = [];
+            }
+            return $articulos;
         }
-        return $articulos;
     }
 //-----------------------------------------------------------
     private function obtenerEstados()
-    {
-        $estado = session("estado");
-        if (!$estado) {
-            $estado = [];
+    {   
+        if(session()->has('cajaId')){
+            $estado = session("estado");
+            if (!$estado) {
+                $estado = [];
+            }
+            return $estado;
         }
-        return $estado;
     }
 //-----------------------------------------------------------
     private function vaciarArticulos()
-    {
-        $this->guardarArticulos(null);
-        $this->guardarEstado(null);
+    {   
+        if(session()->has('cajaId')){
+            $this->guardarArticulos(null);
+            $this->guardarEstado(null);
+        }
     }
 //-----------------------------------------------------------
     private function guardarArticulos($articulos)
-    {
-        session(["articulos" => $articulos,
-                
-        ]);
+    {   if(session()->has('cajaId')){
+            session(["articulos" => $articulos,
+                    
+            ]);
+        }
     }
 //-----------------------------------------------------------
     private function guardarEstado($estado)
-    {
-         session(["estado" => $estado,
+    {   
+        if(session()->has('cajaId')){
+            session(["estado" => $estado,
                 
-         ]);
-        
+            ]);
+        }
     
     }
 //-----------------------------------------------------------
     public function cancelarVenta()
-    {
-        $this->vaciarArticulos();
+    {   
+        if(session()->has('cajaId')){
+            $this->vaciarArticulos();
         
-        return redirect()
-            ->route("ventas.index");
+            return redirect()
+                ->route("ventas.index");
+        }
     }
 //-----------------------------------------------------------
     /**
@@ -257,17 +295,19 @@ class VentaController extends Controller
      */
     public function quitarArticuloDeVenta(Request $request)
     {   
-        $indice    = $request->get('articulo') - 1;
-        $articulos = $this->obtenerArticulos();
-        $estado    = $this->obtenerEstados();
+        if(session()->has('cajaId')){
+            $indice    = $request->get('articulo') - 1;
+            $articulos = $this->obtenerArticulos();
+            $estado    = $this->obtenerEstados();
 
-        array_splice($articulos, $indice, 1);
-        array_splice($estado, $indice, 1);
+            array_splice($articulos, $indice, 1);
+            array_splice($estado, $indice, 1);
 
-        $this->guardarArticulos($articulos);
-        $this->guardarEstado($estado);
+            $this->guardarArticulos($articulos);
+            $this->guardarEstado($estado);
 
-        return redirect()->route("ventas.create");
+            return redirect()->route("ventas.create");
+        }
     }
     
 
@@ -281,13 +321,15 @@ class VentaController extends Controller
      */
     public function quitarUnArticuloVenta($id)
     {   
-        $articulo      =  loteDescripcion::find($id);
-        $articulos     =  $this->obtenerArticulos();
-        $posibleIndice =  $this->buscarIndiceDeArticulo($articulo->id, $articulos);
-        $articulos[$posibleIndice]->unidad--;
+        if(session()->has('cajaId')){
+            $articulo      =  loteDescripcion::find($id);
+            $articulos     =  $this->obtenerArticulos();
+            $posibleIndice =  $this->buscarIndiceDeArticulo($articulo->id, $articulos);
+            $articulos[$posibleIndice]->unidad--;
         
-        return redirect()
-                    ->route("ventas.create");
+            return redirect()
+                        ->route("ventas.create");
+        }
     }
 //-----------------------------------------------------------
     /**
@@ -299,20 +341,23 @@ class VentaController extends Controller
      */
 
     public function cambiarEstadoPrecio($id){
-        $estado        =  $this->obtenerEstados();
-        $articulos     =  $this->obtenerArticulos();
-        $posibleIndice =  $this->buscarIndiceDeArticulo($id, $articulos);
 
-        if($estado[$posibleIndice] == 0){
-            $estado[$posibleIndice] = 1;
-        }
-        else{ 
-            $estado[$posibleIndice] = 0;
-        }
-        $this->guardarEstado($estado);
+        if(session()->has('cajaId')){
+            $estado        =  $this->obtenerEstados();
+            $articulos     =  $this->obtenerArticulos();
+            $posibleIndice =  $this->buscarIndiceDeArticulo($id, $articulos);
 
-        return redirect()
-                    ->route("ventas.create");
+            if($estado[$posibleIndice] == 0){
+                $estado[$posibleIndice] = 1;
+            }
+            else{ 
+                $estado[$posibleIndice] = 0;
+            }
+            $this->guardarEstado($estado);
+
+            return redirect()
+                        ->route("ventas.create");
+        }
 
     }
 //-----------------------------------------------------------
@@ -325,160 +370,172 @@ class VentaController extends Controller
      */
 
     public function agregarArticuloVenta($id)
-    {  
-        $articuloSelecionado = loteDescripcion::where('id', $id)
-                                              ->where('estado','1')
-                                              ->get();
-        $articulo            = $articuloSelecionado[0];
-        if (!$articulo) {
-            Session::flash('message','Articulo no existente');
-            return redirect()
-                ->route("ventas.create");
-        }
-
-        $this->agregarArticuloACarrito($articulo);
-        return redirect()
+    {   
+        if(session()->has('cajaId')){
+            $articuloSelecionado = loteDescripcion::where('id', $id)
+                                                    ->where('estado','1')
+                                                    ->get();
+            $articulo            = $articuloSelecionado[0];
+            if (!$articulo) {
+                Session::flash('message','Articulo no existente');
+                return redirect()
                     ->route("ventas.create");
-    }
-//-----------------------------------------------------------
-private function agregarArticuloACarrito($articulo)
-{  
-    if ($articulo->unidad <=0) {
-        $mensaje='No hay existencias del artículo '. $articulo->articulo->descripcion.' con vencimiento en '. $articulo->vencimiento;
-        Session::flash('message',$mensaje);
-        return redirect()->route("ventas.create");
-    }
-    $articulos     = $this->obtenerArticulos();
-    $posibleIndice = $this->buscarIndiceDeArticulo($articulo->id, $articulos);
-    
-    // Es decir, producto no fue encontrado
-    if ($posibleIndice === -1) {
+            }
 
-         $articulo->unidad = 1;
-         $estado           = $this->obtenerEstados();
-         $estadoAux        = 0;
-         array_push($estado,$estadoAux);
-         array_push($articulos, $articulo);
-         $this->guardarEstado($estado);
-    } else {
-
-        if ($articulos[$posibleIndice]->unidad + 1 > $articulo->unidad) {
-            $mensaje="No se pueden agregar más productos de este tipo, se quedarían sin existencia";
-            Session::flash('message',$mensaje);
+            $this->agregarArticuloACarrito($articulo);
             return redirect()
                         ->route("ventas.create");
         }
-        $articulos[$posibleIndice]->unidad++;
 
     }
-    $this->guardarArticulos($articulos);
-   
-    return redirect()
-                ->route("ventas.create")
-                        ->with('$articulos',$articulos);
+//-----------------------------------------------------------
+private function agregarArticuloACarrito($articulo)
+{   
+    if(session()->has('cajaId')){
+        if ($articulo->unidad <=0) {
+            $mensaje='No hay existencias del artículo '. $articulo->articulo->descripcion.' con vencimiento en '. $articulo->vencimiento;
+            Session::flash('message',$mensaje);
+            return redirect()->route("ventas.create");
+        }
+        $articulos     = $this->obtenerArticulos();
+        $posibleIndice = $this->buscarIndiceDeArticulo($articulo->id, $articulos);
+        
+        // Es decir, producto no fue encontrado
+        if ($posibleIndice === -1) {
+    
+             $articulo->unidad = 1;
+             $estado           = $this->obtenerEstados();
+             $estadoAux        = 0;
+             array_push($estado,$estadoAux);
+             array_push($articulos, $articulo);
+             $this->guardarEstado($estado);
+        } else {
+    
+            if ($articulos[$posibleIndice]->unidad + 1 > $articulo->unidad) {
+                $mensaje="No se pueden agregar más productos de este tipo, se quedarían sin existencia";
+                Session::flash('message',$mensaje);
+                return redirect()
+                            ->route("ventas.create");
+            }
+            $articulos[$posibleIndice]->unidad++;
+    
+        }
+        $this->guardarArticulos($articulos);
+       
+        return redirect()
+                    ->route("ventas.create")
+                            ->with('$articulos',$articulos);
+        
+    }
     
 }
 //-----------------------------------------------------------
 private function buscarIndiceDeArticulo(string $id, array &$articulos)
-{  
-    $indice = 0;
+{   
+    if(session()->has('cajaId')){
+        $indice = 0;
 
-    foreach ($articulos as $unArticulo ) {
-        
-        if ($unArticulo->id == $id) {
-            return $indice;
+        foreach ($articulos as $unArticulo ) {
+            
+            if ($unArticulo->id == $id) {
+                return $indice;
+            }
+            $indice++;
         }
-        $indice++;
+        return -1;
     }
-    return -1;
+    
 }
 
 //-----------------------------------------------------------
 //terminar venta
 
 public function terminarVenta()
-{
-    // Crear una venta
-    $venta        = new Venta();
-    $venta->saveOrFail();
-    $idVenta      = $venta->id;
-    $venta->fecha = Carbon::now();
+{   
+    if(session()->has('cajaId')){
+        // Crear una venta
+        $venta        = new Venta();
+        $venta->saveOrFail();
+        $idVenta      = $venta->id;
+        $venta->fecha = Carbon::now();
 
-    $articulos    = $this->obtenerArticulos();
-    $estado       = $this->obtenerEstados();
-    $indice       = 0;
-    $total        = 0;
-    // Recorrer carrito de compras
-    foreach ($articulos as $unArticulo) {
-        // El producto que se vende...
-        $detalleVenta           = new detalleVenta();
-        $detalleVenta->idVenta  = $idVenta;
-        $detalleVenta->cantidad = $unArticulo->unidad;
+        $articulos    = $this->obtenerArticulos();
+        $estado       = $this->obtenerEstados();
+        $indice       = 0;
+        $total        = 0;
+        // Recorrer carrito de compras
+        foreach ($articulos as $unArticulo) {
+            // El producto que se vende...
+            $detalleVenta           = new detalleVenta();
+            $detalleVenta->idVenta  = $idVenta;
+            $detalleVenta->cantidad = $unArticulo->unidad;
 
-        if($estado[$indice] == 0){
-            $detalleVenta->subtotal  = ($unArticulo->unidad)*($unArticulo->articulo->precioVenta);
-            $detalleVenta->descuento = 0;
-        }
-        else{
-            $detalleVenta->subtotal  = ($unArticulo->unidad)*($unArticulo->articulo->precioEspecial);
-            $detalleVenta->descuento = ($unArticulo->unidad)*(($unArticulo->articulo->precioEspecial)-($unArticulo->articulo->precioVenta));
-        }
-
-        $indice ++;
-        $total  += $detalleVenta->subtotal;
-        $detalleVenta->idLote = $unArticulo->id;
-        // Lo guardamos
-        if($detalleVenta->subtotal>0){
-            $detalleVenta->saveOrFail();
-        }
-        else {
-            $this->vaciarArticulos();
-            return redirect(url()->previous());
-        }
-        // Y restamos la existencia del original
-        $loteActualizado          = loteDescripcion::find($unArticulo->id);
-        $loteActualizado->unidad -= $detalleVenta->cantidad;
-
-        if ($loteActualizado->unidad <= 0){
-            $loteActualizado->estado = 0;
-        }
-
-        $articuloActualizado = Articulo::find($loteActualizado->articulo_id);
-        $articuloActualizado->cantidadTotal -= $detalleVenta->cantidad;
-        $articuloActualizado->saveOrFail();
-
-        if($articuloActualizado->cantidadTotal <= $articuloActualizado->minimoStock){
-            $notificacion = new notificaciones();
-            $notificacion  ->categoria   = 'articulo';
-            $notificacion  ->unidades    =  $articuloActualizado->cantidadTotal;
-            $notificacion  ->descripcion = 'falta de stock del articulo '. $articuloActualizado->descripcion . ', Marca ' . $articuloActualizado->marca ;
-            $notificacion  ->saveOrFail();
-           
-            if (session()->exists('notificacion')) {
-                session()->increment('notificacion', 1);
-                
+            if($estado[$indice] == 0){
+                $detalleVenta->subtotal  = ($unArticulo->unidad)*($unArticulo->articulo->precioVenta);
+                $detalleVenta->descuento = 0;
             }
             else{
-                session(['notificacion' => 1]);
+                $detalleVenta->subtotal  = ($unArticulo->unidad)*($unArticulo->articulo->precioEspecial);
+                $detalleVenta->descuento = ($unArticulo->unidad)*(($unArticulo->articulo->precioEspecial)-($unArticulo->articulo->precioVenta));
             }
 
+            $indice ++;
+            $total  += $detalleVenta->subtotal;
+            $detalleVenta->idLote = $unArticulo->id;
+            // Lo guardamos
+            if($detalleVenta->subtotal>0){
+                $detalleVenta->saveOrFail();
+            }
+            else {
+                $this->vaciarArticulos();
+                return redirect(url()->previous());
+            }
+            // Y restamos la existencia del original
+            $loteActualizado          = loteDescripcion::find($unArticulo->id);
+            $loteActualizado->unidad -= $detalleVenta->cantidad;
+
+            if ($loteActualizado->unidad <= 0){
+                $loteActualizado->estado = 0;
+            }
+
+            $articuloActualizado = Articulo::find($loteActualizado->articulo_id);
+            $articuloActualizado->cantidadTotal -= $detalleVenta->cantidad;
+            $articuloActualizado->saveOrFail();
+
+            if($articuloActualizado->cantidadTotal <= $articuloActualizado->minimoStock){
+                $notificacion = new notificaciones();
+                $notificacion  ->categoria   = 'articulo';
+                $notificacion  ->unidades    =  $articuloActualizado->cantidadTotal;
+                $notificacion  ->descripcion = 'falta de stock del articulo '. $articuloActualizado->descripcion . ', Marca ' . $articuloActualizado->marca ;
+                $notificacion  ->saveOrFail();
+            
+                if (session()->exists('notificacion')) {
+                    session()->increment('notificacion', 1);
+                    
+                }
+                else{
+                    session(['notificacion' => 1]);
+                }
+
+            }
+        
+            $loteActualizado->saveOrFail();
         }
-    
-        $loteActualizado->saveOrFail();
-    }
-    
-    $venta->total = $total;
+        
+        $venta->total = $total;
 
-    if($venta->total>=0){
-            $venta->saveOrFail();
-            $this->vaciarArticulos();
-    }
-    else{
-            $this->vaciarArticulos();
-            return redirect(url()->previous());
-    }
+        if($venta->total>=0){
+                $venta->saveOrFail();
+                $this->vaciarArticulos();
+        }
+        else{
+                $this->vaciarArticulos();
+                return redirect(url()->previous());
+        }
 
-    return redirect()->route('ventasTotal', ['id' => $venta->id]);
+        return redirect()->route('ventasTotal', ['id' => $venta->id]);
+    }
+    
 }
 //-----------------------------------------------------------
 /**
@@ -487,13 +544,15 @@ public function terminarVenta()
       * @param  int  $id
       * @return \Illuminate\Http\Response
       */
-      public function ventasTotal($id)
-      {   
-          $venta = Venta::find($id);
- 
-          return view('venta.ventasTotal')
-                    ->with('venta', $venta);
-      }
+        public function ventasTotal($id)
+        {   
+            if(session()->has('cajaId')){
+                $venta = Venta::find($id);
+
+                return view('venta.ventasTotal')
+                        ->with('venta', $venta);
+            }
+        }
 //-----------------------------------------------------------
     /**
     * Display the specified resource.
@@ -502,21 +561,25 @@ public function terminarVenta()
     * @param  int  $id
     */
     public function confirmarVenta(Request $request, $id)
-    {
-        $venta = Venta::find($id);
+    {   
+        if(session()->has('cajaId')){
+            $venta = Venta::find($id);
 
-        if($request->get('pago')<$venta->total){
+            if($request->get('pago')<$venta->total){
 
-            return redirect(url()->previous());  
+                return redirect(url()->previous());  
+            }
+            
+            $venta->tipoPago    = $request->get('tipoPago');
+            $venta->montoPagado = $request->get('pago');
+            $venta->save();
+
+            $ventas             = venta::all();
+
+            return redirect('/ventas')
+                            ->with('ventas', $ventas);
         }
         
-        $venta->tipoPago    = $request->get('tipoPago');
-        $venta->montoPagado = $request->get('pago');
-        $venta->save();
-
-        $ventas             = venta::all();
-
-        return redirect('/ventas')
-                        ->with('ventas', $ventas);
+        
     }
 }

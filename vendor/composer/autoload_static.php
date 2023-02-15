@@ -572,6 +572,7 @@ class ComposerStaticInit706d1e2366e9b4c3d5cf3847a6f0930f
         'App\\Http\\Middleware\\UsuarioVeterinario' => __DIR__ . '/../..' . '/app/Http/Middleware/UsuarioVeterinario.php',
         'App\\Http\\Middleware\\Usuario_Vet_pel' => __DIR__ . '/../..' . '/app/Http/Middleware/Usuario_Vet_pel.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Caja' => __DIR__ . '/../..' . '/app/Models/Caja.php',
         'App\\Models\\DetalleClinico' => __DIR__ . '/../..' . '/app/Models/DetalleClinico.php',
         'App\\Models\\HistorialClinico' => __DIR__ . '/../..' . '/app/Models/HistorialClinico.php',
         'App\\Models\\Mascota' => __DIR__ . '/../..' . '/app/Models/Mascota.php',
