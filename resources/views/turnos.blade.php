@@ -226,7 +226,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
 
   <label for="telefono" class="formulario__label">Celular *</label>
   <div class="row ">
-  <div class = "col-md-4 col-6">
+  <div class = "col-md-6 col-6">
           <div class="formulario__grupo" id="grupo__codigoArea">
             <div class="formulario__grupo-input">
                 <div class="input-group flex-nowrap">
@@ -239,7 +239,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
             </div>
           </div>
   </div>
-   <div class = "col-md-8 col-6">
+   <div class = "col-md-6 col-6">
             <div class="formulario__grupo" id="grupo__telefono">
               <div class="formulario__grupo-input">
                 <div class="input-group flex-nowrap">
