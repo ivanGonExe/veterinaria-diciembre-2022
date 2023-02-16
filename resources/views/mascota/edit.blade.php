@@ -9,10 +9,8 @@
     <form action="/mascotas/{{$mascota->id}}" method="POST" id="formulario">
         @csrf
         @method('PUT')
-      {{--   <div class="mb-3">
-            <label for="" class="form-label">Nombre</label>
-            <input id="nombre" name="nombre" type="text" class="form-control" value="{{$mascota->nombre}}" tabindex="1">
-        </div> --}}
+        <p class="text-info">*Este campo es obligatorio</p>
+     
   <!--Grupo Nombre -->
   <div class="formulario__grupo " id="grupo__nombre">
     <label for="nombre" class="formulario__label">Nombre *</label>
@@ -25,13 +23,16 @@
  {{--  <p class="text-info ">*Campo obligatorio</p> --}}
           <p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
       </div>
-      <div class="mb-3">
-            <label for="" class="form-label">Color</label>
+      <div class="formulario__grupo " id="grupo__color">
+      <label for="nombre" class="formulario__label">Color *</label>
+      <div class="formulario__grupo-input">
+     
             <input id="color" name="color" type="text" maxlength="40" class="form-control" value='{{$mascota->color}}' tabindex="1" required>
         </div>
 
-        <div class="mb-3">
-            <label for="" class="form-label">Esterilizado</label>
+        <div class="formulario__grupo " id="grupo__esterilizado">
+      <label for="nombre" class="formulario__label">Esterilizado *</label>
+     
             <select class="form-select" aria-label="Default select example" name="esterilizado" id="esterilizado" required>
             @if ($mascota->esterilizado == 'Si')
                 <option value="no">No </option>
@@ -42,8 +43,8 @@
             @endif
              </select> 
         </div>
-        <div class="mb-3">
-            <label for="" class="form-label">Especie</label>
+        <div class="formulario__grupo " id="grupo__especie">
+      <label for="nombre" class="formulario__label">Especie *</label>
             <select class="form-select" aria-label="Default select example" name="especie" id="especie">
             @if ($mascota->especie == 'Perro')
                 <option value="Perro" selected>Perro</option>
@@ -81,7 +82,8 @@
               </select> 
         </div> 
     
-        <label for="" class="form-label">Raza</label>
+        <div class="formulario__grupo " id="grupo__raza">
+      <label for="nombre" class="formulario__label">Raza *</label>
         <input type="text" id="input" name="raza" class="form-control"  maxlength="30" value="{{$mascota->raza}}" />
  
  
@@ -120,8 +122,8 @@
         @endif
     </div>
 
-        <div class="mb-3">
-            <label for="" class="form-label">Nacimiento</label>
+        <div class="formulario__grupo " id="grupo__nacimiento">
+      <label for="nombre" class="formulario__label">Nacimiento *</label>
             <input id="anioNacimiento" name="anioNacimiento" type="date" class="form-control" value="{{$mascota->anioNacimiento}}" tabindex="4">
         </div>
 
