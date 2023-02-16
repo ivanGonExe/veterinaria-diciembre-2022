@@ -52,9 +52,9 @@ padding-left: 0px;
                     <td>{{$unArticulo->categoria->descripcion}}</td>
                     @endif
                     <td class="acciones">    
-                            <a href="Lotes/{{$unArticulo->id}}/lote" name="lotes" class="btn " title="lotes"><i class="fa fa-archive"></i></a>
+                            <a href="/Lotes/{{$unArticulo->id}}/lote" name="lotes" class="btn " title="lotes"><i class="fa fa-archive"></i></a>
                            {{--  <a href="{{ route('articulos.show', $unArticulo->id)}}" name="ver" class="btn " title="Ver"><i class="fa-solid fa-eye"></i></a> --}}
-                            <a href="articulos/{{$unArticulo->id}}/edit " name="Editar" class="btn " title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="/articulos/{{$unArticulo->id}}/edit " name="Editar" class="btn " title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
                             <button class="btn btn eliminar" title="Eliminar" id="{{$unArticulo->id}}" value= '{{$unArticulo->id}}'><i class="fa-solid fa-trash-can"></i></button>
                             
                    </td>

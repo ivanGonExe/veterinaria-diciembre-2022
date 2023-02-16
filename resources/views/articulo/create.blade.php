@@ -20,7 +20,7 @@
    <div class="row container-fluid d-flex justify-content-center">
     <div class="col-md-6">
    <div class="row">
-      <form action="/articulos" method="POST" id="formulario" name="formulario" >
+      <form action="/articulos/create" method="POST" id="formulario" name="formulario" >
         @csrf
         <p class="text-info">*Este campo es obligatorio</p>
            <!--Grupo codigo -->
