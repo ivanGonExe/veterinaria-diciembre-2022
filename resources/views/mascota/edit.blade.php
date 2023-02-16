@@ -47,7 +47,7 @@
       <label for="nombre" class="formulario__label">Especie *</label>
             <select class="form-select" aria-label="Default select example" name="especie" id="especie">
             @if ($mascota->especie == 'Perro')
-                <option value="Perro" selected>Perro</option>
+                <option value="Perro" selected> 🐶Perro</option>
             @else
             <option value="Perro">🐶 Perro</option>
             @endif
