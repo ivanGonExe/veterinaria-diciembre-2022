@@ -29,6 +29,7 @@
         @csrf
 		@method('Put')
       <!--Grupo codigo -->
+      <p class="text-info">*Este campo es obligatorio</p>
   <div class="mb-3">
     <div class="formulario__grupo" id="grupo__codigo" title="Valor númerico único que se va identificar el producto">
       <label for="codigo" class="formulario__label">Codigo*</label>
@@ -36,7 +37,7 @@
       <input type="text" class="form-control formulario__input" id="codigo" name="codigo" value ="{{$articulos->codigo}}" maxlength="8" required>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-        <p class="text-white">*Esta pregunta es obligatoria</p>
+     <br>
         <p class="formulario__input-error">El código solo puede contener valores númericos</p>
     </div>
       
@@ -48,7 +49,7 @@
     <input type="text" class="form-control formulario__input" id="descripcion" name="descripcion" value ="{{$articulos->descripcion}}" maxlength="50" required>
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
 </div>
-<p class="text-white">*Campo obligatorio</p>
+<br>
 <p class="formulario__input-error">La descripcion puede contener letras y número hasta 50 caracteres</p>
 </div>
 
@@ -60,7 +61,7 @@
          <input type="text" class="form-control formulario__input" id="marca" name="marca" value ="{{$articulos->marca}}" maxlength="20" required>
          <i class="formulario__validacion-estado fas fa-times-circle"></i>
        </div>
-       <p class="text-white">*Campo obligatorio</p>
+       <br>
        <p class="formulario__input-error">El marca tiene hasta 30 caracteres.Sólo letras y número</p>
      </div>
           <!-- Grupo: Precio Especial !-->
@@ -71,7 +72,7 @@
       <input type="text" class="form-control formulario__input" name="precioEspecial" id="precioEspecial"  maxlength="8" value ="{{$articulos->precioEspecial}}" aria-describedby="addon-wrapping" required>
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
  </div>
- <p class="text-white">*Campo obligatorio</p>
+ <br>
         <p class="formulario__input-error">El precioEspecial solo puede contener números y el maximo son 8 dígitos.</p>
     </div>
 <!-- Grupo: Precio Venta-->
@@ -82,7 +83,7 @@
   <input type="text" class="form-control formulario__input" name="precioVenta" id="precioVenta"  maxlength="8" value ="{{$articulos->precioVenta}}"  aria-describedby="addon-wrapping" required>
 <i class="formulario__validacion-estado fas fa-times-circle"></i>
 </div>
-<p class="text-white">*Campo obligatorio</p>
+<br>
     <p class="formulario__input-error">El Precio Venta solo puede contener números y el maximo son 8 dígitos.</p>
 </div>
 
@@ -94,7 +95,7 @@
           <input type="text" class="form-control formulario__input" name="iva" id="iva"  maxlength="2"  value ="{{$articulos->iva}}" aria-describedby="addon-wrapping" required>
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
      </div>
-     <p class="text-white ">*Campo obligatorio</p>
+     
             <p class="formulario__input-error">El I.V.A solo puede contener números </p>
         </div>
 
@@ -106,7 +107,7 @@
           <input type="text" class="form-control formulario__input" name="minimoStock" id="minimoStock"  maxlength="3"  value ="{{$articulos->minimoStock}}" aria-describedby="addon-wrapping" required>
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
      </div>
-     <p class="text-white">*Campo obligatorio</p>
+     <br>
             <p class="formulario__input-error">El Minimo de Stock solo puede contener números y hasta 3 digitos</p>
         </div>
      <!-- Grupo: alerta-->
@@ -117,13 +118,14 @@
           <input type="text" class="form-control formulario__input" name="alerta" id="alerta"  maxlength="3" value ="{{$articulos->alerta}}" aria-describedby="addon-wrapping" required>
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
      </div>
-     <p class="text-white">*Campo obligatorio</p>
+     <br>
             <p class="formulario__input-error">El alerta solo puede contener numeros y el maximo son 3 dígitos.</p>
         </div>
 
 
         <div class="mb-3">
-        <label class="form-label">Categoria </label><br>
+        <div class="formulario__grupo" id="grupo__categoria">
+        <label class="formulario__label" for="categoria">Categoria* </label><br>
           <select  id='categoria' class="form-control text-dark" name="categoria" style="width:100%">
           @foreach($categorias as $unaCategoria)
 		  	@if($unaCategoria->id == $articulos->categoria->id)
