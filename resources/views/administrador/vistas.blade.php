@@ -15,10 +15,10 @@
           <div class="content m-4 p-4">
             <div class="row text-center">
            
-            <div class="col-3 content-fluid d-flex justify-content-center "><a href="/usuario/Admin/ingresoAOtro/1"><button type="button" class="boton_veterinario"  ><i class="fa-solid fa-dog"></i> Veterinario</button></a></div>
-            <div class="col-3 content-fluid d-flex justify-content-center "><a href="/usuario/Admin/ingresoAOtro/3" ><button type="button" class="boton_cajero" ><i class="fa-solid fa-cart-shopping"></i> Cajero</button></a> </div>
-            <div class="col-3 content-fluid d-flex justify-content-center"><a href="/usuario/Admin/ingresoAOtro/2" ><button type="button" class="boton_peluquero" ><i class="fa-solid fa-scissors"></i> Peluquero</button></a></div>
-            <div class="col-3 content-fluid d-flex justify-content-center"><a href="/" ><button type="button" class="boton_cliente" ><i class="fa-solid fa-person"></i> Cliente</button></a></div>
+            <div class="col-3 content-fluid d-flex justify-content-center rounded-pill"><a href="/usuario/Admin/ingresoAOtro/1"><button type="button" class="boton_veterinario rounded-pill"  ><i class="fa-solid fa-dog"></i> Veterinario</button></a></div>
+            <div class="col-3 content-fluid d-flex justify-content-center rounded-pill"><a href="/usuario/Admin/ingresoAOtro/3" ><button type="button" class="boton_cajero rounded-pill" ><i class="fa-solid fa-cart-shopping"></i> Cajero</button></a> </div>
+            <div class="col-3 content-fluid d-flex justify-content-center rounded-pill"><a href="/usuario/Admin/ingresoAOtro/2" ><button type="button" class="boton_peluquero rounded-pill" ><i class="fa-solid fa-scissors"></i> Peluquero</button></a></div>
+            <div class="col-3 content-fluid d-flex justify-content-center rounded-pill"><a href="/" ><button type="button" class="boton_cliente rounded-pill" ><i class="fa-solid fa-person rounded-pill"></i> Cliente</button></a></div>
              
             </div>
           

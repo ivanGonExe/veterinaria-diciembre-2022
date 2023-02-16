@@ -90,14 +90,14 @@
                             <div class="col-md-6" >
                                 <input id="password-confirm"   type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 <br>
-                                <a id="mostrarContrasenia">Mostrar Contraseñas</a>
+                                <a id="mostrarContrasenia" class="text-info fs-4">Mostrar Contraseñas</a>
                             </div>
                         </div>
 
                         <div class="form-group row m-2">
                             <label for="tipo" class="col-md-4 col-form-label text-md-right">Rol de Usuario</label>
                             <div class="col-md-6">
-                                <select class='form-select selecTipo' name= 'tipo'>
+                                <select class='form-select selecTipo form-control' name= 'tipo'>
                                     <option class='form-option' value ='admin'>Administrador</option>
                                     <option class='form-option' value ='veterinario'>Veterinario</option>
                                     <option class='form-option' value ='peluquero'>Peluquero</option>
