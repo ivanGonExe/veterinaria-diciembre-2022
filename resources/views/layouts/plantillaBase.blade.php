@@ -112,7 +112,7 @@ body{
                   <li><a class="dropdown-item" href="/tipoTurno/6"><i class="fa-solid fa-calendar-days"></i> Turnos asignados</a></li>
                   <li><a class="dropdown-item" href="/tipoTurno/3"><i class="fa-solid fa-calendar-days"></i> Turnos libres</a></li>
                   <li><a class="dropdown-item" href="/tipoTurno/5"><i class="fa-solid fa-calendar-days"></i> Turnos pasados</a></li>
-                  <li><a class="dropdown-item" href="/tipoTurno/4"><i class="fa-solid fa-calendar-days"></i> Todos los turnos</a></li>
+                  <li><a class="dropdown-item" href="/tipoTurno/4"><i class="fa-solid fa-calendar-days"></i> Turnos historicos</a></li>
                   </ul>
               </div>
             </li>
