@@ -21,7 +21,7 @@ class CreateVentasTable extends Migration
             $table->float('total')->nullable();
             $table->string('tipoPago')->nullable();
             $table->boolean('estado')->nullable();
-            $table->float('descuento')->nullable();
+            $table->float('descuento')->nullable();     //CAMBIO
             $table->timestamps();
             $table->foreignId('idCliente')->nullable()->constrained('personas')->onUpdate('cascade')->onDelete('cascade');
         });
