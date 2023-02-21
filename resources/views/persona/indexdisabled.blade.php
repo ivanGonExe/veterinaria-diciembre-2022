@@ -40,7 +40,7 @@ table td{
         <thead>
            
             <tr>
-                <th scope="col">Id</th>
+                {{-- <th scope="col">Id</th> --}}
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Dni</th>
@@ -53,14 +53,14 @@ table td{
         <tbody>
             @foreach($personas as $unaPersona)
                 <tr>
-                    <td>{{$unaPersona->id}}</td>
+                    {{-- <td>{{$unaPersona->id}}</td> --}}
                     <td>{{$unaPersona->nombre}}</td>
                     <td>{{$unaPersona->apellido}}</td>
                     <td>{{$unaPersona->dni}}</td>
                     <td>{{$unaPersona->direccion}}</td>
                     <td>{{$unaPersona->telefonos->codigoArea}}{{$unaPersona->telefonos->numero}}</td>
                     <td>   
-                        <button class="btn btn recuperar" title="Recuperar"  id="{{$unaPersona->id}}" value= '{{$unaPersona->id}}'><i class="fa-solid fa-user-plus"></i></button>
+                        <button class="btn btn recuperar" title="Recuperar"  id="{{$unaPersona->id}}" value= '{{$unaPersona->id}}'><div class="text-success"><i class="fa-solid fa-user-plus"></i></div></button>
                     </td>
                 </tr>
             @endforeach

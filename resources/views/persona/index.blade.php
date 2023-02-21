@@ -72,7 +72,7 @@ table td{
                         
              
                   
-                            <button class="btn btn eliminar" title="Dar de Baja"  id="{{$unaPersona->id}}" value= '{{$unaPersona->id}}'><i class="fa-solid fa-ban"></i></button>
+                            <button class="btn btn eliminar" title="Dar de Baja"  id="{{$unaPersona->id}}" value= '{{$unaPersona->id}}'><div class="text-danger"><i class="fa-solid fa-trash-can"></i></div></button>
                       
                     </td>
                 </tr>
