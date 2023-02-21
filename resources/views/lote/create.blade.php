@@ -4,19 +4,19 @@
 @section('contenido')
 <div class="form-group   text-center">
     <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Nuevo Lote</h2>
-    <h4 class="text-center text-light p-2 m-2 fw-bold" >nombre: {{$articulos->descripcion}}<br>marca: {{$articulos->marca}}</h4> 
+    <h4 class="text-center text-light p-2 m-2 fw-bold" >Articulo <p class="text-dark">{{$articulos->descripcion}}</p>Marca<p class="text-dark"> {{$articulos->marca}}</p></h4> 
    <div class="row container-fluid d-flex justify-content-center">
 
-
-    <form action="/Lotes/{{$ArticuloId}}/store" method="POST" id="formulario" name="formulario" >
+    <p class="text-info">*Esta pregunta es obligatoria</p>
+    <form action="/Lotes/{{$ArticuloId}}/store" method="POST" id="formulario" name="formulario" class="w-75">
         @csrf
         @method('Post')
      {{--    <div class="mb-3">
             <label for="" class="form-label">Cantidad de Unidades</label>
             <input id="unidades" name="unidades" type="number" class="form-control" tabindex="3">
         </div> --}}
-
-        <br>
+        
+      
  <!--Precio de compra -->
    <div class="mb-3">
     <div class="formulario__grupo" id="grupo__precioCompra" title="Valor númerico único que se va identificar el producto">
@@ -27,10 +27,10 @@
 
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
-<p class="text-white">*Esta pregunta es obligatoria</p>
+
         <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>
     </div>
-
+<br>
     <!--Unidades-->
    <div class="mb-3">
     <div class="formulario__grupo" id="grupo__unidades" title="Valor númerico único que se va identificar el producto">
@@ -41,11 +41,11 @@
 
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
-<p class="text-white">*Esta pregunta es obligatoria</p>
+
         <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>
     </div>
       </div>
-
+      <br>
     <div class="mb-3">
         <div class="formulario__grupo" id="grupo__vencimiento" title="Valor númerico único que se va identificar el producto">
       <label for="vencimiento" class="formulario__label">Cantidad de vencimiento*</label>
@@ -55,12 +55,12 @@
     
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
             </div>
-    <p class="text-white">*Esta pregunta es obligatoria</p>
+    
             <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>
         </div>
           </div>
           
-
+          <br>
      {{--    <div class="mb-3">
             <label for="" class="form-label">Vencimiento</label>
             <input id="vencimiento" name="vencimiento" type="date" class="form-control" tabindex="5">

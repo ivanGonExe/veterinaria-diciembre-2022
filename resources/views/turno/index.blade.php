@@ -29,6 +29,28 @@ table.dataTable tr {
 table.dataTable th {
   text-align: center;
 }
+.whatsapp{
+
+color:#00b460 !important;
+font-size: 18px;
+
+
+}
+.btn.btn.eliminar{
+  color: red;
+}
+.eliminar:hover{
+  color:#000000 !important; 
+}
+.whatsapp:hover{
+  color:#020a06 !important;
+}
+/* .eliminar{
+    padding: 5px!important;
+ margin: 0 0px 0px 0!important;
+ color: brown;
+}
+ */
 
 </style>
 
@@ -58,17 +80,17 @@ table.dataTable th {
     <br>
     <br>
     <table id="example" class="table table-striped display nowrap " cellspacing="0" style="width:100%">
-        <thead>
-            <tr class="text-center">
-                <th scope="col" >Fecha</th>
-                <th scope="col">Hora</th>
-                <th scope="col">Persona</th>
-                <th scope="col">DNI</th>
-                <th scope="col">Asunto</th>
+        <thead >
+            <tr class="text-center" >
+                <th scope="col" class="text-center" >Fecha</th>
+                <th scope="col" class="text-center">Hora</th>
+                <th scope="col" class="text-center">Persona</th>
+                <th scope="col" class="text-center">DNI</th>
+                <th scope="col" class="text-center">Asunto</th>
                 @if($styleTurno != 5)
-                <th scope="col">Acciones</th>
+                <th scope="col" class="text-center">Acciones</th>
                 @endif
-            
+               
                
             </tr>
         </thead>
@@ -82,25 +104,24 @@ table.dataTable th {
                   
                 @if($unTurno->persona_id)
                
-                        <td style="width:10%">{{$unTurno->persona->nombre}} {{$unTurno->persona->apellido}}</td>
+                        <td>{{$unTurno->persona->nombre}} {{$unTurno->persona->apellido}}</td>
                         
-                        <td style="width:10%">{{$unTurno->persona->dni}}</td> 
+                        <td>{{$unTurno->persona->dni}}</td> 
               
                    {{--      <td>{{$unTurno->persona->telefonos->codigoArea}}  {{$unTurno->persona->telefonos->numero}}</td>  --}}
                    <td>  <div class="container-fluid d-flex justify-content-start">{{$unTurno->asunto}} </div></td>
                    @if($styleTurno != 5)     
                    <td>
-                             <div class="container w-100" >
+                             <div class="container w-100 acciones" >
                             <a href="/turnos/{{$unTurno->id}}/edit" class="btn " title="editar" ><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="{{ route('verMascotas', $unTurno->persona_id)}}" name="mascota" class="btn btn" title="Ver Mascotas"><i class="fa-solid fa-dog"></i></a> 
+                            <a href="{{ route('verMascotas', $unTurno->persona_id)}}" name="mascota" class="btn btn mascota" title="Ver Mascotas"><i class="fa-solid fa-dog"></i></a> 
                             <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'><i class="fa-solid fa-ban"></i></button>
-                            <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}*-1" value='{{$unTurno->id}}*-1'><div class="text-danger"><i class="fa-solid fa-trash-can"></i></div></i></button>
-                            <a class="bnt btn-success border border-success rounded-pill m-1 p-2 " title="Enviar WhatsApp" href="/turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar"  ><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                            <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}*-1" value='{{$unTurno->id}}*-1'><div><i class="fa-solid fa-trash-can"></i></div></i></button>
+                            <a class="bnt " title="Enviar WhatsApp" href="/turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar"  ><i class="fa fa-whatsapp whatsapp" aria-hidden="true"></i></a>
                           </div>
                     </td>
                   @endif
-                   
-                    
+        
                   
                         
                 @else 
@@ -119,7 +140,7 @@ table.dataTable th {
 {{--                        
                            <button class="btn btn edit" title="editar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'disabled><i class="fa-solid fa-pen-to-square"></i></button>
                             <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'disabled><i class="fa-solid fa-ban"></i></button> --}}
-                            <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}E" value='{{$unTurno->id}}'>  <div class="text-danger"><i class="fa-solid fa-trash-can"></i></div></button>
+                            <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}E" value='{{$unTurno->id}}'>  <div><i class="fa-solid fa-trash-can"></i></div></button>
                             {{-- <button class="bnt btn-success border border-success rounded-pill m-1 p-2 whatsappDisabled " title="Enviar WhatsApp" href="turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar" disabled ><i class="fa fa-whatsapp" aria-hidden="true"></i></button> --}}
 
                       </div>
@@ -164,7 +185,7 @@ table.dataTable th {
                 <p class="text-info">*Este campo es obligatorio</p>
                 <div class="mb-3">
                     <i class="fa-regular fa-calendar-clock"></i>
-                    <label for="fechaModal" class="form-label">Fecha y Hora <i class="fa-solid fa-calendar-days"></i></label>
+                    <label for="fechaModal" class="formulario__label">Fecha y Hora <i class="fa-solid fa-calendar-days"></i></label>
                     <input id="fechaModal" name="fechaModal" type="text" class="form-control" maxlength="20"  tabindex="1" autocomplete="name" disabled>
                 </div> 
         

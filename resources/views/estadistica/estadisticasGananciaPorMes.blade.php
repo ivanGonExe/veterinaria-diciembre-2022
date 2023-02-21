@@ -9,23 +9,37 @@
 
  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <style>
- .fa-regular{
-    padding: 10px;
-    background:rgb(0, 0, 0,0.8); 
-    border-radius: 60px;
-    color:#ffffff;
- }
- .barra{
 
-    background-color: rgb(235, 34, 58) !important;
- }
+.fa-regular{
+       padding: 10px;
+       background:rgb(0, 0, 0,1); 
+       border-radius: 60px;
+       color:rgb(255, 252, 252); 
+    }
+   /*  .barra{
+   
+        background:rgb(0, 0, 0,0.8); 
+    } */
+    body{
+	min-height: 150vh;
+	background-image: linear-gradient(120deg, #ffffffae, #ffffff);
+}
+.barra{
+    padding: 1px;
+    width: 100%;
+    height: 4px;
+  
+ background-color:#a2a0a0;
+ 
+
+}
 
 </style>
 <title>Estadisticas</title>
 <div class="container bg-white m-1 p-1">
     <div class="row">
-        <div class="col-12 p-2 "><h2 class="text-center">  Ventas del Año </h2></div>
-        <div class="col-12 p-2"></div>
+        <div class="col-12 p-2 "></div>
+        <div class="col-12 p-2"><h4 class="text-center">  Ventas del Año </h4></div>
         <div class="col-2"></div>
         <div class="col-8 text-center">
             <a class="btn " id="menosAnio" href="/estadistica/ganancia/por_mes/{{$año-1}}"><i class="fa-regular fa-circle-left"></i></a>
@@ -51,7 +65,7 @@
 <div class="row">
 <div class="col-2"></div>
 <div class="col-8"><div class="container">
-<canvas id="myChart" width="100%" height="100%"></canvas>
+<canvas id="myChart" width="50%" height="50%"></canvas>
 </div></div>
 <div class="col-2"></div>
 
@@ -102,14 +116,20 @@ const myChart  = new Chart(ctx, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 3,
+            borderWidth: 1,
         
         }]
     },
     options: {
-        
-    indexAxis: 'x',
-    }
+     
+     indexAxis: 'x',
+     x: {
+             grid: {
+               offset: true
+             }
+         }
+   
+     } 
   
 });
 </script>

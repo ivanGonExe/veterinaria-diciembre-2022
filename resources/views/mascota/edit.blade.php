@@ -1,6 +1,51 @@
 @extends((auth()->user()->tipo == 'admin')? ((auth()->user()->estadoIngreso =='veterinario')? 'layouts.plantillaBase':'layouts.plantillaBase3') : ( (auth()->user()->tipo == 'veterinario')? 'layouts.plantillaBase' :'layouts.plantillaBase3'))
 
 <link rel="stylesheet" type="text/css" href="{{asset('estiloControl.css')}}">  
+<style>
+    * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+    .form-group{
+        background-color: rgba(100, 83, 153, 1) !important;
+        margin: 0px;
+        width: auto !important;
+        height:auto!important;
+        align-content: center;
+        color:#ffffff;
+        
+    }
+input[type="text"] {
+  width: 100%;
+/*   padding: 15px 10px; */
+  border: none;
+/*   border-bottom: 1px solid #645979; */
+  outline: none;
+/*   border-radius: 5px 5px 0 0; */
+  background-color: #ffffff;
+  font-size: 16px;
+}
+ul {
+  list-style: none;
+}
+.list {
+
+  background-color: #060606;
+/*   border-radius: 0 0 5px 5px; */
+}
+.list-items {
+    width: 100%;
+  padding: 10px 10px;
+} 
+.list-items:hover {
+    width: 100%;
+  background-color: rgb(241, 10, 245) !important;
+}
+
+</style> 
+
 @section('contenido')
 <div class="form-group  text-center">
     <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Editar mascota</h2>
@@ -23,13 +68,14 @@
  {{--  <p class="text-info ">*Campo obligatorio</p> --}}
           <p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
       </div>
+      <br>
       <div class="formulario__grupo " id="grupo__color">
       <label for="nombre" class="formulario__label">Color *</label>
       <div class="formulario__grupo-input">
      
             <input id="color" name="color" type="text" maxlength="40" class="form-control" value='{{$mascota->color}}' tabindex="1" required>
         </div>
-
+        <br>
         <div class="formulario__grupo " id="grupo__esterilizado">
       <label for="nombre" class="formulario__label">Esterilizado *</label>
      
@@ -43,6 +89,7 @@
             @endif
              </select> 
         </div>
+        <br>
         <div class="formulario__grupo " id="grupo__especie">
       <label for="nombre" class="formulario__label">Especie *</label>
             <select class="form-select" aria-label="Default select example" name="especie" id="especie">
@@ -81,13 +128,15 @@
                 
               </select> 
         </div> 
-    
+        <br>
         <div class="formulario__grupo " id="grupo__raza">
       <label for="nombre" class="formulario__label">Raza *</label>
         <input type="text" id="input" name="raza" class="form-control"  maxlength="30" value="{{$mascota->raza}}" />
  
  
-      <ul class="list"></ul>
+        <ul class="list"></ul>
+        <br>
+      
 
         <div class="container-fluid d-flex justify-content-center ">
         @if($mascota->sexo == "macho")
@@ -118,6 +167,7 @@
                         <label class="form-check-label " for="sexo2">Hembra</label>
              
                     </div>
+        <br>
         <br>
         @endif
     </div>

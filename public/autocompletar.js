@@ -685,6 +685,7 @@ function buscador(raza) {
             //One common class name
             listItem.classList.add("list-items");
             listItem.style.cursor = "pointer";
+            
             listItem.setAttribute("onclick", "displayNames('" + i + "')");
             //Display matched part in bold
             let word = "<b>" + i.substr(0, input.value.length) + "</b>";

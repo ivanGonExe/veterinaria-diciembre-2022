@@ -13,7 +13,7 @@ table th{
     color:#ffffff;
 }
 table td{
-    background-color: rgba(66, 6, 244, 0.1) !important;
+    background-color: rgba(255, 255, 255, 1) !important;
     color:#000000;
 }
 .caja_tabla-2{

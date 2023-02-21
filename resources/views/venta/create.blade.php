@@ -1,6 +1,5 @@
 @extends('layouts.plantillaBase2')
 <style>
-
 .idArticulos p{
     color:red !important;
 }
@@ -158,37 +157,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-
-
         $(document).ready(function () {
-
-
-
            $('.js-example-basic-single').select2();
       
-
         });
-
         $("#idArticulos").on("change",function(event){
             var id = document.getElementById("idArticulos").value;
             if(id != 0){
                 var link = "/agregarArticuloVenta/"+id;
-
                 location.href = link;
             }
             
             
-
         });
         
         
-
         
-
-
-
         
-
     
         </script>
 </body>

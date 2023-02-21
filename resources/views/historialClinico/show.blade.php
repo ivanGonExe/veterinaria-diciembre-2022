@@ -31,7 +31,7 @@ table td{
     <div class="col-4 text-center pt-2"><img src="../iconos/historia_clinica.png" alt="emergencias" height="160" width="160" class="iconos" id="boton"> </div>
     <div class="col-4 text-center pt-5"><h1>Historia Clínica</h1></div>
     <div class="col-4 text-center pt-5"> <button type=""class="btn btn-secondary rounded-pill m-1 p-2"  id="botonVolver"><i class="fa-solid fa-arrow-rotate-left"></i></button>   
-        <a href="{{route('crearDetalleClinico', $historialClinicoId)}}" class="btn btn-primary rounded-pill " title="crear Detalle Clínico">+ detalle clínico</a> </div>
+        <a href="{{route('crearDetalleClinico', $historialClinicoId)}}" class="btn btn-primary rounded-pill " title="crear Detalle Clínico">+ Detalle Clínico <i class="fa-solid fa-clipboard"></i></a> </div>
     </div>
 
    

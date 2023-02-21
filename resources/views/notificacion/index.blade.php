@@ -1,8 +1,32 @@
 @extends('layouts.plantillaBase2')
 
 
+<style>
 
-
+    .modal-body{
+        background-color: rgba(100, 83, 153, 1) !important;
+    }
+    
+    table.dataTable td {
+      text-align: center;
+    }
+    table.dataTable tr {
+      text-align: center;
+    }
+    table.dataTable th {
+      text-align: center;
+    }
+    .whatsapp{
+    
+    color:#00b460 !important;
+    font-size: 18px;
+    
+    
+    }
+    .btn.btn.eliminar{
+      color: red;
+    }
+</style>
 
 @section('contenido')
 
@@ -19,11 +43,11 @@
         <thead>
            
             <tr>
-                <th scope="col">Fecha </th>
-                <th scope="col">tipo</th>
-                <th scope="col">descripcion</th>
-                <th scope='col'>unidades restantes</th>
-                <th scope="col">Acciones</th>
+                <th scope="col" class="text-center">Fecha </th>
+                <th scope="col"class="text-center">tipo</th>
+                <th scope="col"class="text-center">descripcion</th>
+                <th scope='col'class="text-center">unidades restantes</th>
+                <th scope="col"class="text-center">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +55,8 @@
             @foreach($notificaciones as $unaNotificacion)
                     <td>{{$unaNotificacion->created_at}}</td>
                     <td>{{$unaNotificacion->categoria}}</td>
-                    <td><strong>{{$unaNotificacion->descripcion}}</strong></td>
-                    <td>{{$unaNotificacion->unidades}}</td>
+                    <td>{{$unaNotificacion->descripcion}}</td>
+                    <td><strong>{{$unaNotificacion->unidades}}</strong></td>
                     <td>
                     <button class="btn btn eliminar" title="Eliminar" id="{{$unaNotificacion->id}}" value= '{{$unaNotificacion->id}}'><i class="fa-solid fa-trash-can"></i></button>
                             

@@ -7,18 +7,18 @@
 
 
 .eliminar{
-    padding: 2px!important;
- margin: 0px!important;
- color: brown;
+    padding: 5px!important;
+ margin: 0 0px 6px 0!important;
+ color: red;
 }
 .historial{
-    padding: 2px!important;
- margin: 0px!important;
+    padding: 5px!important;
+ margin: 5px!important;
  color: #000000;
 }
 .editar{
-    padding: 2px!important;
- margin: 0px!important;
+    padding: 5px!important;
+ margin: 5px!important;
  color: #000000;
 }
 table.dataTable td {
@@ -52,13 +52,13 @@ table.dataTable td {
             
             
             <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Raza</th>
-                <th scope="col">Especie</th>
-                <th scope="col">Color</th>
-                <th scope="col">Sexo</th>
-                <th scope="col">Esterilizado</th>
-                <th scope="col">Fecha nacimiento</th>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center" >Raza</th>
+                <th scope="col" class="text-center">Especie</th>
+                <th scope="col" class="text-center">Color</th>
+                <th scope="col" class="text-center">Sexo</th>
+                <th scope="col" class="text-center">Esterilizado</th>
+                <th scope="col" class="text-center">Fecha nacimiento</th>
                {{--  <th scope="col">Dueño</th> --}}
                 <th scope="col">Acciones</th>
             </tr>
