@@ -76,7 +76,7 @@ p{
      <h4 type="text" id="titulo" name="titulo">{{$unaNoticia->titulo}}</h4><!--titulo abajo copete--> 
      
      <div type="type" id="asunto" class="limitar-texto-principal" name="asunto">{!! $unaNoticia->asunto !!}</div>
-     <a href="/noticias/posteo/{{$unaNoticia->id}}">Leer Más</a>
+     <a href="/noticias/posteo/{{$unaNoticia->id}}">Leer Más...</a>
    </div>
  </div>
 
@@ -107,7 +107,7 @@ p{
        </div>
      </div> 
    <div class="row">
-     <div class="col-12 text-end"><a href="/noticias/posteo/{{$unaNoticia2->id}}" class="fw-bold" title="leer..."><i class="fa-solid fa-plus"></i></a></div>
+     <div class="col-12 text-end"><a href="/noticias/posteo/{{$unaNoticia2->id}}" class="fw-bold" title="leer...">leer Más...<i class="fa-solid fa-plus"></i></a></div>
    </div>
  </div>   
 </div>
@@ -129,27 +129,29 @@ p{
 
 let elements = document.getElementsByClassName("limitar-texto");
 // Establecemos el número máximo de caracteres permitidos
-let maxLength = 200;
+let maxLength = 100;
 
 // Recorremos cada una de las etiquetas <p>
 for (let i = 0; i < elements.length; i++) {
  // Comprobamos si el texto es mayor al número máximo de caracteres permitidos
  if (elements[i].innerText.length > maxLength) {
    // Si es así, recortamos el texto y agregamos un elipsis
-   elements[i].innerText = elements[i].innerText.substring(0, maxLength) + "...";
+   
+   elements[i].textContent = elements[i].innerText.substring(0, maxLength) + "...";
  }
 }
 
 let elementos = document.getElementsByClassName("limitar-texto-principal");
 // Establecemos el número máximo de caracteres permitidos
-let max = 80;
+let max =70;
 
 // Recorremos cada una de las etiquetas <p>
 for (let i = 0; i < elementos.length; i++) {
  // Comprobamos si el texto es mayor al número máximo de caracteres permitidos
  if (elementos[i].innerText.length > max) {
    // Si es así, recortamos el texto y agregamos un elipsis
-   elementos[i].innerText = elementos[i].innerText.substring(0, max) + "...";
+  
+   elementos[i].textContent = elementos[i].innerText.substring(0, max) + "...";
  }
 }
 
