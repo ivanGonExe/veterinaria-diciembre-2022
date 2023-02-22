@@ -1,4 +1,5 @@
 @extends((auth()->user()->tipo == 'admin')? ((auth()->user()->estadoIngreso =='veterinario')? 'layouts.plantillaBase':'layouts.plantillaBase3') : ( (auth()->user()->tipo == 'veterinario')? 'layouts.plantillaBase' :'layouts.plantillaBase3'))
+<link rel="stylesheet" type="text/css" href="{{asset('estiloControl.css')}}">  
 <style>
     * {
   padding: 0;
@@ -51,35 +52,45 @@ ul {
     <div class="container-fluid d-flex justify-content-end" >
         <a href="{{url()->previous()}}" class="btn btn-secondary rounded-pill m-3" title="volver"><i class="fa-solid fa-arrow-rotate-left"></i></a>
     </div>
-    <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Agregar Mascota</h2>
-<div class="row container-fluid d-flex justify-content-center">
+    <div class="form-group  text-center">
+      <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Agregar Mascota</h2>
+  <div class="row container-fluid d-flex justify-content-center">
 <div class="col-md-6">
 
-
-    <form action="/mascotas" method="POST">
+    <form action="/mascotas" method="POST" id="formulario">
         @csrf
-       
-        <div class="mb-3">
-            <label for="" class="form-label">Nombre del Animal</label>
-            <input id="nombre" name="nombre" type="text" class="form-control" maxlength="30" tabindex="1" required>
-        </div>
-        <p class="text-info ">*Campo obligatorio</p>
-        <div class="mb-3">
-            <label for="" class="form-label">Color</label>
-            <input id="color" name="color" type="text" class="form-control" maxlength="40" tabindex="1" required>
-        </div>
-        <p class="text-info ">*Campo obligatorio</p>
+       <!--Grupo Nombre -->
+       <p class="text-info">*Este campo es obligatorio</p>
+  <div class="formulario__grupo " id="grupo__nombre">
+    <label for="nombre" class="formulario__label">Nombre *</label>
+    <div class="formulario__grupo-input">
+     
+      <input type="text" class="form-control formulario__input" id="nombre" name="nombre" maxlength="30" placeholder="Nombre de la mascota"   maxlength="30" required>
 
-        <div class="mb-3">
-            <label for="" class="form-label">Esterilizado</label>
+      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+          </div>
+ {{--  <p class="text-info ">*Campo obligatorio</p> --}}
+          <p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
+      </div>
+      <br>
+      <div class="formulario__grupo " id="grupo__color">
+      <label for="nombre" class="formulario__label">Color *</label>
+      <div class="formulario__grupo-input">
+     
+            <input id="color" name="color" type="text" maxlength="40" class="form-control"  tabindex="1" required>
+        </div>
+        <br>
+
+        <div class="formulario__grupo " id="grupo__esterilizado">
+          <label for="nombre" class="formulario__label">Esterilizado *</label>
             <select class="form-select" aria-label="Default select example" name="esterilizado" id="esterilizado" required>
                 <option value="no">No </option>
                 <option value="Si">Si </option>
              </select> 
         </div>   
-        <p class="text-info ">*Campo obligatorio</p>
-        <div class=" ">
-            <label for="" class="form-label">Especie</label>
+       <br>
+       <div class="formulario__grupo " id="grupo__especie">
+        <label for="nombre" class="formulario__label">Especie *</label>
             <select class="form-select" aria-label="Default select example" name="especie" id="especie" required>
                 <option value="s/n">Selecionar Especie</option>
                 <option value="Perro">🐶 Perro</option>
@@ -90,40 +101,36 @@ ul {
                 <option value="Otros">Otro </option>
               </select> 
         </div> 
-        <p class="text-info ">*Campo obligatorio</p>
-        <div class="mb-3">
-         {{--    <label for="" class="form-label">Raza</label>
-            <input id="raza" name="raza" type="text" class="form-control" tabindex="2">
-        </div>
-        <div> --}}
-            <label for="" class="form-label">Raza</label>
+       <br>
+       <div class="formulario__grupo " id="grupo__raza">
+        <label for="nombre" class="formulario__label">Raza *</label>
             <input type="text" id="input" name="raza" class="form-control" maxlength="30" placeholder="Busque la raza del animal..." required />
           </div>
      
           <ul class="list"></ul>
-          <p class="text-info ">*Campo obligatorio</p>
+         <br>
         <div class="container-fluid d-flex justify-content-center ">
 
                  
             <div class="form-check m-4">
             <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="macho" required>
             <label class="form-check-label" for="sexo1">
-                Macho
+                Macho*
             </label>
         </div>
         <div class="form-check m-4">
             <input class="form-check-input" type="radio" name="sexo" id="sexo2" value="hembra" required>
             <label class="form-check-label" for="sexo2">
-                Hembra
+                Hembra*
             </label>
         </div>
     </div>
-    <p class="text-info ">*Campo obligatorio</p>
-    <div class="mb-3">
-            <label for="" class="form-label">Nacimiento</label>
+   <br>
+   <div class="formulario__grupo " id="grupo__nacimiento">
+    <label for="nombre" class="formulario__label">Nacimiento *</label>
             <input id="anioNacimiento" name="anioNacimiento" type="date" class="form-control" value="" tabindex="4" required>
         </div>
-        <p class="text-info ">*Campo obligatorio</p>
+       <br>
         <div class="mb-3">
             <label for="" class="form-label"></label>
             <input id="id" name="id" type="hidden" class="form-control" tabindex="5" value="{{$persona_id}} ">

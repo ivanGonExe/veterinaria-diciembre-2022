@@ -1,6 +1,17 @@
 @extends('layouts.plantillaBase2')
 
+<style>
+    table.dataTable td {
+  text-align: center;
+}
+table.dataTable tr {
+  text-align: center;
+}
+table.dataTable th {
+  text-align: center;
+}
 
+</style>
 
 
 @section('contenido')
@@ -20,11 +31,11 @@
            
             <tr>
                 
-                <th scope="col">Fecha</th>
-                <th scope="col">Total ($) </th>
-                <th scope="col">Monto pagado ($)</th>
-                <th scope="col">Tipo de pago</th>
-                <th scope="col">Detalle de Venta</th>
+                <th scope="col" class="text-center">Fecha</th>
+                <th scope="col"  class="text-center">Total  </th>
+                <th scope="col"  class="text-center">Monto pagado </th>
+                <th scope="col"  class="text-center">Tipo de pago</th>
+                <th scope="col"  class="text-center">Detalle de Venta</th>
             </tr>
         </thead>
 
@@ -38,7 +49,7 @@
                     <td>{{$unaVenta->tipoPago}}</td>
                     <td>
                         
-                            <a href="{{ route('ventas.show', $unaVenta->id)}}" name="ver" class="btn btn" title="Ver detalle de una venta"><i class="fa-solid fa-eye"></i></a>             
+                            <a href="{{ route('ventas.show', $unaVenta->id)}}" name="ver" class="btn  detalle" title="Ver detalle de una venta"><i class="fa-solid fa-file-lines"></i></a>             
                   
                           
                       

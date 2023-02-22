@@ -15,19 +15,32 @@
 <style>
     .fa-regular{
        padding: 10px;
-       background:rgb(0, 0, 0,0.8); 
+       background:rgb(0, 0, 0,1); 
        border-radius: 60px;
-       color:#ffffff;
+       color:rgb(255, 252, 252); 
     }
    /*  .barra{
    
         background:rgb(0, 0, 0,0.8); 
     } */
-   
+    body{
+	min-height: 150vh;
+	background-image: linear-gradient(120deg, #ffffffae, #ffffff);
+}
+.barra{
+    padding: 1px;
+    width: 100%;
+    height: 4px;
+  
+ background-color:#a2a0a0;
+ 
+
+}
    </style>
-   <div class="container bg-white m-1 p-1">
+   <body>
+   <div class="container ">
     <div class="row">
-        <div class="col-12 p-2 "><h2 class="text-center">  Clientes Nuevos</h2></div>
+        <div class="col-12 p-2 m-2"><h4 class="text-center">  Clientes Nuevos</h4></div>
         <div class="col-12 p-2"></div>
         <div class="col-2"></div>
         <div class="col-8 text-center">
@@ -58,13 +71,13 @@
 <br>  
 <p class="barra"><br></p>
 <div class="row">
-<div class="col-2"></div>
-<div class="col-8"><div class="container">
-<canvas id="myChart" width="100%" height="100%"></canvas>
+<div class="col-3"></div>
+<div class="col-6"><div class="container">
+<canvas id="myChart" width="50%" height="50%"></canvas>
 </div></div>
-<div class="col-2"></div>
+<div class="col-3"></div>
 
-
+</body>
 
 
 <script>
@@ -82,7 +95,7 @@ let arregloAux = @json($arreglo);
 let arreglo    = Object.values(arregloAux);
 let salida     = @json($labels);
 const ctx      = document.getElementById('myChart').getContext('2d');
-Chart.defaults.font.size = 21;
+Chart.defaults.font.size = 18;
 const myChart  = new Chart(ctx, {
    type: 'bar',
     data: {
@@ -91,6 +104,7 @@ const myChart  = new Chart(ctx, {
         datasets: [{
             label: /* 'Estadisticas del año '+@json($año), */'Nº de Personas Nueva',
             data: arreglo,
+          
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -114,13 +128,29 @@ const myChart  = new Chart(ctx, {
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth:2,
+            borderColor:'#000',
         
         }]
+   
     },
+  /*   scales: {
+       y: {
+            grid: {
+              offset: true
+            }
+        }
+    } */
+   
     options: {
-        
-    indexAxis: 'x',
-    }
+     
+    indexAxis: 'y',
+    y: {
+            grid: {
+              offset: true
+            }
+        }
+  
+    } 
   
 });
 </script>

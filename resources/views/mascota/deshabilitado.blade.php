@@ -49,9 +49,9 @@
                     <td style="text-align:left">
                             <input type="hidden" name="urlAnterior" value="{{Request::path()}}">
                            
-                            <a href="/mascotas/{{$unaMascota->id}}/edit" class="btn btn" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
+                            {{-- <a href="/mascotas/{{$unaMascota->id}}/edit" class="btn btn" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a> --}}
                             
-                            <button class="btn btn eliminar" title="habilitar" id="{{$unaMascota->id}} " value= '{{$unaMascota->id}}'><i class="fa-solid fa-dog"></i>+</button>
+                            <button class="btn btn eliminar" title="habilitar" id="{{$unaMascota->id}} " value= '{{$unaMascota->id}}'><div class="text-success"><i class="fa-solid fa-dog"></i>+</div></button>
                         </form>
                     </td>
                 </tr>

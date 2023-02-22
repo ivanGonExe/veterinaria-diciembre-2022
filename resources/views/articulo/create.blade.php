@@ -20,9 +20,9 @@
    <div class="row container-fluid d-flex justify-content-center">
     <div class="col-md-6">
    <div class="row">
-      <form action="/articulos" method="POST" id="formulario" name="formulario" >
+      <form action="/articulos/create" method="POST" id="formulario" name="formulario" >
         @csrf
-
+        <p class="text-info">*Este campo es obligatorio</p>
            <!--Grupo codigo -->
         <div class="mb-3">
       <div class="formulario__grupo" id="grupo__codigo" title="Valor númerico único que se va identificar el producto">
@@ -33,7 +33,7 @@
 
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
           </div>
-  <p class="text-white">*Esta pregunta es obligatoria</p>
+  <br>
           <p class="formulario__input-error">El código solo puede contener valores númericos</p>
       </div>
         </div>
@@ -47,7 +47,7 @@
             <input type="text" class="form-control formulario__input" id="descripcion" name="descripcion" placeholder=" " maxlength="50" required>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
-        <p class="text-white">*Campo obligatorio</p>
+        <br>
         <p class="formulario__input-error">La descripcion puede contener letras y número hasta 50 caracteres</p>
         </div>
 
@@ -59,7 +59,7 @@
                  <input type="text" class="form-control formulario__input" id="marca" name="marca" placeholder=" " maxlength="20" required>
                  <i class="formulario__validacion-estado fas fa-times-circle"></i>
                </div>
-               <p class="text-white">*Campo obligatorio</p>
+               <br>
                <p class="formulario__input-error">El marca tiene hasta 30 caracteres.Sólo letras y número</p>
              </div>
                   <!-- Grupo: Precio Especial !-->
@@ -70,7 +70,7 @@
               <input type="text" class="form-control formulario__input" name="precioEspecial" id="precioEspecial"  maxlength="8" placeholder="$" aria-describedby="addon-wrapping" required>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
          </div>
-         <p class="text-white">*Campo obligatorio</p>
+         <br>
 				<p class="formulario__input-error">El precioEspecial solo puede contener números y el maximo son 8 dígitos.</p>
 			</div>
       <!-- Grupo: Precio Venta-->
@@ -81,7 +81,7 @@
           <input type="text" class="form-control formulario__input" name="precioVenta" id="precioVenta"  maxlength="8" placeholder="$" aria-describedby="addon-wrapping" required>
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
      </div>
-     <p class="text-white">*Campo obligatorio</p>
+     <br>
             <p class="formulario__input-error">El Precio Venta solo puede contener números y el maximo son 8 dígitos.</p>
         </div>
 
@@ -93,7 +93,7 @@
                   <input type="text" class="form-control formulario__input" name="iva" id="iva"  maxlength="2"  value="21" aria-describedby="addon-wrapping" required>
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
              </div>
-             <p class="text-white ">*Campo obligatorio</p>
+             <br>
                     <p class="formulario__input-error">El I.V.A solo puede contener números </p>
                 </div>
      
@@ -105,7 +105,7 @@
                   <input type="text" class="form-control formulario__input" name="minimoStock" id="minimoStock"  maxlength="3" placeholder="10(unidades)" aria-describedby="addon-wrapping" required>
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
              </div>
-             <p class="text-white">*Campo obligatorio</p>
+             <br>
                     <p class="formulario__input-error">El Minimo de Stock solo puede contener números y hasta 3 digitos</p>
                 </div>
              <!-- Grupo: alerta-->
@@ -116,7 +116,7 @@
                   <input type="text" class="form-control formulario__input" name="alerta" id="alerta"  maxlength="3" placeholder="30 dias,60 dias..." value='0' aria-describedby="addon-wrapping" required>
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
              </div>
-             <p class="text-white">*Campo obligatorio</p>
+             <br>
                     <p class="formulario__input-error">El alerta solo puede contener numeros y el maximo son 3 dígitos.</p>
                 </div>
        
@@ -136,7 +136,7 @@
         </select>
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
     </div>
-    <p class="text-white ">*Campo obligatorio</p>
+    <br>
     <p class="formulario__input-error">El categoria tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
   </div>
         </div>

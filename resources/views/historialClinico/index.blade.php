@@ -4,12 +4,14 @@
     table th{
         background-color: rgba(100, 83, 153, 1) !important;
         color:#ffffff;
+        text-align: center;
     }
     table tr{
         background-color: rgb(255, 255, 255,1) !important;
         color:#000000;
+        text-align: center;
     }
-    
+
     </style>
 @section('contenido')
 
@@ -21,11 +23,11 @@
 <table id="example" class="table table-striped" style="width:100%">
         <thead >
             <tr >
-                <th scope="col">Id</th>
-                <th scope="col">Mascota</th>
-                <th scope="col">Raza</th>
-                <th scope="col">Dueño</th>
-                <th scope="col">Acciones</th>
+                <th scope="col" class="text-center">Id</th>
+                <th scope="col" class="text-center">Mascota</th>
+                <th scope="col" class="text-center">Raza</th>
+                <th scope="col" class="text-center">Dueño</th>
+                <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>
 
@@ -38,7 +40,7 @@
                     <td>{{$unHistorial->mascota->persona->nombre." ".$unHistorial->mascota->persona->apellido }} </td>
                     <td>
                             <input type="hidden" name="urlAnterior" value="{{Request::path()}}">
-                            <a href="{{ route('historialesClinicos.show',$unHistorial->id)}}" class="btn" title="Ver Historia Clinica" ><i class="fa-solid fa-eye"></i></a>
+                            <a href="{{ route('historialesClinicos.show',$unHistorial->id)}}" class="btn" title="Ver Historia Clinica" ><i class="fa-solid fa-clipboard"></i></a>
                     </td>
                 </tr>
             @endforeach

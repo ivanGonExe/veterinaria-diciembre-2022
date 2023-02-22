@@ -38,7 +38,7 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Asunto</label>
-            <textarea id="asunto" name="asunto"  class="form-control" tabindex="3">{{$turno->asunto}}</textarea>
+            <input id="asunto" name="asunto"  class="form-control" tabindex="3" maxlength="60" value="{{$turno->asunto}}"></textarea>
         </div>
 
         <a href="{{url()->previous()}}" class="btn btn-secondary" tabindex="4">Cancelar</a>

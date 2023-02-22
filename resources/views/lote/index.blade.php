@@ -1,13 +1,28 @@
 @extends('layouts.plantillaBase2')
 
 @section('contenido')
+<style>
 
+table.dataTable td {
+    text-align: center;
+  }
+  table.dataTable tr {
+    text-align: center;
+  }
+  table.dataTable th {
+    text-align: center;
+  }
+  .eliminar{
+    color:red;
+}
+
+</style>
 
 <title>Lote Index</title>
 <div class="caja_tabla-2">
        
             <div class="container-fluid d-flex justify-content-end">
-                <a href="/articulos" class="btn btn-secondary rounded-pill m-2" title="volver"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+                <a href="/articulos" class="btn btn-secondary rounded-pill " title="volver"><i class="fa-solid fa-arrow-rotate-left"></i></a>
         
         </div>
    
@@ -19,7 +34,7 @@
     <h3><strong>Marca:</strong> {{$articulos->marca}}</h3>
 
 </div>
-    <a href="/Lotes/{{$articulos->id}}/create" type="button" class="btn btn-primary rounded-pill m-2">+ Crear lote</a>
+    <a href="/Lotes/{{$articulos->id}}/create" type="button" class="btn btn-primary rounded-pill m-2">+ Crear lote <i class="fa fa-archive"></i></a>
     </div>
 
         <table id="example" class="table table-striped" style="width:100%">
@@ -27,10 +42,10 @@
            
             <tr>
                 
-                <th sacope="col">Unidades</th>
-                <th scope="col">Precio Costo ($)</th>
-                <th scope="col">Vencimiento</th>
-                <th scope="col">Acciones</th>
+                <th sacope="col" class="text-center">Unidades</th>
+                <th scope="col"class="text-center">Precio Costo </th>
+                <th scope="col"class="text-center">Vencimiento</th>
+                <th scope="col"class="text-center">Acciones</th>
             </tr>
         </thead>
         <tbody>

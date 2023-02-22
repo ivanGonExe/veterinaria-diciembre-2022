@@ -16,6 +16,7 @@
     <form action="/telefonos/{{$telefono->id}}" method="POST" id="formulario">
         @csrf
         @method('PUT')
+        <p class="text-info">*Este campo es obligatorio</p>
         <div class="mb-3">
         <div class ='row'>
             <label for="telefono" class="formulario__label">N° de area *</label>
@@ -31,7 +32,7 @@
                         <p class="formulario__input-error">El Código de Area solo puede contener numeros y el maximo son 4 dígitos.</p>
                       </div>
                     </div>
-                    <p class="text-info ">*Campo obligatorio</p>
+                    <br>
             </div>
             <div class="mb-6">
               <label for="telefono" class="formulario__label">N° de celular *</label>
@@ -45,7 +46,7 @@
                         <p class="formulario__input-error">El Nº de Celular solo puede contener numeros y el maximo son 7 dígitos.</p>
                         </div>  
                       </div>
-                      <p class="text-info ">*Campo obligatorio</p>
+                      <br>
                   <!-- Menesaje de Error -->
    <div class="row formulario__mensaje" id="formulario__mensaje">
              

@@ -38,6 +38,7 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         <select  id='tipoPago' class="js-example-basic-single" name="tipoPago" style="width:70%">
                 <option value="efectivo">Efectivo</option>
                 <option value="debito">Debito</option>
+                <option value="tarjetaDeCredito">Tarjeta de Crédito</option>
         </select>
     </div>
     <br>

@@ -4,25 +4,28 @@
 <style>
 .boton_crear {
 
-color:#000000;
-
-margin: 10 0 10 -10 !important;
-width: 160 !important;
 border-radius: 20px !important;
 
- 
 }
 table th{
     background-color: rgba(100, 83, 153, 1) !important;
     color:#ffffff;
+    text-align: center;
 }
 table td{
     background-color: rgba(100, 83, 153, 0.1) !important;
     color:#000000;
+    text-align: center;
 }
 .caja_tabla-2{
 
     margin: 15px;
+}
+.btn.btn.eliminar{
+  color: red;
+}
+.eliminar:hover{
+  color:#000000 !important; 
 }
 
 </style>
@@ -40,15 +43,15 @@ table td{
     </div>
 
     
-    <a href="/categorias/create" type="button" class="btn btn-primary  boton_crear">+ Crear categoria</a>
+    <a href="/categorias/create" type="button" class="btn btn-primary  boton_crear" title="crear nueva categoria">+ Crear categoria <i class="fa-solid fa-list"></i></a>
     </div>
     
         <table id="example" class="table table-striped" style="width:100% ">
         <thead>
            
             <tr>
-                <th class="col-9">Descripcion</th>
-                <th calss="col-3">Acciones</th>
+                <th class=" text-center">Descripcion</th>
+                <th class=" text-center">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -58,7 +61,7 @@ table td{
                     
                     <td>    
                         <a href="/categorias/{{$unaCategoria->id}}/edit " name="Editar" class="btn " title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="/quitarUnaCategoria/{{$unaCategoria->id}}" name="delete" class="btn " title="delete"><i class="fa-solid fa-trash-can"></i></a> 
+                        <a href="/quitarUnaCategoria/{{$unaCategoria->id}}" name="delete" class="btn eliminar" title="delete"><i class="fa-solid fa-trash-can"></i></a> 
                         
                     </td>
                 </tr>

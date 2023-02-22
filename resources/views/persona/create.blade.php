@@ -20,7 +20,7 @@
             <label for="nombre" class="form-label">Nombre</label>
             <input id="nombre" name="nombre" type="text" class="form-control" maxlength="20"  tabindex="1" autocomplete="name" required>
         </div> --}}
-
+        <p class="text-info">*Este campo es obligatorio</p>
         <div class="mb-3">
           <!--Grupo Nombre -->
             <div class="formulario__grupo " id="grupo__nombre">
@@ -31,7 +31,7 @@
    
         	<i class="formulario__validacion-estado fas fa-times-circle"></i>
 				</div>
-        <p class="text-info ">*Campo obligatorio</p>
+        <br>
 				<p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
 			</div>
 
@@ -44,7 +44,7 @@
           <input type="text" class="form-control formulario__input" id="apellido" name="apellido" placeholder="Apellido del cliente" maxlength="16" required>
           <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
-        <p class="text-info ">*Campo obligatorio</p>
+        <br>
         <p class="formulario__input-error">El Apellido tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
       </div>
 
@@ -57,7 +57,7 @@
               <input type="text" class="form-control formulario__input" name="dni" id="dni"  maxlength="8" placeholder="XX.XXX.XXX" aria-describedby="addon-wrapping" required>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
          </div>
-         <p class="text-info ">*Campo obligatorio</p>
+         <br>
 				<p class="formulario__input-error">El DNI solo puede contener numeros y el maximo son 8 dígitos.</p>
 			</div>
 
@@ -77,7 +77,11 @@
           </div>
         </div>
           </div>
+       
+      
+         
  <div class = "col-md-4 col-6">
+  
           <div class="formulario__grupo" id="grupo__numeroCalle">
             <div class="formulario__grupo-input">
               <div class="input-group flex-nowrap">
@@ -89,7 +93,7 @@
             </div>  
           </div>
  </div>
- <p class="text-info ">*Campo obligatorio</p>
+ <br>
  
 
 
@@ -97,17 +101,7 @@
 </div>
 
 
-
-
-      {{--   <div class="mb-3">
-          
-            <label for="" class="formulario__label">Dirección *</label>
-            <input type="text" id="input" name="direccion" class="form-control" maxlength="30" placeholder="Calle °" tabindex="4"required/>
-                
-              <ul class="list"></ul>
-              <p class="text-info ">*Campo obligatorio</p>
-        </div> --}}
-       
+        <br>
         <label for="telefono" class="formulario__label">N° de area *</label>
         <div class="row ">
           <div class="mb-3">
@@ -121,7 +115,7 @@
                     <p class="formulario__input-error">El Código de Area solo puede contener numeros y el maximo son 4 dígitos.</p>
                   </div>
                 </div>
-                <p class="text-info ">*Campo obligatorio</p>
+                <br>
         </div>
         <div class="mb-3">
           <label for="telefono" class="formulario__label">N° de celular *</label>
@@ -135,7 +129,7 @@
                     <p class="formulario__input-error">El Nº de Celular solo puede contener numeros y el maximo son 7 dígitos.</p>
                     </div>  
                   </div>
-                  <p class="text-info ">*Campo obligatorio</p>
+                  <br>
          </div>
          
            

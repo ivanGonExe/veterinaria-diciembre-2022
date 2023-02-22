@@ -20,6 +20,37 @@
     background-color: rgba(100, 83, 153, 1) !important;
 }
 
+table.dataTable td {
+  text-align: center;
+}
+table.dataTable tr {
+  text-align: center;
+}
+table.dataTable th {
+  text-align: center;
+}
+.whatsapp{
+
+color:#00b460 !important;
+font-size: 18px;
+
+
+}
+.btn.btn.eliminar{
+  color: red;
+}
+.eliminar:hover{
+  color:#000000 !important; 
+}
+.whatsapp:hover{
+  color:#020a06 !important;
+}
+/* .eliminar{
+    padding: 5px!important;
+ margin: 0 0px 0px 0!important;
+ color: brown;
+}
+ */
 
 </style>
 
@@ -35,7 +66,7 @@
     <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos libres</h2>
 @endif
 @if($styleTurno == 4)
-    <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Histórico de turnos”</h2>
+    <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Histórico de turnos</h2>
 @endif
 @if($styleTurno == 5)
     <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de turnos pasados</h2>
@@ -48,18 +79,18 @@
     <a href="/turnos/createUnTurno"  class="btn btn-primary rounded-pill" title="Agregar Turno">+ Turno <i class="fa-solid fa-calendar-days"></i></a>
     <br>
     <br>
-    <table id="example" class="table table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <th scope="col" >Fecha</th>
-                <th scope="col">Hora</th>
-                <th scope="col">Persona</th>
-                <th scope="col">DNI</th>
-                <th scope="col">Asunto</th>
+    <table id="example" class="table table-striped display nowrap " cellspacing="0" style="width:100%">
+        <thead >
+            <tr class="text-center" >
+                <th scope="col" class="text-center" >Fecha</th>
+                <th scope="col" class="text-center">Hora</th>
+                <th scope="col" class="text-center">Persona</th>
+                <th scope="col" class="text-center">DNI</th>
+                <th scope="col" class="text-center">Asunto</th>
                 @if($styleTurno != 5)
-                <th scope="col">Acciones</th>
+                <th scope="col" class="text-center">Acciones</th>
                 @endif
-                <th scope="col">Env. Mensaje</th>
+               
                
             </tr>
         </thead>
@@ -73,23 +104,25 @@
                   
                 @if($unTurno->persona_id)
                
-                        <td style="width:10%">{{$unTurno->persona->nombre}} {{$unTurno->persona->apellido}}</td>
+                        <td>{{$unTurno->persona->nombre}} {{$unTurno->persona->apellido}}</td>
                         
-                        <td style="width:10%">{{$unTurno->persona->dni}}</td> 
+                        <td>{{$unTurno->persona->dni}}</td> 
               
                    {{--      <td>{{$unTurno->persona->telefonos->codigoArea}}  {{$unTurno->persona->telefonos->numero}}</td>  --}}
                    <td>  <div class="container-fluid d-flex justify-content-start">{{$unTurno->asunto}} </div></td>
                    @if($styleTurno != 5)     
                    <td>
-        
+                             <div class="container w-100 acciones" >
                             <a href="/turnos/{{$unTurno->id}}/edit" class="btn " title="editar" ><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="{{ route('verMascotas', $unTurno->persona_id)}}" name="mascota" class="btn btn" title="Ver Mascotas"><i class="fa-solid fa-dog"></i></a> 
+                            <a href="{{ route('verMascotas', $unTurno->persona_id)}}" name="mascota" class="btn btn mascota" title="Ver Mascotas"><i class="fa-solid fa-dog"></i></a> 
                             <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'><i class="fa-solid fa-ban"></i></button>
-                            <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}*-1" value='{{$unTurno->id}}*-1'><i class="fa-solid fa-trash-can"></i></button>
-                   @endif
-                        <td>
-                       <a class="bnt btn-success border border-success rounded-pill m-1 p-2 " title="Enviar WhatsApp" href="/turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar"  ><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                            <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}*-1" value='{{$unTurno->id}}*-1'><div><i class="fa-solid fa-trash-can"></i></div></i></button>
+                            <a class="bnt " title="Enviar WhatsApp" href="/turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar"  ><i class="fa fa-whatsapp whatsapp" aria-hidden="true"></i></a>
+                          </div>
                     </td>
+                  @endif
+        
+                  
                         
                 @else 
                     <td class="text-center"  style="width:30%"> 
@@ -103,16 +136,19 @@
                     <td> </td>
                 @if($styleTurno != 5)
                     <td colspan="1">
-                        
-                            <button class="btn btn edit" title="editar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'disabled><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'disabled><i class="fa-solid fa-ban"></i></button>
-                            <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}E" value='{{$unTurno->id}}'>  <i class="fa-solid fa-trash-can"></i>  </button>
-                        
+                      <div class="d-flex justify-content-center">
+{{--                        
+                           <button class="btn btn edit" title="editar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'disabled><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'disabled><i class="fa-solid fa-ban"></i></button> --}}
+                            <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}E" value='{{$unTurno->id}}'>  <div><i class="fa-solid fa-trash-can"></i></div></button>
+                            {{-- <button class="bnt btn-success border border-success rounded-pill m-1 p-2 whatsappDisabled " title="Enviar WhatsApp" href="turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar" disabled ><i class="fa fa-whatsapp" aria-hidden="true"></i></button> --}}
+
+                      </div>
+
                      </td>
                 @endif
-                        <td>
-                       <button class="bnt btn-success border border-success rounded-pill m-1 p-2 whatsappDisabled " title="Enviar WhatsApp" href="turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar" disabled ><i class="fa fa-whatsapp" aria-hidden="true"></i></button>
-                    </td>  
+               
+                    
                 @endif
                 </tr>
             @endforeach
@@ -136,7 +172,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h5 class="modal-title text-center" id="exampleModalLabel">Agendar un turno a la persona</h5>
+          <h5 class="modal-title text-center text-dark" id="exampleModalLabel">Agendar un turno a la persona</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -146,9 +182,10 @@
       
             <form action=" " method="POST" id="formulario">
                 @csrf
+                <p class="text-info">*Este campo es obligatorio</p>
                 <div class="mb-3">
                     <i class="fa-regular fa-calendar-clock"></i>
-                    <label for="fechaModal" class="form-label">Fecha y Hora <i class="fa-solid fa-calendar-days"></i></label>
+                    <label for="fechaModal" class="formulario__label">Fecha y Hora <i class="fa-solid fa-calendar-days"></i></label>
                     <input id="fechaModal" name="fechaModal" type="text" class="form-control" maxlength="20"  tabindex="1" autocomplete="name" disabled>
                 </div> 
         
@@ -161,7 +198,7 @@
                             <input type="text" class="form-control formulario__input" name="dni" id="dni"  maxlength="8" placeholder="XX.XXX.XXX" aria-describedby="addon-wrapping" required>
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                           </div>
-                          <p class="text-info">*Esta pregunta es obligatoria</p>
+                    
                          <p class="formulario__input-error">El DNI solo puede contener numeros y el maximo son 8 dígitos</p>
                        </div>
 
@@ -185,7 +222,7 @@
                     <input type="text" class="form-control formulario__input" id="nombre" name="nombre" value ='' placeholder="Nombre del cliente" maxlength="20" required>
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                   </div>
-                  <p class="text-info">*Esta pregunta es obligatoria</p>
+                 
                   <p class="formulario__input-error">El Nombre tiene que ser de 4 a 16 dígitos y solo puede contener letras</p>
                 </div>
         
@@ -197,7 +234,6 @@
                   <input type="text" class="form-control formulario__input" id="apellido" name="apellido" placeholder="Apellido del cliente" maxlength="20" required>
                   <i class="formulario__validacion-estado fas fa-times-circle"></i>
                   </div>
-                  <p class="text-info ">*Esta pregunta es obligatoria</p>
                   <p class="formulario__input-error">El Apellido tiene que ser de 4 a 20 dígitos y solo puede contener letras</p>
                 </div>
             
@@ -231,8 +267,7 @@
                     </div>  
                   </div> 
          </div>
-      <p class="text-info ">*Campo obligatorio</p> 
-         
+  
         </div>
               {{--   <div class="mb-3">
                   
@@ -256,7 +291,7 @@
                             <p class="formulario__input-error">El Código de Area solo puede contener numeros y el maximo son 4 dígitos.</p>
                           </div>
                         </div> 
-                        <p class="text-info ">*Campo obligatorio</p>
+                       
                 </div>
                 <div class="mb-3">
                   <label for="telefono" class="formulario__label">N° de celular *</label>
@@ -270,7 +305,7 @@
                          <p class="formulario__input-error">El Nº de Celular solo puede contener numeros y el maximo son 7 dígitos.</p>
                             </div>  
                           </div>
-                          <p class="text-info ">*Campo obligatorio</p>
+                      
                  </div> 
 
                    <!--Grupo Asunto-->
@@ -282,7 +317,7 @@
                         <input type="text" class="form-control formulario__input" id="asunto" name="asunto" placeholder="Asunto del turno" maxlength="50" required>
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
-                <p class="text-info ">*Esta pregunta es obligatoria</p>
+             
                 <p class="formulario__input-error">El asunto solo puede contener letra y número con un máximo de 80 caracteres</p>
               </div>
       
@@ -499,11 +534,13 @@
 
            $('#example').DataTable();
       
-
+          
 });
  $('#example').DataTable({
+
   "bSort": true, // Con esto le estás diciendo que se pueda ordenar, ponlo a 'true'
   "order": [], // Aquí le dices que el criterio de ordenación primero esté vació , o lo que es lo mismo, ninguno
+responsive:true, 
 
 language: {
 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

@@ -379,6 +379,7 @@ let perros = [
     "Curly Coated Retriever",
     "Dálmata",
     "Dandie dinmont terrier",
+    "Dachshund(salchicha)",
     "Deerhound",
     "Dobermann",
     "Dogo Argentino",
@@ -555,6 +556,23 @@ let perros = [
     "Terrier tibetano",
     "Tosa",
     "Pequines",
+    "Viejo Pastor Inglés",
+    "Viejo Pointer Danés (Old Danish Pointer)",
+    "Vizsla",
+    "Volpino Italiano",
+    "Weimaraner",
+    "Welsh springer spaniel",
+    "Welsh Corgi Cardigan",
+    "Welsh Corgi Pembroke",
+    "Welsh terrier",
+    "West highland white terrier",
+    "Whippet",
+    "Wirehaired solvakian pointer",
+    "Xoloitzcuintle",
+    "Yorkshire Terrier",
+    "Xoloitzcuintle",
+    "Yorkshire Terrier",
+
 ];
 let pajaros = [
     "Canarios",
@@ -667,6 +685,7 @@ function buscador(raza) {
             //One common class name
             listItem.classList.add("list-items");
             listItem.style.cursor = "pointer";
+            
             listItem.setAttribute("onclick", "displayNames('" + i + "')");
             //Display matched part in bold
             let word = "<b>" + i.substr(0, input.value.length) + "</b>";

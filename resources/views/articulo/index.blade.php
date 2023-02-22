@@ -6,7 +6,21 @@
 padding-right: 0px;
 padding-left: 0px;
 }
-
+.lote{
+    color: rgb(21, 96, 236);
+}
+.eliminar{
+    color:red;
+}
+table.dataTable td {
+  text-align: center;
+}
+table.dataTable tr {
+  text-align: center;
+}
+table.dataTable th {
+  text-align: center;
+}
 
 </style>
 
@@ -19,7 +33,7 @@ padding-left: 0px;
     
       
     
-    <a href="articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Crear Articulo</a>
+    <a href="articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Crear Articulo <i class="fa-solid fa-store"></i></a>
     </div>
     
         <table id="example" class="table table-striped" style="width:100%">
@@ -27,14 +41,14 @@ padding-left: 0px;
            
             <tr>
                 
-                <th sacope="col">codigo</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Marca</th>
+                <th sacope="col" class="text-center">codigo</th>
+                <th scope="col"class="text-center">Descripcion</th>
+                <th scope="col"class="text-center">Marca</th>
                 <!-- <th scope="col">Lote</th> -->
-                <th scope="col">Precio ($)</th>
-                <th scope="col">Precio especial ($)</th>
-                <th scope="col">Categoría</th>
-                <th scope="col">Acciones</th>
+                <th scope="col"class="text-center">Precio</th>
+                <th scope="col"class="text-center">Precio especial</th>
+                <th scope="col"class="text-center">Categoría</th>
+                <th scope="col"class="text-center">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -51,10 +65,10 @@ padding-left: 0px;
                     @else
                     <td>{{$unArticulo->categoria->descripcion}}</td>
                     @endif
-                    <td class="acciones">    
-                            <a href="Lotes/{{$unArticulo->id}}/lote" name="lotes" class="btn " title="lotes"><i class="fa fa-archive"></i></a>
+                    <td class="acciones w-25">    
+                            <a href="/Lotes/{{$unArticulo->id}}/lote" name="lotes" class="btn lote" title="lotes"><i class="fa fa-archive"></i></a>
                            {{--  <a href="{{ route('articulos.show', $unArticulo->id)}}" name="ver" class="btn " title="Ver"><i class="fa-solid fa-eye"></i></a> --}}
-                            <a href="articulos/{{$unArticulo->id}}/edit " name="Editar" class="btn " title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="/articulos/{{$unArticulo->id}}/edit " name="Editar" class="btn " title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
                             <button class="btn btn eliminar" title="Eliminar" id="{{$unArticulo->id}}" value= '{{$unArticulo->id}}'><i class="fa-solid fa-trash-can"></i></button>
                             
                    </td>
@@ -86,7 +100,8 @@ padding-left: 0px;
             $('#example').DataTable({
                 "bSort": true, // Con esto le estás diciendo que se pueda ordenar, ponlo a 'true'
                 "order": [], // Aquí le dices que el criterio de ordenación primero esté vació , o lo que es lo mismo, ninguno
-            language: {
+                responsive:true, 
+                language: {
                 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             }
             }); 

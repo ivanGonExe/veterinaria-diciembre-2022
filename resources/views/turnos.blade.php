@@ -187,7 +187,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
       
           <div class="col-md-4 formulario_turno">
             <h4 class="text-white text-center p-2 fs-3">Complete el formulario y seleccione el turno</h4>
-            <p class="text-info">*Este campo es obligatoria</p>
+            <p class="text-info">*Este campo es obligatorio</p>
           <!--Grupo Nombre -->
             <div class="formulario__grupo " id="grupo__nombre">
           <label for="nombre" class="formulario__label">Nombre *</label>
@@ -226,7 +226,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
 
   <label for="telefono" class="formulario__label">Celular *</label>
   <div class="row ">
-  <div class = "col-md-4 col-6">
+  <div class = "col-md-6 col-6">
           <div class="formulario__grupo" id="grupo__codigoArea">
             <div class="formulario__grupo-input">
                 <div class="input-group flex-nowrap">
@@ -239,7 +239,7 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
             </div>
           </div>
   </div>
-   <div class = "col-md-8 col-6">
+   <div class = "col-md-6 col-6">
             <div class="formulario__grupo" id="grupo__telefono">
               <div class="formulario__grupo-input">
                 <div class="input-group flex-nowrap">

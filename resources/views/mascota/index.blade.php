@@ -3,6 +3,36 @@
 
 @section('contenido')
 
+<style>
+
+
+.eliminar{
+    padding: 5px!important;
+ margin: 0 0px 6px 0!important;
+ color: red;
+}
+.historial{
+    padding: 5px!important;
+ margin: 5px!important;
+ color: #000000;
+}
+.editar{
+    padding: 5px!important;
+ margin: 5px!important;
+ color: #000000;
+}
+table.dataTable td {
+    text-align: center;
+  }
+  table.dataTable tr {
+    text-align: center;
+  }
+  table.dataTable th {
+    text-align: center;
+  }
+  
+
+</style>
 
 <div class="container-fluid d-flex justify-content-center  text-light">
         
@@ -22,13 +52,13 @@
             
             
             <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Raza</th>
-                <th scope="col">Especie</th>
-                <th scope="col">Color</th>
-                <th scope="col">Sexo</th>
-                <th scope="col">Esterilizado</th>
-                <th scope="col">Fecha nacimiento</th>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center" >Raza</th>
+                <th scope="col" class="text-center">Especie</th>
+                <th scope="col" class="text-center">Color</th>
+                <th scope="col" class="text-center">Sexo</th>
+                <th scope="col" class="text-center">Esterilizado</th>
+                <th scope="col" class="text-center">Fecha nacimiento</th>
                {{--  <th scope="col">Dueño</th> --}}
                 <th scope="col">Acciones</th>
             </tr>
@@ -46,14 +76,16 @@
                     <td >{{\Carbon\Carbon::parse($unaMascota->anioNacimiento)->format('d-m-Y')}}</td>
         
 {{--                     <td>{{$unaMascota->persona->nombre." ".$unaMascota->persona->apellido}}</td> --}}
-                    <td style="text-align:left">
+                    <td>
+                         <div class="acciones">
                             <input type="hidden" name="urlAnterior" value="{{Request::path()}}">
                             @if ((auth()->user()->tipo == 'veterinario') or (auth()->user()->estadoIngreso =='veterinario') )
-                            <a href="/historialesClinicos/{{$unaMascota->historialClinico->id}}" class="btn btn" title="Ver historial clinico"><i class="fa-solid fa-notes-medical"></i></a>
+                            <a href="/historialesClinicos/{{$unaMascota->historialClinico->id}}"  title="Ver historial clinico" class="historial"><i class="fa-solid fa-notes-medical"></i></a>
                             @endif
-                            <a href="/mascotas/{{$unaMascota->id}}/edit" class="btn btn" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="/mascotas/{{$unaMascota->id}}/edit"  title="Editar" class="editar"><i class="fa-solid fa-pen-to-square"></i></a>
                             
                             <button class="btn btn eliminar" title="Eliminar" id="{{$unaMascota->id}} " value= '{{$unaMascota->id}}'><i class="fa-solid fa-trash-can"></i></button>
+                         </div>
                         </form>
                     </td>
                 </tr>

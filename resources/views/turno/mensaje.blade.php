@@ -123,24 +123,24 @@ body{
 
 
     <form id="formulario" class="formulario">
-        <h1>Enviar Turno al WhatsApp <br>del Cliente </h1>
+        <h1>Enviar WhatsApp del Cliente 🐶</h1>
       
         <div class="box-input">
             <label>Nombre del Cliente</label>
-            <input name="nombre" id="nombre" type="text" class="text-center fs-3" value="{{$persona->nombre}} {{$persona->apellido}}" disabled>
+            <input name="nombre" id="nombre" type="text" class="text-center text-white fs-3 bg-success" value="{{$persona->nombre}} {{$persona->apellido}}" disabled>
              </div>
              <div class="box-input">
                 <label>Teléfono</label>
-                <input name="telefono" id="telefono" type="text" class="text-center fs-3" value="{{$celular}}" disabled>
+                <input name="telefono" id="telefono" type="text" class="text-center text-white fs-3 bg-success" value="{{$celular}}" disabled>
                  </div>
-        <div class="box-input">
+        <!-- <div class="box-input">
             <label>Turno</label>
             <input name="fecha_hora" id="fecha_hora" class="text-center fs-4" type="text" value="Fecha: {{$fecha}} &nbsp; Hora: {{$hora}}" disabled>
           
-        </div>
+        </div> -->
         <div class="box-input m-2" >
             <label>Mensaje</label>
-            <input name="mensaje" id="mensaje" class="text-center" type="areatext" value="Su turno es el día {{$fecha}} y la hora {{$hora}}. Muchas Gracias por elegirnos.🐶🐱" >
+            <input name="mensaje" id="mensaje" class="text-center text-dark" type="areatext" value="" placeholder="Escriba su mensaje..." >
             
         </div>
        
@@ -174,11 +174,14 @@ formulario.addEventListener('submit', (event) => {
     buttonSubmit.disabled = true
     setTimeout(() => {
         let nombre = document.querySelector('#nombre').value;
-         let fecha = document.querySelector('#fecha_hora').value; 
+        //  let fecha = document.querySelector('#fecha_hora').value; 
        
         let mensajeFormulario = document.querySelector('#mensaje').value;
-        let mensaje = 'send?phone=' + telefono + '&text=*‼️Recordario de Turno‼️*%0A' 
-        +'Estimado/a: '+ nombre + '%0A'+'%0A'+ mensajeFormulario +'%0A*VETERINARIA SAN AGUSTIN*%0A' ;
+          let mensaje = 'send?phone=' + telefono + '&text=*‼️Nos comunicamos de Veterinaria San Agustin‼️*' 
+          +'%0A'+'Estimado/a: '+ nombre +' '+ mensajeFormulario ;
+
+        // let mensaje = 'send?phone=' + telefono + '&text=*‼️Recordario de Turno‼️*%0A' 
+        // +'Estimado/a: '+ nombre + '%0A'+'%0A'+ mensajeFormulario +'%0A*VETERINARIA SAN AGUSTIN*%0A' ;
         if(isMobile()) {
             window.open(urlMobile + mensaje, '_blank')
         }else{

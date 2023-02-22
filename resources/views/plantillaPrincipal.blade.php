@@ -8,6 +8,9 @@
  .celu a:hover{
    color: yellow !important;
 }
+h1,h2,h3,h4,h4,h5,h6,p,a{
+font-family: 'Gluten', cursive;
+}
 
 </style>
 
@@ -25,7 +28,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
       <!-- estilos CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('estilo.css')}}">
+   
     <link rel="icon" href={{asset('iconos/huella.png')}} >
+
+ <!-- estilos font google -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&display=swap" rel="stylesheet">
+  
+
+
+
 <title>Clínica Veterinaria San Agustín</title>
   </head>
    <!-- Cabezera barra -->
@@ -46,18 +59,18 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#servicio">Servicios</a>
+                <a class="nav-link" href="#servicio"><i class="fa-solid fa-circle-info"></i> Servicios</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{'/seleccionTurno'}}">Turnos</a>
+                <a class="nav-link" href="{{'/seleccionTurno'}}"><i class="fa-solid fa-calendar-week"></i> Turnos</a>
                 </li>
-             <a class="nav-link" href="{{'/noticias'}}">Noticias</a>
+             <a class="nav-link" href="{{'/noticias'}}"><i class="fa-solid fa-newspaper"></i> Noticias</a>
               </li>
               @if(auth()->user())
                    @if(auth()->user()->tipo == 'admin')
                       <li class="nav-item">
                         <a class="nav-link"  href="/usuario/Admin/ingresoAOtro/4">
-                              <i class="fa-solid fa-house"></i> Volver a admin 
+                              <i class="fa-solid fa-house"></i> Admin 
                         </a>
                       </li>
                    @endif
@@ -68,11 +81,39 @@
           </div>
         </div>
       </nav>
+   
       
       @yield('contenido') 
+
+      <div class="loading show" id="figura">
+         <span class="loader"></span>
+        <div class="texto"><p> Veterinaria San Agustin</p></div>
+            </div> 
+
+
       @yield('footer') 
      
-      
+   <script>
+/* 
+document.addEventListener("DOMContentLoaded", function() {
+    var loading = document.getElementById("figura");
+    loading.style.display = "block";
+});
+
+// Ocultar animación de carga cuando se haya cargado la página
+window.addEventListener("load", function() {
+    var loading = document.getElementById("figura");
+    loading.style.display = "none";
+});
+ */
+
+setTimeout(function() {
+    document.getElementById("figura").style.display = "none";
+  }, 1000); 
+   </script>
+ 
+
+   
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
  
