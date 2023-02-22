@@ -15,7 +15,7 @@
     <form action="{{route('lotes.update',$lote->id )}}" method="POST" id="formulario" name="formulario">
         @csrf
         @method('Put')
-
+        <p class="text-info">*Esta pregunta es obligatoria</p>
         <!--Precio de compra -->
    <div class="mb-3">
     <div class="formulario__grupo" id="grupo__precioCompra" title="Valor númerico único que se va identificar el producto">
@@ -26,10 +26,10 @@
 
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
-<p class="text-white">*Esta pregunta es obligatoria</p>
+
         <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>
     </div>
-
+   <br>
     <!--Unidades-->
    <div class="mb-3">
     <div class="formulario__grupo" id="grupo__unidades" title="Valor númerico único que se va identificar el producto">
@@ -40,11 +40,11 @@
 
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
-<p class="text-white">*Esta pregunta es obligatoria</p>
+
         <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>
     </div>
       </div>
-
+      
 {{-- 
 
         <div class="mb-3">
@@ -57,10 +57,11 @@
         </div> --}}
         
         <div class="mb-3">
-            <label for="" class="form-label">Vencimiento</label>
-            <input id="vencimiento" name="vencimiento" type="date" class="form-control" value ='{{$lote->vencimiento}}' tabindex="5">
+            <div class="formulario__grupo" id="grupo__unidades">
+                <label for="unidades" class="formulario__label">Vencimiento*</label>
+            <input id="vencimiento" name="vencimiento" type="date" class="form-control formulario__label" value ='{{$lote->vencimiento}}' tabindex="5">
         </div>
-
+<br>
         <a href="/Lotes/{{$lote->articulo_id}}/lote" class="btn btn-secondary" tabindex="6">Cancelar</a>
         
         <button type="submit" class="btn btn-primary" tabindex="7">Guardar</button>

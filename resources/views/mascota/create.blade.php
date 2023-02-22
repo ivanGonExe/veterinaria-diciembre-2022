@@ -60,6 +60,7 @@ ul {
     <form action="/mascotas" method="POST" id="formulario">
         @csrf
        <!--Grupo Nombre -->
+       <p class="text-info">*Este campo es obligatorio</p>
   <div class="formulario__grupo " id="grupo__nombre">
     <label for="nombre" class="formulario__label">Nombre *</label>
     <div class="formulario__grupo-input">

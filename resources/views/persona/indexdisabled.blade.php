@@ -1,31 +1,5 @@
-@extends('layouts.plantillaBase')
+@extends((auth()->user()->tipo == 'admin')? ((auth()->user()->estadoIngreso =='veterinario')? 'layouts.plantillaBase':'layouts.plantillaBase3') : ( (auth()->user()->tipo == 'veterinario')? 'layouts.plantillaBase' :'layouts.plantillaBase3'))
 
-
-<style>
-
-body{
-	min-height: 150vh;
-	background-image: linear-gradient(120deg, #ffffff, #8e44ad);
-}
-
-table th{
-    background-color: rgba(100, 83, 153, 1) !important;
-    color:#ffffff;
-}
-table td{
-    background-color: rgba(255, 255, 255, 1) !important;
-    color:#000000;
-}
-.caja_tabla-2{
-
-    margin: 15px;
-}
-.boton_crear{
-    background-color: rgba(100, 83, 153, 1) !important;
-    color:#ffffff;
- 
-}
-</style>
 
 @section('contenido')
 

@@ -4,8 +4,16 @@
     color:red !important;
 }
 </style>
+<!--Jquery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<!--BOOTSTRAP -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 
  
 @section('contenido')
@@ -62,6 +70,9 @@
 @endphp
 
 <div class= "container">
+ 
+
+
 <table id="example"  class="table table-striped" style="width:100%" >
     <thead>
            
@@ -97,6 +108,7 @@
             <td>{{$producto->articulo->precioEspecial}}</td>
             <td> {{($producto->unidad)*($producto->articulo->precioEspecial) - ($producto->unidad)*($producto->articulo->precioVenta)}} </td>
             <td>{{($producto->unidad)*($producto->articulo->precioEspecial)}}</td>
+           
             @php
                 $indice++;
                 $total += ($producto->unidad)*($producto->articulo->precioEspecial);
@@ -112,6 +124,11 @@
             <a class="btn btn-danger rounded-pill p-1"  href="/eleminarUnArticuloVenta/{{$producto->id}}" name="menosUno" title="menos Uno"><i class="fa-solid fa-circle-minus"></i></a>
             <a class="btn btn-secondary rounded-pill p-1"  href="/precioEspecial/{{$producto->id}}" name="PrecioEspecial" title="PrecioEspecial"><i class="fa-solid fa-circle-exclamation"></i></i></a>    
             <button class="btn btn-danger rounded-pill p-1" title="Eliminar"><i class="fa-solid fa-trash-can "></i></button>
+                <!--boton modal  -->
+               <button type="button" class="btn btn-primary rounded-pill p-2 modalTurno "  data-toggle="modal" data-target="#exampleModal" title="Agendar persona al turno">
+                Des <i class="fa-solid fa-percent"></i>
+             </button>
+                                
 
         </form></td>
 
@@ -147,6 +164,45 @@
         {{ Session::get('alert-class', 'alert-info') }}">{{Session::get('message') }}</div>
 
     @endif
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title text-center text-dark" id="exampleModalLabel">Aplicar Descuento al articulo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group  text-center p-3 text-white">
+            <label>Monto a Descontar</label>
+            <input type="text">
+            <br>
+            <label>%</label>
+            <input type="text">
+            <label>Descuento</label>
+            <input type="text">
+            <form action=" " method="POST" id="formulario">
+                @csrf
+         
+                
+        
+                <div class="container-fluid d-flex justify-content-center m-2">
+        {{--        <a href="/personas" class="btn btn-secondary m-2" tabindex="6" id="cancelar">Cancelar</a>  --}}
+        {{--         <button  class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</button>  --}}
+                <a href=" " class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
+                <button type="submit" id='botonGuardar' class="btn btn-primary m-2" tabindex="7">Guardar</button>
+                </div>
+            </form>
+            </div>
+        </div>
+
+
+
+
 </html>
     
 
