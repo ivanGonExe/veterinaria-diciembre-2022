@@ -80,8 +80,7 @@
             $date = date('d-m-Y',strtotime($producto->vencimiento));
         @endphp
     <tr>
-        
-        <td><i class="fa-solid fa-cart-shopping"></i> {{$producto->articulo->descripcion}}/{{$producto->articulo->marca}}</td>
+         <td><i class="fa-solid fa-cart-shopping"></i> {{$producto->articulo->descripcion}}/{{$producto->articulo->marca}}</td>
          <td>x {{$producto->unidad}}</td>
         @if($estado[$indice] == 0)
             <td>${{$producto->precioVenta + $producto->descuento}}</td>
@@ -142,7 +141,7 @@
     </div>
 @endif
 
-    <!-- ************************************************************ -->
+<!-- ************************************************************ -->
     @if(Session::has('message'))
 
         <div class="alert
@@ -151,7 +150,7 @@
     @endif
 
 
-<!-- Modal  de descuento-->
+<!-- Modal  de descuento----------------------------------------------------------------------------------------------------------------------->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -191,8 +190,7 @@
 </div>
 
 </html>
-    
-
+<!-- librerias------------------------------------------------------------------------------------------------------------------------------- -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="  https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -202,12 +200,12 @@
 <script>
 
 </script>
-<!-- trae los datos para relizar el descuento -->
+<!-- Trae los datos para realizar el descuento------------------------------------------------------------------------------------------------ -->
 <script>
 
     $(document).ready(function (){
     
-        let id = 0;
+        let id            = 0;
         let botonesModal  = document.getElementsByClassName("modalTurno");
         let botonModal    = [];
         let cantidad      = botonesModal.length;
@@ -228,9 +226,9 @@
                     },
                 }).done(function (res) {
 
-                    let producto          = JSON.parse(res);
-                    let tituloModal       = document.getElementById('tituloModal');
-                    let precioProducto    = document.getElementById('precioProducto');
+                    let producto            = JSON.parse(res);
+                    let tituloModal         = document.getElementById('tituloModal');
+                    let precioProducto      = document.getElementById('precioProducto');
 
                     tituloModal.innerHTML   = "codigo: " + producto[0].codigo +"<br>"+" Producto: "+producto[0].descripcion+"/"+producto[0].marca;
                     precioProducto.value    = producto[0].precioVenta;
@@ -245,7 +243,7 @@
         }
     });
 </script>
-<!-- calculo de porcentaje y controles-->
+<!-- Calculo de porcentaje y controles---------------------------------------------------------------------------------------------------------->
 <script>
     let montoDesc = document.getElementById('montoDesc');
     
@@ -259,22 +257,32 @@
         if(numDescuento > numPrecio ){
             montoDesc.value = numPrecio;
         }
+
         if(montoDesc.value < 0){
             montoDesc.value = 0; 
         }
         
         descuento.value     = (montoDesc.value*100)/precioProducto.value;  
     })
+
     let precioProducto  = document.getElementById('precioProducto');
+
     montoDesc.addEventListener('input',function(){
+
         let precioProducto  = document.getElementById('precioProducto');
-        if(montoDesc.value > precioProducto.value ) 
+
+        if(montoDesc.value > precioProducto.value ) {
             montoDesc.value = precioProducto.value;
-        if(montoDesc.value < 0)
-        montoDesc.value = 0; 
+        }
+            
+        if(montoDesc.value < 0){
+            montoDesc.value = 0; 
+        }
+            
     })
 
     let descuento = document.getElementById('descuento');
+
     descuento.addEventListener('keyup', function(){
 
         let montoDesc       = document.getElementById('montoDesc');
@@ -294,28 +302,22 @@
     })
 
 </script>
-
-
-
-    <script>
-        $(document).ready(function () {
-           $('.js-example-basic-single').select2();
+<!-- Agregado de articulo a la tabla-------------------------------------------------------------------------------------------------------- -->
+<script>
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
       
-        });
-        $("#idArticulos").on("change",function(event){
-            var id = document.getElementById("idArticulos").value;
-            if(id != 0){
-                var link = "/agregarArticuloVenta/"+id;
-                location.href = link;
-            }
-            
-            
-        });
-        
-        
-        
-        
-    
-        </script>
+    });
+    $("#idArticulos").on("change",function(event){
+
+        var id = document.getElementById("idArticulos").value;
+
+        if(id != 0){
+
+            var link = "/agregarArticuloVenta/"+id;
+            location.href = link;
+        }
+    });
+</script>
 </body>
 @endsection
