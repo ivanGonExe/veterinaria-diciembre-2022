@@ -95,7 +95,7 @@ input:focus{
 <table id="example"  class="table table-striped" style="width:100%" >
     <thead>
             <tr>
-                <th scope="col">Artículo       </th>
+                <th scope="col" class="text-break col-2">Artículo       </th>
                 <th scope="col">Cantidad       </th>
                 <th scope="col">Precio x ud.   </th>
                 <th scope="col">Descuento x ud.</th>
@@ -110,7 +110,7 @@ input:focus{
             $date = date('d-m-Y',strtotime($producto->vencimiento));
         @endphp
     <tr>
-         <td><i class="fa-solid fa-cart-shopping"></i> {{$producto->articulo->descripcion}}/{{$producto->articulo->marca}}</td>
+         <td class="text-break col-2"><i class="fa-solid fa-cart-shopping"></i> {{$producto->articulo->descripcion}}/{{$producto->articulo->marca}}</td>
          <td>x {{$producto->unidad}}</td>
         @if($estado[$indice] == 0)
             <td>${{$producto->precioVenta + $producto->descuento}}</td>
