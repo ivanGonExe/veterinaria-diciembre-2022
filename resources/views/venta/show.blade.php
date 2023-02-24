@@ -18,7 +18,7 @@
    </div>
     
      <div class="container-fluid d-flex justify-content-center">
-     <h3 class="text-center p-2 m-2 fw-bold text-dark" >Fecha de la venta: {{$venta->fecha}}
+     <h3 class="text-center p-2 m-2 fw-bold text-dark" >Fecha de la venta: <div class="fecha">{{$venta->fecha}}</div>
      </h3>
     </div>
    
@@ -100,10 +100,11 @@
 let productos =  @json($detalles);
 console.log(productos);
 //la fecha es única por eso queda afuera del recorrido 
-let total =   document.getElementById("total"). textContent;
-let pago =  document.getElementById("pago"). textContent;
-let subtotal = document.getElementById("subtotal"). textContent;
-let vuelto = document.getElementById("vuelto"). textContent;
+let fecha = document.querySelector(".fecha").textContent;
+let total =   document.getElementById("total").textContent;
+let pago =  document.getElementById("pago").textContent;
+let subtotal = document.getElementById("subtotal").textContent;
+let vuelto = document.getElementById("vuelto").textContent;
 //click en el botón pdf
 let boton = document.getElementById('pdf');
 boton.addEventListener("click", function() {
@@ -135,21 +136,26 @@ let tamanio = productos.length;
 let punteroX =10; //necesitamos dos puntero que se vayan corriendo para no pisar los datos 
 let punteroY = 70; 
  for (var i = 0; i < tamanio; i++) {
-   
+  punteroX=15;
+  punteroY= punteroY+5;
  doc.text(productos[i].cantidad.toString(), punteroX ,punteroY);
  punteroX = punteroX+30;
 doc.text(productos[i].codigo.toString(),punteroX,punteroY);
 punteroX = punteroX+30;
-  doc.text(productos[i].descripcion, punteroX ,punteroY);
+let cadena = productos[i].descripcion.substring(0,24);
+  doc.text(cadena, punteroX ,punteroY);
   punteroX= punteroX+70;
   doc.text("$"+productos[i].precioVenta.toString(), punteroX , punteroY);
   punteroX= punteroX+40;
   doc.text("$"+(productos[i].subtotal).toString(), punteroX , punteroY);
   punteroY= punteroY+10;
   punteroX=10;
-  doc.text("Descuento:-$"+-(productos[i].descuento).toString(), punteroX , punteroY);
-  punteroY= punteroY+10;
+  doc.text("Descuento: (-$"+(productos[i].descuento*productos[i].cantidad).toString()+")", punteroX , punteroY);
   punteroX=10;
+  punteroY= punteroY+5;
+  doc.text("-------------------------------------------------------------------------------------------------------", punteroX,punteroY);
+ 
+ 
 /*  doc.text(productos[i].codigo, punteroX ,punteroY);
  doc.text(productos[i].descripcion, punteroX , punteroY);
  doc.text(productos[i].precio, punteroX , punteroY); */

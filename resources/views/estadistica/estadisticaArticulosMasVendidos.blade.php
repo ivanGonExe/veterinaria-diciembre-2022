@@ -84,6 +84,7 @@
 let arregloAux = @json($arreglo);
 let arreglo    = Object.values(arregloAux);
 let salida     = @json($labels);
+
 const ctx      = document.getElementById('myChart').getContext('2d');
 Chart.defaults.font.size = 21;
 

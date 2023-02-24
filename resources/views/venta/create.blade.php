@@ -95,7 +95,7 @@ input:focus{
 <table id="example"  class="table table-striped" style="width:100%" >
     <thead>
             <tr>
-                <th scope="col" class="text-break col-2">Artículo       </th>
+                <th scope="col" class="text-break col-2">Artículo  </th>
                 <th scope="col">Cantidad       </th>
                 <th scope="col">Precio x ud.   </th>
                 <th scope="col">Descuento x ud.</th>
@@ -207,10 +207,10 @@ input:focus{
 
                     <label>Descuento </label><br>
                     
-                    <label>%<input type = "number" id = "descuento" name = "descuento"  ></label>
+                    <label>%<input type = "number" id = "descuento" name = "descuento" step="0.1" ></label>
                     <br>
                     <label>Monto descontado</label><br>
-                    <label>$<input type="number" id ="montoDesc" name = "montoDesc"></label>
+                    <label>$<input type="number" id ="montoDesc" name = "montoDesc" ></label>
                     <div class="container-fluid d-flex justify-content-center m-2">
                         <a href=" " class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
                         <button type="submit" id='botonGuardar' class="btn btn-primary m-2" tabindex="7">Guardar</button>
@@ -222,7 +222,7 @@ input:focus{
 </div>
 
 </html>
-<!-- librerias------------------------------------------------------------------------------------------------------------------------------- -->
+{{-- <!-- librerias------------------------------------------------------------------------------------------------------------------------------- --> --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="  https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -231,9 +231,9 @@ input:focus{
 
 <script>
 
-</script>
-<!-- Trae los datos para realizar el descuento------------------------------------------------------------------------------------------------ -->
-<script>
+
+/*<!--Trae los datos para realizar el descuento------------------------------------------------------------------------------------------------ --*/
+
 
     $(document).ready(function (){
     
@@ -286,7 +286,9 @@ input:focus{
         let numDescuento    = parseInt(montoDesc.value);
         let numPrecio       = parseInt(precioProducto.value);
         
+     
         if(numDescuento > numPrecio ){
+          
             montoDesc.value = numPrecio;
         }
 
@@ -301,12 +303,18 @@ input:focus{
 
     montoDesc.addEventListener('input',function(){
 
-        let precioProducto  = document.getElementById('precioProducto');
-
-        if(montoDesc.value > precioProducto.value ) {
-            montoDesc.value = precioProducto.value;
+        let descuento       = document.getElementById('descuento');
+        let precioProducto  = document.getElementById('precioProducto'); 
+        let numDescuento    = parseInt(montoDesc.value);
+        let numPrecio       = parseInt(precioProducto.value);
+        
+     
+        if(numDescuento > numPrecio ){
+          
+            montoDesc.value = numPrecio;
         }
-            
+
+
         if(montoDesc.value < 0){
             montoDesc.value = 0; 
         }
