@@ -17,7 +17,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
+<!--css------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -->
 <style>
   .modal-body{
     background-color: rgba(100, 83, 153, 1) !important;
@@ -53,6 +53,7 @@
   }
 </style>
 
+<!--html---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 @section('contenido')
 
 @if($styleTurno == 1)
@@ -279,7 +280,8 @@
       </div>
     </div>
   </div>
-
+  
+<!--js-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <!-- validacion de inputs js -->
   <script src="{{asset('validarModal.js')}}" defer></script>
 
@@ -311,79 +313,78 @@
         var botonModal    = [];
         let cantidad      = botonesModal.length;
 
-                    for(let i = 0; i < cantidad; i++){
+        for(let i = 0; i < cantidad; i++){
 
-                          id            = botonesModal[i].id;
-                          botonModal[i] = document.getElementById(`${id}`);
+          id            = botonesModal[i].id;
+          botonModal[i] = document.getElementById(`${id}`);
 
-                          botonModal[i].addEventListener('click', function(){
+          botonModal[i].addEventListener('click', function(){
 
-                                let nombre              = document.getElementById('nombre');
-                                let apellido            = document.getElementById('apellido');
-                                let direccion           = document.getElementById('direccion');
-                                let numeroCalle         = document.getElementById('numeroCalle');
-                                let codigoArea          = document.getElementById('codigoArea');
-                                let telefono            = document.getElementById('telefono');
-                                let divSelect           = document.getElementById('divSelect');
-                                var inputDni            = document.getElementById('dni');
-                                let botonGuardar        = document.getElementById('botonGuardar')
-                                inputDni.value          = '';
-                                validarCampo(expresiones.dni, inputDni, "dni");
-                                nombre.value            = '';
-                                validarCampo(expresiones.nombre, nombre , "nombre");
-                                apellido.value          = '';
-                                validarCampo(expresiones.apellido, apellido , "apellido");
-                                direccion.value         = '';
-                                validarCampo(expresiones.direccion, direccion , "direccion");
-                                numeroCalle.value       = '';
-                                validarCampo(expresiones.numeroCalle, numeroCalle, "numeroCalle");
-                                codigoArea.value        = '';
-                                validarCampo(expresiones.codigoArea, codigoArea, "codigoArea");                    
-                                telefono.value          = '';
-                                validarCampo(expresiones.telefono, telefono, "telefono");
-                                // limpieza 
-                                        document.getElementById(`grupo__dni`).classList.remove("formulario__grupo-incorrecto");
-                                        document.querySelector(`#grupo__dni i`).classList.remove("fa-times-circle");
-                                        document.querySelector(`#grupo__dni .formulario__input-error`).classList.remove("formulario__input-error-activo");
-                                        document.getElementById(`grupo__nombre`).classList.remove("formulario__grupo-incorrecto");
-                                        document.querySelector(`#grupo__nombre i`).classList.remove("fa-times-circle");
-                                        document.querySelector(`#grupo__nombre .formulario__input-error`).classList.remove("formulario__input-error-activo");
-                                        document.getElementById(`grupo__apellido`).classList.remove("formulario__grupo-incorrecto");
-                                        document.querySelector(`#grupo__apellido i`).classList.remove("fa-times-circle");
-                                        document.querySelector(`#grupo__apellido .formulario__input-error`).classList.remove("formulario__input-error-activo");
-                                        document.getElementById(`grupo__direccion`).classList.remove("formulario__grupo-incorrecto");
-                                        document.querySelector(`#grupo__direccion i`).classList.remove("fa-times-circle");
-                                        document.querySelector(`#grupo__direccion .formulario__input-error`).classList.remove("formulario__input-error-activo");
-                                        document.getElementById(`grupo__numeroCalle`).classList.remove("formulario__grupo-incorrecto");
-                                        document.querySelector(`#grupo__numeroCalle i`).classList.remove("fa-times-circle");
-                                        document.querySelector(`#grupo__numeroCalle .formulario__input-error`).classList.remove("formulario__input-error-activo");
-                                        document.getElementById(`grupo__codigoArea`).classList.remove("formulario__grupo-incorrecto");
-                                        document.querySelector(`#grupo__codigoArea i`).classList.remove("fa-times-circle");
-                                        document.querySelector(`#grupo__codigoArea .formulario__input-error`).classList.remove("formulario__input-error-activo");
-                                        document.getElementById(`grupo__telefono`).classList.remove("formulario__grupo-incorrecto");
-                                        document.querySelector(`#grupo__telefono i`).classList.remove("fa-times-circle");
-                                        document.querySelector(`#grupo__telefono .formulario__input-error`).classList.remove("formulario__input-error-activo");
+            let nombre              = document.getElementById('nombre');
+            let apellido            = document.getElementById('apellido');
+            let direccion           = document.getElementById('direccion');
+            let numeroCalle         = document.getElementById('numeroCalle');
+            let codigoArea          = document.getElementById('codigoArea');
+            let telefono            = document.getElementById('telefono');
+            let divSelect           = document.getElementById('divSelect');
+            var inputDni            = document.getElementById('dni');
+            let botonGuardar        = document.getElementById('botonGuardar')
+            inputDni.value          = '';
+            validarCampo(expresiones.dni, inputDni, "dni");
+            nombre.value            = '';
+            validarCampo(expresiones.nombre, nombre , "nombre");
+            apellido.value          = '';
+            validarCampo(expresiones.apellido, apellido , "apellido");
+            direccion.value         = '';
+            validarCampo(expresiones.direccion, direccion , "direccion");
+            numeroCalle.value       = '';
+            validarCampo(expresiones.numeroCalle, numeroCalle, "numeroCalle");
+            codigoArea.value        = '';
+            validarCampo(expresiones.codigoArea, codigoArea, "codigoArea");                    
+            telefono.value          = '';
+            validarCampo(expresiones.telefono, telefono, "telefono");
+          // limpieza 
+            document.getElementById(`grupo__dni`).classList.remove("formulario__grupo-incorrecto");
+            document.querySelector(`#grupo__dni i`).classList.remove("fa-times-circle");
+            document.querySelector(`#grupo__dni .formulario__input-error`).classList.remove("formulario__input-error-activo");
+            document.getElementById(`grupo__nombre`).classList.remove("formulario__grupo-incorrecto");
+            document.querySelector(`#grupo__nombre i`).classList.remove("fa-times-circle");
+            document.querySelector(`#grupo__nombre .formulario__input-error`).classList.remove("formulario__input-error-activo");
+            document.getElementById(`grupo__apellido`).classList.remove("formulario__grupo-incorrecto");
+            document.querySelector(`#grupo__apellido i`).classList.remove("fa-times-circle");
+            document.querySelector(`#grupo__apellido .formulario__input-error`).classList.remove("formulario__input-error-activo");
+            document.getElementById(`grupo__direccion`).classList.remove("formulario__grupo-incorrecto");
+            document.querySelector(`#grupo__direccion i`).classList.remove("fa-times-circle");
+            document.querySelector(`#grupo__direccion .formulario__input-error`).classList.remove("formulario__input-error-activo");
+            document.getElementById(`grupo__numeroCalle`).classList.remove("formulario__grupo-incorrecto");
+            document.querySelector(`#grupo__numeroCalle i`).classList.remove("fa-times-circle");
+            document.querySelector(`#grupo__numeroCalle .formulario__input-error`).classList.remove("formulario__input-error-activo");
+            document.getElementById(`grupo__codigoArea`).classList.remove("formulario__grupo-incorrecto");
+            document.querySelector(`#grupo__codigoArea i`).classList.remove("fa-times-circle");
+            document.querySelector(`#grupo__codigoArea .formulario__input-error`).classList.remove("formulario__input-error-activo");
+            document.getElementById(`grupo__telefono`).classList.remove("formulario__grupo-incorrecto");
+            document.querySelector(`#grupo__telefono i`).classList.remove("fa-times-circle");
+            document.querySelector(`#grupo__telefono .formulario__input-error`).classList.remove("formulario__input-error-activo");
 
-                                botonGuardar.disabled   = false;
-                                divSelect.style.display = 'none';
-                                var turnos              = @json($turnos);
-                                var longitud            = turnos.length;
+            botonGuardar.disabled   = false;
+            divSelect.style.display = 'none';
+            var turnos              = @json($turnos);
+            var longitud            = turnos.length;
 
-                            // busqueda e ingredo de fecha del modal y action del formulario
-                                for(let x = 0; x < longitud; x++){
+            // busqueda e ingredo de fecha del modal y action del formulario
+            for(let x = 0; x < longitud; x++){
 
-                                  if(botonModal[i].value == turnos[x].id ){
+              if(botonModal[i].value == turnos[x].id ){
 
-                                    let fechaModal    = document.getElementById('fechaModal');
-                                    let formulario    = document.getElementById('formulario');
-                                    formulario.action = '/turnos/darTurno/'+ botonModal[i].value;
-                                    fechaModal.value  = turnos[x].start;
-
-                                  }
-                                }
-                     });
-                    }
-    });
+                let fechaModal    = document.getElementById('fechaModal');
+                let formulario    = document.getElementById('formulario');
+                formulario.action = '/turnos/darTurno/'+ botonModal[i].value;
+                fechaModal.value  = turnos[x].start;
+              }
+            }
+          });
+        }
+      });
   </script>
 
 <!-- habilitacion del boton aceptar segun select -->

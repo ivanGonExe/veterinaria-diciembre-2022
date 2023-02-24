@@ -29,6 +29,30 @@ class VentaController extends Controller
         return view('venta.index')->with('ventas', $ventas);
     }
 //-----------------------------------------------------------
+/**
+     * aplicar descuento segun la id
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function aplicarDescuento(Request $request, $id)
+    { 
+        $articulos     =  $this->obtenerArticulos();
+        $posibleIndice =  $this->buscarIndiceDeArticulo($id, $articulos); 
+        $articulos[$posibleIndice]->precioVenta = ($request->precioProducto - $request->montoDesc);
+        $articulos[$posibleIndice]->descuento   = $request->montoDesc;
+
+        $this->guardarArticulos($articulos);
+   
+        return redirect()
+                ->route("ventas.create")
+                    ->with('$articulos',$articulos);
+    }
+
+    //-----------------------------------------------------------
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,14 +75,18 @@ class VentaController extends Controller
     }
 //-----------------------------------------------------------
     /**
-     * Store a newly created resource in storage.
+     * busca un producto sengun su id (request->id).
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function buscarProducto(Request $request)
     {
-        
+        $producto = loteDescripcion::where( 'lote_descripcions.id',$request->id)
+                                   ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
+                                   ->select('lote_descripcions.id','articulos.codigo','articulos.descripcion','articulos.marca','articulos.precioVenta')
+                                   ->get();
+        return response(json_encode($producto),200)->header('Content-type','text/plain');
     }
 //-----------------------------------------------------------
     /**
@@ -157,7 +185,7 @@ class VentaController extends Controller
         $detalles = DB::Table('detalle_ventas')
                             ->join('lote_descripcions', 'lote_descripcions.id','=','detalle_ventas.idLote')
                             ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
-                        ->select('detalle_ventas.*','lote_descripcions.vencimiento','articulos.codigo','articulos.descripcion','articulos.marca','articulos.precioVenta',)
+                        ->select('detalle_ventas.*','lote_descripcions.vencimiento','articulos.codigo','articulos.descripcion','articulos.marca','articulos.precioVenta')
                         ->where('detalle_ventas.idVenta','=',$id)
                         ->get();
         
@@ -327,8 +355,10 @@ class VentaController extends Controller
 
     public function agregarArticuloVenta($id)
     {  
-        $articuloSelecionado = loteDescripcion::where('id', $id)
-                                              ->where('estado','1')
+        $articuloSelecionado = loteDescripcion::where('lote_descripcions.id', $id)
+                                              ->where('lote_descripcions.estado','1')
+                                              ->join('articulos','lote_descripcions.articulo_id','=', 'articulos.id')
+                                              ->select('lote_descripcions.*','articulos.codigo','articulos.descripcion','articulos.marca','articulos.precioVenta','articulos.cantidadTotal','articulos.minimoStock','articulos.iva','articulos.estado AS estadoArticulo',DB::raw('0 AS descuento'))
                                               ->get();
         $articulo            = $articuloSelecionado[0];
         if (!$articulo) {

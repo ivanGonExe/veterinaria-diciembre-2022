@@ -36,11 +36,6 @@
     <br>
     <br>
 
-
-
-
-    
-    
 @if(session("articulos") != null)
 <div class="container-fluid d-flex justify-content-center  text-light">
         <div>
@@ -60,35 +55,27 @@
 
     <div class="container-fluid d-flex justify-content-center  text-light">
    
-
-
-
 @php
     $indice = 0;
-    $total = 0;
+    $total  = 0;
     $estado = session("estado"); 
 @endphp
 
 <div class= "container">
  
-
-
 <table id="example"  class="table table-striped" style="width:100%" >
     <thead>
-           
             <tr>
-                
-                <th scope="col">Artículo</th>
-            {{--     <th scope="col">Marca</th> --}}
-                <th scope="col">Cantidad</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Descuento</th>
-                <th scope="col">Subtotal</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">Artículo       </th>
+                <th scope="col">Cantidad       </th>
+                <th scope="col">Precio x ud.   </th>
+                <th scope="col">Descuento x ud.</th>
+                <th scope="col">Subtotal       </th>
+                <th scope="col">Acciones       </th>
             </tr>
         </thead>      
     <tbody>
-    @foreach(session("articulos") as $producto)
+    @foreach(session("articulos") as $producto) // id lote, cantidad, precioCosto
         @php
             $date = date('d-m-Y',strtotime($producto->vencimiento));
         @endphp
@@ -97,21 +84,21 @@
         <td><i class="fa-solid fa-cart-shopping"></i> {{$producto->articulo->descripcion}}/{{$producto->articulo->marca}}</td>
          <td>x {{$producto->unidad}}</td>
         @if($estado[$indice] == 0)
-            <td>{{$producto->articulo->precioVenta}}</td>
-            <td>  </td>
-            <td>{{($producto->unidad)*($producto->articulo->precioVenta)}}</td>
+            <td>${{$producto->precioVenta + $producto->descuento}}</td>
+            <td>${{$producto->descuento}} </td>
+            <td>${{($producto->unidad)*($producto->precioVenta)}}</td>
             @php
                 $indice++;
-                $total += ($producto->unidad)*($producto->articulo->precioVenta);
+                $total += ($producto->unidad)*($producto->precioVenta);
             @endphp
         @else
             <td>{{$producto->articulo->precioEspecial}}</td>
-            <td> {{($producto->unidad)*($producto->articulo->precioEspecial) - ($producto->unidad)*($producto->articulo->precioVenta)}} </td>
-            <td>{{($producto->unidad)*($producto->articulo->precioEspecial)}}</td>
+            <td> {{($producto->unidad)*($producto->precioEspecial) - ($producto->unidad)*($producto->precioVenta)}} </td>
+            <td>{{($producto->unidad)*($producto->precioEspecial)}}</td>
            
             @php
                 $indice++;
-                $total += ($producto->unidad)*($producto->articulo->precioEspecial);
+                $total += ($producto->unidad)*($producto->precioEspecial);
             @endphp
         @endif
         
@@ -124,12 +111,10 @@
             <a class="btn btn-danger rounded-pill p-1"  href="/eleminarUnArticuloVenta/{{$producto->id}}" name="menosUno" title="menos Uno"><i class="fa-solid fa-circle-minus"></i></a>
             <a class="btn btn-secondary rounded-pill p-1"  href="/precioEspecial/{{$producto->id}}" name="PrecioEspecial" title="PrecioEspecial"><i class="fa-solid fa-circle-exclamation"></i></i></a>    
             <button class="btn btn-danger rounded-pill p-1" title="Eliminar"><i class="fa-solid fa-trash-can "></i></button>
-                <!--boton modal  -->
-               <button type="button" class="btn btn-primary rounded-pill p-2 modalTurno "  data-toggle="modal" data-target="#exampleModal" title="Agendar persona al turno">
+        <!--boton modal  -->
+            <button type="button" class="btn btn-primary rounded-pill p-2 modalTurno "  data-toggle ="modal" data-target="#exampleModal" title="Agendar persona al turno" id ="{{$producto->id}}" value="{{$producto->articulo->precioVenta}}">
                 Des <i class="fa-solid fa-percent"></i>
-             </button>
-                                
-
+            </button>                        
         </form></td>
 
     </tr>
@@ -166,52 +151,152 @@
     @endif
 
 
-<!-- Modal -->
+<!-- Modal  de descuento-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+
         <div class="modal-header text-center">
           <h5 class="modal-title text-center text-dark" id="exampleModalLabel">Aplicar Descuento al articulo</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
         <div class="modal-body">
             <div class="form-group  text-center p-3 text-white">
-            <label>Monto a Descontar</label>
-            <input type="text">
-            <br>
-            <label>%</label>
-            <input type="text">
-            <label>Descuento</label>
-            <input type="text">
-            <form action=" " method="POST" id="formulario">
-                @csrf
-         
-                
-        
-                <div class="container-fluid d-flex justify-content-center m-2">
-        {{--        <a href="/personas" class="btn btn-secondary m-2" tabindex="6" id="cancelar">Cancelar</a>  --}}
-        {{--         <button  class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</button>  --}}
-                <a href=" " class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
-                <button type="submit" id='botonGuardar' class="btn btn-primary m-2" tabindex="7">Guardar</button>
-                </div>
-            </form>
+                <form action =" " method="POST" id="formulario">
+                    @csrf
+                    <h5 id = 'tituloModal'></h5>
+                    <br>
+
+                    <label>Precio del producto $</label>
+                    <input type="number" id = "precioProducto" name = "precioProducto" readonly>
+                    <br>
+
+                    <label>Descuento</label>
+                    <label>%</label>
+                    <input type = "number" id = "descuento" name = "descuento" >
+
+                    <label>Monto descontado $</label>
+                    <input type="number" id ="montoDesc" name = "montoDesc">
+                    <div class="container-fluid d-flex justify-content-center m-2">
+                        <a href=" " class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
+                        <button type="submit" id='botonGuardar' class="btn btn-primary m-2" tabindex="7">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
-
-
-
+    </div>
+</div>
 
 </html>
     
 
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="  https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+
+</script>
+<!-- trae los datos para relizar el descuento -->
+<script>
+
+    $(document).ready(function (){
+    
+        let id = 0;
+        let botonesModal  = document.getElementsByClassName("modalTurno");
+        let botonModal    = [];
+        let cantidad      = botonesModal.length;
+        
+        for(let i = 0; i < cantidad; i++){
+            
+            id            = botonesModal[i].id;
+            botonModal[i] = document.getElementById(`${id}`);
+            
+            botonModal[i].addEventListener('click', function(){
+
+                $.ajax({
+                    type: "GET",
+                    url: "/buscarProducto/"+ botonModal[i].id,
+                    data: {
+                        id: botonModal[i].id,
+                        _token: $('input[name="_token"]').val(),
+                    },
+                }).done(function (res) {
+
+                    let producto          = JSON.parse(res);
+                    let tituloModal       = document.getElementById('tituloModal');
+                    let precioProducto    = document.getElementById('precioProducto');
+
+                    tituloModal.innerHTML   = "codigo: " + producto[0].codigo +"<br>"+" Producto: "+producto[0].descripcion+"/"+producto[0].marca;
+                    precioProducto.value    = producto[0].precioVenta;
+                    
+                });
+
+                let formulario       = document.getElementById('formulario');
+                
+                formulario.action    = '/aplicarDescuento/'+botonModal[i].id;
+                
+            });
+        }
+    });
+</script>
+<!-- calculo de porcentaje y controles-->
+<script>
+    let montoDesc = document.getElementById('montoDesc');
+    
+    montoDesc.addEventListener('keyup', function(){
+        
+        let descuento       = document.getElementById('descuento');
+        let precioProducto  = document.getElementById('precioProducto'); 
+        let numDescuento    = parseInt(montoDesc.value);
+        let numPrecio       = parseInt(precioProducto.value);
+        
+        if(numDescuento > numPrecio ){
+            montoDesc.value = numPrecio;
+        }
+        if(montoDesc.value < 0){
+            montoDesc.value = 0; 
+        }
+        
+        descuento.value     = (montoDesc.value*100)/precioProducto.value;  
+    })
+    let precioProducto  = document.getElementById('precioProducto');
+    montoDesc.addEventListener('input',function(){
+        let precioProducto  = document.getElementById('precioProducto');
+        if(montoDesc.value > precioProducto.value ) 
+            montoDesc.value = precioProducto.value;
+        if(montoDesc.value < 0)
+        montoDesc.value = 0; 
+    })
+
+    let descuento = document.getElementById('descuento');
+    descuento.addEventListener('keyup', function(){
+
+        let montoDesc       = document.getElementById('montoDesc');
+        let precioProducto  = document.getElementById('precioProducto');
+        if(this.value > 101 ) 
+            this.value = this.value.slice(0,2);
+        if(this.value < 0)
+            this.value = 0;
+        montoDesc.value     = (precioProducto.value * descuento.value)/100;  
+    })
+
+    descuento.addEventListener('input',function(){
+        if (this.value > 100 ) 
+            this.value = this.value.slice(0,2);
+        if (this.value < 0)
+            this.value = 0; 
+    })
+
+</script>
+
+
+
     <script>
         $(document).ready(function () {
            $('.js-example-basic-single').select2();

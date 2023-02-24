@@ -59,15 +59,18 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('articulos/filter','App\Http\Controllers\ArticuloController@filter');
             Route::get('Lotes/{id}/Vencimientodelete','App\Http\Controllers\loteDescripcionController@Vencimientodelete');
         /*Rutas ventas*/
-            Route::resource('/ventas','App\Http\Controllers\VentaController');
-            Route::get("/precioEspecial/{id}", "App\Http\Controllers\VentaController@cambiarEstadoPrecio");
-            Route::get("/agregarArticuloVenta/{id}", "App\Http\Controllers\VentaController@agregarArticuloVenta");
+            Route::resource('/ventas',                 'App\Http\Controllers\VentaController');
+            Route::get("/precioEspecial/{id}",         "App\Http\Controllers\VentaController@cambiarEstadoPrecio");
+            Route::get("/agregarArticuloVenta/{id}",   "App\Http\Controllers\VentaController@agregarArticuloVenta");
             Route::get("/eleminarUnArticuloVenta/{id}","App\Http\Controllers\VentaController@quitarUnArticuloVenta");
-            Route::delete("/quitarArticuloDeVenta", "App\Http\Controllers\VentaController@quitarArticuloDeVenta")->name('quitarArticulo');
-            Route::get("/cancelarVenta", "App\Http\Controllers\VentaController@cancelarVenta");
-            Route::get("/terminarVenta", "App\Http\Controllers\VentaController@terminarVenta");
-            Route::get("/ventas/total/{id}", "App\Http\Controllers\VentaController@ventasTotal")->name('ventasTotal');
+            Route::delete("/quitarArticuloDeVenta",    "App\Http\Controllers\VentaController@quitarArticuloDeVenta")->name('quitarArticulo');
+            Route::get("/cancelarVenta",               "App\Http\Controllers\VentaController@cancelarVenta");
+            Route::get("/terminarVenta",               "App\Http\Controllers\VentaController@terminarVenta");
+            Route::get("/ventas/total/{id}",           "App\Http\Controllers\VentaController@ventasTotal")->name('ventasTotal');
+            Route::get("/buscarProducto/{id}",         "App\Http\Controllers\VentaController@buscarProducto");
             Route::post("/ventas/confirmarVenta/{id}", "App\Http\Controllers\VentaController@confirmarVenta");
+            Route::post("/aplicarDescuento/{id}",      "App\Http\Controllers\VentaController@aplicarDescuento");
+            
         /*Rutas lote*/
             Route::get('Articulos/{id}/delete','App\Http\Controllers\ArticuloController@destroy');
             Route::resource('/lotes','App\Http\Controllers\loteDescripcionController');
