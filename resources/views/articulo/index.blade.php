@@ -135,7 +135,7 @@ table.dataTable th {
                          }).then((result) => {
                      if (result.isConfirmed) {
                         
-                         location.href = 'Articulos/'+cod+'/delete'; 
+                         location.href = '/articulos/'+cod+'/delete'; 
 
                          /*  Swal.fire(
                         'Eliminado',
