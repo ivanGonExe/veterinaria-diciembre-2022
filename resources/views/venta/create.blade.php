@@ -3,6 +3,35 @@
 .idArticulos p{
     color:red !important;
 }
+.modalTurno{
+    padding: 6px !important;
+    border-radius: 100px!important;
+}
+.eliminar{
+ color:brown!important;
+}
+.eliminar:hover{
+ color:red !important;
+}
+.modal_cuerpo{
+    background-color:#E53935!important;
+    color:white !important;
+    padding: 10px;
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px !important;
+
+}
+input:focus{
+    background-color:#D7DBDD!important;
+}
+.inputPrecio{
+    color:black;
+    background-color:#CFD8DC !important;
+    cursor: not-allowed !important;
+    text-align: center;
+}
+
 </style>
 <!--Jquery-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -106,14 +135,15 @@
             @csrf
             @method('DELETE')
             <input type="hidden" value="{{$indice}}" name="articulo">
-            <a class="btn btn-success rounded-pill p-1"  href="/agregarArticuloVenta/{{$producto->id}}" name="masUno" title="más Uno"><i class="fa-solid fa-circle-plus"></i></a>
-            <a class="btn btn-danger rounded-pill p-1"  href="/eleminarUnArticuloVenta/{{$producto->id}}" name="menosUno" title="menos Uno"><i class="fa-solid fa-circle-minus"></i></a>
-            <a class="btn btn-secondary rounded-pill p-1"  href="/precioEspecial/{{$producto->id}}" name="PrecioEspecial" title="PrecioEspecial"><i class="fa-solid fa-circle-exclamation"></i></i></a>    
-            <button class="btn btn-danger rounded-pill p-1" title="Eliminar"><i class="fa-solid fa-trash-can "></i></button>
+            <a class="btn text-success  p-1 fs-3"  href="/agregarArticuloVenta/{{$producto->id}}" name="masUno" title="más Uno"><i class="fa-solid fa-circle-plus"></i></a>
+            <a class="btn text-danger  p-1 fs-3"  href="/eleminarUnArticuloVenta/{{$producto->id}}" name="menosUno" title="menos Uno"><i class="fa-solid fa-circle-minus"></i></a>
+            <!-- <a class="btn btn-secondary rounded-pill p-1"  href="/precioEspecial/{{$producto->id}}" name="PrecioEspecial" title="PrecioEspecial"><i class="fa-solid fa-circle-exclamation"></i></i></a>     -->
+
         <!--boton modal  -->
-            <button type="button" class="btn btn-primary rounded-pill p-2 modalTurno "  data-toggle ="modal" data-target="#exampleModal" title="Agendar persona al turno" id ="{{$producto->id}}" value="{{$producto->articulo->precioVenta}}">
-                Des <i class="fa-solid fa-percent"></i>
-            </button>                        
+            <button type="button" class="btn btn-primary rounded-pill  modalTurno"  data-toggle ="modal" data-target="#exampleModal" title="Agendar persona al turno" id ="{{$producto->id}}" value="{{$producto->articulo->precioVenta}}">
+                <i class="fa-solid fa-percent"></i>
+            </button>    
+            <button class="btn  p-1  fs-3 eliminar" title="Eliminar"><i class="fa-solid fa-trash-can "></i></button>                    
         </form></td>
 
     </tr>
@@ -155,30 +185,30 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
 
-        <div class="modal-header text-center">
-          <h5 class="modal-title text-center text-dark" id="exampleModalLabel">Aplicar Descuento al articulo</h5>
+        <div class="modal-header bg-dar text-center">
+          <h5 class="modal-title text-center " id="exampleModalLabel">Aplicar Descuento al articulo</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
-        <div class="modal-body">
-            <div class="form-group  text-center p-3 text-white">
-                <form action =" " method="POST" id="formulario">
+        <div class="modal-body modal_cuerpo">
+            <div class="  text-center p-3 ">
+                <form action =" " method="POST" id="formulario" class="text-center ">
                     @csrf
                     <h5 id = 'tituloModal'></h5>
                     <br>
 
-                    <label>Precio del producto $</label>
-                    <input type="number" id = "precioProducto" name = "precioProducto" readonly>
+                    <label>Precio del producto</label><br>
+                    <label>$<input type="number" id = "precioProducto" name = "precioProducto" class="inputPrecio fw-blod" readonly></label>
                     <br>
 
-                    <label>Descuento</label>
-                    <label>%</label>
-                    <input type = "number" id = "descuento" name = "descuento" >
-
-                    <label>Monto descontado $</label>
-                    <input type="number" id ="montoDesc" name = "montoDesc">
+                    <label>Descuento </label><br>
+                    
+                    <label>%<input type = "number" id = "descuento" name = "descuento"  ></label>
+                    <br>
+                    <label>Monto descontado</label><br>
+                    <label>$<input type="number" id ="montoDesc" name = "montoDesc"></label>
                     <div class="container-fluid d-flex justify-content-center m-2">
                         <a href=" " class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
                         <button type="submit" id='botonGuardar' class="btn btn-primary m-2" tabindex="7">Guardar</button>
