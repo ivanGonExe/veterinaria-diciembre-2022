@@ -99,12 +99,13 @@ input:focus{
                 <th scope="col">Cantidad       </th>
                 <th scope="col">Precio x ud.   </th>
                 <th scope="col">Descuento x ud.</th>
+                <th scope="col">Descuento total</th>
                 <th scope="col">Subtotal       </th>
                 <th scope="col">Acciones       </th>
             </tr>
         </thead>      
     <tbody>
-    @foreach(session("articulos") as $producto) // id lote, cantidad, precioCosto
+    @foreach(session("articulos") as $producto) 
         @php
             $date = date('d-m-Y',strtotime($producto->vencimiento));
         @endphp
@@ -113,7 +114,8 @@ input:focus{
          <td>x {{$producto->unidad}}</td>
         @if($estado[$indice] == 0)
             <td>${{$producto->precioVenta + $producto->descuento}}</td>
-            <td>${{$producto->descuento}} </td>
+            <td>-$ {{$producto->descuento}} </td>
+            <td>-$ {{$producto->descuento * $producto->unidad }}</td>
             <td>${{($producto->unidad)*($producto->precioVenta)}}</td>
             @php
                 $indice++;

@@ -70,7 +70,6 @@ class ArticuloController extends Controller
             'codigo'         => 'required| numeric',
             'descripcion'    => 'required| string | max:256 |min:2',
             'marca'          => 'required| string |max:60 | min:2',
-            'precioEspecial' => 'nullable| numeric |max:99999',
             'precioVenta'    => 'required| numeric |max:99999',
             'iva'            => 'required| numeric |max:100',
             'minimoStock'    => 'nullable| numeric',
@@ -87,7 +86,6 @@ class ArticuloController extends Controller
             $Articulos->codigo         = $request->codigo;
             $Articulos->descripcion    = $request->descripcion;
             $Articulos->precioVenta    = $request->precioVenta;
-            $Articulos->precioEspecial = $request->precioEspecial;
             $Articulos->marca          = $request->marca;
             $Articulos->minimoStock    = $request->minimoStock;
             $Articulos->alerta         = $request->alerta;
@@ -150,7 +148,6 @@ class ArticuloController extends Controller
             'codigo'         => 'required| numeric',
             'descripcion'    => 'required| string | max:256 |min:2',
             'marca'          => 'required| string |max:60 | min:2',
-            'precioEspecial' => 'nullable| numeric |max:99999',
             'precioVenta'    => 'required| numeric |max:99999',
             'iva'            => 'required| numeric |max:100',
             'minimoStock'    => 'nullable| numeric',
@@ -161,7 +158,6 @@ class ArticuloController extends Controller
     $Articulos->codigo         = $request->codigo;
     $Articulos->descripcion    = $request->descripcion;
     $Articulos->precioVenta    = $request->precioVenta;
-    $Articulos->precioEspecial = $request->precioEspecial;
     $Articulos->marca          = $request->marca;
     $Articulos->minimoStock    = $request->minimoStock;
     $Articulos->alerta         = $request->alerta;

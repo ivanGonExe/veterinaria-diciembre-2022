@@ -62,17 +62,7 @@
                <br>
                <p class="formulario__input-error">El marca tiene hasta 30 caracteres.Sólo letras y número</p>
              </div>
-                  <!-- Grupo: Precio Especial !-->
-         <div class="mb-3">
-			<div class="formulario__grupo" id="grupo__precioEspecial">
-				<label for="precioEspecial" class="formulario__label" title="Precio especial con descuento" >Precio especial *</label>
-				<div class="formulario__grupo-input">
-              <input type="text" class="form-control formulario__input" name="precioEspecial" id="precioEspecial"  maxlength="8" placeholder="$" aria-describedby="addon-wrapping" required>
-            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-         </div>
-         <br>
-				<p class="formulario__input-error">El precioEspecial solo puede contener números y el maximo son 8 dígitos.</p>
-			</div>
+
       <!-- Grupo: Precio Venta-->
       <div class="mb-3">
         <div class="formulario__grupo" id="grupo__precioVenta">
@@ -168,9 +158,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script >
-/*  $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});  */
 
 </script>
 

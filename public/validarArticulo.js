@@ -6,7 +6,6 @@ const expresiones = {
     minimoStock: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 4
     codigo: /^[0-9]{1,8}$/, // Validar Numero de codigo Solo Numeros y longitud 8
     iva: /^[0-9]{1,2}$/, // 0 - 2 numeros
-    precioEspecial: /^[0-9]{1,8}$/, // 0 - 9 numeros
     precioVenta: /^[0-9]{1,8}$/, // 0 - 8 numeros
     marca: /^([a-zA-Z0-9_\s\.]){1,20}$/, // Letras y espacios, pueden llevar acentos.
     alerta: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 3
@@ -16,7 +15,6 @@ const campos = {
     minimoStock: false,
     codigo: false,
     iva: false,
-    precioEspecial: false,
     seleccionTurno: false,
     precioVenta: false,
     marca: false,
@@ -36,13 +34,6 @@ const validarFormulario = (e) => {
             break;
         case "codigo":
             validarCampo(expresiones.codigo, e.target, "codigo");
-            break;
-        case "precioEspecial":
-            validarCampo(
-                expresiones.precioEspecial,
-                e.target,
-                "precioEspecial"
-            );
             break;
         case "precioVenta":
             validarCampo(expresiones.precioVenta, e.target, "precioVenta");
@@ -106,7 +97,6 @@ formulario.addEventListener("submit", (e) => {
         campos.minimoStock &&
         campos.codigo &&
         campos.iva &&
-        campos.precioEspecial &&
         campos.precioVenta &&
         campos.marca &&
         campos.alerta

@@ -442,19 +442,11 @@ public function terminarVenta()
     // Recorrer carrito de compras
     foreach ($articulos as $unArticulo) {
         // El producto que se vende...
-        $detalleVenta           = new detalleVenta();
-        $detalleVenta->idVenta  = $idVenta;
-        $detalleVenta->cantidad = $unArticulo->unidad;
-
-        if($estado[$indice] == 0){
-            $detalleVenta->subtotal  = ($unArticulo->unidad)*($unArticulo->articulo->precioVenta);
-            $detalleVenta->descuento = 0;
-        }
-        else{
-            $detalleVenta->subtotal  = ($unArticulo->unidad)*($unArticulo->articulo->precioEspecial);
-            $detalleVenta->descuento = ($unArticulo->unidad)*(($unArticulo->articulo->precioEspecial)-($unArticulo->articulo->precioVenta));
-        }
-
+        $detalleVenta            = new detalleVenta();
+        $detalleVenta->idVenta   = $idVenta;
+        $detalleVenta->cantidad  = $unArticulo->unidad;
+        $detalleVenta->subtotal  = ($unArticulo->unidad)*($unArticulo->precioVenta);
+        $detalleVenta->descuento = $unArticulo->descuento;
         $indice ++;
         $total  += $detalleVenta->subtotal;
         $detalleVenta->idLote = $unArticulo->id;
@@ -533,7 +525,7 @@ public function terminarVenta()
     * @param  int  $id
     */
     public function confirmarVenta(Request $request, $id)
-    {
+    { 
         $venta = Venta::find($id);
 
         if($request->get('pago')<$venta->total){

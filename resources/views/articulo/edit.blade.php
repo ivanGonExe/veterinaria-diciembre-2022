@@ -64,17 +64,6 @@
        <br>
        <p class="formulario__input-error">El marca tiene hasta 30 caracteres.Sólo letras y número</p>
      </div>
-          <!-- Grupo: Precio Especial !-->
- <div class="mb-3">
-    <div class="formulario__grupo" id="grupo__precioEspecial">
-        <label for="precioEspecial" class="formulario__label" title="Precio especial con descuento" >Precio especial *</label>
-        <div class="formulario__grupo-input">
-      <input type="text" class="form-control formulario__input" name="precioEspecial" id="precioEspecial"  maxlength="8" value ="{{$articulos->precioEspecial}}" aria-describedby="addon-wrapping" required>
-    <i class="formulario__validacion-estado fas fa-times-circle"></i>
- </div>
- <br>
-        <p class="formulario__input-error">El precioEspecial solo puede contener números y el maximo son 8 dígitos.</p>
-    </div>
 <!-- Grupo: Precio Venta-->
 <div class="mb-3">
 <div class="formulario__grupo" id="grupo__precioVenta">
@@ -98,7 +87,7 @@
      
             <p class="formulario__input-error">El I.V.A solo puede contener números </p>
         </div>
-
+        <br>
      <!-- Grupo: minimoStock-->
      <div class="mb-3">
         <div class="formulario__grupo" id="grupo__minimoStock">

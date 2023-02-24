@@ -6,7 +6,6 @@ const expresiones = {
     minimoStock: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 4
     codigo: /^[0-9]{1,8}$/, // Validar Numero de codigo Solo Numeros y longitud 8
     iva: /^[0-9]{1,2}$/, // 0 - 2 numeros
-    precioEspecial: /^[0-9]{1,8}$/, // 0 - 9 numeros
     precioVenta: /^[0-9]{1,8}$/, // 0 - 8 numeros
     marca: /^([a-zA-Z0-9_\s\.]){1,20}$/, // Letras y espacios, pueden llevar acentos.
     alerta: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 3
@@ -16,7 +15,6 @@ const campos = {
     minimoStock: false,
     codigo: false,
     iva: false,
-    precioEspecial: false,
     seleccionTurno: false,
     precioVenta: false,
     marca: false,
@@ -36,13 +34,6 @@ const validarFormulario = (e) => {
             break;
         case "codigo":
             validarCampo(expresiones.codigo, e.target, "codigo");
-            break;
-        case "precioEspecial":
-            validarCampo(
-                expresiones.precioEspecial,
-                e.target,
-                "precioEspecial"
-            );
             break;
         case "precioVenta":
             validarCampo(expresiones.precioVenta, e.target, "precioVenta");
@@ -106,7 +97,6 @@ formulario.addEventListener("submit", (e) => {
         campos.minimoStock &&
         campos.codigo &&
         campos.iva &&
-        campos.precioEspecial &&
         campos.precioVenta &&
         campos.marca &&
         campos.alerta
@@ -148,7 +138,6 @@ let descripcion = document.getElementsByName("descripcion");
 let minimoStock = document.getElementsByName("minimoStock");
 let iva = document.getElementsByName("iva");
 let codigo = document.getElementsByName("codigo");
-let precioEspecial = document.getElementsByName("precioEspecial");
 let precioVenta = document.getElementsByName("precioVenta");
 let marca = document.getElementsByName("marca");
 let alerta = document.getElementsByName("alerta");
@@ -158,7 +147,6 @@ validarCampo(expresiones.descripcion, descripcion[0], "descripcion");
 validarCampo(expresiones.minimoStock, minimoStock[0], "minimoStock");
 validarCampo(expresiones.iva, iva[0], "iva");
 validarCampo(expresiones.codigo, codigo[0], "codigo");
-validarCampo(expresiones.precioEspecial, precioEspecial[0], "precioEspecial");
 validarCampo(expresiones.precioVenta, precioVenta[0], "precioVenta");
 validarCampo(expresiones.marca, marca[0], "marca");
 validarCampo(expresiones.alerta, alerta[0], "alerta");

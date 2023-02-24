@@ -34,14 +34,13 @@
         <thead>
            
            <tr>
-               <th scope="col"class="text-center">Fecha</th>
                <th scope="col"class="text-center">Cod. Artículo</th>
                <th scope="col"class="text-center">Nombre</th>
                <th scope="col"class="text-center">Marca</th>
-               <th scope="col"class="text-center">Precio</th>
-         {{--       <th scope="col">Fecha de vencimiento Lote</th> --}}
+               <th scope="col"class="text-center">Precio x ud.</th>
                <th scope="col"class="text-center">Cantidad</th>
-               <th scope="col"class="text-center">Descuento</th>
+               <th scope="col"class="text-center">Descuento x ud.</th>
+               <th scope="col"class="text-center">Descuento total</th>
                <th scope="col"class="text-center">Subtotal</th>
                
               
@@ -54,19 +53,13 @@
         
             @foreach($detalles as $unDetalle)
             <tr class="text-center">
-                <td id="fecha">{{$venta->fecha}}</td>
                 <td id="codigo">{{$unDetalle->codigo}}</td>
-
                 <td id="descripcion">{{$unDetalle->descripcion}}</td>
-
                 <td id="marca">{{$unDetalle->marca}}</td>
-
                 <td id="precio">${{$unDetalle->subtotal/$unDetalle->cantidad}}</td>
-
-         {{--        <td>{{$unDetalle->vencimiento}}</td>
- --}}
                 <td id="cantidad">{{$unDetalle->cantidad}}</td>
-                <td id="descuento">${{$unDetalle->descuento}}</td>
+                <td id="descuento">-${{$unDetalle->descuento}}</td>
+                <td >-${{$unDetalle->descuento * $unDetalle->cantidad}}</td>
                 <td id="subtotal">${{$unDetalle->subtotal}}</td>
                 
                
@@ -107,7 +100,6 @@
 let productos =  @json($detalles);
 console.log(productos);
 //la fecha es única por eso queda afuera del recorrido 
-let fecha = document.getElementById("fecha").innerHTML;
 let total =   document.getElementById("total"). textContent;
 let pago =  document.getElementById("pago"). textContent;
 let subtotal = document.getElementById("subtotal"). textContent;

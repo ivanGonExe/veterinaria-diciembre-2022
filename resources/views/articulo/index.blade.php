@@ -44,9 +44,7 @@ table.dataTable th {
                 <th sacope="col" class="text-center">codigo</th>
                 <th scope="col"class="text-center">Descripcion</th>
                 <th scope="col"class="text-center">Marca</th>
-                <!-- <th scope="col">Lote</th> -->
                 <th scope="col"class="text-center">Precio</th>
-                <th scope="col"class="text-center">Precio especial</th>
                 <th scope="col"class="text-center">Categoría</th>
                 <th scope="col"class="text-center">Acciones</th>
             </tr>
@@ -59,7 +57,6 @@ table.dataTable th {
                     <td>{{$unArticulo->descripcion}}</td>
                     <td>{{$unArticulo->marca}}</td>
                     <td>${{$unArticulo->precioVenta}}</td>
-                    <td>${{$unArticulo->precioEspecial}}</td>
                     @if (empty($unArticulo->categoria->descripcion))
                         <td></td>
                     @else

@@ -36,7 +36,7 @@
   <label for="unidades" class="formulario__label">Cantidad de Unidades*</label>
   <div class="formulario__grupo-input px-2">
    
-    <input id="unidades" name="unidades" type="number" class="form-control formulario__input" value ='{{$lote->unidad}}' maxlength="8" required>
+    <input id="unidades" name="unidades" type="number" class="form-control formulario__input" value ='{{$lote->unidad}}' maxlength="8"  required>
 
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>

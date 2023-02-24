@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('descripcion')->nullable();
             $table->string('marca')->nullable();
             $table->float('precioVenta')->nullable();
-            $table->float('precioEspecial')->nullable();
             $table->float('cantidadTotal')->nullable();
             $table->integer('minimoStock')->nullable();
             $table->float('iva')->nullable();

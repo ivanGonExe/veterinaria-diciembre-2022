@@ -17,10 +17,6 @@
             <input id="marca" name="marca" type="text" class="form-control" value ="{{$articulos->marca}}" tabindex="2" Disabled>
         </div>
         <div class="mb-3">
-            <label for="" class="form-label">Precio Especial</label>
-            <input id="precioEspecial" name="precioEspecial" type="text" class="form-control" value ="{{$articulos->precioEspecial}}" tabindex="5"  Disabled>
-        </div>
-        <div class="mb-3">
             <label for="" class="form-label">Precio Venta</label>
             <input id="precioVenta" name="precioVenta" type="text" class="form-control" value ="{{$articulos->precioVenta}}" tabindex="5" Disabled>
         </div>
