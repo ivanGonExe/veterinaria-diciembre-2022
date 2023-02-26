@@ -46,7 +46,7 @@
     <div class="formulario__grupo" id="grupo__descripcion">
     <label for="descripcion" class="formulario__label" title="Caracteristicas del producto.Breve descripción del mismo" >Descripcion *</label>
     <div class="formulario__grupo-input">
-    <input type="text" class="form-control formulario__input" id="descripcion" name="descripcion" value ="{{$articulos->descripcion}}" maxlength="50" required>
+    <input type="text" class="form-control formulario__input" id="descripcion" name="descripcion" value ="{{$articulos->descripcion}}" maxlength="200" required>
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
 </div>
 <br>

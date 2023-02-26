@@ -16,8 +16,12 @@ class Usuario_Vet_pel
      */
     public function handle(Request $request, Closure $next)
     {
+        if(empty(auth()) == false){
+            return redirect('/login');   
+         }
         if(auth()->user()->tipo == 'veterinario' or auth()->user()->tipo == 'admin' or auth()->user()->tipo == 'peluquero' ){
             return $next($request);
         }
+        return redirect('/login');
     }
 }

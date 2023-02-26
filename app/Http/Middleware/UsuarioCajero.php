@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use phpDocumentor\Reflection\Types\Null_;
+use App\Http\Middleware\Auth;
 
 class UsuarioCajero
 {
@@ -16,10 +18,17 @@ class UsuarioCajero
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
+    { 
+         if(empty(auth()) == false){
+            return redirect('/login');   
+         }
+        
         if(auth()->user()->tipo == 'cajero' or auth()->user()->tipo == 'admin' ){
             return $next($request);
         }
-        return redirect(url()->previous());
+        else{
+        return redirect('/login');
+        }
+        
     }
 }

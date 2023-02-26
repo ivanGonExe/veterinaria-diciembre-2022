@@ -68,7 +68,7 @@ class ArticuloController extends Controller
     {   
         $request->validate([
             'codigo'         => 'required| numeric',
-            'descripcion'    => 'required| string | max:256 |min:2',
+            'descripcion'    => 'required| string | max:200 |min:2',
             'marca'          => 'required| string |max:60 | min:2',
             'precioVenta'    => 'required| numeric |max:99999',
             'iva'            => 'required| numeric |max:100',
@@ -146,7 +146,7 @@ class ArticuloController extends Controller
     {
         $request->validate([
             'codigo'         => 'required| numeric',
-            'descripcion'    => 'required| string | max:256 |min:2',
+            'descripcion'    => 'required| string | max:200 |min:2',
             'marca'          => 'required| string |max:60 | min:2',
             'precioVenta'    => 'required| numeric |max:99999',
             'iva'            => 'required| numeric |max:100',

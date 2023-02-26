@@ -40,9 +40,8 @@ table.dataTable th {
         <thead>
            
             <tr>
-                
-                <th sacope="col" class="text-center">codigo</th>
-                <th scope="col"class="text-center">Descripcion</th>
+                <th sacope="col" class="text-center">Código</th>
+                <th scope="col"class="text-center text-break col-3">Descripción</th>
                 <th scope="col"class="text-center">Marca</th>
                 <th scope="col"class="text-center">Precio</th>
                 <th scope="col"class="text-center">Categoría</th>
@@ -54,7 +53,7 @@ table.dataTable th {
                 <tr>
                     
                     <td>{{$unArticulo->codigo}}</td>
-                    <td>{{$unArticulo->descripcion}}</td>
+                    <td class='text-break col-3'>{{$unArticulo->descripcion}}</td>
                     <td>{{$unArticulo->marca}}</td>
                     <td>${{$unArticulo->precioVenta}}</td>
                     @if (empty($unArticulo->categoria->descripcion))

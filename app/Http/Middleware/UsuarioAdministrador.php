@@ -19,6 +19,6 @@ class UsuarioAdministrador
         if(auth()->user()->tipo == 'admin' ){
             return $next($request);
         }
-        return redirect(url()->previous());
+        return redirect('/login');
     }
 }

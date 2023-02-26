@@ -17,10 +17,13 @@ class UsuarioPeluquero
      */
     public function handle(Request $request, Closure $next)
     {
+        if(empty(auth()) == false){
+            return redirect('/login');   
+         }
         if(auth()->user()->tipo == 'peluquero' or auth()->user()->tipo == 'admin'){
             return $next($request);
         }
-        return redirect(url()->previous());
+        return redirect('/login');
 
         return $next($request);
     }
