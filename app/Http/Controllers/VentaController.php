@@ -394,7 +394,7 @@ private function agregarArticuloACarrito($articulo)
     } else {
 
         if ($articulos[$posibleIndice]->unidad + 1 > $articulo->unidad) {
-            $mensaje="No se pueden agregar más productos de este tipo, se quedarían sin existencia";
+            $mensaje="No se pueden agregar más productos de este tipo, no tiene más stock";
             Session::flash('message',$mensaje);
             return redirect()
                         ->route("ventas.create");
