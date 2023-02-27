@@ -19,12 +19,12 @@ class UsuarioPeluquero
     {
         if(empty(auth()) == false){
             return redirect('/login');   
-         }
+        }
         if(auth()->user()->tipo == 'peluquero' or auth()->user()->tipo == 'admin'){
             return $next($request);
         }
-        return redirect('/login');
-
-        return $next($request);
+        else{
+            return redirect('/login');
+        }
     }
 }

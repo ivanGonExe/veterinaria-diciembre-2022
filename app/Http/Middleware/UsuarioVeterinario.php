@@ -19,10 +19,12 @@ class UsuarioVeterinario
     {
         if(empty(auth()) == false){
             return redirect('/login');   
-         }
+        }
         if(auth()->user()->tipo == 'veterinario' or auth()->user()->tipo == 'admin'){
             return $next($request);
         }
-        return redirect('/login');
+        else{
+            return redirect('/login');
+        }
     }
 }

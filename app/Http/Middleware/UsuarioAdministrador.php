@@ -15,10 +15,15 @@ class UsuarioAdministrador
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
+    {   
+        if(empty(auth()) == false){
+            return redirect('/login');   
+        }
         if(auth()->user()->tipo == 'admin' ){
             return $next($request);
         }
-        return redirect('/login');
+        else{
+            return redirect('/login');
+        }
     }
 }
