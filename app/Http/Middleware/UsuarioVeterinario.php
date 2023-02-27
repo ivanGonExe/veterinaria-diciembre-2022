@@ -17,7 +17,7 @@ class UsuarioVeterinario
      */
     public function handle(Request $request, Closure $next)
     {
-        if(empty(auth()) == false){
+        if(empty(auth()) == true){
             return redirect('/login');   
         }
         if(auth()->user()->tipo == 'veterinario' or auth()->user()->tipo == 'admin'){
