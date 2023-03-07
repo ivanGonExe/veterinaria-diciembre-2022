@@ -26,11 +26,11 @@ body{
 	width: 600px;
 	background: #f1f1f1;
 	height: auto px;
-	padding: 80px 40px; 
+	padding: 20px 20px; 
 	border-radius: 10px;
 	position: absolute;
 	left: 50%;
-	top: 85%;
+	top: 65%;
 	transform: translate(-50%, -50%);
 	box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
 }
@@ -107,6 +107,10 @@ body{
 	transition: .5s;
 }
 
+.botonVolver{
+    padding-top: 50px;
+}
+
 </style>
 @section('contenido')
 
@@ -116,6 +120,9 @@ body{
     <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
+<div class='text-end botonVolver '>
+    <a type=""class="btn btn-secondary rounded-pill m-1 p-2"  id="botonVolver" href="{{url()->previous()}}"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+</div>
 <input type="hidden" id="nombre" value="{{$persona->nombre}} {{$persona->apellido}}">
 <input type="hidden" id="telefono" value="{{$celular}}">
 <input type="hidden" id="fecha" value="{{$fecha}}">

@@ -106,7 +106,12 @@ class MascotaController extends Controller
 
         $persona  = Persona::find($id);
 
-        return view('mascota.index')->with('mascotas', $mascotas)->with('persona',$persona);
+        $url = url()->previous();
+
+        return view('mascota.index')
+                ->with('mascotas', $mascotas)
+                ->with('persona',$persona)
+                ->with('url',$url);
     }
      /**
      * Display a listing of the resource.

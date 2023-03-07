@@ -42,8 +42,11 @@ table.dataTable td {
     </div>
 
     @isset($persona)
+    <div class='container'>
+        <a type=""class="btn btn-secondary rounded-pill m-1 p-2"  id="botonVolver" href="{{$url}}"><i class="fa-solid fa-arrow-rotate-left"></i></a>
         <a href="/mascotas/create/{{$persona->id}} " type="button" class="btn btn-primary rounded-pill  p-2" title="Nuevo mascota">+ Mascota <i class="fa-solid fa-dog"></i></a>
         <p class="text-center p-2 m-2 fs-3 fw-bold text-dark" >Cliente: {{$persona->nombre}} {{$persona->apellido}} </p>  
+    </div>  
     @endisset
     <table id="example" class="table table-striped text-center" style="width:100%">
         
