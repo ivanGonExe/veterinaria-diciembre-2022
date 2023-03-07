@@ -207,10 +207,10 @@ input:focus{
 
                     <label>Descuento </label><br>
                     
-                    <label>%<input type = "number" id = "descuento" name = "descuento" step="0.1" ></label>
+                    <label>%<input type = "number" id = "descuento" name = "descuento" step="0.10" ></label>
                     <br>
                     <label>Monto descontado</label><br>
-                    <label>$<input type="number" id ="montoDesc" name = "montoDesc" ></label>
+                    <label>$<input type="number" id ="montoDesc" name = "montoDesc" step="0.10"></label>
                     <div class="container-fluid d-flex justify-content-center m-2">
                         <a href=" " class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
                         <button type="submit" id='botonGuardar' class="btn btn-primary m-2" tabindex="7">Guardar</button>

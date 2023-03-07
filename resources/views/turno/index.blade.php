@@ -301,6 +301,7 @@
    if(id == 5){
       $('.editar').hide();
       $('.cancelar').hide();
+      $('.mascota').hide();
    }
 </script>
 
