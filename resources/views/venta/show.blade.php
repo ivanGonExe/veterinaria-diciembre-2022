@@ -142,15 +142,15 @@ let punteroY = 70;
  punteroX = punteroX+30;
 doc.text(productos[i].codigo.toString(),punteroX,punteroY);
 punteroX = punteroX+30;
-let cadena = productos[i].descripcion.substring(0,24);
+let cadena = productos[i].descripcion.substring(0,20);
   doc.text(cadena, punteroX ,punteroY);
-  punteroX= punteroX+70;
+  punteroX= punteroX+72;
   doc.text("$"+productos[i].precioVenta.toString(), punteroX , punteroY);
   punteroX= punteroX+40;
   doc.text("$"+(productos[i].subtotal).toString(), punteroX , punteroY);
   punteroY= punteroY+10;
   punteroX=10;
-  doc.text("Descuento: (-$"+(productos[i].descuento*productos[i].cantidad).toString()+")", punteroX , punteroY);
+  doc.text("                                            Descuento: (-$"+(productos[i].descuento*productos[i].cantidad).toString()+")", punteroX , punteroY);
   punteroX=10;
   punteroY= punteroY+5;
   doc.text("-------------------------------------------------------------------------------------------------------", punteroX,punteroY);
@@ -166,7 +166,7 @@ let cadena = productos[i].descripcion.substring(0,24);
 }  
 doc.text("-------------------------------------------------------------------------------------------------------", punteroX,punteroY);
 punteroY= punteroY+10;
-punteroX=punteroX+140;
+punteroX=punteroX+150;
 doc.text(total,punteroX , punteroY); 
 punteroY= punteroY+10;
 

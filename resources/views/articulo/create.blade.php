@@ -56,7 +56,7 @@
                 <div class="formulario__grupo" id="grupo__marca">
                  <label for="marca" class="formulario__label" title="Empresa a cual pertenece el producto">Marca *</label>
                  <div class="formulario__grupo-input">
-                 <input type="text" class="form-control formulario__input" id="marca" name="marca" placeholder=" " maxlength="20" required>
+                 <input type="text" class="form-control formulario__input" id="marca" name="marca" placeholder=" " maxlength="60" required>
                  <i class="formulario__validacion-estado fas fa-times-circle"></i>
                </div>
                <br>

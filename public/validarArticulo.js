@@ -2,7 +2,7 @@ const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 
 const expresiones = {
-    descripcion: /^([a-zA-Z0-9_\s\.]){1,200}$/, // Letras y espacios, pueden llevar acentos.
+    descripcion: /^([a-zA-Z0-9_-\s\.\/]){1,200}$/, // Letras y espacios, pueden llevar acentos.
     minimoStock: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 4
     codigo: /^[0-9]{1,8}$/, // Validar Numero de codigo Solo Numeros y longitud 8
     iva: /^[0-9]{1,2}$/, // 0 - 2 numeros
