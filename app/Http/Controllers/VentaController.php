@@ -94,6 +94,50 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function  estadisticaVentas($id)
+    { 
+        $año         = $id;
+        $fechaActual = Carbon::createFromDate($id.'-12-31');
+        $mesfor      = $fechaActual->format('m')-1+1;
+        $año         = $fechaActual->format('Y');
+        $arreglo     = []; 
+
+        for($i=12; $i>0; $i--){
+            $mesFecha    = $fechaActual->format('m');
+            $mesInicio   = $año."-".$mesFecha."-01";
+            $diasFin     = $fechaActual->lastOfMonth()->endOfday()->format('d');
+            $mesFin      = $año."-".$mesFecha."-".$diasFin;
+            
+            $venta = DB::table('ventas')
+                                ->join('detalle_ventas','ventas.id','=','detalle_ventas.idVenta')
+                              ->select(DB::raw('SUM(ventas.total) AS ventaMes'))
+                              ->whereBetween('fecha',[$mesInicio, $mesFin ])
+                              ->get();
+
+           if($venta[0]->ventaMes == null){
+                $arreglo[$i]=0;
+           }
+           else{
+                $arreglo[$i]= $venta[0]-> ventaMes;
+           } 
+            $mesFecha    = $mesFecha-1;
+            $fechaActual = Carbon::createFromDate($año,$mesFecha,12);
+         }
+         $labels      = array('Enero','febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'); 
+         $orientecion ='x';
+         
+         return view('estadistica.estadisticaVentas')
+                    ->with('arreglo', $arreglo)
+                    ->with('labels',$labels)
+                    ->with('año',$año);        
+    }
+   
+//-----------------------------------------------------------
+    /**
+     * estadistica ganancia por mes.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function gananciaPorMes($id)
     {  
         $año = $id;

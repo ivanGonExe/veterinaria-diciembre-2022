@@ -34,7 +34,7 @@
                     <td>{{$unaPersona->direccion}}</td>
                     <td>{{$unaPersona->telefonos->codigoArea}}{{$unaPersona->telefonos->numero}}</td>
                     <td>   
-                        <button class="btn btn recuperar" title="Recuperar"  id="{{$unaPersona->id}}" value= '{{$unaPersona->id}}'><div class="text-success"><i class="fa-solid fa-user-plus"></i></div></button>
+                    <button class="btn btn recuperar" title="Recuperar"  id="{{$unaPersona->id}}" value= '{{$unaPersona->id}}'><div class="text-success"><i class="fa-solid fa-user-plus"></i></div></button>
                     </td>
                 </tr>
             @endforeach

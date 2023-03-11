@@ -188,6 +188,7 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
     Route::get('/estadistica/ganancia/por_mes/{id}','App\Http\Controllers\VentaController@gananciaPorMes');
     Route::get('/estadistica/articulos/MasVendidos/{id}','App\Http\Controllers\VentaController@articulosMasVendidos');
     Route::get('/estadistica/clientesNuevosPorMes/{id}','App\Http\Controllers\PersonaController@clientesNuevosPorMes');
+    Route::get('/Estadistica/ventas/{id}',[App\Http\Controllers\VentaController::class, 'estadisticaVentas'] );
     
     });
     Route::get('/noticias', [App\Http\Controllers\HomeController::class, 'posteos']);

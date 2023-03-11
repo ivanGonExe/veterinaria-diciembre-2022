@@ -209,7 +209,8 @@ a{
             <div class="dropdown">
               <li><a class="text-white"><i class="fa-sharp fa-solid fa-chart-simple text-white"></i> Estadisticas</a></li>
               <div class="dropdown-content ">
-                <li><a href="/estadistica/ganancia/por_mes/{{$añoActual}}">Ventas</a></li>
+              <li><a href="/Estadistica/ventas/{{$añoActual}}">Ventas</a></li>
+                <li><a href="/estadistica/ganancia/por_mes/{{$añoActual}}">Ganacia</a></li>
                   <li><a href="/estadistica/articulos/MasVendidos/{{$mesActual}}">Articulos</a></li>
                     <li><a href="/estadistica/clientesNuevosPorMes/{{$añoActual}}">Clientes</a></li>
               </div>
