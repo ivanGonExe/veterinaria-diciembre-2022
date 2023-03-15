@@ -56,11 +56,11 @@
 
 <p class="barra"><br></p>
 <div class="row">
-<div class="col-2"></div>
-<div class="col-8"><div class="container">
-<canvas id="myChart" width="60%" height="20%"></canvas>
+<div class="col-3"></div>
+<div class="col-6"><div class="container">
+<canvas id="myChart" style="width:40% ;height:10%;"></canvas>
 </div></div>
-<div class="col-2"></div>
+<div class="col-3"></div>
 
 <script>
     let botonMas  = document.getElementById('masAnio');
@@ -86,10 +86,10 @@ let arreglo    = Object.values(arregloAux);
 let salida     = @json($labels);
 
 const ctx      = document.getElementById('myChart').getContext('2d');
-Chart.defaults.font.size = 21;
+Chart.defaults.font.size = 15;
 
 const myChart  = new Chart(ctx, {
-   type: 'bar',
+   type: 'pie',
     data: {
        labels:@json($labels),
         datasets: [{
@@ -118,7 +118,7 @@ const myChart  = new Chart(ctx, {
         }]
     },
     options: {
-        fontSize: 10,
+        fontSize: 5,
     indexAxis: 'y',
     }
   
