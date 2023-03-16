@@ -64,8 +64,8 @@ padding-left: 3rem;
 
 }
 body{
-  min-height: 150vh;
-  background-color: rgba(100, 83, 153, 0.3) !important;
+ 
+  background-color: rgba(0, 0, 0, 0.3) !important;
 }
 .boton_cliente{
       width: 200px;
@@ -192,7 +192,7 @@ a{
 <div class="wrapper">
   <div class="sidebar">
               <div class="text-center m-1 p-1">
-              <img src="/iconos/logo_footer.png"  alt="logo_principal" height=100 width=100 >
+              <img src="/iconos/logo_footer.png"  alt="logo_principal" height=120 width=120 >
               </div>
      
   <div class="content">

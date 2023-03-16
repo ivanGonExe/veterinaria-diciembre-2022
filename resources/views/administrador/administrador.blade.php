@@ -11,12 +11,12 @@
   </div>   
   <div class="container-fluid">
   <div class="row">
-  <div class="col-1"></div>
-  <div class="col-10 text-center">
+  <div class="col-2"></div>
+  <div class="col-8 text-center">
 
      <img src="../iconos/fondo_administrador.png" alt="administrador" height="500" width="500" > 
    </div>
-   <div class="col-1 "></div>
+   <div class="col-2 "></div>
   </div>
   </div>
 @endsection
