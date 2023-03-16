@@ -1,14 +1,6 @@
 @extends('administrador.plantillaAdmin')
 <style>
-body{
-  padding: 0px;
-  margin: 0px;
-}
-.container{
-  width: 100%;
-  height: 500px;
 
-} 
 
 </style>
 <body>
@@ -22,7 +14,7 @@ body{
   <div class="col-1"></div>
   <div class="col-10 text-center">
 
-     <img src="../iconos/fondo_administrador.png" alt="administrador" height="600" width="600" > 
+     <img src="../iconos/fondo_administrador.png" alt="administrador" height="500" width="500" > 
    </div>
    <div class="col-1 "></div>
   </div>

@@ -10,9 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <!-- estilos CSS -->
-  <link rel="stylesheet" type="text/css" href="{{asset('estiloLogin.css')}}">
-  <link rel="icon" href={{asset('iconos/huella.png')}} >
+  
         <!-- data table CSS-->
   {{-- <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css"  href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
@@ -22,10 +20,18 @@
   <link rel="stylesheet" type="text/css"  href= "https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" type="text/css"  href= "https://cdn.datatables.net/fixedheader/3.3.1/css/fixedHeader.bootstrap.min.css">
   <link rel="stylesheet" type="text/css"  href= "https://cdn.datatables.net/responsive/2.4.0/css/responsive.bootstrap.min.css">
+  <!-- estilos CSS -->
+  <link rel="stylesheet" type="text/css" href="{{asset('estiloLogin.css')}}">
+  <link rel="icon" href={{asset('iconos/huella.png')}} >
 
 
-
-<title>Administrador</title>
+  <title>Menu Administrador </title>
+  <!-- jquery-->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin ="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('estiloAdmin.css')}}">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
 
 <style>
 .boton_crear {
@@ -144,6 +150,7 @@ background: radial-gradient(to bottom right, #5718EC, #43989E);
   position: relative;
  
   width: 100%;
+ 
   overflow: auto;
   box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
 }
@@ -179,27 +186,18 @@ a{
     $mesActual= Carbon\Carbon::now()->format('m');
  @endphp
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Menu Administrador </title>
-    <!-- jquery-->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin ="anonymous"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="stylesheet" type="text/css" href="{{asset('estiloAdmin.css')}}">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
- 
-</head>
+
 <body>
 
 <div class="wrapper">
   <div class="sidebar">
               <div class="text-center m-1 p-1">
-              <img src="/iconos/logo_footer.png"  alt="logo_principal" height=130 width=130 >
+              <img src="/iconos/logo_footer.png"  alt="logo_principal" height=100 width=100 >
               </div>
      
-  
+  <div class="content">
+
+ 
         <ul>
             <li><a href="/login/administrador"><i class="fas fa-home"></i> Inicio</a></li>
             <li><a href="{{'/usuario'}}" title="crear usuarios"><i class="fa-solid fa-users" ></i> Usuarios</a></li>
@@ -232,7 +230,7 @@ a{
    
     </div>
 
-
+  </div>
 
     @yield('contenido')
 
