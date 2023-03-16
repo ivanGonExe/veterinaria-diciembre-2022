@@ -100,40 +100,52 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         let monto     = document.getElementById('pago');
         let divVuelto = document.getElementById('contenedorVuelto');
 
-       
-
         monto.addEventListener('keyup',function(){
+
         let montoAux = parseFloat(document.getElementById('pago').value);
         let totalAux = parseFloat(document.getElementById('total').value);
+
             if(montoAux < totalAux){
+
+                if(document.getElementById("vuelto")){
+                    document.getElementById("vuelto").remove();
+                }
                 
-                boton.disabled=true;
+                let texto      = document.createTextNode('vuelto: $');
+                boton.disabled = true;
                 
             }else if(montoAux >= totalAux){
 
-                boton.disabled = false;
-                document.getElementById("vuelto").remove();
-
-                let vueltoCal = montoAux - totalAux;
-                let h4        = document.createElement('h4');
+                if(document.getElementById("vuelto")){
+                    document.getElementById("vuelto").remove();
+                }
+                boton.disabled    = false;
+                let vueltoCalAux  = montoAux - totalAux;
+                let vueltoCal     = vueltoCalAux.toFixed(2);
+                let h4            = document.createElement('h4');
 
                 h4.setAttribute('id','vuelto');
-
+                 
                 if(vueltoCal <= 0 ){
+
+                    if(document.getElementById("vuelto")){
+                        document.getElementById("vuelto").remove();
+                    }
+
                     let texto = document.createTextNode('vuelto: $');
                     h4.append(texto);
                     divVuelto.append(h4);
                 }else{
+
+                    if(document.getElementById("vuelto")){
+                        document.getElementById("vuelto").remove();
+                    }
+                    
                     let texto = document.createTextNode('vuelto: $'+ vueltoCal);
                     h4.append(texto);
                     divVuelto.append(h4);
-                }
-               
-                
-                
+                }   
             }
-            
-
         })
     </script>
 </body>
