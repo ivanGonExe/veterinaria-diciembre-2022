@@ -50,15 +50,15 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         <div class="row text-center"> 
             <div class="col-6">
                 <h4 class="text-black" >Costo total: ${{$venta->total}}</h4>
-                <input type='hidden' id='total' value ='{{$venta->total}}'>
+                <input type='hidden' id='total' id="total" value ='{{$venta->total}}' step="0.1">
                 <div id="contenedorVuelto">
-                        <h4 class="text-black " id="vuelto" >Vuelto: </h4>
+                        <h4 class="text-black " id="vuelto" step="0.1" >Vuelto: </h4>
                 </div>
             </div>
 
 
             <div class="col-6">
-                <label class="pesos text-dark">$<label><input type="number" name="pago" value="0">
+                <label class="pesos text-dark">$<label><input type="number" name="pago" id="pago" step="0.1" >
             </div>
         </div>
         <div class="row"> 
@@ -95,22 +95,26 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     </script>
     <script>
         let boton     = document.getElementById('boton');
-        let total     = document.getElementById('total');
         let vuelto    = document.getElementById('vuelto');
-        let monto     = document.getElementsByName('pago')[0];
+        let total     = document.getElementById('total');
+        let monto     = document.getElementById('pago');
         let divVuelto = document.getElementById('contenedorVuelto');
+
+       
+
         monto.addEventListener('keyup',function(){
-            
-            if(monto.value < total.value){
+        let montoAux = parseFloat(document.getElementById('pago').value);
+        let totalAux = parseFloat(document.getElementById('total').value);
+            if(montoAux < totalAux){
                 
                 boton.disabled=true;
                 
-            }else if(monto.value >= total.value){
+            }else if(montoAux >= totalAux){
 
                 boton.disabled = false;
                 document.getElementById("vuelto").remove();
 
-                let vueltoCal = monto.value - total.value;
+                let vueltoCal = montoAux - totalAux;
                 let h4        = document.createElement('h4');
 
                 h4.setAttribute('id','vuelto');
