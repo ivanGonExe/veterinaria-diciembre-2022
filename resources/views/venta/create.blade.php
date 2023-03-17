@@ -207,10 +207,10 @@ input:focus{
 
                     <label>Descuento </label><br>
                     
-                    <label>%<input type = "number" id = "descuento" name = "descuento" step="0.1" ></label>
+                    <label>%<input type = "number" id = "descuento" name = "descuento" step="0.01" ></label>
                     <br>
                     <label>Monto descontado</label><br>
-                    <label>$<input type="number" id ="montoDesc" name = "montoDesc"step="0.1"  ></label>
+                    <label>$<input type="number" id ="montoDesc" name = "montoDesc"step="0.01"  ></label>
                     <div class="container-fluid d-flex justify-content-center m-2">
                         <a href=" " class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
                         <button type="submit" id='botonGuardar' class="btn btn-primary m-2" tabindex="7">Guardar</button>
@@ -283,20 +283,32 @@ input:focus{
         
         let descuento       = document.getElementById('descuento');
         let precioProducto  = document.getElementById('precioProducto'); 
-        let numDescuento    = parseInt(montoDesc.value);
-        let numPrecio       = parseInt(precioProducto.value);
+        let numDescuento    = parseFloat(montoDesc.value);
+        let numPrecio       = parseFloat(precioProducto.value);
+        //control de que no halla mas de dos numeros en los inputs
+       
+        let conversion = Number(montoDesc.value).toFixed(2);
+        let cadena =  montoDesc.value.split('.');
+        if(cadena.length == 2){
+            if(cadena[1].length > 2){
+                montoDesc.value = conversion;
+            }
+        }
+        
+        
+         
         
      
         if(numDescuento > numPrecio ){
           
-            montoDesc.value = numPrecio;
+            montoDesc.value = precioProducto.value;
         }
 
         if(montoDesc.value < 0){
             montoDesc.value = 0; 
         }
-        
-        descuento.value     = (montoDesc.value*100)/precioProducto.value;  
+        let montoAux     = (montoDesc.value*100)/precioProducto.value; 
+        descuento.value  = montoAux.toFixed(2);
     })
 
     let precioProducto  = document.getElementById('precioProducto');
@@ -305,13 +317,21 @@ input:focus{
 
         let descuento       = document.getElementById('descuento');
         let precioProducto  = document.getElementById('precioProducto'); 
-        let numDescuento    = parseInt(montoDesc.value);
-        let numPrecio       = parseInt(precioProducto.value);
+        let numDescuento    = parseFloat(montoDesc.value);
+        let numPrecio       = parseFloat(precioProducto.value);
+        //control de que no halla mas de dos numeros en los inputs
+       
+        let conversion = Number(montoDesc.value).toFixed(2);
+        let cadena =  montoDesc.value.split('.');
+        if(cadena.length == 2){
+            if(cadena[1].length > 2){
+                montoDesc.value = conversion;
+            }
+        }
         
-     
         if(numDescuento > numPrecio ){
           
-            montoDesc.value = numPrecio;
+            montoDesc.value = precioProducto.value;
         }
 
 
@@ -327,11 +347,23 @@ input:focus{
 
         let montoDesc       = document.getElementById('montoDesc');
         let precioProducto  = document.getElementById('precioProducto');
+        // control de que el porcentaje tenga dos lugares depues de la coma
+        let cadenaAux = descuento.value.split('.');
+        console.log(cadenaAux);
+        let conversionAux = Number(descuento.value).toFixed(1);
+        if(cadenaAux.length > 1){
+            console.log(cadenaAux.length);
+            console.log(cadenaAux[1].length);
+            if(cadenaAux[1].length > 1){
+                descuento.value = conversionAux;
+            }
+        }
         if(this.value > 101 ) 
             this.value = this.value.slice(0,2);
         if(this.value < 0)
             this.value = 0;
-        montoDesc.value     = (precioProducto.value * descuento.value)/100;  
+        let precioAux = (precioProducto.value * descuento.value)/100;  
+        montoDesc.value = precioAux.toFixed(2);  
     })
 
     descuento.addEventListener('input',function(){

@@ -50,9 +50,9 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         <div class="row text-center"> 
             <div class="col-6">
                 <h4 class="text-black" >Costo total: ${{$venta->total}}</h4>
-                <input type='hidden' id='total' id="total" value ='{{$venta->total}}' step="0.1">
+                <input type='hidden' id='total' id="total" value ='{{$venta->total}}' step="0.01">
                 <div id="contenedorVuelto">
-                        <h4 class="text-black " id="vuelto" step="0.1" >Vuelto: </h4>
+                        <h4 class="text-black " id="vuelto" step="0.01" >Vuelto: </h4>
                 </div>
             </div>
 

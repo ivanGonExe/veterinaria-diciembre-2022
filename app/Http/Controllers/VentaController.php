@@ -41,7 +41,7 @@ class VentaController extends Controller
         $articulos     =  $this->obtenerArticulos();
         $posibleIndice =  $this->buscarIndiceDeArticulo($id, $articulos); 
         $articulos[$posibleIndice]->precioVenta = ($request->precioProducto - $request->montoDesc);
-        $articulos[$posibleIndice]->descuento   = $request->montoDesc;
+        $articulos[$posibleIndice]->descuento   =  $request->montoDesc;
 
         $this->guardarArticulos($articulos);
    
