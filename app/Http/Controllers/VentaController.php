@@ -84,7 +84,7 @@ class VentaController extends Controller
     {
         $producto = loteDescripcion::where( 'lote_descripcions.id',$request->id)
                                    ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
-                                   ->select('lote_descripcions.id','articulos.codigo','articulos.descripcion','articulos.marca','articulos.precioVenta')
+                                   ->select('lote_descripcions.id','articulos.descripcion','articulos.precioVenta')
                                    ->get();
         return response(json_encode($producto),200)->header('Content-type','text/plain');
     }
@@ -195,9 +195,9 @@ class VentaController extends Controller
                             ->join('detalle_ventas','ventas.id','=','detalle_ventas.idVenta')
                             ->join('lote_descripcions','detalle_ventas.idLote','=','lote_descripcions.id')
                             ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
-                          ->select('articulos.descripcion','articulos.marca',DB::raw('SUM(detalle_ventas.cantidad)AS cantVend'))
+                          ->select('articulos.descripcion',DB::raw('SUM(detalle_ventas.cantidad)AS cantVend'))
                           ->whereBetween('fecha',[$inicio, $fin ])
-                          ->groupBy('articulos.descripcion','articulos.marca')
+                          ->groupBy('articulos.descripcion')
                           ->orderByDesc('cantVend')
                           ->take(20)
                           ->get();
@@ -207,7 +207,7 @@ class VentaController extends Controller
         for($i=0;$i<count($articuloCant);$i++){
 
             $arreglo[$i] = $articuloCant[$i]->cantVend;
-            $labels[$i]  = $articuloCant[$i]->marca.'/'.$articuloCant[$i]->descripcion;
+            $labels[$i]  = $articuloCant[$i]->descripcion;
         }
        $fecha = Carbon::createFromDate($año.'-'.$mes.'-01');
     
@@ -229,7 +229,7 @@ class VentaController extends Controller
         $detalles = DB::Table('detalle_ventas')
                             ->join('lote_descripcions', 'lote_descripcions.id','=','detalle_ventas.idLote')
                             ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
-                        ->select('detalle_ventas.*','lote_descripcions.vencimiento','articulos.codigo','articulos.descripcion','articulos.marca','articulos.precioVenta')
+                        ->select('detalle_ventas.*','lote_descripcions.vencimiento','articulos.descripcion','articulos.precioVenta')
                         ->where('detalle_ventas.idVenta','=',$id)
                         ->get();
         
@@ -402,7 +402,7 @@ class VentaController extends Controller
         $articuloSelecionado = loteDescripcion::where('lote_descripcions.id', $id)
                                               ->where('lote_descripcions.estado','1')
                                               ->join('articulos','lote_descripcions.articulo_id','=', 'articulos.id')
-                                              ->select('lote_descripcions.*','articulos.codigo','articulos.descripcion','articulos.marca','articulos.precioVenta','articulos.cantidadTotal','articulos.minimoStock','articulos.iva','articulos.estado AS estadoArticulo',DB::raw('0 AS descuento'))
+                                              ->select('lote_descripcions.*','articulos.descripcion','articulos.precioVenta','articulos.cantidadTotal','articulos.minimoStock','articulos.iva','articulos.estado AS estadoArticulo',DB::raw('0 AS descuento'))
                                               ->get();
         $articulo            = $articuloSelecionado[0];
         if (!$articulo) {
@@ -518,7 +518,7 @@ public function terminarVenta()
             $notificacion = new notificaciones();
             $notificacion  ->categoria   = 'articulo';
             $notificacion  ->unidades    =  $articuloActualizado->cantidadTotal;
-            $notificacion  ->descripcion = 'falta de stock del articulo '. $articuloActualizado->descripcion . ', Marca ' . $articuloActualizado->marca ;
+            $notificacion  ->descripcion = 'falta de stock del articulo '. $articuloActualizado->descripcion ;
             $notificacion  ->saveOrFail();
            
             if (session()->exists('notificacion')) {

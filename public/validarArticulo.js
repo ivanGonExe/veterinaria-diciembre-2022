@@ -7,7 +7,6 @@ const expresiones = {
     codigo: /^[0-9]{1,8}$/, // Validar Numero de codigo Solo Numeros y longitud 8
     iva: /^[0-9]{1,2}$/, // 0 - 2 numeros
     precioVenta: /^[0-9]{1,8}$/, // 0 - 8 numeros
-    marca: /^([a-zA-Z0-9_\s\.]){1,20}$/, // Letras y espacios, pueden llevar acentos.
     alerta: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 3
 };
 const campos = {
@@ -17,7 +16,6 @@ const campos = {
     iva: false,
     seleccionTurno: false,
     precioVenta: false,
-    marca: false,
     alerta: false,
 };
 

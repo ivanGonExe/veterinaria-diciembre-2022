@@ -19,7 +19,6 @@
             <tr>
                 <th scope="col">Id lote</th>
                 <th scope="col">Artículo</th>
-                <th scope="col">Marca</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Fecha vencimiento</th>
@@ -32,7 +31,6 @@
                 <tr>
                     <td>{{$unLote->id}}</td>
                     <td>{{$unLote->articulo->descripcion}}</td>
-                    <td>{{$unLote->articulo->marca}}</td>
                     <td>{{$unLote->unidad}}</td>
                     <td>{{$unLote->articulo->precioVenta}}</td>
                     <td>{{$unLote->vencimiento}}</td>
@@ -84,7 +82,6 @@
             <tr>
                 <th scope="col">Id lote</th>
                 <th scope="col">Artículo</th>
-                <th scope="col">Marca</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Subtotal</th>
@@ -97,7 +94,6 @@
     <tr>
         <td>{{$producto->id}}</td>
         <td>{{$producto->articulo->descripcion}}</td>
-        <td>{{$producto->articulo->marca}}</td>
         <td>{{$producto->unidad}}</td>
         <td>{{$producto->articulo->precioVenta}}</td>
         <td>{{($producto->unidad)*($producto->articulo->precioVenta)}}</td>

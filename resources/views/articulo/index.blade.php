@@ -40,9 +40,7 @@ table.dataTable th {
         <thead>
            
             <tr>
-                <th sacope="col" class="text-center">Código</th>
                 <th scope="col"class="text-center text-break col-3">Descripción</th>
-                <th scope="col"class="text-center">Marca</th>
                 <th scope="col"class="text-center">Precio</th>
                 <th scope="col"class="text-center">Categoría</th>
                 <th scope="col"class="text-center">Acciones</th>
@@ -51,10 +49,7 @@ table.dataTable th {
         <tbody>
             @foreach($articulos as $unArticulo)
                 <tr>
-                    
-                    <td>{{$unArticulo->codigo}}</td>
                     <td class='text-break col-3'>{{$unArticulo->descripcion}}</td>
-                    <td>{{$unArticulo->marca}}</td>
                     <td>${{$unArticulo->precioVenta}}</td>
                     @if (empty($unArticulo->categoria->descripcion))
                         <td></td>

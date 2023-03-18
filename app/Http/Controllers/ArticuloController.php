@@ -39,7 +39,7 @@ class ArticuloController extends Controller
         // filtro vencimiento
         $fechaActual = Carbon::now();
 
-        $resultados = DB::select('select lote_descripcions. *, articulos.codigo, articulos.descripcion, articulos.marca,articulos.alerta, TIMESTAMPDIFF(DAY,CURDATE(), lote_descripcions.vencimiento) AS dias from lote_Descripcions inner join articulos on (articulos.id = lote_Descripcions.articulo_id) where ((lote_descripcions.vencimiento <= CURDATE())and(lote_Descripcions.estado = 1)) or ((articulos.alerta >= TIMESTAMPDIFF(DAY,CURDATE(), lote_descripcions.vencimiento) )and(lote_Descripcions.estado = 1)and(articulos.alerta <> 0))');
+        $resultados = DB::select('select lote_descripcions. *, articulos.descripcion,articulos.alerta, TIMESTAMPDIFF(DAY,CURDATE(), lote_descripcions.vencimiento) AS dias from lote_Descripcions inner join articulos on (articulos.id = lote_Descripcions.articulo_id) where ((lote_descripcions.vencimiento <= CURDATE())and(lote_Descripcions.estado = 1)) or ((articulos.alerta >= TIMESTAMPDIFF(DAY,CURDATE(), lote_descripcions.vencimiento) )and(lote_Descripcions.estado = 1)and(articulos.alerta <> 0))');
         session()->forget('notificacionVencido');
 
         return view('articulo.vencidos')
@@ -67,9 +67,7 @@ class ArticuloController extends Controller
     public function store( Request  $request)
     {   
         $request->validate([
-            'codigo'         => 'required| numeric',
             'descripcion'    => 'required| string | max:200 |min:2',
-            'marca'          => 'required| string |max:60 | min:2',
             'precioVenta'    => 'required| numeric |max:99999',
             'iva'            => 'required| numeric |max:100',
             'minimoStock'    => 'nullable| numeric',
@@ -77,16 +75,14 @@ class ArticuloController extends Controller
         ]);
 
         $articulosAux = DB::TABLE('articulos')
-                                ->where('codigo','=',$request->codigo)
+                                ->where('descripcion','=',$request->descripcion)
                                 ->get();
 
         if(count($articulosAux) == 0){
 
             $Articulos                 = new Articulo();
-            $Articulos->codigo         = $request->codigo;
             $Articulos->descripcion    = $request->descripcion;
             $Articulos->precioVenta    = $request->precioVenta;
-            $Articulos->marca          = $request->marca;
             $Articulos->minimoStock    = $request->minimoStock;
             $Articulos->alerta         = $request->alerta;
             $Articulos->iva            = $request->iva;
@@ -145,9 +141,7 @@ class ArticuloController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'codigo'         => 'required| numeric',
             'descripcion'    => 'required| string | max:200 |min:2',
-            'marca'          => 'required| string |max:60 | min:2',
             'precioVenta'    => 'required| numeric |max:99999',
             'iva'            => 'required| numeric |max:100',
             'minimoStock'    => 'nullable| numeric',
@@ -155,10 +149,8 @@ class ArticuloController extends Controller
         ]);
         
     $Articulos                 = Articulo::find($id);  
-    $Articulos->codigo         = $request->codigo;
     $Articulos->descripcion    = $request->descripcion;
     $Articulos->precioVenta    = $request->precioVenta;
-    $Articulos->marca          = $request->marca;
     $Articulos->minimoStock    = $request->minimoStock;
     $Articulos->alerta         = $request->alerta;
     $Articulos->iva            = $request->iva;

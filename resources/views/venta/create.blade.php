@@ -57,7 +57,7 @@ input:focus{
         <select  id='idArticulos' class="js-example-basic-single p-3" name="idArticulos" style="width:60%" >
                 <option value="0"></option>
                 @foreach($lotes as $unLote)
-                    <option value="{{$unLote->id}}" class="seleccion"><table class="text-center"><tr><td colspan=" ">{{$unLote->articulo->descripcion}}</td><td colspan="2">&nbsp;&nbsp;</td><td colspan="1">({{$unLote->articulo->marca}})</td><td colspan="2">&nbsp;  </td><td class="fs-bold text-danger"><p class="text-danger">{{$unLote->vencimiento}}</p></td></tr></table></option>
+                    <option value="{{$unLote->id}}" class="seleccion"><table class="text-center"><tr><td colspan=" ">{{$unLote->articulo->descripcion}}</td><td colspan="2">&nbsp;&nbsp;</td><td colspan="2">&nbsp;  </td><td class="fs-bold text-danger"><p class="text-danger">{{$unLote->vencimiento}}</p></td></tr></table></option>
                     
                 @endforeach
         </select>
@@ -110,7 +110,7 @@ input:focus{
             $date = date('d-m-Y',strtotime($producto->vencimiento));
         @endphp
     <tr>
-         <td class="text-break col-2"><i class="fa-solid fa-cart-shopping"></i> {{$producto->articulo->descripcion}}/{{$producto->articulo->marca}}</td>
+         <td class="text-break col-2"><i class="fa-solid fa-cart-shopping"></i> {{$producto->articulo->descripcion}}</td>
          <td>x {{$producto->unidad}}</td>
         @if($estado[$indice] == 0)
             <td>${{$producto->precioVenta + $producto->descuento}}</td>
@@ -262,7 +262,7 @@ input:focus{
                     let tituloModal         = document.getElementById('tituloModal');
                     let precioProducto      = document.getElementById('precioProducto');
 
-                    tituloModal.innerHTML   = "codigo: " + producto[0].codigo +"<br>"+" Producto: "+producto[0].descripcion+"/"+producto[0].marca;
+                    tituloModal.innerHTML   = "Producto: "+producto[0].descripcion;
                     precioProducto.value    = producto[0].precioVenta;
                     
                 });

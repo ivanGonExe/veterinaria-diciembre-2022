@@ -20,7 +20,6 @@
             <tr>
                 <th scope="col">Fecha de vencimiento</th>
                 <th scope="col">Articulo</th>
-                <th sacope="col">Marca</th>
                 <th scope="col">Alerta</th>
                 <th scope="col">Dias Vencidos</th>
                 <th scope="col">Acciones</th>
@@ -34,7 +33,6 @@
                @endif
                     <td>{{$unLote->vencimiento}}</td>
                     <td>{{$unLote->descripcion}}</td>
-                    <td>{{$unLote->marca}}</td>
                     <td>{{$unLote->alerta}}</td>
                     <td>{{($unLote->dias)*-1}}</td>
                     <td>

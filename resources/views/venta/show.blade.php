@@ -36,7 +36,6 @@
            <tr>
                <th scope="col"class="text-center">Cod. Artículo</th>
                <th scope="col"class="text-center">Nombre</th>
-               <th scope="col"class="text-center">Marca</th>
                <th scope="col"class="text-center">Precio x ud.</th>
                <th scope="col"class="text-center">Cantidad</th>
                <th scope="col"class="text-center">Descuento x ud.</th>
@@ -53,9 +52,7 @@
         
             @foreach($detalles as $unDetalle)
             <tr class="text-center">
-                <td id="codigo">{{$unDetalle->codigo}}</td>
                 <td id="descripcion">{{$unDetalle->descripcion}}</td>
-                <td id="marca">{{$unDetalle->marca}}</td>
                 <td id="precio">${{$unDetalle->subtotal/$unDetalle->cantidad}}</td>
                 <td id="cantidad">{{$unDetalle->cantidad}}</td>
                 <td id="descuento">-${{$unDetalle->descuento}}</td>

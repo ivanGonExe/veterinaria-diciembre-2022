@@ -28,18 +28,7 @@
     <form action="/articulos/{{$articulos->id}}" method="POST" id="formulario" name="formulario">
         @csrf
 		@method('Put')
-      <!--Grupo codigo -->
-      <p class="text-info">*Este campo es obligatorio</p>
-  <div class="mb-3">
-    <div class="formulario__grupo" id="grupo__codigo" title="Valor númerico único que se va identificar el producto">
-      <label for="codigo" class="formulario__label">Codigo*</label>
-      <div class="formulario__grupo-input">
-      <input type="text" class="form-control formulario__input" id="codigo" name="codigo" value ="{{$articulos->codigo}}" maxlength="8" required>
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-    </div>
-     <br>
-        <p class="formulario__input-error">El código solo puede contener valores númericos</p>
-    </div>
+     
       
   <!--Grupo Descripcion -->
   <div class="mb-3">
@@ -53,17 +42,6 @@
 <p class="formulario__input-error">La descripcion puede contener letras y número hasta 50 caracteres</p>
 </div>
 
-    <!--Grupo Marca-->
-    <div class="mb-3">
-        <div class="formulario__grupo" id="grupo__marca">
-         <label for="marca" class="formulario__label" title="Empresa a cual pertenece el producto">Marca *</label>
-         <div class="formulario__grupo-input">
-         <input type="text" class="form-control formulario__input" id="marca" name="marca" value ="{{$articulos->marca}}" maxlength="60" required>
-         <i class="formulario__validacion-estado fas fa-times-circle"></i>
-       </div>
-       <br>
-       <p class="formulario__input-error">El marca tiene hasta 30 caracteres.Sólo letras y número</p>
-     </div>
 <!-- Grupo: Precio Venta-->
 <div class="mb-3">
 <div class="formulario__grupo" id="grupo__precioVenta">

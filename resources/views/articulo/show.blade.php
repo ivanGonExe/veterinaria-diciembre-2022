@@ -4,17 +4,9 @@
 
 
     <h2 id = tituloVista >Vista Articulo</h2>
-       <div class="mb-3">
-            <label for="" class="form-label">Codigo Articulo</label>
-            <input id="codigo" name="codigo" type="text" class="form-control" tabindex="2" value ="{{$articulos->codigo}}" Disabled >
-        </div>
         <div class="mb-3">
             <label for="" class="form-label">Descripcion</label>
             <input id="descripcion" name="descripcion" type="text" class="form-control" value ="{{$articulos->descripcion}}" tabindex="3" Disabled>
-        </div>
-        <div class="mb-3">
-            <label for="" class="form-label">Marca</label>
-            <input id="marca" name="marca" type="text" class="form-control" value ="{{$articulos->marca}}" tabindex="2" Disabled>
         </div>
         <div class="mb-3">
             <label for="" class="form-label">Precio Venta</label>
