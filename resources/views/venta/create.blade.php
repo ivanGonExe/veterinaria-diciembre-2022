@@ -349,11 +349,8 @@ input:focus{
         let precioProducto  = document.getElementById('precioProducto');
         // control de que el porcentaje tenga dos lugares depues de la coma
         let cadenaAux = descuento.value.split('.');
-        console.log(cadenaAux);
         let conversionAux = Number(descuento.value).toFixed(1);
         if(cadenaAux.length > 1){
-            console.log(cadenaAux.length);
-            console.log(cadenaAux[1].length);
             if(cadenaAux[1].length > 1){
                 descuento.value = conversionAux;
             }
