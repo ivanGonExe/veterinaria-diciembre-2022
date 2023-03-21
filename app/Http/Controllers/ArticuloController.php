@@ -125,9 +125,12 @@ public function ArticulosPorCategoria($id)
     $articulos = Articulo::where('estado',1)
                          ->orderBy('updated_at','Desc')
                          ->get();
-
+    $categoria = Categoria::orderby('descripcion','Asc')
+                         ->get();
     return view ('articulo.index')
-              ->with('articulos',$articulos); 
+                         ->with('articulos',$articulos)
+                         ->with('categoria',$categoria)
+                         ->with('idCategoria', 0); 
         }
 //-------------------------------------------------------------------------
     /**
@@ -192,8 +195,12 @@ public function ArticulosPorCategoria($id)
                          ->orderBy('updated_at','Desc')
                          ->get();
 
+    $categoria = Categoria::orderby('descripcion','Asc')
+                         ->get();
     return view ('articulo.index')
-              ->with('articulos',$articulos); 
+                         ->with('articulos',$articulos)
+                         ->with('categoria',$categoria)
+                         ->with('idCategoria', 0); 
     }
 //-------------------------------------------------------------------------
     /**

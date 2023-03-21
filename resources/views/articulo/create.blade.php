@@ -91,7 +91,7 @@
           <select  id='categoria' class="js-example-basic-single form-control formulario__input" name="categoria">
               
           @foreach($categorias as $unaCategoria)
-             <option value="{{$unaCategoria->id}}" class="seleccion">{{$unaCategoria->descripcion}}</option>
+             <option value="{{$unaCategoria->id}}" class="seleccion">{{$unaCategoria->id}}-{{$unaCategoria->descripcion}}</option>
              <i class="formulario__validacion-estado fas fa-times-circle"></i>
              @endforeach
        

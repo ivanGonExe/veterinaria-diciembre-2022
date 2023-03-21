@@ -50,6 +50,7 @@ table td{
         <thead>
            
             <tr>
+                <th class=" text-center">Id</th>
                 <th class=" text-center">Descripcion</th>
                 <th class=" text-center">Acciones</th>
             </tr>
@@ -57,6 +58,7 @@ table td{
         <tbody>
             @foreach($categorias as $unaCategoria)
                 <tr>
+                    <td>{{$unaCategoria->id}}</td>
                     <td>{{$unaCategoria->descripcion}}</td>
                     
                     <td>    

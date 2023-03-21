@@ -34,7 +34,6 @@
         <thead>
            
            <tr>
-               <th scope="col"class="text-center">Cod. Artículo</th>
                <th scope="col"class="text-center">Nombre</th>
                <th scope="col"class="text-center">Precio x ud.</th>
                <th scope="col"class="text-center">Cantidad</th>
@@ -119,7 +118,7 @@ const doc = new jsPDF();
  
  doc.text("-------------------------------------------------------------------------------------------------------", 10, 40);
  doc.text("cantidad"+"  ", 10, 50);/* x,y*/
-  doc.text("         "+"codigo", 30, 50);
+  // doc.text("         "+"codigo", 30, 50);
  doc.text("             descripcion", 50, 50);
  doc.text("                        importe", 100, 50);
  doc.text("                         subtotal",140, 50);
@@ -137,7 +136,7 @@ let punteroY = 70;
   punteroY= punteroY+5;
  doc.text(productos[i].cantidad.toString(), punteroX ,punteroY);
  punteroX = punteroX+30;
-doc.text(productos[i].codigo.toString(),punteroX,punteroY);
+// doc.text(productos[i].codigo.toString(),punteroX,punteroY);
 punteroX = punteroX+30;
 let cadena = productos[i].descripcion.substring(0,20);
   doc.text(cadena, punteroX ,punteroY);

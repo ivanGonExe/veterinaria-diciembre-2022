@@ -40,16 +40,16 @@ table.dataTable th {
     
       
     
-    <a href="articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Crear Articulo <i class="fa-solid fa-store"></i></a>
+    <a href="articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Crear Artículo <i class="fa-solid fa-store"></i></a>
 
     <select  id='categoria' class="btn btn-primary rounded-pill" name="categoria">
-            <option  id ="0" value = "0" class="seleccion">Todos</option>
+            <option  id ="0" value = "0" class="seleccion">Todas las categorías</option>
         @foreach($categoria as $unaCategoria)
             @if($unaCategoria->id == $idCategoria)
-            <option  id ="{{$unaCategoria->id}}" value = "{{$unaCategoria->id}}" class="seleccion" selected>{{$unaCategoria->descripcion}}</option>
+            <option  id ="{{$unaCategoria->id}}" value = "{{$unaCategoria->id}}" class="seleccion" selected>{{$unaCategoria->id}}-{{$unaCategoria->descripcion}}</option>
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
             @else
-            <option  id ="{{$unaCategoria->id}}" value = "{{$unaCategoria->id}}" class="seleccion">{{$unaCategoria->descripcion}}</option>
+            <option  id ="{{$unaCategoria->id}}" value = "{{$unaCategoria->id}}" class="seleccion">{{$unaCategoria->id}}-{{$unaCategoria->descripcion}}</option>
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
             @endif
         @endforeach
@@ -62,6 +62,7 @@ table.dataTable th {
         <thead>
            
             <tr>
+                <th scope="col"class="text-center">Codigo</th>
                 <th scope="col"class="text-center text-break col-3">Descripción</th>
                 <th scope="col"class="text-center">Precio</th>
                 <th scope="col"class="text-center">Categoría</th>
@@ -71,6 +72,7 @@ table.dataTable th {
         <tbody>
             @foreach($articulos as $unArticulo)
                 <tr>
+                    <td class='text-break col-3'>{{$unArticulo->codigo}}</td>
                     <td class='text-break col-3'>{{$unArticulo->descripcion}}</td>
                     <td>${{$unArticulo->precioVenta}}</td>
                     @if (empty($unArticulo->categoria->descripcion))
@@ -191,10 +193,12 @@ table.dataTable th {
     let clasificacion = document.getElementById('categoria');
 
     clasificacion.addEventListener('change', function(){
-        location.href ='/Articulo/Por/Categoria/'+clasificacion.value
-
+        location.href ='/Articulo/Por/Categoria/'+clasificacion.value;
     })
     
+</script>
+<script>
+
 </script>
 @endsection        
 

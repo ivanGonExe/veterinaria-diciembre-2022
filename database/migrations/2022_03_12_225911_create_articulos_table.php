@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('articulos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('codigo')->unsigned()->nullable();
+            $table->String('codigo')->unsigned()->nullable();
             $table->string('descripcion')->nullable();
             $table->string('marca')->nullable();
             $table->float('precioVenta')->nullable();
