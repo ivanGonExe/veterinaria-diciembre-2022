@@ -21,6 +21,13 @@ table.dataTable tr {
 table.dataTable th {
   text-align: center;
 }
+.modal-header{
+    background-color: rgb(235, 34, 58) !important;
+    color: white;
+}
+.btn-close{
+    background-color: white;
+}
 
 </style>
 
@@ -34,6 +41,21 @@ table.dataTable th {
       
     
     <a href="articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Crear Articulo <i class="fa-solid fa-store"></i></a>
+
+    <select  id='categoria' class="btn btn-primary rounded-pill" name="categoria">
+            <option  id ="0" value = "0" class="seleccion">Todos</option>
+        @foreach($categoria as $unaCategoria)
+            @if($unaCategoria->id == $idCategoria)
+            <option  id ="{{$unaCategoria->id}}" value = "{{$unaCategoria->id}}" class="seleccion" selected>{{$unaCategoria->descripcion}}</option>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            @else
+            <option  id ="{{$unaCategoria->id}}" value = "{{$unaCategoria->id}}" class="seleccion">{{$unaCategoria->descripcion}}</option>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            @endif
+        @endforeach
+    </select>
+    <button type="button" class="btn btn-primary rounded-pill" title="Agregar Clasificacion de Articulo" data-bs-toggle="modal" data-bs-target="#exampleModalCategoria" id ='agregarAlumno' id ='agregarCategoria'><i class="fa-solid fa-plus"></i></button>
+
     </div>
     
         <table id="example" class="table table-striped" style="width:100%">
@@ -71,9 +93,33 @@ table.dataTable th {
     
     </table>
     </div>
+    <!-- Modal Categorias-->
+<div class="modal fade" id="exampleModalCategoria" tabindex="-1" aria-labelledby="exampleModalLabelCategoria" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><strong id= 'tituloModal'><strong> Nueva categoria</strong></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/categorias" method ="POST" id="formulario" name="formulario">
+        @csrf
+          <div class="modal-body cuerpo_modal">
+          
+              <div class="input-group input-group-lg">
+                  <span class="input-group-text" id="inputGroup-sizing-lg">Nombre </span>
+                  <input type="text" class="form-control" name= 'descripcion' id= 'descripcion' aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="De la categoría">
+              </div>
+              </div>
+            
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit"  class="btn btn-primary" id ="botonGuardar">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-
-    
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="  https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -98,7 +144,7 @@ table.dataTable th {
             }); 
      /*------------------------------------------------ */
      $(document).ready(function (){
- var id = 0;
+        var id = 0;
         var botones = document.getElementsByClassName("eliminar");
 
         var boton = [];
@@ -140,9 +186,15 @@ table.dataTable th {
 
                     }
 });
+</script>
+<script>
+    let clasificacion = document.getElementById('categoria');
 
+    clasificacion.addEventListener('change', function(){
+        location.href ='/Articulo/Por/Categoria/'+clasificacion.value
 
-
-        </script>
+    })
+    
+</script>
 @endsection        
 

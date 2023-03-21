@@ -52,8 +52,14 @@ class CategoriaController extends Controller
             $categoria-> save();
         }
             $categorias  = Categoria::all();
+            $urlAnterior = url()->previous();
+            if(strpos($urlAnterior, '/articulos') !== false)
+            {
+                return redirect(url()->previous());
+            }
         
-            return view ('categoria.index')->with('categorias',$categorias);
+            return view ('categoria.index')
+                    ->with('categorias',$categorias);
 
     
     }

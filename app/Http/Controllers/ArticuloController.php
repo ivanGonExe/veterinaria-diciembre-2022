@@ -24,9 +24,39 @@ class ArticuloController extends Controller
                              ->orderBy('descripcion','Asc')
                              ->get();
 
+        $categoria = Categoria::all();
+
       return view ('articulo.index')
-                ->with('articulos',$articulos); 
+                ->with('articulos',$articulos)
+                ->with('categoria',$categoria)
+                ->with('idCategoria', 0); 
     }
+//-------------------------------------------------------------------------
+/**
+     * Display a listing of the resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+public function ArticulosPorCategoria($id)
+{
+    if($id == 0){
+        return redirect('/articulos');
+    } 
+
+    $articulos = Articulo::where('estado',1)
+                         ->where('articulos.categoria_id',$id)
+                         ->orderBy('descripcion','Asc')
+                         ->get();
+    
+    $categoria = Categoria::orderby('descripcion','Asc')
+                          ->get();
+
+    return view ('articulo.index')
+            ->with('articulos',$articulos)
+            ->with('categoria',$categoria)
+            ->with('idCategoria',$id); 
+}
 //-------------------------------------------------------------------------
     /** traigo los articulos vencidos
      
