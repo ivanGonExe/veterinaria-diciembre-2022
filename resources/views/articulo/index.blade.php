@@ -40,8 +40,9 @@ table.dataTable th {
     
       
     
-    <a href="articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Crear Artículo <i class="fa-solid fa-store"></i></a>
 
+    <div class="container  m-2 p-2">
+        <a href="articulos/create" type="button" class="btn btn-primary rounded-pill ">+Artículo <i class="fa-solid fa-store"></i></a>
     <select  id='categoria' class="btn btn-primary rounded-pill" name="categoria">
             <option  id ="0" value = "0" class="seleccion">Todas las categorías</option>
         @foreach($categoria as $unaCategoria)
@@ -54,10 +55,15 @@ table.dataTable th {
             @endif
         @endforeach
     </select>
-    <button type="button" class="btn btn-primary rounded-pill" title="Agregar Clasificacion de Articulo" data-bs-toggle="modal" data-bs-target="#exampleModalCategoria" id ='agregarAlumno' id ='agregarCategoria'><i class="fa-solid fa-plus"></i></button>
 
+        <button type="button" class="btn btn-primary rounded-pill" title="Agregar Clasificacion de Articulo" data-bs-toggle="modal" data-bs-target="#exampleModalCategoria" id ='agregarAlumno' id ='agregarCategoria'><i class="fa-solid fa-plus"></i></button>
+
+   
     </div>
     
+   
+    <br>
+    <br>
         <table id="example" class="table table-striped" style="width:100%">
         <thead>
            
