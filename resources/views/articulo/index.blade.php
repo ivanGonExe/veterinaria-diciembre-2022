@@ -54,7 +54,7 @@ table.dataTable th {
             @endif
         @endforeach
     </select>
-    <button type="button" class="btn btn-primary rounded-pill" title="Agregar Clasificacion de Articulo" data-bs-toggle="modal" data-bs-target="#exampleModalCategoria" id ='agregarAlumno' id ='agregarCategoria'><i class="fa-solid fa-plus"></i></button>
+    <button type="button" class="btn btn-primary rounded-pill" title="Agregar Clasificacion de Articulo" data-bs-toggle="modal" data-bs-target="#exampleModalCategoria"  id ='agregarCategoria'><i class="fa-solid fa-plus"></i></button>
 
     </div>
     
@@ -198,7 +198,10 @@ table.dataTable th {
     
 </script>
 <script>
-
+    let agregarCategoria = document.getElementById('agregarCategoria');
+        agregarCategoria.addEventListener('click', function(){
+        document.getElementById('descripcion').value = '';
+    })
 </script>
 @endsection        
 

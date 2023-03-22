@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::resource('/ventas','App\Http\Controllers\VentaController');
 
         /*Rutas lote*/
-            Route::get     ('/articulos/{id}/delete',[App\Http\Controllers\ArticuloController       ::class,'@destroy'        ]);
+            Route::get     ('/articulos/{id}/delete',[App\Http\Controllers\ArticuloController       ::class,'destroy'         ]);
             Route::get     ('vencimientos',          [App\Http\Controllers\ArticuloController       ::class,'Vencimiento'     ])->name('vencimiento');
             Route::get     ('/Lotes/{id}/delete',    [App\Http\Controllers\loteDescripcionController::class,'destroy'         ]);
             Route::get     ('/Lotes/{id}/lote',      [App\Http\Controllers\loteDescripcionController::class,'lote_For_Article']);

@@ -64,12 +64,12 @@ class MascotaController extends Controller
 
         $persona = Persona::find($request->get('id'));
 
-        $mascota->nombre         = $request->get('nombre');
-        $mascota->raza           = $request->get('raza');
-        $mascota->especie        = $request->get('especie');
-        $mascota->sexo           = $request->get('sexo');
-        $mascota->color          = $request->color;
-        $mascota->esterilizado   = $request->esterilizado;
+        $mascota->nombre         = ucwords(strtolower($request->nombre));
+        $mascota->raza           = strtoupper($request->raza);
+        $mascota->especie        = strtoupper($request->especie);
+        $mascota->sexo           = strtoupper($request->sexo);
+        $mascota->color          = strtoupper($request->color);
+        $mascota->esterilizado   = strtoupper($request->esterilizado);
         $mascota->estado         = 1;
         $mascota->anioNacimiento = $request->get('anioNacimiento');
         $mascota->persona_id     = $request->get('id');
@@ -174,12 +174,12 @@ class MascotaController extends Controller
 
         $mascota = Mascota::find($id);
         
-        $mascota->nombre         = $request->get('nombre');
-        $mascota->raza           = $request->get('raza');
-        $mascota->especie        = $request->get('especie');
-        $mascota->sexo           = $request->get('sexo');
-        $mascota->color          = $request->color;
-        $mascota->esterilizado   = $request->esterilizado;
+        $mascota->nombre         = ucwords(strtolower($request->nombre));
+        $mascota->raza           = strtoupper($request->raza);
+        $mascota->especie        = strtoupper($request->especie);
+        $mascota->sexo           = strtoupper($request->sexo);
+        $mascota->color          = strtoupper($request->color);
+        $mascota->esterilizado   = strtoupper($request->esterilizado);
         $mascota->anioNacimiento = $request->anioNacimiento;
         $mascota->persona_id     = $request->get('id');
 

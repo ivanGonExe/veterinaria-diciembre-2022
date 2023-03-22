@@ -122,10 +122,10 @@ class PersonaController extends Controller
         }
         $persona = new Persona();
 
-        $persona->nombre      = $request->get('nombre');
-        $persona->apellido    = $request->get('apellido');
+        $persona->nombre      = ucwords(strtolower($request->nombre));
+        $persona->apellido    = ucwords(strtolower($request->apellido));
         $persona->dni         = $request->get('dni');
-        $persona->direccion   = $request->get('direccion');
+        $persona->direccion   = ucwords(strtolower($request->direccion));
         $persona->numeroCalle = $request->numeroCalle;
         $persona->estado      = 1;
         
@@ -188,10 +188,10 @@ class PersonaController extends Controller
 
         $persona = Persona::find($id);
 
-        $persona->nombre      = $request->get('nombre');
-        $persona->apellido    = $request->get('apellido');
+        $persona->nombre      = ucwords(strtolower($request->nombre));
+        $persona->apellido    = ucwords(strtolower($request->apellido));
         $persona->dni         = $request->get('dni');
-        $persona->direccion   = $request->get('direccion');
+        $persona->direccion   = ucwords(strtolower($request->direccion));
         $persona->numeroCalle = $request->numeroCalle;
         $persona->telefonos($request->get('telefono'));
         

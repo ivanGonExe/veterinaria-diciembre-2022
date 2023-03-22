@@ -111,13 +111,15 @@ public function ArticulosPorCategoria($id)
         if(count($articulosAux) == 0){
 
             $Articulos                 = new Articulo();
-            $Articulos->descripcion    = $request->descripcion;
+            $Articulos->descripcion    = strtoupper($request->descripcion);
             $Articulos->precioVenta    = $request->precioVenta;
             $Articulos->minimoStock    = $request->minimoStock;
             $Articulos->alerta         = $request->alerta;
             $Articulos->iva            = $request->iva;
             $Articulos->estado         = 1;
             $Articulos->categoria_id   = $request->categoria;
+            $Articulos->save();
+            $Articulos->codigo         = $request->categoria.'-'.$Articulos->id;
             $Articulos->save();
             
          }
@@ -182,7 +184,7 @@ public function ArticulosPorCategoria($id)
         ]);
         
     $Articulos                 = Articulo::find($id);  
-    $Articulos->descripcion    = $request->descripcion;
+    $Articulos->descripcion    = strtoupper($request->descripcion);
     $Articulos->precioVenta    = $request->precioVenta;
     $Articulos->minimoStock    = $request->minimoStock;
     $Articulos->alerta         = $request->alerta;

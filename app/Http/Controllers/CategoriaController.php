@@ -48,7 +48,7 @@ class CategoriaController extends Controller
         ->get();
         if(empty($esta[0])){
             $categoria = new Categoria();
-            $categoria->descripcion = $request->get('descripcion');
+            $categoria->descripcion = strtoupper($request->descripcion);
             $categoria-> save();
         }
             $categorias  = Categoria::all();
@@ -97,12 +97,13 @@ class CategoriaController extends Controller
     public function update(Request $request, $id)
     {
         $categoria = Categoria::find($id);
-        $categoria->descripcion = $request->get('descripcion');
+        $categoria->descripcion = strtoupper($request->descripcion);
         $categoria-> save();
 
         $categorias  = Categoria::all();
         
-        return view ('categoria.index')->with('categorias',$categorias);
+        return view ('categoria.index')
+                    ->with('categorias',$categorias);
 
     }
 

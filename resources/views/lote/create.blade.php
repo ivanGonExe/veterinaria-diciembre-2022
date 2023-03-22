@@ -46,27 +46,19 @@
     </div>
       </div>
       <br>
+    @if($articulos->alerta > 0)
     <div class="mb-3">
         <div class="formulario__grupo" id="grupo__vencimiento" title="Valor númerico único que se va identificar el producto">
-      <label for="vencimiento" class="formulario__label">Cantidad de vencimiento*</label>
-      <div class="formulario__grupo-input px-2">
-       
-        <input id="vencimiento" name="vencimiento" type="date" class="form-control formulario__input" maxlength="8" >
-    
-        <i class="formulario__validacion-estado fas fa-times-circle"></i>
-            </div>
-    
-            <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>
-        </div>
+          <label for="vencimiento" class="formulario__label">Fecha de vencimiento*</label>
+          <div class="formulario__grupo-input px-2">
+              <input id="vencimiento" name="vencimiento" type="date" class="form-control formulario__input" maxlength="8" >
+              <i class="formulario__validacion-estado fas fa-times-circle"></i>
           </div>
-          
+          <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>
+        </div>
+    </div>
+    @endif
           <br>
-     {{--    <div class="mb-3">
-            <label for="" class="form-label">Vencimiento</label>
-            <input id="vencimiento" name="vencimiento" type="date" class="form-control" tabindex="5">
-        </div> --}}
-
-        
         <a href="/Lotes/{{$ArticuloId}}/lote" class="btn btn-secondary" tabindex="6">Cancelar</a>
         
         <button type="submit" class="btn btn-primary" tabindex="7">Guardar</button>

@@ -2,9 +2,8 @@ const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 
 const expresiones = {
-    descripcion: /^([a-zA-Z0-9_-\s\.\/]){1,200}$/, // Letras y espacios, pueden llevar acentos.
+    descripcion: /^([a-zA-Z-ZÀ-ÿ-0-9_-\s\.\/]){1,200}$/, // Letras y espacios, pueden llevar acentos.
     minimoStock: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 4
-    codigo: /^[0-9]{1,8}$/, // Validar Numero de codigo Solo Numeros y longitud 8
     iva: /^[0-9]{1,2}$/, // 0 - 2 numeros
     precioVenta: /^[0-9]{1,8}$/, // 0 - 8 numeros
     alerta: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 3
@@ -12,7 +11,6 @@ const expresiones = {
 const campos = {
     descripcion: false,
     minimoStock: false,
-    codigo: false,
     iva: false,
     seleccionTurno: false,
     precioVenta: false,
@@ -30,14 +28,8 @@ const validarFormulario = (e) => {
         case "iva":
             validarCampo(expresiones.iva, e.target, "iva");
             break;
-        case "codigo":
-            validarCampo(expresiones.codigo, e.target, "codigo");
-            break;
         case "precioVenta":
             validarCampo(expresiones.precioVenta, e.target, "precioVenta");
-            break;
-        case "marca":
-            validarCampo(expresiones.marca, e.target, "marca");
             break;
         case "alerta":
             validarCampo(expresiones.alerta, e.target, "alerta");
@@ -93,10 +85,8 @@ formulario.addEventListener("submit", (e) => {
     if (
         campos.descripcion &&
         campos.minimoStock &&
-        campos.codigo &&
         campos.iva &&
         campos.precioVenta &&
-        campos.marca &&
         campos.alerta
     ) {
         Swal.fire({

@@ -76,19 +76,31 @@ class LoteDescripcionController extends Controller
      */
     public function store_por_id(Request $request, $id)
     { 
-        $request->validate([
-            'unidades'       => 'required| integer| max:9999 | min:1',
-            'precioCompra'   => 'required| numeric | max:99999 |min:1',
-            'vencimiento'    => 'nullable| date ',
-        ]);
+        if($request->vencimiento){
+            $request->validate([
+                'unidades'       => 'required| integer| max:9999 | min:1',
+                'precioCompra'   => 'required| numeric | max:99999 |min:1',
+                'vencimiento'    => 'nullable| date ',
+            ]);
+        }
+        else{
+            $request->validate([
+                'unidades'       => 'required| integer| max:9999 | min:1',
+                'precioCompra'   => 'required| numeric | max:99999 |min:1',
+            ]);
+        }
+        
 
         $lote = new loteDescripcion();
         $lote->unidad       = $request->get('unidades');
         $lote->precioCompra = $request->get('precioCompra');
-        $lote->vencimiento  = $request->get('vencimiento');
         $lote->articulo_id  = $id;
         $lote->estado = 1;
+        if($request->vencimiento){
+            $lote->vencimiento  = $request->get('vencimiento');
+        }
         $lote->save();
+        
         $Articulos = Articulo::find($id);
         $Articulos->cantidadTotal = $Articulos->cantidadTotal + $lote->unidad;
         $Articulos->save();
