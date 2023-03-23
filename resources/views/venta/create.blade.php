@@ -71,8 +71,15 @@ input:focus{
             <div class="col-4"> 
                     <div class="buscar">
                         <form class="form-inline " >
-                            <input class="form-control " type="search" placeholder="Código" aria-label="Search" style="width:120px;height: 28px">
-                            <button class="btn btn-primary m-1" type="submit" style="height: 28px"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <div class="btn btn-primary m-1" style="height: 28px ;line-height: 15px;"> Codigo Art. <i class="fa-solid fa-magnifying-glass"></i></div>
+                            <select  id='codigoArticulo' class="js-example-basic-single p-3" name="codigoarticulo"  placeholder="Código" aria-label="Search" style="width:120px;height: 28px" >
+                                        <option value="0"></option>
+                                        @foreach($lotes as $unLote)
+
+                                            <option value="{{$unLote->id}}" class="seleccionCodigo"><table class="text-center"><tr><td colspan=" ">{{$unLote->articulo->codigo}}</td><td colspan="2">&nbsp;&nbsp;</td><td colspan="2">&nbsp;  </td><td class="fs-bold text-danger"><p class="text-danger">{{$unLote->vencimiento}}</p></td></tr></table></option>
+
+                                        @endforeach
+                                </select>
                         </form>
                     </div>
                 
@@ -402,6 +409,16 @@ input:focus{
         if(id != 0){
 
             var link = "/agregarArticuloVenta/"+id;
+            location.href = link;
+        }
+    });
+    $("#codigoArticulo").on("change",function(event){
+
+        var idArticulo = document.getElementById("codigoArticulo").value;
+
+        if(idArticulo != 0){
+
+            var link = "/agregarArticuloVenta/"+idArticulo;
             location.href = link;
         }
     });

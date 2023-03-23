@@ -64,7 +64,7 @@ class MascotaController extends Controller
 
         $persona = Persona::find($request->get('id'));
 
-        $mascota->nombre         = ucwords(strtolower($request->nombre));
+        $mascota->nombre         = strtoupper($request->nombre);
         $mascota->raza           = strtoupper($request->raza);
         $mascota->especie        = strtoupper($request->especie);
         $mascota->sexo           = strtoupper($request->sexo);
@@ -122,7 +122,8 @@ class MascotaController extends Controller
     {
         $mascotas = Mascota::where('estado',0)->get();
 
-        return view('mascota.deshabilitado')->with('mascotas', $mascotas);
+        return view('mascota.deshabilitado')
+                  ->with('mascotas', $mascotas);
     }
 
     /**
@@ -148,7 +149,8 @@ class MascotaController extends Controller
     {
         $mascota = Mascota::find($id);
 
-        return view('mascota.edit')->with('mascota', $mascota);
+        return view('mascota.edit')
+                  ->with('mascota', $mascota);
     }
 
     /**
@@ -174,7 +176,7 @@ class MascotaController extends Controller
 
         $mascota = Mascota::find($id);
         
-        $mascota->nombre         = ucwords(strtolower($request->nombre));
+        $mascota->nombre         = strtoupper($request->nombre);
         $mascota->raza           = strtoupper($request->raza);
         $mascota->especie        = strtoupper($request->especie);
         $mascota->sexo           = strtoupper($request->sexo);

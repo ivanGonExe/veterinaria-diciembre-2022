@@ -70,8 +70,12 @@ class VentaController extends Controller
                                  ->where('estado','1')
                                  ->get();
 
+        $articulos = Articulo::where('cantidadTotal','>',0)
+                                ->get();
+
         return view('venta.create')
-                   ->with('lotes', $lotes);
+                   ->with('lotes', $lotes)
+                   ->with('articulos',$articulos);
     }
 //-----------------------------------------------------------
     /**
