@@ -31,7 +31,10 @@ input:focus{
     cursor: not-allowed !important;
     text-align: center;
 }
-
+.buscar{
+    padding-top:12px !important;
+    
+}
 </style>
 <!--Jquery-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -52,16 +55,31 @@ input:focus{
         <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Seleccione Artículos</h2>
     
     </div>
-  
-    <div class="container-fluid d-flex justify-content-center  text-light m-2">
-        <select  id='idArticulos' class="js-example-basic-single p-3" name="idArticulos" style="width:60%" >
-                <option value="0"></option>
-                @foreach($lotes as $unLote)
-                    <option value="{{$unLote->id}}" class="seleccion"><table class="text-center"><tr><td colspan=" ">{{$unLote->articulo->descripcion}}</td><td colspan="2">&nbsp;&nbsp;</td><td colspan="2">&nbsp;  </td><td class="fs-bold text-danger"><p class="text-danger">{{$unLote->vencimiento}}</p></td></tr></table></option>
-                    
-                @endforeach
-        </select>
-    </div>
+  <div class="row">
+       
+            <div class="col-8">
+                        <div class="container-fluid d-flex justify-content-end text-light p-3">
+                                <select  id='idArticulos' class="js-example-basic-single p-3" name="idArticulos" style="width:60%" >
+                                        <option value="0"></option>
+                                        @foreach($lotes as $unLote)
+                                            <option value="{{$unLote->id}}" class="seleccion"><table class="text-center"><tr><td colspan=" ">{{$unLote->articulo->descripcion}}</td><td colspan="2">&nbsp;&nbsp;</td><td colspan="2">&nbsp;  </td><td class="fs-bold text-danger"><p class="text-danger">{{$unLote->vencimiento}}</p></td></tr></table></option>
+                                            
+                                        @endforeach
+                                </select>
+                        </div>
+            </div>
+            <div class="col-4"> 
+                    <div class="buscar">
+                        <form class="form-inline " >
+                            <input class="form-control " type="search" placeholder="Código" aria-label="Search" style="width:120px;height: 28px">
+                            <button class="btn btn-primary m-1" type="submit" style="height: 28px"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                
+            </div>
+       
+  </div>
+ 
     <br>
     <br>
 

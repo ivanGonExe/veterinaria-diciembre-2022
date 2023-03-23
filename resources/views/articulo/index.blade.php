@@ -33,17 +33,17 @@ table.dataTable th {
 
 <div class="caja_tabla-2">
     <div class="container-fluid d-flex justify-content-center  text-light">
-        <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" > Listado de los Articulos
+        <h2 class="text-center p-2 m-3 fs-1 fw-bold text-dark" > Listado de los Articulos
         </h2>
    
     </div>
     
       
     
-    <a href="articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Crear Artículo <i class="fa-solid fa-store"></i></a>
+    <a href="articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Artículo <i class="fa-solid fa-store"></i></a>
 
-    <select  id='categoria' class="btn btn-primary rounded-pill" name="categoria">
-            <option  id ="0" value = "0" class="seleccion">Todas las categorías</option>
+    <select  id='categoria' class="btn btn-primary rounded-pill" name="categoria" style="width:150px">
+        <option  id ="0" value = "0" class="seleccion" title="todas las categorías" >Categorías <span><i class="fa-solid fa-list-ul"></i> </span><i class="fa-solid fa-store"></option>
         @foreach($categoria as $unaCategoria)
             @if($unaCategoria->id == $idCategoria)
             <option  id ="{{$unaCategoria->id}}" value = "{{$unaCategoria->id}}" class="seleccion" selected>{{$unaCategoria->id}}-{{$unaCategoria->descripcion}}</option>
@@ -54,7 +54,7 @@ table.dataTable th {
             @endif
         @endforeach
     </select>
-    <button type="button" class="btn btn-primary rounded-pill" title="Agregar Clasificacion de Articulo" data-bs-toggle="modal" data-bs-target="#exampleModalCategoria"  id ='agregarCategoria'><i class="fa-solid fa-plus"></i></button>
+    <button type="button" class="btn btn-primary rounded-pill" title="Agregar una nueva categoría de artículo" data-bs-toggle="modal" data-bs-target="#exampleModalCategoria"  id ='agregarCategoria'><i class="fa-solid fa-plus"></i> </button>
 
     </div>
     
@@ -72,7 +72,7 @@ table.dataTable th {
         <tbody>
             @foreach($articulos as $unArticulo)
                 <tr>
-                    <td class='text-break col-3'>{{$unArticulo->codigo}}</td>
+                    <td class='text-break col-3' title="código de categoria -código de artículo" >{{$unArticulo->codigo}}</td>
                     <td class='text-break col-3'>{{$unArticulo->descripcion}}</td>
                     <td>${{$unArticulo->precioVenta}}</td>
                     @if (empty($unArticulo->categoria->descripcion))
