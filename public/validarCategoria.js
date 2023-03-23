@@ -2,11 +2,12 @@ const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 
 let descripcion = document.getElementsByName("descripcion");
+let cerrar = document.getElementById('cerrar');
 
 
 
 const expresiones = {
-    descripcion: /^[a-zA-ZÀ-ÿ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
+    descripcion: /^([a-zA-Z-ZÀ-ÿ-0-9_-\s\.\/]){1,100}$/, // Letras y espacios, pueden llevar acentos.
 
 };
 const campos = {
@@ -102,6 +103,23 @@ formulario.addEventListener("submit", (e) => {
         }, 3000);
     }
 });
+cerrar.addEventListener('click',()=>{
+ 
+  document
+            .getElementById(`grupo__descripcion`)
+            .classList.remove("formulario__grupo-incorrecto");
+        document
+            .getElementById(`grupo__descripcion`)
+            .classList.add("formulario__grupo-correcto");
+        document
+            .querySelector(`#grupo__descripcion i`)
+            .classList.remove("fa-times-circle");
+    
+        document
+            .querySelector(`#grupo__descripcion .formulario__input-error`)
+            .classList.remove("formulario__input-error-activo");
+
+})
 
 if(descripcion[0].value != "")
 {

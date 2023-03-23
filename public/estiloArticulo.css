@@ -61,17 +61,17 @@
 .formulario__input-error{
   font-size: 16px;
   margin-top: 0;
-  color:#f3ff06;
+  color:#f3ff06!important;
   text-align: center;
   display: none; 
-  background-color: #a90e0e;
+  background-color: #a90e0e !important;
 }
 .formulario__input-error-activo{
   display: block;
   display: inline;
 padding: 2px;
   margin: 2px; 
- 
+  
 }
 .formulario__validacion-estado{
 position: absolute;

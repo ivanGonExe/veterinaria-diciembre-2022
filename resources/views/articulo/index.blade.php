@@ -1,5 +1,5 @@
 @extends('layouts.plantillaBase2') 
-
+<link rel="stylesheet" type="text/css" href="{{asset('estiloArticulo.css')}}">
 @section('contenido')
 <style>
 .acciones{
@@ -107,21 +107,36 @@ table.dataTable th {
         @csrf
           <div class="modal-body cuerpo_modal">
           
-              <div class="input-group input-group-lg">
+                       <!--Grupo Categoria -->
+        <div class="mb-3">
+            <div class="formulario__grupo" id="grupo__descripcion">
+            <label for="descripcion" class="formulario__label text-dark" title="Caracteristicas del producto.Breve descripción del mismo" >Descripcion *</label>
+            <div class="formulario__grupo-input">
+            <input type="text" class="form-control formulario__input" id="descripcion" name="descripcion" placeholder=" " maxlength="100" required>
+            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+        </div>
+        <br>
+        <p class="formulario__input-error">La categoría puede contener letras y número hasta 100 caracteres</p>
+        </div>
+
+              {{-- <div class="input-group input-group-lg">
                   <span class="input-group-text" id="inputGroup-sizing-lg">Nombre </span>
                   <input type="text" class="form-control" name= 'descripcion' id= 'descripcion' aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="De la categoría">
+              </div> --}}
               </div>
-              </div>
+
+
+      
             
           <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cerrar">Cerrar</button>
               <button type="submit"  class="btn btn-primary" id ="botonGuardar">Guardar</button>
           </div>
         </form>
       </div>
     </div>
   </div>
-
+  <script src="{{asset('validarCategoria.js')}}" defer></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="  https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
