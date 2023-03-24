@@ -191,6 +191,8 @@ public function ArticulosPorCategoria($id)
     $Articulos->iva            = $request->iva;
     $Articulos->categoria_id   = $request->categoria;
     $Articulos->save();
+    $Articulos->codigo         = $request->categoria.'-'.$Articulos->id;
+    $Articulos->save();
     
 
     $articulos = Articulo::where('estado',1)

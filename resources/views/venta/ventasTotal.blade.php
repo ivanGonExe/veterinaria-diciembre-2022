@@ -105,6 +105,15 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         let montoAux = parseFloat(document.getElementById('pago').value);
         let totalAux = parseFloat(document.getElementById('total').value);
 
+        let conversion = Number(monto.value).toFixed(2);
+        let cadena     =  monto.value.split('.');
+        
+        if(cadena.length == 2){
+            if(cadena[1].length > 2){
+                monto.value = conversion;
+            }
+        }
+
             if(montoAux < totalAux){
 
                 if(document.getElementById("vuelto")){
@@ -148,5 +157,7 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
             }
         })
     </script>
+
+    
 </body>
 @endsection

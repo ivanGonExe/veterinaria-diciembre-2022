@@ -71,7 +71,7 @@ input:focus{
             <div class="col-4"> 
                     <div class="buscar">
                         <form class="form-inline " >
-                            <div class="btn btn-primary m-1" style="height: 28px ;line-height: 15px;"> Codigo Art. <i class="fa-solid fa-magnifying-glass"></i></div>
+                            <div class="btn btn-primary m-1" style="height: 28px ;line-height: 15px;"> Código <i class="fa-solid fa-magnifying-glass"></i></div>
                             <select  id='codigoArticulo' class="js-example-basic-single p-3" name="codigoarticulo"  placeholder="Código" aria-label="Search" style="width:120px;height: 28px" >
                                         <option value="0"></option>
                                         @foreach($lotes as $unLote)
@@ -313,7 +313,8 @@ input:focus{
         //control de que no halla mas de dos numeros en los inputs
        
         let conversion = Number(montoDesc.value).toFixed(2);
-        let cadena =  montoDesc.value.split('.');
+        let cadena     =  montoDesc.value.split('.');
+        
         if(cadena.length == 2){
             if(cadena[1].length > 2){
                 montoDesc.value = conversion;
