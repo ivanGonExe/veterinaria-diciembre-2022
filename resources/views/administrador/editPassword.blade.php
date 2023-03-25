@@ -4,9 +4,9 @@
 @section('contenido')
 <body>  
   
-    @foreach ($errors->all() as $error)
+    {{-- @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
-    @endforeach
+    @endforeach --}}
 
 
     <div class="main_content">
@@ -22,7 +22,7 @@
         <div class="form-group">
         
             <div class=" container-fluid d-flex justify-content-center">
-    <div class= "container m-5">  
+    <div class= "container m-5 w-50">  
 
     <form action="/usuario/guardarPassword/{{$usuario->id}}" method="POST">
         @csrf
@@ -34,11 +34,12 @@
         <div class=" mb-3">
             <label for="" class="form-label">Contraseña nueva</label>
             <input id="password" name="password" type="password" class="form-control"  tabindex="3">
+            <p id="errorContraseña" class="bg-danger text-white mt-2 fs-4">¡La contraseña debe contener al menos una mayúscula, una minúscula, un número y 6 caracteres como mínimo!</p>
         </div>
 
         <a href="/usuario" class="btn btn-secondary" tabindex="6">Cancelar</a>
         
-        <button type="submit" class="btn btn-primary" tabindex="7">Guardar</button>
+        <button type="submit" class="btn btn-primary" id="submit" tabindex="7">Guardar</button>
     </form>
 </div>
 </div>
@@ -48,4 +49,27 @@
 
 </body>
 
+<script>
+    let boton = document.getElementById("submit");
+    boton.disabled = true;
+    let password = document.getElementById("password");
+
+    let mensaje = document.getElementById("errorContraseña");
+    mensaje.style.display = "none";
+
+
+
+    password.addEventListener("blur", function(){
+       let regex = /^(?=.*\d)(?=.*[a-záéíóúüñ]).*[A-ZÁÉÍÓÚÜÑ]/;
+
+        if (regex.test(password.value)&& password.value.length > 5) {
+            boton.disabled = false;
+            mensaje.style.display = "none";
+        } else {
+            boton.disabled = true;
+            mensaje.style.display = "block";
+        }
+    });
+        
+</script>
 @endsection

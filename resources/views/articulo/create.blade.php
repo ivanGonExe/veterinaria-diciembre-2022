@@ -75,7 +75,7 @@
                 <div class="formulario__grupo" id="grupo__alerta">
                     <label for="alerta" class="formulario__label" title="Días previos antes del vencimiento del producto para que el sistema lo notifique" >Alerta de Vencimiento*</label>
                     <div class="formulario__grupo-input">
-                  <input type="text" class="form-control formulario__input" name="alerta" id="alerta"  maxlength="3" placeholder="30 dias,60 dias..." value='0' aria-describedby="addon-wrapping" required>
+                  <input type="text" class="form-control formulario__input" name="alerta" id="alerta"  maxlength="3" placeholder="30 dias,60 dias..." value='0' aria-describedby="addon-wrapping">
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
              </div>
              <br>

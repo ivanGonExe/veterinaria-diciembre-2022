@@ -6,7 +6,7 @@ const expresiones = {
     minimoStock: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 4
     iva: /^[0-9]{1,2}$/, // 0 - 2 numeros
     precioVenta: /^[0-9]{1,8}$/, // 0 - 8 numeros
-    alerta: /^[0-9]{1,3}$/, // Validar Numero de codigo Solo Numeros y longitud 3
+    alerta: /^$|^\d+$/,// Validar Numero de codigo Solo Numeros y longitud 3
 };
 const campos = {
     descripcion: false,
