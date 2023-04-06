@@ -87,10 +87,7 @@ formulario.addEventListener("submit", (e) => {
     //  Detecta el cambio de precio
         if(precioAnterior != precioActual){
              //condiciond de que supere el mino de ganancia
-             alert(articulos.precioVenta);
-             alert(articulos.precioVenta - precioActual);
-             alert(((articulos.precioVenta - precioActual)*100)/precioActual);
-             alert(precioActual);
+             
             if((((articulos.precioVenta - precioActual)*100)/precioActual)<articulos.porcentGanancia){
                 //muestro el modal y seteo los datos
                 $("#exampleModal").modal("show");
