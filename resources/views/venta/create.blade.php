@@ -320,11 +320,7 @@ input:focus{
                 montoDesc.value = conversion;
             }
         }
-        
-        
-         
-        
-     
+
         if(numDescuento > numPrecio ){
           
             montoDesc.value = precioProducto.value;

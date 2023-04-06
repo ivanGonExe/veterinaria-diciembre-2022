@@ -102,6 +102,7 @@ public function ArticulosPorCategoria($id)
             'iva'            => 'required| numeric |max:100',
             'minimoStock'    => 'nullable| numeric',
             'alerta'         => 'nullable| integer |max:100',
+            'porcentGanancia'=> 'numeric',
         ]);
 
         $articulosAux = DB::TABLE('articulos')
@@ -110,16 +111,17 @@ public function ArticulosPorCategoria($id)
 
         if(count($articulosAux) == 0){
 
-            $Articulos                 = new Articulo();
-            $Articulos->descripcion    = strtoupper($request->descripcion);
-            $Articulos->precioVenta    = $request->precioVenta;
-            $Articulos->minimoStock    = $request->minimoStock;
-            $Articulos->alerta         = $request->alerta;
-            $Articulos->iva            = $request->iva;
-            $Articulos->estado         = 1;
-            $Articulos->categoria_id   = $request->categoria;
+            $Articulos                  = new Articulo();
+            $Articulos->descripcion     = strtoupper($request->descripcion);
+            $Articulos->precioVenta     = $request->precioVenta;
+            $Articulos->minimoStock     = $request->minimoStock;
+            $Articulos->alerta          = $request->alerta;
+            $Articulos->iva             = $request->iva;
+            $Articulos->estado          = 1;
+            $Articulos->categoria_id    = $request->categoria;
+            $Articulos->porcentGanancia = $request->porcentGanancia;
             $Articulos->save();
-            $Articulos->codigo         = $request->categoria.'-'.$Articulos->id;
+            $Articulos->codigo          = $request->categoria.'-'.$Articulos->id;
             $Articulos->save();
             
          }
@@ -134,6 +136,35 @@ public function ArticulosPorCategoria($id)
                          ->with('categoria',$categoria)
                          ->with('idCategoria', 0); 
         }
+//-------------------------------------------------------------------------
+/**
+     * Guardar configuracion de ganacia de un articulo por id (request->id).
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function GuardarConfigArticulo(Request $request)
+    {
+        $salida = false;
+        
+        $articulos = Articulo::find($request->id);
+        
+       
+        if(!$articulos){
+            $salida = false;
+            return response(json_encode($salida),200)->header('Content-type','text/plain');
+        }
+        else{
+            $articulos->porcentGanancia = $request->porcentaje;
+            $articulos->precioVenta     = $request->precioVenta;
+            $articulos->save();            
+            $salida = true;
+
+        return response(json_encode($salida),200)->header('Content-type','text/plain');
+        }
+        
+    }
+        
 //-------------------------------------------------------------------------
     /**
      * Display the specified resource.
@@ -181,17 +212,19 @@ public function ArticulosPorCategoria($id)
             'iva'            => 'required| numeric |max:100',
             'minimoStock'    => 'nullable| numeric',
             'alerta'         => 'nullable| integer |max:100',
+            'porcentGanancia'=> 'numeric',
         ]);
         
-    $Articulos                 = Articulo::find($id);  
-    $Articulos->descripcion    = strtoupper($request->descripcion);
-    $Articulos->precioVenta    = $request->precioVenta;
-    $Articulos->minimoStock    = $request->minimoStock;
-    $Articulos->alerta         = $request->alerta;
-    $Articulos->iva            = $request->iva;
-    $Articulos->categoria_id   = $request->categoria;
+    $Articulos                  = Articulo::find($id);  
+    $Articulos->descripcion     = strtoupper($request->descripcion);
+    $Articulos->precioVenta     = $request->precioVenta;
+    $Articulos->minimoStock     = $request->minimoStock;
+    $Articulos->alerta          = $request->alerta;
+    $Articulos->iva             = $request->iva;
+    $Articulos->categoria_id    = $request->categoria;
+    $Articulos->porcentGanancia = $request->porcentGanancia;
     $Articulos->save();
-    $Articulos->codigo         = $request->categoria.'-'.$Articulos->id;
+    $Articulos->codigo          = $request->categoria.'-'.$Articulos->id;
     $Articulos->save();
     
 

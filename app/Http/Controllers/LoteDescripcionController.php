@@ -30,7 +30,9 @@ class LoteDescripcionController extends Controller
      $lotes     = loteDescripcion::Where('articulo_id',$id)
                                  ->Where('estado',1)
                                  ->get();
-     return view ('lote.index')->with('lotes',$lotes)->with('articulos',$Articulos);
+     return view ('lote.index')
+               ->with('lotes',$lotes)
+               ->with('articulos',$Articulos);
     }
 
     /**
@@ -127,8 +129,13 @@ class LoteDescripcionController extends Controller
      */
     public function edit($id)
     {
-        $lotes=loteDescripcion::find($id);
-        return view ('lote.editar')->with('lote',$lotes);
+        
+        $lotes     = loteDescripcion::find($id);
+        $articulos = Articulo::find($lotes->articulo_id);
+        
+        return view ('lote.editar')
+                  ->with('lote',$lotes)
+                  ->with('articulos',$articulos);
     }
 
     /**

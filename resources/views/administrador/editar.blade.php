@@ -17,8 +17,8 @@
         <div class="form-group">
         
             <div class=" container-fluid d-flex justify-content-center">
-    <div class= "container m-5">  
-   {{--  <h2><i class="fa-solid fa-user-pen"></i> Editar {{--  {{$usuario->name}} --}}
+    <div class= "container w-50 m-5">  
+   
     <form action="/usuario/guardar/{{$usuario->id}}" method="POST">
         @csrf
         @method('Post')

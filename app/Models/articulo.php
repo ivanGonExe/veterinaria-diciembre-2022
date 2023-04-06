@@ -7,18 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class articulo extends Model
 {
-    protected $fillable=['lote',
-    'marca',
-    'descripcion',
-    'unidad',
-    'garantia',
-    'precioVenta',
-    'precioCosto',
-    'vencimiento',
-    'elavoracion',
-    'talle',
-    'peso',
-    'tamaño'];
+  
 
     use HasFactory;
 

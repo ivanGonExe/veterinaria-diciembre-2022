@@ -81,6 +81,18 @@
              <br>
                     <p class="formulario__input-error">El alerta solo puede contener numeros y el maximo son 3 dígitos.</p>
                 </div>
+
+              <!-- Grupo: porcentajeGanancia-->
+             <div class="mb-3">
+                <div class="formulario__grupo" id="grupo__alerta">
+                    <label for="porcentaje" class="formulario__label" title="Porcentaje de ganancia del producto" >Porcentaje de ganancia del producto*</label>
+                    <div class="formulario__grupo-input">
+                  <input type="text" class="form-control formulario__input" name="porcentGanancia" id="porcentGanancia" value ='10'  maxlength="3" placeholder="porcentaje que se le quiere ganar al producto" aria-describedby="addon-wrapping" required>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+             </div>
+             <br>
+                    <p class="formulario__input-error">El alerta solo puede contener numeros y el maximo son 3 dígitos.</p>
+                </div>
        
            <!--Grupo categoria -->
              

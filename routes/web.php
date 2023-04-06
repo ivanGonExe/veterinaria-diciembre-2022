@@ -59,8 +59,10 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post    ('/articulos/create',           [App\Http\Controllers\ArticuloController        ::class,'store'                ]);
             Route::post    ('categorias/all',              [App\Http\Controllers\CategoriaController       ::class,'all'                  ]);
             Route::post    ('articulos/filter',            [App\Http\Controllers\ArticuloController        ::class,'filter'               ]);
+            Route::get    ('/Guardar/ConfigArticulo',     [App\Http\Controllers\ArticuloController        ::class,'GuardarConfigArticulo']);
             Route::get     ('Lotes/{id}/Vencimientodelete',[App\Http\Controllers\loteDescripcionController ::class,'Vencimientodelete'    ]);
-            Route::get     ('/Articulo/Por/Categoria/{id}', [App\Http\Controllers\ArticuloController        ::class,'ArticulosPorCategoria']);
+            Route::get     ('/Articulo/Por/Categoria/{id}',[App\Http\Controllers\ArticuloController        ::class,'ArticulosPorCategoria']);
+            
             Route::resource('/articulos','App\Http\Controllers\ArticuloController');
         /*Rutas ventas*/
             Route::get     ("/precioEspecial/{id}",         [App\Http\Controllers\VentaController::class,'cambiarEstadoPrecio'  ]);

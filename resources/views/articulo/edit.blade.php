@@ -88,6 +88,17 @@
      <br>
             <p class="formulario__input-error">El alerta solo puede contener numeros y el maximo son 3 dígitos.</p>
         </div>
+        <!-- Grupo: porcentajeGanancia-->
+     <div class="mb-3">
+        <div class="formulario__grupo" id="grupo__porcentaje">
+            <label for="alerta" class="formulario__label" title="Días previos antes del vencimiento del producto para que el sistema lo notifique" >Porcentaje de ganancia*</label>
+            <div class="formulario__grupo-input">
+          <input type="text" class="form-control formulario__input" name="porcentGanancia" id="porcentGanancia"  maxlength="3" value ="{{$articulos->porcentGanancia}}" aria-describedby="addon-wrapping" required>
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+     </div>
+     <br>
+            <p class="formulario__input-error">El alerta solo puede contener numeros y el maximo son 3 dígitos.</p>
+        </div>
 
 
         <div class="mb-3">

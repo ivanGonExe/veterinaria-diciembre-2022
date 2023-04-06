@@ -17,7 +17,7 @@ const campos = {
 /*     vencimiento: true,   */
   
 };
-console.log("entro")
+
 const validarFormulario = (e) => {
     switch (e.target.name) {
         case "precioCompra":
@@ -76,27 +76,151 @@ for (let i = 0; i < longitud; i++) {
 
 
 
+let precioAnterior = Number( document.getElementById('precioCompra').value);
 
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
+    let precioActual =  Number(document.getElementById('precioCompra').value);
 
-    if (
-        precioCompra && unidades 
-    ) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Lote Guardado",
-            showConfirmButton: false,
-            timer: 4000,
-        });
+    if (precioCompra && unidades ) {
 
-        /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
-        setTimeout(() => {
-            /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
+    //  Detecta el cambio de precio
+        if(precioAnterior != precioActual){
+             //condiciond de que supere el mino de ganancia
+             alert(articulos.precioVenta);
+             alert(articulos.precioVenta - precioActual);
+             alert(((articulos.precioVenta - precioActual)*100)/precioActual);
+             alert(precioActual);
+            if((((articulos.precioVenta - precioActual)*100)/precioActual)<articulos.porcentGanancia){
+                //muestro el modal y seteo los datos
+                $("#exampleModal").modal("show");
+                document.getElementById('precioUnitLote').value = precioActual;
+                document.getElementById('aumento').value        = articulos.porcentGanancia;
 
+                let varAux = precioActual* (1+(articulos.porcentGanancia/100));
+
+                document.getElementById('montoAumentado').value = varAux.toFixed(2);
+
+                //funcion de calculo de monto aumentado segun porcentaje
+                    let aumento = document.getElementById('aumento');
+                    aumento.addEventListener('keyup', function(){
+                        let montoAumentado  = document.getElementById('montoAumentado');
+                        
+                        // control de que el porcentaje tenga dos lugares depues de la coma
+                        let cadenaAux = aumento.value.split('.');
+                        let conversionAux = Number(aumento.value).toFixed(1);
+                        if(cadenaAux.length > 1){
+                            if(cadenaAux[1].length > 1){
+                                aumento.value = conversionAux;
+                            }
+                        }
+                        if(this.value > 101 ) 
+                            this.value = this.value.slice(0,3);
+                        if(this.value < 0)
+                            this.value = 0;
+                        let porcentaje = Number(aumento.value);
+                        let precioAux = precioActual* (1+(porcentaje/100));  
+                        montoAumentado.value = precioAux.toFixed(2); 
+
+                    })
+
+                // funcion de calculo de porcentaje segun el monto colocado
+
+                    let montoAumentado = document.getElementById('montoAumentado');
+    
+                    montoAumentado.addEventListener('keyup', function(){
+    
+                        let aumento         = document.getElementById('aumento');
+                        let precioUnitLote  = document.getElementById('precioUnitLote'); 
+                        let numaumento      = Number(montoAumentado.value);
+                        let numPrecio       = Number(precioUnitLote.value);
+                //control de que no halla mas de dos numeros en los inputs
+   
+                        let conversion = Number(montoAumentado.value).toFixed(2);
+                        let cadena     =  montoAumentado.value.split('.');
+    
+                        if(cadena.length == 2){
+                            if(cadena[1].length > 2){
+                                montoAumentado.value = conversion;
+                            }
+                        }
+                        
+                        let montoAux     = (numaumento-numPrecio)*100/numPrecio ;
+                        aumento.value    = montoAux.toFixed(2);
+                        if(aumento.value<0){
+                            document.getElementById('modalAplicar').disabled = true;
+                        }
+                        else{
+                            document.getElementById('modalAplicar').disabled = false;
+                        }
+                        
+                        })
+
+                        let precioProducto  = document.getElementById('precioProducto');
+
+                        montoAumentado.addEventListener('input',function(){
+
+                        let aumento         = document.getElementById('aumento');
+                        let precioProducto  = document.getElementById('precioProducto'); 
+                        let numaumento      = parseFloat(montoAumentado.value);
+                        let numPrecio       = parseFloat(precioProducto.value);
+                    //control de que no halla mas de dos numeros en los inputs
+   
+                        let conversion = Number(montoAumentado.value).toFixed(2);
+                        let cadena     =  montoAumentado.value.split('.');
+                        if(cadena.length == 2){
+                            if(cadena[1].length > 2){
+                                montoAumentado.value = conversion;
+                            }
+                        }
+                    })
+
+            //ajax para el guardado de la configuracion nueva y el precio nuevo de venta del articulo
+                let botonAplicar = document.getElementById('modalAplicar');
+                botonAplicar.addEventListener('click', function(){
+                    
+                $.ajax({
+                    type: "GET",
+                    url: "/Guardar/ConfigArticulo",
+                    data: {
+                        id:articulos.id,
+                        porcentaje:aumento.value,
+                        precioVenta:montoAumentado.value,
+                        _token: $('input[name="_token"]').val(),
+                    },
+                }).done(function (res) {
+                    console.log(typeof(res) );
+                    if(res == 'false'){
+                        Swal.fire('No se ha guardado correctamente la configuracion del articulo, intentelo mas tarde')
+                    }
+                    if( res == 'true'){
+                        Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: " configuracion y Lote Guardado",
+                            showConfirmButton: false,
+                            timer: 6000,
+                        });
+                        
+                        formulario.submit();
+                    }
+                
+                });
+            });
+
+        }
+    
+    else{
+        alert('entro');
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Lote Guardado",
+                showConfirmButton: false,
+                timer: 6000,
+            });
             formulario.submit();
-        }, 4000);
+        }
 
         document
             .querySelectorAll(".formulario__grupo-correcto")
@@ -114,7 +238,7 @@ formulario.addEventListener("submit", (e) => {
                 .classList.remove("formulario__mensaje-activo");
         }, 3000);
     }
-});
+}});
 
 //comprobar los input al inicio
 
@@ -123,5 +247,18 @@ let unidades = document.getElementsByName("unidades");
 let formulario__mensaje = document.getElementById("formulario__mensaje");
 validarCampo(expresiones.precioCosto,precioCosto[0],"precioCosto");
 validarCampo(expresiones.unidades,unidades[0],"unidades");
-formulario__mensaje.style.display = "none"; 
+formulario__mensaje.style.display = "none"; ç
+
+//Algoritmo de calculo de porcentaje y monto final
+
+
+
+
+
+aumento.addEventListener('input',function(){
+    if (this.value > 100 ) 
+        this.value = this.value.slice(0,2);
+    if (this.value < 0)
+        this.value = 0; 
+})
 

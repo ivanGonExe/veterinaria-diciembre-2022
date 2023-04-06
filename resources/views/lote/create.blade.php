@@ -1,20 +1,34 @@
 @extends('layouts.plantillaBase2')
+<style>
+.modal_cuerpo{
+    background-color:#E53935!important;
+    color:white !important;
+    padding: 10px;
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px !important;
+
+}
+.modalTurno{
+    padding: 6px !important;
+    border-radius: 100px!important;
+}
+
+</style>
+
  
 <link rel="stylesheet" type="text/css" href="{{asset('estiloArticulo.css')}}">
 @section('contenido')
-<div class="form-group   text-center">
+<div class="form-group  text-center w-50 " style="margin: 20 auto; width: 200px;">
     <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Nuevo Lote</h2>
-    <h4 class="text-center text-light p-2 m-2 fw-bold" >Articulo <p class="text-dark">{{$articulos->descripcion}}</p>Marca<p class="text-dark"> {{$articulos->marca}}</p></h4> 
+    <h4 class="text-center text-light p-2 m-2 fw-bold" >Articulo <p class="text-dark">{{$articulos->descripcion}}</p></h4> 
    <div class="row container-fluid d-flex justify-content-center">
 
     <p class="text-info">*Esta pregunta es obligatoria</p>
     <form action="/Lotes/{{$ArticuloId}}/store" method="POST" id="formulario" name="formulario" class="w-75">
         @csrf
         @method('Post')
-     {{--    <div class="mb-3">
-            <label for="" class="form-label">Cantidad de Unidades</label>
-            <input id="unidades" name="unidades" type="number" class="form-control" tabindex="3">
-        </div> --}}
+     
         
       
  <!--Precio de compra -->
@@ -45,13 +59,13 @@
         <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>
     </div>
       </div>
-      <br>
+      
     @if($articulos->alerta > 0)
     <div class="mb-3">
-        <div class="formulario__grupo" id="grupo__vencimiento" title="Valor númerico único que se va identificar el producto">
+        <div class="formulario__grupo  w-90 " id="grupo__vencimiento" title="Fecha de vencimiento del lote del producto">
           <label for="vencimiento" class="formulario__label">Fecha de vencimiento*</label>
           <div class="formulario__grupo-input px-2">
-              <input id="vencimiento" name="vencimiento" type="date" class="form-control formulario__input" maxlength="8" >
+              <input id="vencimiento" name="vencimiento" type="date" class="form-control formulario__input" maxlength="8" requiered>
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
           </div>
           <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>
@@ -64,9 +78,56 @@
         <button type="submit" class="btn btn-primary" tabindex="7">Guardar</button>
     </form>
 </div>
+<!-- Modal de cambio de precioVenta de articulo -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header bg-dark text-center">
+          <h5 class="modal-title text-center " id="exampleModalLabel">Producto:{{$articulos->descripcion}}</h5>
+          
+        </div>
+      <div class="modal-body modal_cuerpo">
+            <div class="  text-center  ">
+                    <div id= "contendorAviso">
+                      <h4 id = tituloAviso>Margen menor de ganancia, por lo que se aplicara el % configurado</h4>
+                    </div>
+                    <h5 id = 'tituloModal'></h5>
+                    <br>
+                    <h4> El precio actual de venta del producto es de ${{$articulos->precioVenta}}</h4>
+                    <Br>
+                    <label>Precio unitario del costo del lote</label><br>
+                    <label>$<input type="number" id = "precioUnitLote" name = "precioUnitLote" class="inputPrecio fw-blod" readonly></label>
+                    <br>
+                    <label>Porcentaje configurado </label><br>
+                    <label>%<input type = "number" id = "aumento" name = "aumento" step="0.01" ></label>
+                    <br>
+                    <label>Precio de venta actualizado</label><br>
+                    <label>$<input type="number" id ="montoAumentado" name = "montoAumentado"step="0.01"  ></label>
+                    <div class="container-fluid d-flex justify-content-center m-2">
+                        <button class="btn btn-primary m-2" name="ModalAplicar" id="modalAplicar" tabindex="6">Aplicar</button>
+                        <button id='cancelarModal' class="btn btn-secondary m-2" name="noAplicar" tabindex="7">Cancelar</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>
+<script>
+  let articulos  = @json($articulos);
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
 <script src="{{asset('validarLote.js')}}" defer></script>
+<!-- accion de boton cancelar de modal -->
+  <script>
+    let botonCancelar = document.getElementById('cancelarModal');
+    botonCancelar.addEventListener('click', function () {
+      $("#exampleModal").modal("hide");
+    });
+  </script>
+
 
 @endsection

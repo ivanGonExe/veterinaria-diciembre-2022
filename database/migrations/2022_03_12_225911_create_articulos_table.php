@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('minimoStock')->nullable();
             $table->float('iva')->nullable();
             $table->integer('alerta')->nullable();
+            $table->float('porcentGanancia')->nullable();
             $table->boolean('estado')->nullable();
             $table->foreignId('categoria_id')->nullable()->constrained('categorias')->onUpdate('cascade')->onDelete('cascade');
             
