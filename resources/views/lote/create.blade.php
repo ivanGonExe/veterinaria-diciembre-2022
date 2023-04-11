@@ -34,7 +34,7 @@
  <!--Precio de compra -->
    <div class="mb-3">
     <div class="formulario__grupo" id="grupo__precioCompra" title="Valor númerico único que se va identificar el producto">
-  <label for="precioCompra" class="formulario__label">Precio de Compra*</label>
+  <label for="precioCompra" class="formulario__label">Precio de Compra Unitario*</label>
   <div class="formulario__grupo-input px-2">
    
     <input id="precioCompra" name="precioCompra" type="number" class="form-control formulario__input" maxlength="8" required>
@@ -90,16 +90,16 @@
       <div class="modal-body modal_cuerpo">
             <div class="  text-center  ">
                     <div id= "contendorAviso">
-                      <h4 id = tituloAviso>Margen menor de ganancia, por lo que se aplicara el % configurado</h4>
+                      <h4 id = tituloAviso>El precio de venta del producto debe actualizarse</h4>
                     </div>
                     <h5 id = 'tituloModal'></h5>
                     <br>
                     <h4> El precio actual de venta del producto es de ${{$articulos->precioVenta}}</h4>
                     <Br>
-                    <label>Precio unitario del costo del lote</label><br>
+                    <label>Costo por artículo (Unidad)</label><br>
                     <label>$<input type="number" id = "precioUnitLote" name = "precioUnitLote" class="inputPrecio fw-blod" readonly></label>
                     <br>
-                    <label>Porcentaje configurado </label><br>
+                    <label>Porcentaje de ganancia </label><br>
                     <label>%<input type = "number" id = "aumento" name = "aumento" step="0.01" ></label>
                     <br>
                     <label>Precio de venta actualizado</label><br>

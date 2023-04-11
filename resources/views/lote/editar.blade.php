@@ -30,7 +30,7 @@
         <!--Precio de compra -->
    <div class="mb-3">
     <div class="formulario__grupo" id="grupo__precioCompra" title="Valor númerico único que se va identificar el producto">
-  <label for="precioCompra" class="formulario__label">Precio de Compra*</label>
+  <label for="precioCompra" class="formulario__label">Precio de Compra Unitario*</label>
   <div class="formulario__grupo-input px-2">
    
     <input id="precioCompra" name="precioCompra" type="number" class="form-control formulario__input" value ='{{$lote->precioCompra}}' maxlength="8" required>

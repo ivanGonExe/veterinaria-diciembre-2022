@@ -196,10 +196,14 @@ formulario.addEventListener("submit", (e) => {
                             icon: "success",
                             title: " configuracion y Lote Guardado",
                             showConfirmButton: false,
-                            timer: 6000,
+                            timer: 20000,
                         });
+                        setTimeout(() => {
+                            /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
+                
+                            formulario.submit();
+                        }, 4000);
                         
-                        formulario.submit();
                     }
                 
                 });
@@ -208,15 +212,19 @@ formulario.addEventListener("submit", (e) => {
         }
     
     else{
-        alert('entro');
+        
             Swal.fire({
                 position: "top-center",
                 icon: "success",
                 title: "Lote Guardado",
                 showConfirmButton: false,
-                timer: 6000,
+                timer: 20000,
             });
-            formulario.submit();
+            setTimeout(() => {
+                /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
+    
+                formulario.submit();
+            }, 4000);
         }
 
         document
