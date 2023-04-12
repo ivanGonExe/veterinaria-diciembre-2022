@@ -15,9 +15,28 @@
 }
 
 .precioModal{
-  background:#e6d8d8!important; 
+  background:#e79292!important; 
+  cursor: no-drop !important;
+ 
   
 }
+#exampleModal{
+  background:rgb(245, 39, 30 ,0.6) !important;
+}
+.simbolo{
+  display: inline !important;
+  padding: 13px;
+ 
+  
+
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
 </style>
 
  
@@ -101,13 +120,13 @@
                     <h4> El precio actual de venta del producto es de ${{$articulos->precioVenta}}</h4>
                   
                     <label>Costo por artículo (Unidad)</label><br>
-                    <label>$<input type="number" id = "precioUnitLote" class="p-2" name = "precioUnitLote" class="inputPrecio fw-blod precioModal" readonly></label>
+                    <label><div class="bg-dark simbolo">$</div><input type="number" id = "precioUnitLote" class="p-2 precioModal" name = "precioUnitLote" class="inputPrecio fw-blod  " readonly></label>
                     <br>
                     <label>Porcentaje de ganancia </label><br>
-                    <label>%<input type = "number" id = "aumento"  class="p-2" name = "aumento" step="0.01" ></label>
+                    <label><div class="bg-dark simbolo">%</div><input type = "number" id = "aumento"  class="p-2" name = "aumento" step="0.01" ></label>
                     <br>
                     <label>Precio de venta actualizado</label><br>
-                    <label>$<input type="number" id ="montoAumentado"  class="p-2"  name = "montoAumentado"step="0.01"  ></label>
+                    <label><div class="bg-dark simbolo">$</div><input type="number" id ="montoAumentado"  class="p-2"  name = "montoAumentado"step="0.01"  ></label>
                     <div class="container-fluid d-flex justify-content-center m-2">
                         <button class="btn btn-primary m-2" name="ModalAplicar" id="modalAplicar" tabindex="6">Aplicar</button>
                         <button id='cancelarModal' class="btn btn-secondary m-2" name="noAplicar" tabindex="7">Cancelar</button>
