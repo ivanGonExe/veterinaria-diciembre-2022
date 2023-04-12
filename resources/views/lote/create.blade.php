@@ -14,6 +14,10 @@
     border-radius: 100px!important;
 }
 
+.precioModal{
+  background:#e6d8d8!important; 
+  
+}
 </style>
 
  
@@ -83,8 +87,8 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
 
-        <div class="modal-header bg-dark text-center">
-          <h5 class="modal-title text-center " id="exampleModalLabel">Producto:{{$articulos->descripcion}}</h5>
+        <div class="modal-header">
+          <h5 class="modal-title text-center text-dark " id="exampleModalLabel">Producto:{{$articulos->descripcion}}</h5>
           
         </div>
       <div class="modal-body modal_cuerpo">
@@ -93,17 +97,17 @@
                       <h4 id = tituloAviso>El precio de venta del producto debe actualizarse</h4>
                     </div>
                     <h5 id = 'tituloModal'></h5>
-                    <br>
+               
                     <h4> El precio actual de venta del producto es de ${{$articulos->precioVenta}}</h4>
-                    <Br>
+                  
                     <label>Costo por artículo (Unidad)</label><br>
-                    <label>$<input type="number" id = "precioUnitLote" name = "precioUnitLote" class="inputPrecio fw-blod" readonly></label>
+                    <label>$<input type="number" id = "precioUnitLote" class="p-2" name = "precioUnitLote" class="inputPrecio fw-blod precioModal" readonly></label>
                     <br>
                     <label>Porcentaje de ganancia </label><br>
-                    <label>%<input type = "number" id = "aumento" name = "aumento" step="0.01" ></label>
+                    <label>%<input type = "number" id = "aumento"  class="p-2" name = "aumento" step="0.01" ></label>
                     <br>
                     <label>Precio de venta actualizado</label><br>
-                    <label>$<input type="number" id ="montoAumentado" name = "montoAumentado"step="0.01"  ></label>
+                    <label>$<input type="number" id ="montoAumentado"  class="p-2"  name = "montoAumentado"step="0.01"  ></label>
                     <div class="container-fluid d-flex justify-content-center m-2">
                         <button class="btn btn-primary m-2" name="ModalAplicar" id="modalAplicar" tabindex="6">Aplicar</button>
                         <button id='cancelarModal' class="btn btn-secondary m-2" name="noAplicar" tabindex="7">Cancelar</button>
