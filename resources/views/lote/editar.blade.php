@@ -13,13 +13,36 @@
     padding: 6px !important;
     border-radius: 100px!important;
 }
+.precioModal{
+  background:#e79292!important; 
+  cursor: no-drop !important;
+ 
+  
+}
+#exampleModal{
+  background:rgb(245, 39, 30 ,0.6) !important;
+}
+.simbolo{
+  display: inline !important;
+  padding: 13px;
+ 
+  
+
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
 </style>
 <link rel="stylesheet" type="text/css" href="{{asset('estiloArticulo.css')}}">
 @section('contenido')
 <body>
 
 <div class="form-group  text-center w-50 " style="margin: 20 auto; width: 200px;">
-        <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Editar Lote</h2>
+        <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Editar Lote </h2>
       
        <div class="row container-fluid d-flex justify-content-center">
   
@@ -57,10 +80,16 @@
       </div>
     @if($articulos->alerta > 0)
         <div class="mb-3" >
-            <div class="formulario__grupo w-90" id="grupo__vencimiento" title="Fecha de vencimiento del lote del producto">
+            <div class="formulario__grupo " id="grupo__vencimiento" title="Fecha de vencimiento del lote del producto">
                 <label for="vencimiento" class="formulario__label">Vencimiento*</label>
-            <input id="vencimiento" name="vencimiento" type="date" class="form-control formulario__input" value ='{{$lote->vencimiento}}' tabindex="5">
+                <div class="formulario__grupo-input">
+            <input id="vencimiento" name="vencimiento" type="date" class="form-control formulario__input" value ='{{$lote->vencimiento}}'  tabindex="5">
         </div>
+        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+        </div>
+
+        <p class="formulario__input-error">Colocar fecha</p>
+    </div>
 <br>
     @endif
         <a href="/Lotes/{{$lote->articulo_id}}/lote" class="btn btn-secondary" tabindex="6">Cancelar</a>
@@ -87,13 +116,13 @@
                     <h4> El precio actual de venta del producto es de ${{$articulos->precioVenta}}</h4>
                     <Br>
                     <label>Precio unitario del costo del lote</label><br>
-                    <label>$<input type="number" id = "precioUnitLote" name = "precioUnitLote" class="inputPrecio fw-blod" readonly></label>
+                    <label><div class="bg-dark simbolo">$</div><input type="number" id = "precioUnitLote" class="p-2" name = "precioUnitLote" class="inputPrecio fw-blod" readonly></label>
                     <br>
                     <label>Porcentaje configurado </label><br>
-                    <label>%<input type = "number" id = "aumento" name = "aumento" step="0.01" ></label>
+                    <label><div class="bg-dark simbolo">%</div><input type = "number" id = "aumento" class="p-2" name = "aumento" step="0.01" ></label>
                     <br>
                     <label>Precio de venta actualizado</label><br>
-                    <label>$<input type="number" id ="montoAumentado" name = "montoAumentado"step="0.01"  ></label>
+                    <label><div class="bg-dark simbolo">$</div><input type="number" id ="montoAumentado" class="p-2" name = "montoAumentado"step="0.01"  ></label>
                     <div class="container-fluid d-flex justify-content-center m-2">
                         <button class="btn btn-primary m-2" name="ModalAplicar" id="modalAplicar" tabindex="6">Aplicar</button>
                         <button id='cancelarModal' class="btn btn-secondary m-2" name="noAplicar" tabindex="7">Cancelar</button>

@@ -88,7 +88,7 @@ input[type=number] { -moz-appearance:textfield; }
         <div class="formulario__grupo  w-90 " id="grupo__vencimiento" title="Fecha de vencimiento del lote del producto">
           <label for="vencimiento" class="formulario__label">Fecha de vencimiento*</label>
           <div class="formulario__grupo-input px-2">
-              <input id="vencimiento" name="vencimiento" type="date" class="form-control formulario__input" maxlength="8" requiered>
+              <input id="vencimiento" name="vencimiento" type="date" class="form-control formulario__input" maxlength="8"  requiered>
               <i class="formulario__validacion-estado fas fa-times-circle"></i>
           </div>
           <p class="formulario__input-error">Unidades, solo puede contener valores númericos</p>

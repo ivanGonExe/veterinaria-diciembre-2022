@@ -1,35 +1,52 @@
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
-const fechaVencimiento = document.getElementById("vencimiento"); 
+const fechaVencimiento = document.getElementById("vencimiento");
+
+let valor = fechaVencimiento.value; 
+
+let patron = /^(1[0-2]|0?[1-9])\/(3[01]|[12][0-9]|0?[1-9])\/(?:[0-9]{2})?[0-9]{2}$/;
+
+
+function esFechaValida(cadena) {
+    // cadena = cadena.replace('-','/'); //tenicamente este anda dd/mm/aa
+    let fecha = new Date(cadena); 
+    alert(fecha)
+    let patron = /^(1[0-2]|0?[1-9])\/(3[01]|[12][0-9]|0?[1-9])\/(?:[0-9]{2})?[0-9]{2}$/;
+
+    return patron.test(cadena);
+}
+
+
+
+
 
 const expresiones = {
     
     precioCompra: /^[0-9]{1,8}$/,  // Validar Numero de codigo Solo Numeros y longitud 4
     unidades: /^[0-9 ]{1,8}$/, // Validar Numero de codigo Solo Numeros y longitud 8
-   /*  vecimiento:/^([a-zA-Z0-9_\s\.]){1,30}$/,   */
-
+ 
 
 
 };
 const campos = {
     precioCompra:false,
-   unidades: false,
-/*     vencimiento: true,   */
+    unidades: false,
+    vencimiento:false,
+  
   
 };
 
 const validarFormulario = (e) => {
-    switch (e.target.name) {
+    switch (e.target.name) 
+    {
         case "precioCompra":
             validarCampo(expresiones.precioCompra, e.target, "precioCompra");
             break;
-         case "unidades":
+        case "unidades":
             validarCampo(expresiones.unidades, e.target, "unidades");
             break;
-          /* case "vencimiento":
-            validarCampo(expresiones.vecimiento, e.target, "vencimiento");
-            break; */
-            }   
+      
+    }   
 };
 
 const validarCampo = (expresion, input, campo) => {
@@ -68,6 +85,7 @@ const validarCampo = (expresion, input, campo) => {
     }
 };
 
+
 let longitud = inputs.length;
 for (let i = 0; i < longitud; i++) {
     inputs[i].addEventListener("keyup", validarFormulario); //cuando se levante la tecla
@@ -80,9 +98,15 @@ let precioAnterior = Number( document.getElementById('precioCompra').value);
 
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
+    alert(esFechaValida(document.getElementById('vencimiento').value))
+    console.log(valor)
     let precioActual =  Number(document.getElementById('precioCompra').value);
 
-    if (precioCompra && unidades ) {
+    // if(fechaVencimiento.value){
+    //     campos['vencimiento'] = true;
+    // }
+    
+    if (precioCompra && unidades && vencimiento ) {
 
     //  Detecta el cambio de precio
         if(precioAnterior != precioActual){
@@ -234,30 +258,42 @@ formulario.addEventListener("submit", (e) => {
             });
     } else {
         console.log("entro a la parte de mostrar el mensaje de error ");
-        document
-            .getElementById("formulario__mensaje")
-            .classList.add("formulario__mensaje-activo");
-        setTimeout(() => {
-            document
-                .getElementById("formulario__mensaje")
-                .classList.remove("formulario__mensaje-activo");
-        }, 3000);
+
+      
+        // document
+        //     .getElementById("formulario__mensaje")
+        //     .classList.add("formulario__mensaje-activo");
+        // setTimeout(() => {
+        //     document
+        //         .getElementById("formulario__mensaje")
+        //         .classList.remove("formulario__mensaje-activo");
+        // }, 3000);
     }
 }});
 
 //comprobar los input al inicio
 
-let precioCosto = document.getElementsByName("precioCosto");
-let unidades = document.getElementsByName("unidades");
-let formulario__mensaje = document.getElementById("formulario__mensaje");
-validarCampo(expresiones.precioCosto,precioCosto[0],"precioCosto");
-validarCampo(expresiones.unidades,unidades[0],"unidades");
-formulario__mensaje.style.display = "none"; ç
+// let precioCosto = document.getElementsByName("precioCosto");
+// let unidades = document.getElementsByName("unidades");
+// let vencimiento = document.getElementsByName("vencimiento");
+// let formulario__mensaje = document.getElementById("formulario__mensaje");
+// validarCampo(expresiones.precioCosto,precioCosto[0],"precioCosto");
+// validarCampo(expresiones.unidades,unidades[0],"unidades");
+//  validarCampo(expresiones.vencimiento,vencimiento[0],"vencimiento");
+// formulario__mensaje.style.display = "none"; 
 
 //Algoritmo de calculo de porcentaje y monto final
 
 
+let precioCosto = document.getElementsByName("precioCompra");
+let unidades = document.getElementsByName("unidades");
+let vencimiento = document.getElementsByName("vencimiento");
+let formulario__mensaje = document.getElementById("formulario__mensaje");
 
+validarCampo(expresiones.precioCosto,precioCosto[0],"precioCosto");
+validarCampo(expresiones.unidades,unidades[0],"unidades");
+validarCampo(expresiones.vencimiento,vencimiento[0],"vencimiento");
+formulario__mensaje.style.display = "none";  
 
 
 aumento.addEventListener('input',function(){
