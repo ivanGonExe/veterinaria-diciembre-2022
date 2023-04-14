@@ -2,14 +2,13 @@
     <!-- select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
-
-/* body{
-	min-height: 150vh;
-	background-image: linear-gradient(120deg, #ff5454, #ed1919);
-    
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
- */
 
+input[type=number] { -moz-appearance:textfield; }
 .marco{
 background-color: rgb(255, 255, 255);
 border: 1px solid #000;

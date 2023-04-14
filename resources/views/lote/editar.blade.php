@@ -1,4 +1,5 @@
 @extends('layouts.plantillaBase2')
+
 <style>
 .modal_cuerpo{
     background-color:#E53935!important;
@@ -13,6 +14,30 @@
     padding: 6px !important;
     border-radius: 100px!important;
 }
+.precioModal{
+  background:#e79292!important; 
+  cursor: no-drop !important;
+ 
+  
+}
+#exampleModal{
+  background:rgb(245, 39, 30 ,0.6) !important;
+}
+.simbolo{
+  display: inline !important;
+  padding: 13px;
+ 
+  
+
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
 </style>
 <link rel="stylesheet" type="text/css" href="{{asset('estiloArticulo.css')}}">
 @section('contenido')
@@ -73,30 +98,30 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
 
-        <div class="modal-header bg-dark text-center">
-          <h5 class="modal-title text-center " id="exampleModalLabel">Producto:{{$articulos->descripcion}}</h5>
+        <div class="modal-header text-center">
+          <h5 class="modal-title text-center text-dark " id="exampleModalLabel">Producto: <strong>{{$articulos->descripcion}}</strong> </h5>
           
         </div>
       <div class="modal-body modal_cuerpo">
             <div class="  text-center  ">
                     <div id= "contendorAviso">
-                      <h4 id = tituloAviso>Margen menor de ganancia, por lo que se aplicara el % configurado</h4>
+                      <h4 id = tituloAviso>El precio de venta del producto debe actualizarse</h4>
                     </div>
                     <h5 id = 'tituloModal'></h5>
                     <br>
-                    <h4> El precio actual de venta del producto es de ${{$articulos->precioVenta}}</h4>
+                    <h4> El precio actual de venta del producto es de {{$articulos->precioVenta}}</h4>
                     <Br>
-                    <label>Precio unitario del costo del lote</label><br>
-                    <label>$<input type="number" id = "precioUnitLote" name = "precioUnitLote" class="inputPrecio fw-blod" readonly></label>
+                    <label>Costo por artículo (Unidad)</label><br>
+                    <label><div class="bg-dark simbolo">$</div><input type="number" id = "precioUnitLote" class="p-2 precioModal" name = "precioUnitLote" class="inputPrecio fw-blod" readonly></label>
                     <br>
-                    <label>Porcentaje configurado </label><br>
-                    <label>%<input type = "number" id = "aumento" name = "aumento" step="0.01" ></label>
+                    <label>Porcentaje de ganancia </label><br>
+                    <label><div class="bg-dark simbolo">%</div><input type = "number" id = "aumento"  class="p-2" name = "aumento" step="0.01" ></label>
                     <br>
                     <label>Precio de venta actualizado</label><br>
-                    <label>$<input type="number" id ="montoAumentado" name = "montoAumentado"step="0.01"  ></label>
+                    <label><div class="bg-dark simbolo">$</div><input type="number" id ="montoAumentado" class="p-2" name = "montoAumentado"step="0.01"  ></label>
                     <div class="container-fluid d-flex justify-content-center m-2">
-                        <button class="btn btn-primary m-2" name="ModalAplicar" id="modalAplicar" tabindex="6">Aplicar</button>
-                        <button id='cancelarModal' class="btn btn-secondary m-2" name="noAplicar" tabindex="7">Cancelar</button>
+                      <button id='cancelarModal' class="btn btn-secondary m-2" name="noAplicar" tabindex="7">Cancelar</button>
+                      <button class="btn btn-primary m-2" name="ModalAplicar" id="modalAplicar" tabindex="6">Aplicar</button>   
                     </div>
             </div>
         </div>

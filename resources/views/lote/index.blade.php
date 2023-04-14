@@ -59,12 +59,14 @@ table.dataTable td {
                     
                     <td>{{$unLote->unidad}}</td>
                     <td>${{$unLote->precioCompra}}</td>
-                    <td>{{$unLote->vencimiento}}</td>
+                    @if($unLote->vencimiento)
+                        <td>{{$unLote->vencimiento}}</td>
+                    @else
+                        <td>-</td>
+                    @endif
                     <td>
                             <a href="/lotes/{{$unLote->id}}/edit " name="Editar" class="btn" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
                             <button class="btn btn eliminar" title="Eliminar" id="{{$unLote->id}}" value= '{{$unLote->id}}'><i class="fa-solid fa-trash-can"></i></button>
-                           
-                            
                     </td>
                 </tr>
             @endforeach
