@@ -7,12 +7,12 @@ let textoTurno = document.getElementById("textoTurno");
 
 
 const expresiones = {
-    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    apellido: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     dni: /^[0-9]{1,8}$/, // Validar Numero de Dni Solo Numeros y longitud 8
     telefono: /^[0-9]{1,7}$/, // 0 - 9 numeros
     codigoArea: /^[0-9]{1,7}$/, // 0 - 9 numeros
-    asunto: /^[a-z0-9A-ZÀ-ÿ\s]{1,80}$/
+    asunto: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]{1,80}$/
 };
 const campos = {
     nombre: false,

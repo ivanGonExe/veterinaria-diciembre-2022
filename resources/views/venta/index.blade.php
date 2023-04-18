@@ -71,7 +71,7 @@
 
 {{-- /*------------------------------------------------ */ --}}
 <script>
-    $(document).ready(function (){
+    
 
         var id       = 0;
         var botones  = document.getElementsByClassName("eliminar");
@@ -104,6 +104,6 @@
                 })
             });
         }
-    });
+    
 </script>
 @endsection

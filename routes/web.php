@@ -20,10 +20,10 @@ use App\Http\Controllers\VentaController;
 |
 */
 // Rutas universales
-    Route::get ('register',           [App\Http\Controllers\Auth\LoginController   ::class,'redirecion'  ]);
+    Route::get ('(register',           [App\Http\Controllers\Auth\LoginController   ::class,'redirecion'  ]);
     Route::get ('/',                  [     App\Http\Controllers\EmpresaController ::class,'index'       ]);
     Route::post('/turnos/agregar',    [     App\Http\Controllers\TurnoController   ::class,'agregar'     ]);
-    Route::post('turnos/mostrarTurno',[     App\Http\Controllers\TurnoController   ::class,'mostrarTurno']);
+    Route::post('/turnos/mostrarTurno',[     App\Http\Controllers\TurnoController   ::class,'mostrarTurno']);
     Route::get ('/contacto',          [     App\Http\Controllers\ContactoController::class,'index'       ]);
     Route::get ('/seleccionTurno',    [     App\Http\Controllers\TurnoController   ::class,'indexTurno'  ]);
 
@@ -57,10 +57,10 @@ Route::group(['middleware' => 'auth'], function () {
 
         /*Rutas articulos */
             Route::post    ('/articulos/create',           [App\Http\Controllers\ArticuloController        ::class,'store'                ]);
-            Route::post    ('categorias/all',              [App\Http\Controllers\CategoriaController       ::class,'all'                  ]);
-            Route::post    ('articulos/filter',            [App\Http\Controllers\ArticuloController        ::class,'filter'               ]);
+            Route::post    ('/categorias/all',              [App\Http\Controllers\CategoriaController       ::class,'all'                  ]);
+            Route::post    ('/articulos/filter',            [App\Http\Controllers\ArticuloController        ::class,'filter'               ]);
             Route::get    ('/Guardar/ConfigArticulo',     [App\Http\Controllers\ArticuloController        ::class,'GuardarConfigArticulo']);
-            Route::get     ('Lotes/{id}/Vencimientodelete',[App\Http\Controllers\loteDescripcionController ::class,'Vencimientodelete'    ]);
+            Route::get     ('/Lotes/{id}/Vencimientodelete',[App\Http\Controllers\loteDescripcionController ::class,'Vencimientodelete'    ]);
             Route::get     ('/Articulo/Por/Categoria/{id}',[App\Http\Controllers\ArticuloController        ::class,'ArticulosPorCategoria']);
             
             Route::resource('/articulos','App\Http\Controllers\ArticuloController');
@@ -79,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         /*Rutas lote*/
             Route::get     ('/articulos/{id}/delete',[App\Http\Controllers\ArticuloController       ::class,'destroy'         ]);
-            Route::get     ('vencimientos',          [App\Http\Controllers\ArticuloController       ::class,'Vencimiento'     ])->name('vencimiento');
+            Route::get     ('/vencimientos',          [App\Http\Controllers\ArticuloController       ::class,'Vencimiento'     ])->name('vencimiento');
             Route::get     ('/Lotes/{id}/delete',    [App\Http\Controllers\loteDescripcionController::class,'destroy'         ]);
             Route::get     ('/Lotes/{id}/lote',      [App\Http\Controllers\loteDescripcionController::class,'lote_For_Article']);
             Route::get     ('/Lotes/{id}/create',    [App\Http\Controllers\loteDescripcionController::class,'crear_por_id'    ]);
@@ -87,7 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::resource('/lotes','App\Http\Controllers\loteDescripcionController');
 
         /*Rutas historial de ventas */
-            Route::get('historialVenta/index',[App\Http\Controllers\ventaController::class,'historialventas']);
+            Route::get('/historialVenta/index',[App\Http\Controllers\ventaController::class,'historialventas']);
         /*Rutas de categoria */
             Route::get     ('/quitarUnaCategoria/{id}',[App\Http\Controllers\categoriaController::class,'destroy']);
             Route::resource('/categorias','App\Http\Controllers\categoriaController');
@@ -122,7 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get     ('/personas/estado/{id}',      [App\Http\Controllers\PersonaController   ::class,'personasEstado'  ] );
             Route::get     ('/personas/{id}/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
             Route::get     ('/turnos/mostrar',            [App\Http\Controllers\TurnoController     ::class,'show'            ] );
-            Route::get     ('turnos/cancelar/{id}',       [App\Http\Controllers\TurnoController     ::class,'cancelar'        ] )->name('cancelarTurno');  
+            Route::get     ('/turnos/cancelar/{id}',       [App\Http\Controllers\TurnoController     ::class,'cancelar'        ] )->name('cancelarTurno');  
             Route::get     ('/tipoTurno/{id}',            [App\Http\Controllers\TurnoController     ::class,'tipoTurno'       ] );
             Route::get     ('/turnos/{id}/delete',        [App\Http\Controllers\TurnoController     ::class,'destroy'         ] );
             Route::get     ('/turnos/mensaje/{id}',       [App\Http\Controllers\TurnoController     ::class,'mensaje'         ] );
@@ -140,7 +140,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/vistaRoles/veterinario', function () {
                 return view('empresa.veterinario.veterinario');
             });
-            Route::get('DetallesClinicos/create/{id}',[App\Http\Controllers\DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
+            Route::get('/DetallesClinicos/create/{id}',[App\Http\Controllers\DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
             Route::resource('/historialesClinicos','App\Http\Controllers\HistorialClinicoController');
             Route::resource('/detallesClinicos','App\Http\Controllers\DetalleClinicoController');
     });

@@ -306,7 +306,7 @@
 
 <!-- Ordenamiento boton class modalTurno -->
   <script>
-      $(document).ready(function (){
+      
 
         var id = 0;
         var botonesModal  = document.getElementsByClassName("modalTurno");
@@ -384,7 +384,7 @@
             }
           });
         }
-      });
+      
   </script>
 
 <!-- habilitacion del boton aceptar segun select -->
@@ -499,7 +499,7 @@
 
   /*------------------------------------------------ */
   <script>
-    $(document).ready(function (){
+    
 
       let id              = 0;
       let botonesCancelar = document.getElementsByClassName("cancelar");
@@ -533,9 +533,9 @@
           })
         });
       }
-    });
+    
 
-    $(document).ready(function (){
+    
 
         var id              = 0;
         var botonesEliminar = document.getElementsByClassName("eliminar");
@@ -568,7 +568,7 @@
 
           });
         }
-    });
+    
   </script> 
   
 @endsection

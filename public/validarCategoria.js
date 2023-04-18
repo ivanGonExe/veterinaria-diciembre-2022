@@ -7,7 +7,7 @@ let cerrar = document.getElementById('cerrar');
 
 
 const expresiones = {
-    descripcion: /^([a-zA-Z-ZÀ-ÿ-0-9_-\s\.\/]){1,100}$/, // Letras y espacios, pueden llevar acentos.
+    descripcion: /^([a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]){1,100}$/, // Letras y espacios, pueden llevar acentos.
 
 };
 const campos = {

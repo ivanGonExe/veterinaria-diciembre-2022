@@ -47,7 +47,7 @@
 <div class="formulario__grupo" id="grupo__precioVenta">
     <label for="precioVenta" class="formulario__label" title="Precio al público general" >Precio de Venta *</label>
     <div class="formulario__grupo-input">
-  <input type="text" class="form-control formulario__input" name="precioVenta" id="precioVenta"  maxlength="8" value ="{{$articulos->precioVenta}}"  aria-describedby="addon-wrapping" required>
+  <input type="text" class="form-control formulario__input" name="precioVenta" id="precioVenta" placeholder="$" maxlength="8" value ="{{$articulos->precioVenta}}"  aria-describedby="addon-wrapping" required>
 <i class="formulario__validacion-estado fas fa-times-circle"></i>
 </div>
 <br>

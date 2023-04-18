@@ -111,7 +111,7 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
 }); 
 
 /*------------------------------------------------ */
-$(document).ready(function (){
+
  var id = 0;
         var botones = document.getElementsByClassName("eliminar");
         var boton = [];
@@ -154,7 +154,7 @@ $(document).ready(function (){
                      });
 
                     }
-});
+
 
 
 

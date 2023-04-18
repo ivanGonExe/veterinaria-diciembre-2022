@@ -2,11 +2,11 @@ const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 
 const expresiones = {
-    nombre: /^[a-zA-ZÀ-ÿ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
-    apellido: /^[a-zA-ZÀ-ÿ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
+    nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
+    apellido: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
     dni: /^[0-9]{1,8}$/, // Validar Numero de Dni Solo Numeros y longitud 8
     numeroCalle: /^[0-9]{1,5}$/, // 0 - 5 numeros
-    direccion: /^([a-zA-Z0-9_\s\.]){1,30}$/, // Letras y espacios, pueden llevar acentos.
+    direccion: /^([a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]){1,30}$/, // Letras y espacios, pueden llevar acentos.
 };
 const campos = {
     nombre: false,
