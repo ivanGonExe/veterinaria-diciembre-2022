@@ -36,8 +36,8 @@
         
         <label for="tipo" class=" col-form-label text-md-right">Rol*</label>
             
-                            <div class= "ml-2 mr-2">
-                                <select class='form-select selecTipo' name= 'tipo'>
+                            <div >
+                                <select class='form-control selecTipo' name= 'tipo'>
                                 @if($usuario->tipo == 'admin' )
                                     <option class='form-option' value ='admin' selected>Administrador</option>
                                 @else

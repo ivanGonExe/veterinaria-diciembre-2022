@@ -113,9 +113,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/mascotas/create/{id}',     [App\Http\Controllers\TurnoController::class,'storeUnTurno'      ] );
             Route::post('/turnos/superpuesto',       [App\Http\Controllers\TurnoController::class,'turnoSuperpuesto'  ] );
             Route::post('/turnos/unTurnoSuperpuesto',[App\Http\Controllers\TurnoController::class,'unTurnoSuperpuesto'] );
-            Route::get ('/turnos/createUnTurno',     [App\Http\Controllers\TurnoController::class,'crearUnTurno'      ] ); 
             Route::post('/turnos/darTurno/{id}',     [App\Http\Controllers\TurnoController::class,'DarTurno'          ] );
             Route::post('/unTurno',                  [App\Http\Controllers\TurnoController::class,'storeUnTurno'      ] );
+            Route::get ('/turnos/createUnTurno',     [App\Http\Controllers\TurnoController::class,'crearUnTurno'      ] ); 
                
             /*Rutas personas*/
             Route::get     ('/personas/{id}/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );

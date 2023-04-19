@@ -293,12 +293,12 @@
     let botonEditar   = document.getElementsByClassName("editar");
     let botonMascota  = document.getElementsByClassName("mascota");
 //id de tipo de turno
-    let  id = @json($styleTurno);
+    let  idStyle = @json($styleTurno);
 //ocultamiento de botones
-   if((id == 1) || (id == 2) || (id == 6) || (id == 5)){
+   if((idStyle == 1) || (idStyle == 2) || (idStyle == 6) || (idStyle == 5)){
       $('.eliminar').hide();
    }
-   if(id == 5){
+   if(idStyle == 5){
       $('.editar').hide();
       $('.cancelar').hide();
    }
@@ -306,8 +306,7 @@
 
 <!-- Ordenamiento boton class modalTurno -->
   <script>
-      
-
+  
         var id = 0;
         var botonesModal  = document.getElementsByClassName("modalTurno");
         var botonModal    = [];
@@ -497,7 +496,7 @@
 
   </script>
 
-  /*------------------------------------------------ */
+  
   <script>
     
 

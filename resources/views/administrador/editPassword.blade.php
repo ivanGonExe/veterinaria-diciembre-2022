@@ -22,7 +22,7 @@
         <div class="form-group">
         
             <div class=" container-fluid d-flex justify-content-center">
-    <div class= "container m-5">  
+    <div class= "container m-5 w-50">  
 
     <form action="/usuario/guardarPassword/{{$usuario->id}}" method="POST">
         @csrf

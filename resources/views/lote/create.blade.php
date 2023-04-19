@@ -56,7 +56,7 @@ input[type=number] { -moz-appearance:textfield; }
       <label for="precioCompra" class="formulario__label">Precio de Compra Unitario*</label>
       <div class="formulario__grupo-input px-2">
    
-    <input id="precioCompra" name="precioCompra" type="number" class="form-control formulario__input" maxlength="8" required>
+    <input id="precioCompra" name="precioCompra" type="number" class="form-control formulario__input" maxlength="8" placeholder ='$' required>
 
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
