@@ -16,24 +16,20 @@
    <div class="col-md-6">
     <form action="/personas" method="POST" id="formulario">
         @csrf
-     {{--    <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input id="nombre" name="nombre" type="text" class="form-control" maxlength="20"  tabindex="1" autocomplete="name" required>
-        </div> --}}
+     
         <p class="text-info">*Este campo es obligatorio</p>
         <div class="mb-3">
+          
           <!--Grupo Nombre -->
-            <div class="formulario__grupo " id="grupo__nombre">
-          <label for="nombre" class="formulario__label">Nombre *</label>
-          <div class="formulario__grupo-input">
-           
-            <input type="text" class="form-control formulario__input" id="nombre" name="nombre" placeholder="Nombre del cliente" maxlength="30" required>
-   
-        	<i class="formulario__validacion-estado fas fa-times-circle"></i>
-				</div>
-        <br>
-				<p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
-			</div>
+          <div class="formulario__grupo " id="grupo__nombre">
+            <label for="nombre" class="formulario__label">Nombre *</label>
+            <div class="formulario__grupo-input">
+              <input type="text" class="form-control formulario__input" id="nombre" name="nombre" placeholder="Nombre del cliente" maxlength="30" required>
+        	    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+				    </div>
+            <br>
+				    <p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
+			    </div>
 
 
          <!--Grupo Apellido -->

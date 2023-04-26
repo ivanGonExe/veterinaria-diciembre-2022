@@ -45,149 +45,154 @@ ul {
 }
 
 </style> 
-
 @section('contenido')
-<div class="form-group  text-center">
-    <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Editar mascota</h2>
-<div class="row container-fluid d-flex justify-content-center">
-<div class="col-md-6">
-    <form action="/mascotas/{{$mascota->id}}" method="POST" id="formulario">
+@php
+  $fechaActual = date('Y-m-d');
+@endphp
+
+<div class="form-group ml-auto  text-center">
+  <div class="container-fluid d-flex justify-content-end" >
+    <a href="{{url()->previous()}}" class="btn btn-secondary rounded-pill m-3" title="volver"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+  </div>
+  <div class="form-group  text-center">
+    <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Agregar Mascota</h2>
+  </div>
+  <div class="row container-fluid d-flex justify-content-center">
+    <div class="col-md-6">
+      <form action="/mascotas/{{$mascota->id}}" method="POST" id="formulario">
         @csrf
-        @method('PUT')
-        <p class="text-info">*Este campo es obligatorio</p>
-     
-  <!--Grupo Nombre -->
-  <div class="formulario__grupo " id="grupo__nombre">
-    <label for="nombre" class="formulario__label">Nombre *</label>
-    <div class="formulario__grupo-input">
-     
-      <input type="text" class="form-control formulario__input" id="nombre" name="nombre" maxlength="30" placeholder="Nombre de la mascota"  value='{{$mascota->nombre}}' maxlength="30" required>
-
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+        <!--Grupo Nombre -->
+        <div class="formulario__grupo " id="grupo__nombre">
+          <label for="nombre" class="formulario__label">Nombre *</label>
+          <div class="formulario__grupo-input">
+            <input type="text" class="form-control formulario__input" id="nombre" name="nombre" maxlength="25" placeholder="Nombre de la mascota"   maxlength="30" value='{{$mascota->nombre}}' required>
+            <i class="formulario__validacion-estado fas fa-times-circle"></i>
           </div>
- {{--  <p class="text-info ">*Campo obligatorio</p> --}}
+          <br>
           <p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
-      </div>
-      <br>
-      <div class="formulario__grupo " id="grupo__color">
-      <label for="nombre" class="formulario__label">Color *</label>
-      <div class="formulario__grupo-input">
-     
-            <input id="color" name="color" type="text" maxlength="40" class="form-control" value='{{$mascota->color}}' tabindex="1" required>
+        </div>
+        <!-- Grupo Color -->
+        <div class="formulario__grupo " id="grupo__color">
+          <label for="color" class="formulario__label">Color *</label>
+          <div class="formulario__grupo-input">
+            <input type="text" class="form-control formulario__input"  id="color" name="color" value='{{$mascota->color}}' maxlength="30"  tabindex="1" required>
+            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+          </div>
+          <p class="formulario__input-error">El color tiene que ser de 2 a 30 caracteres y solo puede contener letras.</p>
         </div>
         <br>
+        <!--Grupo Esterilizado -->
         <div class="formulario__grupo " id="grupo__esterilizado">
-      <label for="nombre" class="formulario__label">Esterilizado *</label>
-     
-            <select class="form-select" aria-label="Default select example" name="esterilizado" id="esterilizado" required>
-            @if ($mascota->esterilizado == 'Si')
-                <option value="no">No </option>
-                <option value="Si" selected>Si </option>
-            @else
-                <option value="no" selected>No </option>
-                <option value="Si">Si </option>
-            @endif
-             </select> 
-        </div>
+          <label for="esterilizado" class="formulario__label">Esterilizado *</label>
+          <select class="form-select" aria-label="Default select example" name="esterilizado" id="esterilizado" required>
+            <option value="no">No </option>
+            <option value="Si">Si </option>
+          </select> 
+        </div>   
         <br>
+        <!--Grupo Especie -->
         <div class="formulario__grupo " id="grupo__especie">
-      <label for="nombre" class="formulario__label">Especie *</label>
-            <select class="form-select" aria-label="Default select example" name="especie" id="especie">
-            @if ($mascota->especie == 'Perro')
-                <option value="Perro" selected> 🐶Perro</option>
-            @else
+          <label for="especie" class="formulario__label">Especie *</label>
+          <select class="form-select" aria-label="Default select example" name="especie" id="especie" required>
+            <option value="s/n">Selecionar Especie</option>
             <option value="Perro">🐶 Perro</option>
-            @endif
-            @if ($mascota->especie == 'Gato')
-                <option value="Gato" selected>Gato</option>
-            @else
-                <option value="Gato">🐱 Gato</option>
-            @endif
-            @if ($mascota->especie == 'Pajaro')
-                <option value="Pajaro" selected>Pajaro</option>
-            @else
-                <option value="Pajaro">🐤 Pajaro</option>
-            @endif
-            @if ($mascota->especie == 'Tortuga')
-                <option value="Tortuga" selected>Tortuga</option>
-            @else
-                <option value="Tortuga"> 🐢 Tortuga</option>
-            @endif
-            @if ($mascota->especie == 'Conejo')
-                <option value="Conejo" selected>Conejo</option>
-            @else
-                <option value="Conejo"> 🐰 Conejo</option>
-            @endif
-            @if ($mascota->especie == 'Otro')
-                <option value="Otro" selected>Otro</option>
-            @else
-                <option value="Otro">Otro</option>
-            @endif 
-                
-
-                
-              </select> 
+            <option value="Gato">🐱 Gato </option>
+            <option value="Pajaro">🐤Pajaro </option>
+            <option value="Conejo"> 🐰 Conejo </option>
+            <option value="Tortuga">🐢 Tortuga </option>
+            <option value="Otros">Otro </option>
+          </select> 
         </div> 
         <br>
+        <!-- Grupo Raza -->
         <div class="formulario__grupo " id="grupo__raza">
-      <label for="nombre" class="formulario__label">Raza *</label>
-        <input type="text" id="input" name="raza" class="form-control"  maxlength="30" value="{{$mascota->raza}}" />
- 
- 
-        <ul class="list"></ul>
-        <br>
-      
-
-        <div class="container-fluid d-flex justify-content-center ">
-        @if($mascota->sexo == "macho")
-                
-                   
-                    <div class="form-check m-4">
-                        <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="macho" checked>
-                        <label class="form-check-label " for="sexo1">
-                            Macho
-                        </label>
-                    </div>
-                    <br>
-                    <div class="form-check m-4">
-                        <input class="form-check-input " type="radio" name="sexo" id="sexo2" value="hembra">
-                        <label class="form-check-label " for="sexo2">Hembra
-                        </label>
-                    </div>
-        
-        @else
-                    
-                    <div class="form-check m-4">
-                        <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="macho">
-                        <label class="form-check-label" for="sexo1">Macho</label>
-                    </div>
-
-                    <div class="form-check m-4">
-                        <input class="form-check-input" type="radio" name="sexo" id="sexo2" value="hembra" checked>
-                        <label class="form-check-label " for="sexo2">Hembra</label>
-             
-                    </div>
-        <br>
-        <br>
-        @endif
-    </div>
-
-        <div class="formulario__grupo " id="grupo__nacimiento">
-      <label for="nombre" class="formulario__label">Nacimiento *</label>
-            <input id="anioNacimiento" name="anioNacimiento" type="date" class="form-control" value="{{$mascota->anioNacimiento}}" tabindex="4">
+          <label for="raza" class="formulario__label">Raza *</label>
+          <div class="formulario__grupo-input">
+            <input type="text" id="raza" name="raza" class="form-control formulario__input" value="{{$mascota->raza}}"  maxlength="30" placeholder="Busque la raza del animal..." required />
+            <i class="formulario__validacion-estado fas fa-times-circle"></i>  
+            <ul class="list"></ul>  
+          </div>
+          <br>
+          <p class="formulario__input-error">La raza tiene que ser de 2 a 30 caracteres y solo puede contener letras.</p>
         </div>
-
+        <!-- Grupo Sexo-->   
+        <div class="container-fluid d-flex justify-content-center ">           
+          <div class="form-checkm  m-3 ">
+            <input class="form-check-input" type="radio" name="sexo" id="sexo1" value="macho" required>
+            <label class="form-check-label" for="sexo1">
+              Macho*
+            </label>
+          </div>
+          <div class="form-check m-3">
+            <input class="form-check-input" type="radio" name="sexo" id="sexo2" value="hembra" required>
+            <label class="form-check-label" for="sexo2">
+              Hembra*
+            </label>
+          </div>
+        </div>
+        <!-- Grupo Nacimiento-->
+        <div class="formulario__grupo " id="grupo__anioNacimiento">
+          <label for="anioNacimiento" class="formulario__label">Nacimiento *</label>
+          <div class="formulario__grupo-input">
+            <input id="anioNacimiento" name="anioNacimiento" type="date" class="form-control"  max="{{$fechaActual}}" value="{{$mascota->anioNacimiento}}"  tabindex="4" required>
+            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+          </div>
+          <br>
+          <p class="formulario__input-error">La fecha de nacimiento solo debe contener números .</p>
+	      </div>
         <div class="mb-3">
-            <label for="" class="form-label"></label>
-            <input id="id" name="id" type="hidden" class="form-control" tabindex="5" value="{{$mascota->persona->id}}">
+          <label for="" class="form-label"></label>
+          <input id="id" name="id" type="hidden" class="form-control" tabindex="5" value="{{$mascota->persona->id}} ">
         </div>
-
         <input name="urlAnterior" type="hidden" value="{{url()->previous()}}">
-
-        <a href="{{url()->previous()}}" class="btn btn-secondary" tabindex="6">Cancelar</a>
-        
+        <a href="{{url()->previous()}}" class="btn btn-secondary" tabindex="3">Cancelar</a>
         <button type="submit" class="btn btn-primary" tabindex="7">Guardar</button>
-    </form>
-    <script src="{{asset('autocompletar.js')}}" defer></script>
-  {{--   <script src="{{asset('validarCliente.js')}}" defer></script> --}}
+        <br>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="{{asset('autocompletar.js')}}" defer></script>
+<script src="{{asset('validarMascotaCreate.js')}}" defer></script>
+
+<!-- seleccion de los input correspondientes -->
+<script>
+  //obtengo los datos de la mascota
+  let mascota = @json($mascota);
+  // seleccion de esterilizado
+  let esterilizado = document.getElementsByName('esterilizado'); 
+  let longitudEst  = esterilizado[0].length;
+
+  for(let h =0; h<longitudEst; h++)
+  {
+    if(mascota.esterilizado ==  esterilizado[0][h].value.toUpperCase())
+    {
+      esterilizado[0][h].selected = true;
+      h = longitudEst;
+    }
+  }
+  //selecion de especie
+  let especieSelect = document.getElementsByName('especie');
+  let longitudEsp   = especieSelect[0].length;
+  for(let l =0 ; l<longitudEsp ; l++)
+  {
+    if(mascota.especie == especieSelect[0][l].value.toUpperCase())
+    {
+      especieSelect[0][l].selected = true;
+      l = longitudEsp; 
+    }
+  }
+  // seleccion de sexo 
+  
+  if(mascota.sexo == "HEMBRA")
+  {
+    let hembra     = document.getElementById('sexo2');
+    hembra.checked = true;
+  }
+  if(mascota.sexo == "MACHO")
+  {
+    let macho     = document.getElementById('sexo1');
+    macho.checked = true;
+  }
+</script>
 @endsection

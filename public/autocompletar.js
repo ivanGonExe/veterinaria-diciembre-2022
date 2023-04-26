@@ -616,11 +616,11 @@ let tortugas = [
 ];
 //Sort ordena de forma ascendente
 /*  let sortedNames = names.sort(); */
-let ordenarPerros = perros.sort();
+let ordenarPerros   = perros.sort();
 let ordenarTortugas = tortugas.sort();
-let ordenarGatos = gatos.sort();
-let ordenarPajaros = pajaros.sort();
-let ordenarConejos = conejos.sort();
+let ordenarGatos    = gatos.sort();
+let ordenarPajaros  = pajaros.sort();
+let ordenarConejos  = conejos.sort();
 
 let especie = document.getElementById("especie");
 let seleccionEspecie;
@@ -629,7 +629,7 @@ especie.addEventListener("change", () => {
     seleccionEspecie = especie.value;
 });
 
-let input = document.getElementById("input");
+let input = document.getElementById("raza");
 
 input.addEventListener("keyup", (e) => {
     //El evento onKeyUp tiene lugar cuando el usuario deja de pulsar una tecla. El evento onKeyPress se genera cuando se mantiene pulsada una tecla.
