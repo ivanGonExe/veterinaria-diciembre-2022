@@ -99,7 +99,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/estadistica/articulos/MasVendidos/{id}',[App\Http\Controllers\VentaController::class,'articulosMasVendidos']);
     });
 
-
 //-------------------------------------------------------------------------------------------------------
     Route::group(['middleware' => 'Usuario_Vet_pel'], function () {
         /*Rutas mascotas*/
@@ -118,7 +117,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/turnos/darTurno/{id}',     [App\Http\Controllers\TurnoController::class,'DarTurno'          ] );
             Route::post('/unTurno',                  [App\Http\Controllers\TurnoController::class,'storeUnTurno'      ] );
             Route::get ('/turnos/createUnTurno',     [App\Http\Controllers\TurnoController::class,'crearUnTurno'      ] ); 
-               
+            
             /*Rutas personas*/
             Route::get     ('/personas/{id}/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
             Route::get     ('/personas/estado/{id}',      [App\Http\Controllers\PersonaController   ::class,'personasEstado'  ] );
@@ -160,7 +159,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group(['middleware' => 'UsuarioAdministrador'], function () {
-  
+
         Route::get('/login/administrador', function () {
             return view('administrador.administrador');
         });

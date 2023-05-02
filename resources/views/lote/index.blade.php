@@ -30,10 +30,7 @@ table.dataTable td {
     <div class="container-fluid d-flex justify-content-center">
         <h3><strong> Articulo: </strong>{{$articulos->descripcion}}</h3>
     </div>
-        <div class="container-fluid d-flex justify-content-center">
-    <h3><strong>Marca:</strong> {{$articulos->marca}}</h3>
-
-</div>
+    
     <a href="/Lotes/{{$articulos->id}}/create" type="button" class="btn btn-primary rounded-pill m-2">+ Crear lote <i class="fa fa-archive"></i></a>
     </div>
 
