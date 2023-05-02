@@ -76,7 +76,6 @@ inputs.forEach((input) => {
 
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    alert(campos.nombre+' '+campos.color+' '+campos.raza+' '+campos.anioNacimiento);
     if (campos.nombre && campos.color && campos.raza && campos.anioNacimiento ) 
     {
         Swal.fire({
@@ -123,7 +122,7 @@ if (window.location.href.match("edit"))
     validarCampo(expresiones.nombre        ,nombre         ,"nombre");
     validarCampo(expresiones.color         ,color          ,"color");
     validarCampo(expresiones.raza          ,raza           ,"raza");
-    validarCampo(expresiones.anioNacimiento, anioNacimiento,"anioNacimiento");
+    validarCampo(expresiones.anioNacimiento,anioNacimiento,"anioNacimiento");
 }
 
 

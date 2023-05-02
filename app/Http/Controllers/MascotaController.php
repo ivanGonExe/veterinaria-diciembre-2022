@@ -64,12 +64,12 @@ class MascotaController extends Controller
 
         $persona = Persona::find($request->get('id'));
 
-        $mascota->nombre         = strtoupper($request->nombre);
-        $mascota->raza           = strtoupper($request->raza);
-        $mascota->especie        = strtoupper($request->especie);
-        $mascota->sexo           = strtoupper($request->sexo);
-        $mascota->color          = strtoupper($request->color);
-        $mascota->esterilizado   = strtoupper($request->esterilizado);
+        $mascota->nombre         = mb_strtoupper($request->nombre,'UTF-8');
+        $mascota->raza           = mb_strtoupper($request->raza,'UTF-8');
+        $mascota->especie        = mb_strtoupper($request->especie,'UTF-8');
+        $mascota->sexo           = mb_strtoupper($request->sexo,'UTF-8');
+        $mascota->color          = mb_strtoupper($request->color,'UTF-8');
+        $mascota->esterilizado   = mb_strtoupper($request->esterilizado,'UTF-8');
         $mascota->estado         = 1;
         $mascota->anioNacimiento = $request->get('anioNacimiento');
         $mascota->persona_id     = $request->get('id');
@@ -162,7 +162,6 @@ class MascotaController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
         $request->validate([
             'nombre'        => 'required| string |max:20',
             'color'         => 'required| string| max:40', 
@@ -176,12 +175,12 @@ class MascotaController extends Controller
 
         $mascota = Mascota::find($id);
         
-        $mascota->nombre         = strtoupper($request->nombre);
-        $mascota->raza           = strtoupper($request->raza);
-        $mascota->especie        = strtoupper($request->especie);
-        $mascota->sexo           = strtoupper($request->sexo);
-        $mascota->color          = strtoupper($request->color);
-        $mascota->esterilizado   = strtoupper($request->esterilizado);
+        $mascota->nombre         = mb_strtoupper($request->nombre, 'UTF-8');
+        $mascota->raza           = mb_strtoupper($request->raza,'UTF-8');
+        $mascota->especie        = mb_strtoupper($request->especie,'UTF-8');
+        $mascota->sexo           = mb_strtoupper($request->sexo,'UTF-8');
+        $mascota->color          = mb_strtoupper($request->color,'UTF-8');
+        $mascota->esterilizado   = mb_strtoupper($request->esterilizado,'UTF-8');
         $mascota->anioNacimiento = $request->anioNacimiento;
         $mascota->persona_id     = $request->get('id');
 

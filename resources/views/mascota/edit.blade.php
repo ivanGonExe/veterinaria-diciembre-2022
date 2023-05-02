@@ -59,7 +59,7 @@ ul {
   </div>
   <div class="row container-fluid d-flex justify-content-center">
     <div class="col-md-6">
-      <form action="/mascotas/{{$mascota->id}}" method="POST" id="formulario">
+      <form action="/mascotas/{{$mascota->id}}/edit" method="POST" id="formulario">
         @csrf
         <!--Grupo Nombre -->
         <div class="formulario__grupo " id="grupo__nombre">

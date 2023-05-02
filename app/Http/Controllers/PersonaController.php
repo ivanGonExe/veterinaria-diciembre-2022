@@ -122,15 +122,14 @@ class PersonaController extends Controller
         }
         $persona = new Persona();
 
-        $persona->nombre      = strtoupper($request->nombre);
-        $persona->apellido    = strtoupper($request->apellido);
+        $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
+        $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
         $persona->dni         = $request->get('dni');
-        $persona->direccion   = strtoupper($request->direccion);
+        $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
         $persona->numeroCalle = $request->numeroCalle;
         $persona->estado      = 1;
         
         $persona->save();
-       
         $telefono = new Telefono();
         $telefono->numero     = $request->telefono;
         $telefono->codigoArea = $request->codigoArea;
@@ -188,10 +187,10 @@ class PersonaController extends Controller
 
         $persona = Persona::find($id);
 
-        $persona->nombre      = strtoupper($request->nombre);
-        $persona->apellido    = strtoupper($request->apellido);
+        $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
+        $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
         $persona->dni         = $request->get('dni');
-        $persona->direccion   = strtoupper($request->direccion);
+        $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
         $persona->numeroCalle = $request->numeroCalle;
         $persona->telefonos($request->get('telefono'));
         

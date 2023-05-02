@@ -103,6 +103,8 @@ Route::group(['middleware' => 'auth'], function () {
 //-------------------------------------------------------------------------------------------------------
     Route::group(['middleware' => 'Usuario_Vet_pel'], function () {
         /*Rutas mascotas*/
+            Route::post    ('/mascotas',                        [App\Http\Controllers\MascotaController::class,'store']); 
+            Route::post    ('/mascotas/{id}/edit',              [App\Http\Controllers\MascotaController::class,'update']);
             Route::get     ('/mascotas/verMascotasDeshabitadas',[App\Http\Controllers\MascotaController::class,'verBajaMascota'] );
             route::get     ('/mascotas/{id}/delete',            [App\Http\Controllers\MascotaController::class,'destroy'       ] );
             Route::get     ('/mascotas/verMascota/{id}',        [App\Http\Controllers\MascotaController::class,'verMascota'    ] )->name('verMascotas'); 
