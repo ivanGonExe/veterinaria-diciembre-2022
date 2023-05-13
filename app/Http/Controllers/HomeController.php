@@ -47,16 +47,13 @@ class HomeController extends Controller
                   ->with('noticia', $noticia);
     }
 
-
     
 //-----------------------------------------------------------------------
 
     public function create()
     {
 
-
         return view('administrador.posteo.create');
-
 
 
     }
@@ -122,7 +119,6 @@ class HomeController extends Controller
   public function update(Request $request, $id)
     { 
 
-
         if($request->file ==''){
             $request->validate([
                 'titulo'   => 'required| string ',
@@ -140,7 +136,6 @@ class HomeController extends Controller
             
             
              $dato->save();  
-
 
         }else {
     
@@ -162,7 +157,6 @@ class HomeController extends Controller
         
 
 
-
         }
     
         
@@ -173,6 +167,7 @@ class HomeController extends Controller
      return redirect('/entradaNoticia');   
     }
 
-
     
 }
+
+

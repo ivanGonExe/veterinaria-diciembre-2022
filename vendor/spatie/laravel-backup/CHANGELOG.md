@@ -2,6 +2,117 @@
 
 All notable changes to `laravel-backup` will be documented in this file.
 
+## 7.7.2 - 2021-10-21
+
+- Fix discord notification message not using defined avatar url (#1423)
+
+## 7.7.1 - 2021-10-08
+
+- fix discord notification not getting defined username (#1411)
+
+## 7.7.0 - 2021-10-04
+
+- bring v6 features to v7 (#1415)
+
+## 7.6.6 - 2021-08-19
+
+- improve config file
+
+## 7.6.5 - 2021-08-19
+
+- avoid full path on db dumps (#1387)
+
+## 7.6.4 - 2021-08-11
+
+- avoid create full path folders when config has relative_path (#1365)
+
+## 7.6.3 - 2021-07-29
+
+- adds: exception to throw when flysystem returns false (#1348)
+
+## 7.6.2 - 2021-07-19
+
+- fix retrieving translation string (#1353)
+
+## 7.6.1 - 2021-07-13
+
+- fix Spanish Translations (#1350)
+
+## 7.6.0 - 2021-06-01
+
+- translate notification properties
+
+## 7.5.4 - 2021-05-28
+
+- fix Artisan::call() throws a SIGINT undefined error (#1309)
+
+## 7.5.3 - 2021-05-23
+
+- added Bangla translations (#1314)
+
+## 7.5.2 - 2021-04-21
+
+- avoid SIGINT on Windows (#1296)
+
+## 7.5.1 - 2021-04-15
+
+- fix for #1291 (Send mail notifications to multiple addresses failed)
+
+## 7.5.0 - 2021-04-15
+
+- add `DumpingDatabase` event (#1292)
+
+## 7.4.0 - 2021-04-09
+
+- add support for Discord notifications
+
+## 7.3.4 - 2021-04-05
+
+- delete incomplete backup when cancelling the backup command
+
+## 7.3.3 - 2021-03-31
+
+- update dependencies (spatie/db-dumper) (#1276)
+
+## 7.3.2 - 2021-03-30
+
+- update deps (#1275)
+
+## 7.3.1 - 2021-03-12
+
+- avoid exception when ZipArchive::EM_AES_256 is not available
+
+## 7.3.0 - 2021-03-04
+
+- encrypt backups (#1246)
+
+## 7.2.1 - 2021-01-28
+
+- fixed notification failure on unreachable disk (#1226)
+
+## 7.2.0 - 2021-01-25
+
+- use package service provider
+
+## 7.1.0 - 2021-01-15
+
+- merge features from v6 branch
+
+## 7.0.2 - 2020-12-21
+
+- fix events (#1167)
+
+## 7.0.1 - 2020-12-19
+
+- add support for Norwegian
+
+## 7.0.0 - 2020-12-16
+
+- clean up of all internals
+- drop support for PHP 7
+- drop support for anything below Laravel 8
+- rename notification class names
+
 ## 6.16.5 - 2021-09-12
 
 - fix undefined constant GLOB_BRACE on alpine (#1370)

@@ -170,12 +170,12 @@ return [
     'notifications' => [
 
         'notifications' => [
-            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\BackupHasFailedNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFoundNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\CleanupHasFailedNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessfulNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFoundNotification::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessfulNotification::class => ['mail'],
         ],
 
         /*
@@ -287,7 +287,7 @@ return [
 ## Configuring the backup disk
 
 By default, the backup will be saved into the `public/laravel-backup/` directory of your laravel application. This folder most probably is configured to be public.
-We recommand to create a disk named `backups` (you can use any name you prefer) in `filesystems.php` and specify that name in the `disk` key of the `backup.php` config file.
+We recommend that you create a disk named `backups` (you can use any name you prefer) in `filesystems.php` and specify that name in the `disk` key of the `backup.php` config file.
 
 ## Scheduling
 
@@ -301,11 +301,11 @@ The commands can be scheduled in Laravel's console kernel, just like any other c
 protected function schedule(Schedule $schedule)
 {
    $schedule->command('backup:clean')->daily()->at('01:00');
-   $schedule->command('backup:run')->daily()->at('02:00');
+   $schedule->command('backup:run')->daily()->at('01:30');
 }
 ```
 
-Of course, the times used in the code above are just examples. Adjust them to suit your own preferences.
+Of course, the times used in the code above are just examples. Adjust them to suit your own preferences. It is generally a good idea to avoid the timeslot between 02:00 and 03:00 at night in areas where daylight saving time changes occur, as this causes sometimes a double backup or (worse) no backup at all.
 
 If a backup cannot be taken successfully, the `backup:run` command returns an exit code of 1 which signals a general error, so you can use laravel's task hooks to specify code to be executed if the scheduled backup succeeds or fails:
 
@@ -326,7 +326,7 @@ If your application is broken, the scheduled jobs cannot run anymore. You might 
 
 To find out about problems with your backups, the package ships with monitoring functionality. It will inform you when backups become too old or when they take up too much storage.
 
-Learn how to [set up monitoring](/laravel-backup/v6/monitoring-the-health-of-all-backups/overview).
+Learn how to [set up monitoring](/laravel-backup/v7/monitoring-the-health-of-all-backups/overview).
 
 ## Dumping the database
 `mysqldump` is used to backup MySQL databases. `pg_dump` is used to dump PostgreSQL databases. If these binaries are not installed in a default location, you can add a key named `dump.dump_binary_path` in Laravel's own `database.php` config file. **Only fill in the path to the binary**. Do not include the name of the binary itself.
@@ -346,7 +346,7 @@ Here's an example for MySQL:
 		   'use_single_transaction',
 		   'timeout' => 60 * 5, // 5 minute timeout
 		   'exclude_tables' => ['table1', 'table2'],
-		   'add_extra_option' => '--optionname=optionvalue', // for example '--column_statistics=0'
+		   'add_extra_option' => '--optionname=optionvalue', // for example '--column-statistics=0'
 		]
 	],
 ```

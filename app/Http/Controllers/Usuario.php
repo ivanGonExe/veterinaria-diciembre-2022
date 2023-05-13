@@ -80,6 +80,17 @@ class Usuario extends Controller
         $usuario = user::find($id);
         return view ('administrador.editPassword')->with('usuario',$usuario);
     }
+    /**
+     * Creacion de copia seguridad.
+     * @param  \App\Models\loteDescripcion  $loteDescripcion
+     * @return \Illuminate\Http\Response
+     */
+    public function createBackup()
+    {
+       dd( $schedule->command('backup:run'));
+        Artisan::call('backup:run');
+        return redirect('/backup');
+    }
 
     /**
      * Update the specified resource in storage.

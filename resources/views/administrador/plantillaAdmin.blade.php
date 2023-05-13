@@ -204,6 +204,7 @@ a{
             <li><a href="{{'/login/administrador/vistas'}}" title="interfaces"><i class="fas fa-project-diagram"></i>Vistas</a></li>
             <li><a href="{{'/infoEmpresa'}}" title="interfaces"><i class="fa-solid fa-sliders"></i></i> Info Empresa</a></li>
             <li><a href="{{'/entradaNoticia'}}" title="EntradaNoticias"><i class="fa-solid fa-pen-to-square"></i> Noticias</a></li>
+            <li><a href="{{'/backup'}}" title="Respaldo del sistema"><i class="fa-solid fa-download"></i> Respaldo</a></li>
             <div class="dropdown">
               <li><a class="text-white"><i class="fa-sharp fa-solid fa-chart-simple text-white"></i> Estadisticas</a></li>
               <div class="dropdown-content ">

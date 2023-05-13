@@ -12,6 +12,7 @@
 }
 .eliminar:hover{
  color:red !important;
+ 
 }
 .modal_cuerpo{
     background-color:#E53935!important;
@@ -39,6 +40,14 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+.select2-results__option{
+    width: 100%;
+    height: 100%;
+}
+.select2-results__option:hover{
+    box-shadow: 8px 10px 10px 1px rgba(0,0,0,0.5);
+    
 }
 
 input[type=number] { -moz-appearance:textfield; }
@@ -80,7 +89,7 @@ input[type=number] { -moz-appearance:textfield; }
                         <form class="form-inline " >
                             <div class="btn btn-primary m-1" style="height: 28px ;line-height: 15px;"> Código <i class="fa-solid fa-magnifying-glass"></i></div>
                             <select  id='codigoArticulo' class="js-example-basic-single p-3" name="codigoarticulo"  placeholder="Código" aria-label="Search" style="width:120px;height: 28px" >
-                                        <option value="0"></option>
+                                        <option value="0"></option> 
                                         @foreach($lotes as $unLote)
 
                                             <option value="{{$unLote->id}}" class="seleccionCodigo"><table class="text-center"><tr><td colspan=" ">{{$unLote->articulo->codigo}}</td><td colspan="2">&nbsp;&nbsp;</td><td colspan="2">&nbsp;  </td><td class="fs-bold text-danger"><p class="text-danger">{{$unLote->vencimiento}}</p></td></tr></table></option>
