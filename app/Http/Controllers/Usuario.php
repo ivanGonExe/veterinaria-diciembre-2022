@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\Articulo;
+use App\Models\Categoria;
+use App\Models\DetalleClinico;
+use App\Models\DetalleVenta;
+use App\Models\Empresa;
+use App\Models\HistorialClinico;
+use App\Models\LoteDescripcion;
 
 
 class Usuario extends Controller
@@ -87,9 +94,207 @@ class Usuario extends Controller
      */
     public function createBackup()
     {
-       dd( $schedule->command('backup:run'));
-        Artisan::call('backup:run');
-        return redirect('/backup');
+    // crear backup a pata de mysql
+    
+        //creacion script sql para articulos
+        $articulos      = Articulo::all();
+        if($articulos){
+            $i              = 0;
+            $cantArticulo   = count($articulos);
+            $tablaArticulo  = "INSERT INTO articulos ";
+            $tablaArticulo .= "(id, created_at, updated_at, codigo, descripcion, precioVenta, cantidadTotal, minimoStock, iva, alerta, estado, categoria_id, porcentGanancia) "."\n";
+            $tablaArticulo .= "VALUES ";
+            foreach ($articulos as $unArticulo){
+                $i++;
+                $tablaArticulo .="(";
+                $tablaArticulo .=      $unArticulo->id.                                ",";
+                $tablaArticulo .= "'". $unArticulo->created_at.                    "'".",";
+                $tablaArticulo .= "'". $unArticulo->updated_at.                    "'".",";
+                $tablaArticulo .=      $unArticulo->codigo.                            ",";
+                $tablaArticulo .= "'". $unArticulo->descripcion.                   "'".",";
+                $tablaArticulo .=      str_replace($unArticulo->precioVenta,',','.').  ",";
+                $tablaArticulo .=      str_replace($unArticulo->cantidadTotal,',','.').",";
+                $tablaArticulo .=      $unArticulo->minimoStock.                       ",";
+                $tablaArticulo .=      $unArticulo->iva.                               ",";
+                $tablaArticulo .=      $unArticulo->alerta.                            ",";
+                $tablaArticulo .=      $unArticulo->categoria_id.                      ",";
+                $tablaArticulo .=      str_replace($unArticulo->porcentGanancia,',','.')  ;
+                if($i==$cantArticulo){
+                    $tablaArticulo .= ");"."\n";
+                } else{
+                    $tablaArticulo .= "), "."\n";
+                }
+            }
+        }
+        dump($tablaArticulo);
+        // ------------------------------------------------------------------------------------------------
+        //creacion script sql para categoria de articulo
+        $categorias      = Categoria::all();
+        if($categorias){
+            $j               = 0;
+            $cantCategoria   = count($categorias);
+            $tablaCategoria  = "INSERT INTO categorias";
+            $tablaCategoria .= "(id, created_at, updated_at, descripcion)"."\n";
+            $tablaCategoria .= "VALUES ";
+            foreach ($categorias as $unaCategoria){
+                $j++;
+                $tablaCategoria .="(";
+                $tablaCategoria .=      $unaCategoria->id.              ",";
+                $tablaCategoria .= "'". $unaCategoria->created_at.  "'".",";
+                $tablaCategoria .= "'". $unaCategoria->updated_at.  "'".",";
+                $tablaCategoria .= "'". $unaCategoria->descripcion. "'";
+                if($j==$cantCategoria){
+                    $tablaCategoria .= ");"."\n";
+                } else{
+                    $tablaCategoria .= "), "."\n";
+                }
+            }
+        }
+        dump($tablaCategoria);
+    // ------------------------------------------------------------------------------------------------
+    //creacion script sql para detalles clinicos
+        $detalleClinicos = DetalleClinico::all();
+        if($detalleClinicos){
+            $i                    = 0;
+            $cantDetalleclinico   = count($detalleClinicos);
+            $tablaDetalleClinico  = "INSERT INTO detalle_clinicos";
+            $tablaDetalleClinico .= "(id, created_at, updated_at, observaciones, fechaAtencion, tratamiento, patologia, peso, historialClinico_id) "."\n";
+            $tablaDetalleClinico .= "VALUES ";
+            foreach ($detalleClinicos as $unDetalleClinico){
+                $i++;
+                $tablaDetalleClinico .="(";
+                $tablaDetalleClinico .=      $unDetalleClinico->id.                        ",";
+                $tablaDetalleClinico .= "'". $unDetalleClinico->created_at.            "'".",";
+                $tablaDetalleClinico .= "'". $unDetalleClinico->updated_at.            "'".",";
+                $tablaDetalleClinico .= "'". $unDetalleClinico->observaciones.         "'".",";
+                $tablaDetalleClinico .= "'". $unDetalleClinico->fechaAtencion.         "'".",";
+                $tablaDetalleClinico .= "'". $unDetalleClinico->tratamiento.           "'".",";
+                $tablaDetalleClinico .= "'". $unDetalleClinico->patologia.             "'".",";
+                $tablaDetalleClinico .       str_replace($unDetalleClinico->peso,',','.'). ",";
+                $tablaDetalleClinico .=      $unDetalleClinico->historialClinico_id    ;
+                if($i==$cantDetalleclinico){
+                    $tablaDetalleClinico .= ");"."\n";
+                } else{
+                    $tablaDetalleClinico .= "), "."\n";
+                }
+            }
+        }
+        dump($tablaDetalleClinico);
+        // ------------------------------------------------------------------------------------------------
+        //creacion script sql para detalle venta
+        $detalleVenta = DetalleVenta::all();
+        if($detalleVenta){
+            $i                  = 0;
+            $cantDetalleVenta   = count($detalleVenta);
+            $tablaDetalleVenta  = "INSERT INTO detalle_ventas ";
+            $tablaDetalleVenta .= "(id, cantidad, subtotal, descuento, created_at, updated_at, idVenta, idLote) "."\n";
+            $tablaDetalleVenta .= "VALUES ";
+            foreach ($detalleVenta as $undetalleVenta){
+                $i++;
+                $tablaDetalleVenta .="(";
+                $tablaDetalleVenta .=      $undetalleVenta->id.             ",";
+                $tablaDetalleVenta .=      $undetalleVenta->cantidad.       ",";
+                $tablaDetalleVenta .=      $undetalleVenta->subtotal.       ",";
+                $tablaDetalleVenta .=      $undetalleVenta->descuento.      ",";
+                $tablaDetalleVenta .= "'". $undetalleVenta->created_at. "'".",";
+                $tablaDetalleVenta .= "'". $undetalleVenta->updated_at. "'".",";
+                $tablaDetalleVenta .=      $undetalleVenta->idVenta.        ",";
+                $tablaDetalleVenta .=      $undetalleVenta->idLote             ;
+                if($i==$cantDetalleVenta){
+                    $tablaDetalleVenta .= ");"."\n";
+                } else{
+                    $tablaDetalleVenta .= "), "."\n";
+                }
+            }
+        }
+        dump($tablaDetalleVenta);
+        // ------------------------------------------------------------------------------------------------
+        //creacion script sql para tabla empresa
+        $empresa = Empresa::all();
+        if($empresa){
+            $i              = 0;
+            $cant           = count($empresa);
+            $tablaEmpresa  = "INSERT INTO empresas ";
+            $tablaEmpresa .= "(id, descripcion, instagram, telefonoFijo, celular, direccion, mapa, created_at, updated_at) "."\n";
+            $tablaEmpresa .= "VALUES ";
+            foreach ($empresa as $unaEmpresa){
+                $i++;
+                $tablaEmpresa .="(";
+                $tablaEmpresa .=      $unaEmpresa->id.              ",";
+                $tablaEmpresa .= "'". $unaEmpresa->descripcion. "'".",";
+                $tablaEmpresa .= "'". $unaEmpresa->instagram.   "'".",";
+                $tablaEmpresa .= "'". $unaEmpresa->telefonoFijo."'".",";
+                $tablaEmpresa .= "'". $unaEmpresa->celular.     "'".",";
+                $tablaEmpresa .= "'". $unaEmpresa->direccion.   "'".",";
+                $tablaEmpresa .= "'". $unaEmpresa->mapa.        "'".",";
+                $tablaEmpresa .= "'". $unaEmpresa->created_at.  "'".",";
+                $tablaEmpresa .= "'". $unaEmpresa->updated_at.   "'";
+                if($i==$cant){
+                    $tablaEmpresa .= ");"."\n";
+                } else{
+                    $tablaEmpresa .= "), "."\n";
+                }
+            }
+        }
+        dump($tablaEmpresa);
+        // ------------------------------------------------------------------------------------------------
+        //creacion script sql para historial clinico
+        $historialClinico = HistorialClinico::all();
+        if($historialClinico){
+            $i                      = 0;
+            $cantHistorialClinico   = count($historialClinico);
+            $tablaHistorialClinico  = "INSERT INTO historial_clinicos";
+            $tablaHistorialClinico .= "(id, created_at, updated_at, mascota_id) "."\n";
+            $tablaHistorialClinico .= "VALUES ";
+            foreach ($historialClinico as $unHistorialClinico){
+                $i++;
+                $tablaHistorialClinico .="(";
+                $tablaHistorialClinico .=      $unHistorialClinico->id.             ",";
+                $tablaHistorialClinico .= "'". $unHistorialClinico->created_at. "'".",";
+                $tablaHistorialClinico .= "'". $unHistorialClinico->updated_at. "'".",";
+                $tablaHistorialClinico .=      $unHistorialClinico->mascota_id         ;
+                if($i==$cantHistorialClinico ){
+                    $tablaHistorialClinico .= ");"."\n";
+                } else{
+                    $tablaHistorialClinico .= "), "."\n";
+                }
+            }
+        }
+        dump($tablaHistorialClinico);
+        // ------------------------------------------------------------------------------------------------
+        //creacion script sql para lote_descripcions
+        $lotes = LoteDescripcion::all();
+        if($lotes){
+            $i           = 0;
+            $cantlote    = count($lotes);
+            $tablaLotes  = "INSERT INTO lote_descripcions";
+            $tablaLotes .= "(id, created_at, updated_at, unidad, precioCompra, vencimiento, estado, articulo_id) "."\n";
+            $tablaLotes .= "VALUES ";
+            foreach ($lotes as $unLote){
+                $i++;
+                $tablaLotes .="(";
+                $tablaLotes .=      $unLote->id.              ",";
+                $tablaLotes .= "'". $unLote->created_at.  "'".",";
+                $tablaLotes .= "'". $unLote->updated_at.  "'".",";
+                $tablaLotes .=      $unLote->unidad.          ",";
+                $tablaLotes .=      $unLote->precioCompra.    ",";
+                $tablaLotes .= "'". $unLote->vencimiento. "'".",";
+                $tablaLotes .=      $unLote->estado.          ",";
+                $tablaLotes .=      $unLote->articulo_id         ;
+                if($i==$cantlote ){
+                    $tablaLotes .= ");"."\n";
+                } else{
+                    $tablaLotes .= "), "."\n";
+                }
+            }
+        }
+        dump($tablaLotes);
+        $mascotas = Mascotas::all();
+        $data = json_decode($jsonString, true); 
+
+        dd($data);
+        DB::table('users')->insert($data);
+
     }
 
     /**

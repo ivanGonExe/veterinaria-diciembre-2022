@@ -21,6 +21,7 @@ use App\Http\Controllers\VentaController;
 */
 
  Route::view('/', 'laravel_backup_panel::layout')->name('laravel-backup-panel.index');
+
 // Rutas universales
     Route::get ('(register',           [App\Http\Controllers\Auth\LoginController   ::class,'redirecion'  ]);
     Route::get ('/',                  [     App\Http\Controllers\EmpresaController ::class,'index'       ]);
@@ -168,8 +169,7 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::get('/login/administrador/vistas', function () {
             return view('administrador.vistas');
         });
-        // Route::get('/create/Backup', function() { Artisan::call('backup:run'); });
-        Route::get ('/create/Backup',            [App\Http\Controllers\Usuario          ::class,'createBackup'] );
+        Route::get ('/Create/Backup',            [App\Http\Controllers\Usuario          ::class,'createBackup'] );
         Route::get ('/infoEmpresa',              [App\Http\Controllers\EmpresaController::class,'indexEmpresa'] );
         Route::post('/storeEmpresa',             [App\Http\Controllers\EmpresaController::class,'store'       ] );
         Route::get ('/usuario',                  [App\Http\Controllers\Usuario          ::class,'index'       ] );
