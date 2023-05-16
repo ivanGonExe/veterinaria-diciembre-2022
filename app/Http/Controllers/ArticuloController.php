@@ -101,7 +101,7 @@ public function ArticulosPorCategoria($id)
             'precioVenta'    => 'required| numeric |max:99999',
             'iva'            => 'required| numeric |max:100',
             'minimoStock'    => 'nullable| numeric',
-            'alerta'         => 'nullable| integer |max:100',
+            'alerta'         => 'nullable| integer |max:1000',
             'porcentGanancia'=> 'numeric',
         ]);
 
@@ -211,7 +211,7 @@ public function ArticulosPorCategoria($id)
             'precioVenta'    => 'required| numeric |max:99999',
             'iva'            => 'required| numeric |max:100',
             'minimoStock'    => 'nullable| numeric',
-            'alerta'         => 'nullable| integer |max:100',
+            'alerta'         => 'nullable| integer |max:1000',
             'porcentGanancia'=> 'numeric',
         ]);
         

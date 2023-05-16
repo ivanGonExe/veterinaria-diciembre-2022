@@ -9,6 +9,7 @@ use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\HistorialClinicoController;
 use App\Http\Controllers\DetalleClinicoController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\EmpresaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,12 @@ use App\Http\Controllers\VentaController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+ //copia de seguridad nuevo 
+//  Route::get ('/create/backup',[App\Http\Controllers\EmpresaController::class,'createBackup']);
+ Route::get ('/copiadeseguridad',[App\Http\Controllers\EmpresaController::class,'indexBackup']);
+
+
+
 // Rutas universales
     Route::get ('(register',           [App\Http\Controllers\Auth\LoginController   ::class,'redirecion'  ]);
     Route::get ('/',                  [     App\Http\Controllers\EmpresaController ::class,'index'       ]);
@@ -187,6 +194,10 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
 
         Route::get('/estadisticas', function () {
             return view('estadistica.estadisticas');
+
+      
+
+
     });
     
     Route::get('/estadistica/ganancia/por_mes/{id}','App\Http\Controllers\VentaController@gananciaPorMes');

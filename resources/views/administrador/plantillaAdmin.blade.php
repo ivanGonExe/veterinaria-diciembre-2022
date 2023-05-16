@@ -195,15 +195,16 @@ a{
               <img src="/iconos/logo_footer.png"  alt="logo_principal" height=120 width=120 >
               </div>
      
-  <div class="content">
+  <div class="content p-3">
 
  
-        <ul>
+        <ul class="p-2">
             <li><a href="/login/administrador"><i class="fas fa-home"></i> Inicio</a></li>
             <li><a href="{{'/usuario'}}" title="crear usuarios"><i class="fa-solid fa-users" ></i> Usuarios</a></li>
             <li><a href="{{'/login/administrador/vistas'}}" title="interfaces"><i class="fas fa-project-diagram"></i>Vistas</a></li>
             <li><a href="{{'/infoEmpresa'}}" title="interfaces"><i class="fa-solid fa-sliders"></i></i> Info Empresa</a></li>
             <li><a href="{{'/entradaNoticia'}}" title="EntradaNoticias"><i class="fa-solid fa-pen-to-square"></i> Noticias</a></li>
+            <li><a href="/copiadeseguridad"><i class="fa-solid fa-floppy-disk"></i> Copia de Seguridad</a></li>
             <div class="dropdown">
               <li><a class="text-white"><i class="fa-sharp fa-solid fa-chart-simple text-white"></i> Estadisticas</a></li>
               <div class="dropdown-content ">
@@ -218,6 +219,7 @@ a{
             <br>
             <br>
             <br>
+            
 {{--             <li><a href="#" ><i class="fa-solid fa-right-from-bracket"></i> Cerrar</a></li> --}}
             <li><a href='#'   onclick ="event.preventDefault();
               document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket"></i> Cerrar</a></li>
