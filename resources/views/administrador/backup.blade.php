@@ -63,7 +63,7 @@ td{
                       <td>{{$i++}}</td>
                       <td>{{str_replace ('.json','',$unArchivo,)}}</td>
                       <td class="acciones w-25">  
-                      <a href="/up/Backup/{{$unArchivo}}" class="btn boton_copia" title="subir copia de seguridad" ><i class="fa-solid fa-upload"></i></a>
+                      <a id="{{$unArchivo}}" class="btn boton_copia" title="subir copia de seguridad" ><i class="fa-solid fa-upload"></i></a>
                       </td> 
                   </tr>
                   
@@ -71,7 +71,7 @@ td{
           </tbody>
                  </table>
             
-        
+              
       <div class="col-1"></div>
          
            <div class="row barra" ></div>
@@ -102,6 +102,31 @@ $('#example').DataTable();
  }
 
  }); 
+
+ let boton_copia =  document.getElementsByClassName("boton_copia"); 
+ let cantidad = boton_copia.length;
+
+ for(let i=0; i<cantidad; i++){
+  boton_copia[i].addEventListener('click', function() {
+                   
+                      Swal.fire({
+                              position: "top-center",
+                              icon: "success",
+                              title: "Restauración de copia seguridad"+boton_copia[i].id,
+                              showConfirmButton: false,
+                              timer: 5000,
+                          });
+                          setTimeout(() => {
+                             
+
+                              location.href="/up/Backup/"+boton_copia[i].id;
+                          }, 20);
+                          
+                  });    
+        
+    
+}
+
 
   //------------------------------------------------------------
    document.getElementById("boton_crear").addEventListener('click', function(e) {

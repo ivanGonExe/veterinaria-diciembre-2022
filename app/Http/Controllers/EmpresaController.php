@@ -141,8 +141,8 @@ class EmpresaController extends Controller
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
             
             DB::commit(); // Confirmar la transacción
-            $mensaje="true";
-            dump($mensaje);
+           
+           
             return redirect("/copiadeseguridad");
             // return response(json_encode($mensaje),200)->header('Content-type','text/plain');
 
