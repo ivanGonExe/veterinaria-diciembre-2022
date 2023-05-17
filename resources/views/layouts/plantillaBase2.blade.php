@@ -22,7 +22,7 @@
 
       <!-- estilos CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('estiloLogin.css')}}">
-    <link rel="icon" href={{asset('iconos/huella.png')}} >
+    <link rel="icon" href="{{asset('iconos/huella.png')}}" >
           <!-- data table CSS-->
     <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css"  href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
