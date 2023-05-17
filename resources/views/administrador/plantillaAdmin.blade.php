@@ -33,12 +33,6 @@
 
 
 
- 
-  <!-- estilos CSS -->
-  <link rel="stylesheet" type="text/css" href="{{asset('estiloLogin.css')}}">
-  <link rel="icon" href={{asset('iconos/huella.png')}} >
-
-
   <title>Menu Administrador </title>
   <!-- jquery-->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin ="anonymous"></script>
@@ -73,10 +67,7 @@ table tr{
     margin: 15px;
 }
 
-.navbar-expand-lg .navbar-nav .nav-link{
-padding-left: 3rem;
 
-}
 body{
  
   background-color: rgba(0, 0, 0, 0.3) !important;
@@ -194,6 +185,7 @@ a{
     color:#ffffff;
     
 }
+
 </style> 
 @php
     $añoActual= Carbon\Carbon::now()->format('y');
@@ -205,8 +197,8 @@ a{
 
 <div class="wrapper">
   <div class="sidebar">
-              <div class="text-center m-1 p-1">
-              <img src="/iconos/logo_footer.png"  alt="logo_principal" height=120 width=120 >
+              <div class="text-center">
+              <img src="/iconos/logo_footer.png"  class="logo_principal" height=100 width=100 >
               </div>
      
   <div class="content p-3">
@@ -216,9 +208,9 @@ a{
             <li><a href="/login/administrador"><i class="fas fa-home"></i> Inicio</a></li>
             <li><a href="{{'/usuario'}}" title="crear usuarios"><i class="fa-solid fa-users" ></i> Usuarios</a></li>
             <li><a href="{{'/login/administrador/vistas'}}" title="interfaces"><i class="fas fa-project-diagram"></i>Vistas</a></li>
-            <li><a href="{{'/infoEmpresa'}}" title="interfaces"><i class="fa-solid fa-sliders"></i></i> Info Empresa</a></li>
+            <li><a href="{{'/infoEmpresa'}}" title="interfaces"><i class="fa-solid fa-sliders"></i></i> Info empresa</a></li>
             <li><a href="{{'/entradaNoticia'}}" title="EntradaNoticias"><i class="fa-solid fa-pen-to-square"></i> Noticias</a></li>
-            <li><a href="/copiadeseguridad"><i class="fa-solid fa-floppy-disk"></i> Copia de Seguridad</a></li>
+            <li><a href="/copiadeseguridad" title="Backup"><i class="fa-solid fa-floppy-disk"></i> Copia de seguridad</a></li>
             <div class="dropdown">
               <li><a class="text-white"><i class="fa-sharp fa-solid fa-chart-simple text-white"></i> Estadisticas</a></li>
               <div class="dropdown-content ">
@@ -228,11 +220,8 @@ a{
                     <li><a href="/estadistica/clientesNuevosPorMes/{{$añoActual}}">Clientes</a></li>
               </div>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+           <br>
+           <br>
             
 {{--             <li><a href="#" ><i class="fa-solid fa-right-from-bracket"></i> Cerrar</a></li> --}}
             <li><a href='#'   onclick ="event.preventDefault();

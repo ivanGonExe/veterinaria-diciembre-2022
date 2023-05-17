@@ -9,7 +9,7 @@
       text-align: start !important;
 }
 .boton_crear{
-  padding: 10px !important;
+  padding: 7px !important;
    margin: 5px !important;
 }.a{
   color:white  !important;
@@ -18,7 +18,13 @@
 td{
   text-align: center !important;
 }
-
+.boton_copia {
+  color:rgb(0, 0, 0) !important;
+  
+}
+.boton_copia:hover{
+  color:rgb(40, 40, 233) !important;
+}
 </style>
 <div class="main_content">
   <div class="content">
@@ -43,7 +49,7 @@ td{
               <tr >
               <th scope="col"class="text-center">N°</th>
               <th scope="col"class="text-center">Archivos</th>
-              <th scope="col"class="text-center">Acciones</th>
+              <th scope="col"class="text-center">Acción</th>
               </tr>
           </thead>
             
@@ -57,7 +63,7 @@ td{
                       <td>{{$i++}}</td>
                       <td>{{str_replace ('.json','',$unArchivo,)}}</td>
                       <td class="acciones w-25">  
-                      <a href="/up/Backup/{{$unArchivo}}" class="btn  " title="subir copia de seguridad" ><i class="fa-solid fa-upload"></i></a>
+                      <a href="/up/Backup/{{$unArchivo}}" class="btn boton_copia" title="subir copia de seguridad" ><i class="fa-solid fa-upload"></i></a>
                       </td> 
                   </tr>
                   
@@ -87,9 +93,10 @@ $('#example').DataTable();
 
 });
  $('#example').DataTable({
-    //  "bSort": true, // Con esto le estás diciendo que se pueda ordenar, ponlo a 'true'
-    //  "order": [], // Aquí le dices que el criterio de ordenación primero esté vació , o lo que es lo mismo, ninguno
-    //  responsive:true, 
+     "bSort": true, // Con esto le estás diciendo que se pueda ordenar, ponlo a 'true'
+     "order": [], // Aquí le dices que el criterio de ordenación primero esté vació , o lo que es lo mismo, ninguno
+     responsive:true, 
+     "pageLength": 5,
      language: {
      url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
  }
@@ -113,7 +120,8 @@ $('#example').DataTable();
         }, 2000);
         
 });    
-              
+
+
 
   </script>
   @endsection
