@@ -16,19 +16,19 @@
                
       </div>
       <div class="content text-center m-2">
-      <a href="/create/backup" type="button" class="btn btn-primary rounded-pill " title="Crear Usuario">+ <i class="fa-solid fa-user"></i> Crear Copia</a>
+      <a href="/create/backup" type="button" class="btn btn-primary rounded-pill p-3 " title="Crear Usuario"><i class="fa-solid fa-download"></i> Crear Copia</a>
       </div>
      <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
+      <div class="col-2"></div>
+      <div class="col-8">
       <table id="example" class="table table-striped " style="width:100%">
              
           <thead>
              
-              <tr>
-                  <th scope="col">N°</th>
-                  <th scope="col">Nombre</th>
-                 <th scope="col">Acciones</th>
+              <tr >
+                  <th class="col-1">N°</th>
+                  <th class="col-10">Nombre</th>
+                 <th class="col-1" >Acciones</th>
               </tr>
           </thead>
             
@@ -42,7 +42,7 @@
                       <td>{{$i++}}</td>
                       <td>{{str_replace ('.json','',$unArchivo,)}}</td>
                       <td>
-                      <a href="/up/Backup/{{$unArchivo}}" class="btn " title="subir" ><i class="fa-solid fa-pen-to-square"></i></a>
+                      <a href="/up/Backup/{{$unArchivo}}" class="btn  " title="subir" ><i class="fa-solid fa-upload"></i></a>
                       </td> 
                   </tr>
                   

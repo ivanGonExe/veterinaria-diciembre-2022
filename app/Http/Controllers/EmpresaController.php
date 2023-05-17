@@ -136,7 +136,6 @@ class EmpresaController extends Controller
             foreach ($tables as $table) 
             {
                 $tableName = $table->{'Tables_in_' . env('DB_DATABASE')};
-                dump($data[$tableName]);
                 DB::table($tableName)->insert($data[$tableName]);
             }
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
