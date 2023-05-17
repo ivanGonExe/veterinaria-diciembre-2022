@@ -18,8 +18,14 @@ class EmpresaController extends Controller
      */
     public function indexBackup()
     {
-      dd("entro");
-
+        // Obtener la lista de archivos JSON en el directorio "storage"
+        $archivo=Storage::disk('local')->allFiles();
+        
+        // Filtrar solo los archivos JSON
+        $archivos = array_filter($archivo, function ($file) {
+            return pathinfo($file, PATHINFO_EXTENSION) === 'json';
+        });
+        return view('administrador.backup')->with('archivos', $archivos);
     }
 
 
@@ -57,15 +63,18 @@ class EmpresaController extends Controller
      */
     public function createBackup()
     {
-        $fileName = 'backup_Veterinaria_' . Carbon::now()->format('Y-m-d-H-i').'.json';
+        $fileName = 'backup_Veterinaria_' . Carbon::now()->format('Y-m-d_H-i-s').'.json';
 
         $tables = [
             'users',
             'password_resets',
+            'failed_jobs',
+            'personal_access_tokens',
             'categorias',
             'articulos',
             'personas',
             'mascotas', 
+            'migrations',
             'telefonos',
             'turnos',
             'historial_clinicos',
@@ -94,7 +103,7 @@ class EmpresaController extends Controller
         
         Storage::disk('local')->put($fileName, $jsonData);
 
-        return response()->json(['message' => 'Respaldo creado exitosamente', 'file' => $fileName]);
+        return redirect("/copiadeseguridad");
     }
     
     
@@ -110,11 +119,9 @@ class EmpresaController extends Controller
      $jsonData = Storage::get($nombreArchivo);
 
 
-     DB::beginTransaction();
+    //  DB::beginTransaction();
 
-     try {
-      
-       //  DB::beginTransaction(); 
+    //   try {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');   //desahabilitar la clase foraneas 
 
             $tables = DB::select('SHOW TABLES');
@@ -129,20 +136,25 @@ class EmpresaController extends Controller
             foreach ($tables as $table) 
             {
                 $tableName = $table->{'Tables_in_' . env('DB_DATABASE')};
+                dump($data[$tableName]);
                 DB::table($tableName)->insert($data[$tableName]);
             }
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
             
             DB::commit(); // Confirmar la transacción
             $mensaje="true";
-            return response(json_encode($mensaje),200)->header('Content-type','text/plain');
+            dump($mensaje);
+            return redirect("/copiadeseguridad");
+            // return response(json_encode($mensaje),200)->header('Content-type','text/plain');
 
-     } catch (\Exception $e)
-     {
-             DB::rollBack(); // Deshacer la transacción en caso de error
-             $mensaje="false";
-             return response(json_encode($mensaje),200)->header('Content-type','text/plain');
-     }
+    //   } catch (\Exception $e)
+    //   {
+    //         DB::rollBack(); // Deshacer la transacción en caso de error
+    //         $mensaje="false";
+    //           dump($mensaje);
+    //          return redirect("/copiadeseguridad");
+    //        //  return response(json_encode($mensaje),200)->header('Content-type','text/plain');
+    //  }
 
    
     }

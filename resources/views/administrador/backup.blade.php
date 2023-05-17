@@ -16,7 +16,7 @@
                
       </div>
       <div class="content text-center m-2">
-      <a href="/registro/usuario" type="button" class="btn btn-primary rounded-pill " title="Crear Usuario">+ <i class="fa-solid fa-user"></i> Crear Copia</a>
+      <a href="/create/backup" type="button" class="btn btn-primary rounded-pill " title="Crear Usuario">+ <i class="fa-solid fa-user"></i> Crear Copia</a>
       </div>
      <div class="row">
       <div class="col-1"></div>
@@ -33,8 +33,20 @@
           </thead>
             
           <tbody>
+            @php
+              $i = 1;
+            @endphp
             
-               
+          @foreach($archivos as $unArchivo)
+                  <tr>
+                      <td>{{$i++}}</td>
+                      <td>{{str_replace ('.json','',$unArchivo,)}}</td>
+                      <td>
+                      <a href="/up/Backup/{{$unArchivo}}" class="btn " title="subir" ><i class="fa-solid fa-pen-to-square"></i></a>
+                      </td> 
+                  </tr>
+                  
+                @endforeach
           </tbody>
       </table>
       </div>

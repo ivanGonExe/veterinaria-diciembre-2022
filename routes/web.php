@@ -21,8 +21,9 @@ use App\Http\Controllers\EmpresaController;
 |
 */
  //copia de seguridad nuevo 
-//  Route::get ('/create/backup',[App\Http\Controllers\EmpresaController::class,'createBackup']);
+ Route::get ('/create/backup'   ,[App\Http\Controllers\EmpresaController::class,'createBackup']);
  Route::get ('/copiadeseguridad',[App\Http\Controllers\EmpresaController::class,'indexBackup']);
+ Route::get ('/up/Backup/{id}',[App\Http\Controllers\EmpresaController::class,'upBackup']);
 
 
 
