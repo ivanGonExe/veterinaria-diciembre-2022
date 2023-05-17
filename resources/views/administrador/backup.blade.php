@@ -63,7 +63,7 @@ td{
                       <td>{{$i++}}</td>
                       <td>{{str_replace ('.json','',$unArchivo,)}}</td>
                       <td class="acciones w-25">  
-                      <a id="{{$unArchivo}}" class="btn boton_copia" title="subir copia de seguridad" ><i class="fa-solid fa-upload"></i></a>
+                      <a id="{{$unArchivo}}" class="btn boton_copia" value="{{$unArchivo}}" title="subir copia de seguridad" ><i class="fa-solid fa-upload"></i></a>
                       </td> 
                   </tr>
                   
@@ -94,7 +94,7 @@ $('#example').DataTable();
 });
  $('#example').DataTable({
      "bSort": true, // Con esto le estás diciendo que se pueda ordenar, ponlo a 'true'
-     "order": [], // Aquí le dices que el criterio de ordenación primero esté vació , o lo que es lo mismo, ninguno
+     "order": [[1, "desc"]], // Aquí le dices que el criterio de ordenación primero esté vació , o lo que es lo mismo, ninguno
      responsive:true, 
      "pageLength": 5,
      language: {
@@ -103,29 +103,32 @@ $('#example').DataTable();
 
  }); 
 
- let boton_copia =  document.getElementsByClassName("boton_copia"); 
- let cantidad = boton_copia.length;
 
- for(let i=0; i<cantidad; i++){
-  boton_copia[i].addEventListener('click', function() {
-                   
-                      Swal.fire({
+
+
+var id = 0;
+        var botones = document.getElementsByClassName("boton_copia");
+        var boton = [];
+        let cantidad = botones.length;
+              for(let i = 0; i < cantidad; i++){
+                  
+                  id =botones[i].id;
+                  boton[i]= document.getElementById(`${id}`);
+                  boton[i].addEventListener('click', function(){
+                    var cod = boton[i].id;
+                    Swal.fire({
                               position: "top-center",
                               icon: "success",
-                              title: "Restauración de copia seguridad"+boton_copia[i].id,
+                              title: "Restauración de copia seguridad"+cod,
                               showConfirmButton: false,
                               timer: 5000,
                           });
                           setTimeout(() => {
-                             
-
-                              location.href="/up/Backup/"+boton_copia[i].id;
+                            
+                              location.href="/up/Backup/"+cod;
                           }, 20);
-                          
-                  });    
-        
-    
-}
+                    })
+                  }
 
 
   //------------------------------------------------------------
