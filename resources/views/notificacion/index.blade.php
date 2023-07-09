@@ -33,7 +33,7 @@
 <div class="caja_tabla-2">
     <div class="container-fluid d-flex justify-content-center">
 
-        <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Notificaciones</h4>
+        <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Notificación de stock</h4>
     
     </div>
 
@@ -44,8 +44,7 @@
            
             <tr>
                 <th scope="col" class="text-center">Fecha </th>
-                <th scope="col"class="text-center">tipo</th>
-                <th scope="col"class="text-center">descripcion</th>
+                <th scope="col"class="text-center">descripción</th>
                 <th scope='col'class="text-center">unidades restantes</th>
                 <th scope="col"class="text-center">Acciones</th>
             </tr>
@@ -54,7 +53,6 @@
         
             @foreach($notificaciones as $unaNotificacion)
                     <td>{{$unaNotificacion->created_at}}</td>
-                    <td>{{$unaNotificacion->categoria}}</td>
                     <td>{{$unaNotificacion->descripcion}}</td>
                     <td><strong>{{$unaNotificacion->unidades}}</strong></td>
                     <td>

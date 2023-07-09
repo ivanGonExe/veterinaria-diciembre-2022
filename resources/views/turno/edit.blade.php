@@ -24,7 +24,7 @@
         @method('PUT')
         <div class="mb-3">
             <label for="" class="form-label">Cliente</label><br>
-             <input class="form-control text-center" type="text" name="cliente"  title="cliente" value='{{$turno->persona->nombre}}{{ $turno->persona->apellido}}' disabled>
+             <input class="form-control text-center" type="text" name="cliente"  title="cliente" value='{{$turno->persona->nombre}} {{ $turno->persona->apellido}}' disabled>
          </div>
         <div class="mb-3">
             <label for="" class="form-label">Fecha</label><br>

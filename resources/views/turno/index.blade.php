@@ -95,6 +95,7 @@
         <tbody>
             @foreach($turnos as $unTurno)
                 <tr>
+                
                     @foreach(explode(' ', $unTurno->start) as $info) 
                       <td>{{$info}} </td>
                     @endforeach
@@ -109,7 +110,7 @@
                           <div class="container w-100 acciones" >
                               <a href="/turnos/{{$unTurno->id}}/edit" class="btn editar " title="editar" ><i class="fa-solid fa-pen-to-square"></i></a>
                               <a href="{{ route('verMascotas', $unTurno->persona_id)}}" name="mascota" class="btn btn mascota" title="Ver Mascotas"><i class="fa-solid fa-dog"></i></a>
-                              <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}" value='{{$unTurno->id}}'><i class="fa-solid fa-ban"></i></button>
+                              <button class="btn btn cancelar" title="cancelar" id="{{$unTurno->id}}C" value='{{$unTurno->id}}'><i class="fa-solid fa-ban"></i></button>
                               <button class="btn btn eliminar" title="eliminar" id="{{$unTurno->id}}*-1" value='{{$unTurno->id}}*-1'><div><i class="fa-solid fa-trash-can"></i></div></i></button>
                               <a class="bnt WhatsApp " title="Enviar WhatsApp" href="/turnos/mensaje/{{$unTurno->id}}" name="Boton_Enviar"  ><i class="fa fa-whatsapp whatsapp" aria-hidden="true"></i></a>
                           </div>
@@ -500,19 +501,19 @@
   <script>
     
 
-      let id              = 0;
+      let idCancelar      = 0;
       let botonesCancelar = document.getElementsByClassName("cancelar");
-      let botonCancelar   = [];
-      let cantidad        = botonesCancelar.length;
+      let botonCanc   = [];
+      let cantidadCancelar  = botonesCancelar.length;
 
-      for(let i = 0; i < cantidad; i++){
+      for(let i = 0; i < cantidadCancelar; i++){
        
-        id               = botonesCancelar[i].id;
-        botonCancelar[i] = document.getElementById(`${id}`);
+        idCancelar       = botonesCancelar[i].id;
+        botonCanc[i] = document.getElementById(`${idCancelar}`);
                 
-        botonCancelar[i].addEventListener('click', function(){
+        botonCanc[i].addEventListener('click', function(){
                     
-          var codCancelar = botonCancelar[i].value;
+          var codCancelar = botonCanc[i].value;
 
           Swal.fire({
             title:              '¿Esta Seguro que desea cancelar el turno?',
@@ -533,22 +534,19 @@
         });
       }
     
+        var id               = 0;
+        var botonesEliminar  = document.getElementsByClassName("eliminar");
+        var botonEle         = [];
+        let cantidadEleminar = botonesEliminar.length;
 
-    
-
-        var id              = 0;
-        var botonesEliminar = document.getElementsByClassName("eliminar");
-        var botonEliminar   = [];
-        let cantidad        = botonesEliminar.length;
-
-        for(let i = 0; i < cantidad; i++){
+        for(let i = 0; i < cantidadEleminar  ; i++){
 
           id               = botonesEliminar[i].id;
-          botonEliminar[i] = document.getElementById(`${id}`);
+          botonEle[i] = document.getElementById(`${id}`);
 
-          botonEliminar[i].addEventListener('click', function(){
+          botonEle[i].addEventListener('click', function(){
                   
-            var codEliminar = botonEliminar[i].value;
+            var codEliminar = botonEle[i].value;
 
             Swal.fire({
               title:              '¿ Esta Seguro que desea eliminar el turno?',

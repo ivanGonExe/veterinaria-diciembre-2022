@@ -28,7 +28,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('categoria.create');
+        $categorias  = Categoria::all();
+        return view('categoria.create')->with('categorias',$categorias); 
     }
 
     /**
@@ -44,8 +45,8 @@ class CategoriaController extends Controller
         ]);
 
         $esta = DB::TABLE('categorias')
-        ->where('descripcion','like',$request->get('descripcion'))
-        ->get();
+                  ->where('descripcion','like',$request->get('descripcion'))
+                  ->get();
         if(empty($esta[0])){
             $categoria = new Categoria();
             $categoria->descripcion = strtoupper($request->descripcion);
@@ -83,8 +84,10 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-     $categoria = Categoria::find($id);
-     return view ('categoria.edit')->with('categoria',$categoria);
+        $categoria = Categoria::find($id);
+        $categorias  = Categoria::all();
+        return view('categoria.edit')->with('categoria',$categoria)
+                                    ->with('categorias',$categorias);
     }
 
     /**

@@ -43,7 +43,7 @@ table td{
     </div>
 
     
-    <a href="/categorias/create" type="button" class="btn btn-primary  boton_crear" title="crear nueva categoria">+ Crear categoria <i class="fa-solid fa-list"></i></a>
+    <a href="/categorias/create" type="button" class="btn btn-primary  boton_crear" title="crear nueva categoria">+ Crear categoría <i class="fa-solid fa-list"></i></a>
     </div>
     
         <table id="example" class="table table-striped" style="width:100% ">
@@ -51,7 +51,7 @@ table td{
            
             <tr>
                 <th class=" text-center">Id</th>
-                <th class=" text-center">Descripcion</th>
+                <th class=" text-center">Descripción</th>
                 <th class=" text-center">Acciones</th>
             </tr>
         </thead>

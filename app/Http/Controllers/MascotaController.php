@@ -76,7 +76,7 @@ class MascotaController extends Controller
         
         $mascota->save();
 
-        $historialClinico = new HistorialClinico();
+        $historialClinico             = new HistorialClinico();
         $historialClinico->mascota_id = $mascota->id;
 
         $historialClinico->save();

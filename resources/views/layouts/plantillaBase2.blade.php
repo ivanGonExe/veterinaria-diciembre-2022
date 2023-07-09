@@ -128,7 +128,7 @@ $mesActual= Carbon\Carbon::now()->format('m');
             
             </li>
             <li class="nav-item p-2">
-              <a class="nav-link" href="/articulos" title="Articulos"><i class="fa-solid fa-store"></i> Articulos</a>
+              <a class="nav-link" href="/articulos" title="Artículos"><i class="fa-solid fa-store"></i> Artículos</a>
             </li>
             
             <li class="nav-item p-2">
@@ -148,7 +148,7 @@ $mesActual= Carbon\Carbon::now()->format('m');
             </a>
             </li>
             <li class="nav-item p-2">
-              <a class="nav-link"  id ="notificacion" ><i class="fa-solid fa-bell"></i> Notificaciones 
+              <a class="nav-link"  id ="notificacion" ><i class="fa-solid fa-bell"></i> Alerta de stock
             @if(session()->exists('notificacion'))
                 <span class="position-absolute  translate-middle badge rounded-pill bg-danger">
                 {{session('notificacion')}} 

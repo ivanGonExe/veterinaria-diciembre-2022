@@ -4,8 +4,6 @@ const inputs = document.querySelectorAll("#formulario input");
 let descripcion = document.getElementsByName("descripcion");
 let cerrar = document.getElementById('cerrar');
 
-
-
 const expresiones = {
     descripcion: /^([a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]){1,100}$/, // Letras y espacios, pueden llevar acentos.
 
@@ -63,15 +61,43 @@ for (let i = 0; i < longitud; i++) {
     inputs[i].addEventListener("keyup", validarFormulario); //cuando se levante la tecla
     inputs[i].addEventListener("blur", validarFormulario); //cuando le de un click fuera del imput */ */
 }
+if (window.location.href.match("edit"))
+{
+    let descripcion = document.getElementById('descripcion');         
+    
+    validarCampo(expresiones.descripcion, descripcion, "descripcion");
+    
+}
 
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    if (
-        campos.descripcion 
-      
-    ) {
-        Swal.fire({
+    if (campos.descripcion ) 
+  
+    {   let descri          = document.getElementById('descripcion').value;
+        let descriCategoria = descri.toUpperCase();
+        let longitud        = categorias.length;
+        let estado          = false;
+
+        for (let i = 0; i < longitud; i++){
+            
+            if (descriCategoria == categorias[i].descripcion){
+                estado = true;
+                i      = longitud;
+            }
+        }
+        if(estado == true){
+            Swal.fire({
+                position: "top-center",
+                icon: "error",
+                title: "Categoría ya existente",
+                showConfirmButton: false,
+                color: "red",
+                timer: 4000,
+            });
+        }
+        if(estado == false){
+            Swal.fire({
             position: "top-center",
             icon: "success",
             title: "Categoria Guardada",
@@ -84,7 +110,7 @@ formulario.addEventListener("submit", (e) => {
             /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
 
             formulario.submit();
-        }, 4000);
+        }, 4000);}
 
         document
             .querySelectorAll(".formulario__grupo-correcto")
@@ -103,30 +129,25 @@ formulario.addEventListener("submit", (e) => {
         }, 3000);
     }
 });
-cerrar.addEventListener('click',()=>{
+
+// cerrar.addEventListener('click',()=>{
  
-  document
-            .getElementById(`grupo__descripcion`)
-            .classList.remove("formulario__grupo-incorrecto");
-        document
-            .getElementById(`grupo__descripcion`)
-            .classList.add("formulario__grupo-correcto");
-        document
-            .querySelector(`#grupo__descripcion i`)
-            .classList.remove("fa-times-circle");
+//   document
+//             .getElementById(`grupo__descripcion`)
+//             .classList.remove("formulario__grupo-incorrecto");
+//         document
+//             .getElementById(`grupo__descripcion`)
+//             .classList.add("formulario__grupo-correcto");
+//         document
+//             .querySelector(`#grupo__descripcion i`)
+//             .classList.remove("fa-times-circle");
     
-        document
-            .querySelector(`#grupo__descripcion .formulario__input-error`)
-            .classList.remove("formulario__input-error-activo");
+//         document
+//             .querySelector(`#grupo__descripcion .formulario__input-error`)
+//             .classList.remove("formulario__input-error-activo");
 
-})
-
-if(descripcion[0].value != "")
-{
+// })
 
 
-validarCampo(expresiones.descripcion, descripcion[0], "descripcion");
 
-formulario__mensaje.style.display = "none"; 
-}
 

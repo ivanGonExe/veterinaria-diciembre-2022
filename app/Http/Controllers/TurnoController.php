@@ -148,10 +148,10 @@ class TurnoController extends Controller
 
                 $turnos = Turno::where('turnos.estado','!=',2)
                                ->where('tipo',$tipoTurno)
+                               ->select('turnos.*','personas.dni','personas.nombre','personas.apellido')
                                ->orderBy('turnos.updated_at','Desc')
                                ->join('personas', 'personas.id', '=', 'turnos.persona_id')
-                               ->get();
-                               
+                               ->get();             
             }
 
             
@@ -552,7 +552,7 @@ class TurnoController extends Controller
  // inserto y guardo turno
         $turno->estado     = 1;
         $turno->persona_id = $persona[0]->id;
-        $turno->asunto     = $request->asunto;
+        $turno->asunto     = mb_strtoupper($request->asunto,'UTF-8');
         $turno->save();
     
     return redirect('/tipoTurno/6');
@@ -607,7 +607,7 @@ class TurnoController extends Controller
             $turnoAux = Turno::find($request->get('idTurno'));
             $turnoAux->estado = 1;
             $turnoAux->persona_id = $persona->id;
-            $turnoAux->asunto = $request->asunto;
+            $turnoAux->asunto = mb_strtoupper($request->asunto,'UTF-8');
         
             $turnoAux->save();
         
@@ -627,9 +627,8 @@ class TurnoController extends Controller
         $turnoAux             = Turno::find($request->get('idTurno'));
         $turnoAux->estado     = 1;
         $turnoAux->persona_id = $persona[0]->id;
-        $turnoAux->asunto     = $request->get('asunto');
+        $turnoAux->asunto     = mb_strtoupper($request->asunto,'UTF-8');
         $turnoAux->save();
-                      
         return redirect('/seleccionTurno'); 
     }
 //-------------------------------------------------------------------------------------
@@ -681,7 +680,7 @@ class TurnoController extends Controller
      public function update(Request $request, $id)
      {
          $turno         = Turno::find($id);
-         $turno->asunto = $request->asunto;
+         $turno->asunto = mb_strtoupper($request->asunto,'UTF-8');
          $turno->save();
         
          return redirect($request->url);

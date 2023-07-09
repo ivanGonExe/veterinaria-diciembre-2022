@@ -9,14 +9,17 @@
     "license": "MIT",
     "require": {
         "php": "^7.3||^8.0",
+        "andyabih/laravel-to-uml": "^1.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "phuml/phuml": "dev-characterization-tests",
         "spatie/laravel-backup": "^6.1"
     },
     "require-dev": {
+        "beyondcode/laravel-er-diagram-generator": "^2.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",

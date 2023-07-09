@@ -157,7 +157,7 @@ input[type=number] { -moz-appearance:textfield; }
             <td>{{$producto->articulo->precioEspecial}}</td>
             <td> {{($producto->unidad)*($producto->precioEspecial) - ($producto->unidad)*($producto->precioVenta)}} </td>
             <td>{{($producto->unidad)*($producto->precioEspecial)}}</td>
-           
+        
             @php
                 $indice++;
                 $total += ($producto->unidad)*($producto->precioEspecial);
@@ -169,12 +169,10 @@ input[type=number] { -moz-appearance:textfield; }
             @csrf
             @method('DELETE')
             <input type="hidden" value="{{$indice}}" name="articulo">
-            <a class="btn text-success  p-1 fs-3"  href="/agregarArticuloVenta/{{$producto->id}}" name="masUno" title="más Uno"><i class="fa-solid fa-circle-plus"></i></a>
-            <a class="btn text-danger  p-1 fs-3"  href="/eleminarUnArticuloVenta/{{$producto->id}}" name="menosUno" title="menos Uno"><i class="fa-solid fa-circle-minus"></i></a>
-            <!-- <a class="btn btn-secondary rounded-pill p-1"  href="/precioEspecial/{{$producto->id}}" name="PrecioEspecial" title="PrecioEspecial"><i class="fa-solid fa-circle-exclamation"></i></i></a>     -->
-
+            <a class="btn text-success  p-1 fs-3"  href="/agregarArticuloVenta/{{$producto->id}}" name="masUno" title="Más Uno"><i class="fa-solid fa-circle-plus"></i></a>
+            <a class="btn text-danger  p-1 fs-3"  href="/eleminarUnArticuloVenta/{{$producto->id}}" name="menosUno" title="Menos Uno"><i class="fa-solid fa-circle-minus"></i></a>
         <!--boton modal  -->
-            <button type="button" class="btn btn-primary rounded-pill  modalTurno"  data-toggle ="modal" data-target="#exampleModal" title="Agendar persona al turno" id ="{{$producto->id}}" value="{{$producto->articulo->precioVenta}}">
+            <button type="button" class="btn btn-primary rounded-pill  modalTurno"  data-toggle ="modal" data-target="#exampleModal" title="Aplicar descuento" id ="{{$producto->id}}" value="{{$producto->articulo->precioVenta}}">
                 <i class="fa-solid fa-percent"></i>
             </button>    
             <button class="btn  p-1  fs-3 eliminar" title="Eliminar"><i class="fa-solid fa-trash-can "></i></button>                    
@@ -245,7 +243,7 @@ input[type=number] { -moz-appearance:textfield; }
                     <label>$<input type="number" id ="montoDesc" name = "montoDesc"step="0.01"  ></label>
                     <div class="container-fluid d-flex justify-content-center m-2">
                         <a href=" " class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
-                        <button type="submit" id='botonGuardar' class="btn btn-primary m-2" tabindex="7">Guardar</button>
+                        <button type="submit" id='botonGuardar' class="btn btn-primary m-2" tabindex="7">Aplicar</button>
                     </div>
                 </form>
             </div>

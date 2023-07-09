@@ -33,13 +33,13 @@
   <!--Grupo Descripcion -->
   <div class="mb-3">
     <div class="formulario__grupo" id="grupo__descripcion">
-    <label for="descripcion" class="formulario__label" title="Caracteristicas del producto.Breve descripción del mismo" >Descripcion *</label>
+    <label for="descripcion" class="formulario__label" title="Caracteristicas del producto.Breve descripción del mismo" >Descripción *</label>
     <div class="formulario__grupo-input">
     <input type="text" class="form-control formulario__input" id="descripcion" name="descripcion" value ="{{$articulos->descripcion}}" maxlength="200" required>
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
 </div>
 <br>
-<p class="formulario__input-error">La descripcion puede contener letras y número hasta 50 caracteres</p>
+<p class="formulario__input-error">La descripción puede contener letras y número hasta 50 caracteres</p>
 </div>
 
 <!-- Grupo: Precio Venta-->
@@ -69,13 +69,13 @@
      <!-- Grupo: minimoStock-->
      <div class="mb-3">
         <div class="formulario__grupo" id="grupo__minimoStock">
-            <label for="minimoStock" class="formulario__label" title="valor númerico de referencia para que se active la alerta por falta de stock" ></>Minimo de Stock *</label>
+            <label for="minimoStock" class="formulario__label" title="valor númerico de referencia para que se active la alerta por falta de stock" ></>Mínimo de Stock *</label>
             <div class="formulario__grupo-input">
           <input type="text" class="form-control formulario__input" name="minimoStock" id="minimoStock"  maxlength="3"  value ="{{$articulos->minimoStock}}" aria-describedby="addon-wrapping" required>
         <i class="formulario__validacion-estado fas fa-times-circle"></i>
      </div>
      <br>
-            <p class="formulario__input-error">El Minimo de Stock solo puede contener números y hasta 3 digitos</p>
+            <p class="formulario__input-error">El Mínimo de Stock solo puede contener números y hasta 3 digitos</p>
         </div>
      <!-- Grupo: alerta-->
      <div class="mb-3">

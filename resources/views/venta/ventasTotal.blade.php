@@ -42,10 +42,6 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     </div>
     <br>
     <br>
-  
-    
-
-
         <div class="row text-center"> 
             <div class="col-6">
                 <h4 class="text-black" >Costo total: ${{$venta->total}}</h4>
@@ -54,8 +50,6 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
                         <h4 class="text-black " id="vuelto" step="0.01" >Vuelto: </h4>
                 </div>
             </div>
-
-
             <div class="col-6">
                 <label class="pesos text-dark">$<label><input type="number" name="pago" id="pago" step="0.1" >
             </div>
@@ -72,19 +66,14 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 </div>
 </form>
 </div>
-
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="  https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11">                                 </script>
+    <script src="  https://code.jquery.com/jquery-3.5.1.js">                             </script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">         </script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js">     </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
 
-
         $(document).ready(function () {
-
-
 
            $('.js-example-basic-single').select2();
       
@@ -133,7 +122,7 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
                 let h4            = document.createElement('h4');
 
                 h4.setAttribute('id','vuelto');
-                 
+                
                 if(vueltoCal <= 0 ){
 
                     if(document.getElementById("vuelto")){

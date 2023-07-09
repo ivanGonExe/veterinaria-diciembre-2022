@@ -522,7 +522,7 @@ public function terminarVenta()
             $notificacion = new notificaciones();
             $notificacion  ->categoria   = 'articulo';
             $notificacion  ->unidades    =  $articuloActualizado->cantidadTotal;
-            $notificacion  ->descripcion = 'falta de stock del articulo '. $articuloActualizado->descripcion ;
+            $notificacion  ->descripcion = 'FALTA DEL STOCK DEL ARTICULO '. $articuloActualizado->descripcion ;
             $notificacion  ->saveOrFail();
            
             if (session()->exists('notificacion')) {

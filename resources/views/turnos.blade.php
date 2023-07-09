@@ -330,8 +330,8 @@ box-shadow: 3px 0px 30px rgb(255, 254, 254, 0.4);
           
             <br>
             <div class="formulario__grupo formulario__btn-enviar text-center">
-            <button class="btn btn-dark btn-success"  type="reset" id="cancelar">Borrar</button>
-            <button class="btn  btn-dark btn-success" id="botonAceptar" type="submit">Aceptar</button>
+            <button class="btn btn-dark btn-success"  href="/" id="cancelar">Cancelar</button>
+            <button class="btn  btn-dark btn-success" id="botonAceptar" type="submit">Enviar</button>
                <!-- Menesaje de Exitoso -->
                <div class="formulario__mensaje-exito fs-5 m-2 p-2" id="formulario__mensaje-exito">
                

@@ -114,7 +114,7 @@ table.dataTable td {
                          var cod = boton[i].value;
 
                         Swal.fire({
-                            title: 'Esta Seguro que desea Borrar?',
+                            title: 'Está seguro que desea Borrar?',
                             text: "confirme la decisión!",
                             icon: 'warning',
                             showCancelButton: true,

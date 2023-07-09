@@ -28,20 +28,20 @@
 		@method('Put')
    {{--      
         <div class="mb-3">
-            <label for="" class="form-label">Descripcion</label>
+            <label for="" class="form-label">Descripción</label>
             <input id="descripcion" name="descripcion" type="text" value ="{{$categoria->descripcion}}"class="form-control" tabindex="3">
         </div> --}}
 
 <!--Grupo Descripcion -->
 <div class="mb-3">
     <div class="formulario__grupo" id="grupo__descripcion">
-    <label for="descripcion" class="formulario__label" title="Describa la categoría a crear" >Descripcion *</label>
+    <label for="descripcion" class="formulario__label" title="Describa la categoría a crear" >Descripción *</label>
     <div class="formulario__grupo-input">
     <input type="text" class="form-control formulario__input" id="descripcion" name="descripcion" value ="{{$categoria->descripcion}}" maxlength="25" required>
     <i class="formulario__validacion-estado fas fa-times-circle"></i>
 </div>
 <p class="text-white">*Campo obligatorio</p>
-<p class="formulario__input-error">La descripcion puede contener letras y número hasta 25 caracteres</p>
+<p class="formulario__input-error">La descripción puede contener letras y número hasta 25 caracteres</p>
 </div>
 
 
@@ -57,5 +57,8 @@
 
 
 </body>
+<script> 
+    let categorias = @json($categorias);
+</script>
 <script src="{{asset('validarCategoria.js')}}" defer></script>
 @endsection  
