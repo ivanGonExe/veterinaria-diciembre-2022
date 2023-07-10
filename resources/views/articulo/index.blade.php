@@ -148,7 +148,7 @@ table.dataTable th {
         let cantidad = botones.length;
 
             for(let i = 0; i < cantidad; i++){
-                 
+                
                 id      = botones[i].id;
                 boton[i]= document.getElementById(`${id}`);
                 

@@ -96,10 +96,49 @@ table td{
                 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             }
             }); 
-
-
-
-
         </script>
+<script>
+    let id       = 0;
+        let botones  = document.getElementsByClassName("eliminar");
+        let boton    = [];
+        let cantidad = botones.length;
+
+            for(let i = 0; i < cantidad; i++){
+                
+                id      = botones[i].id;
+                boton[i]= document.getElementById(`${id}`);
+                
+                boton[i].addEventListener('click', function(){
+                    
+                        var cod       = boton[i].value;
+                        let articulos = @json($articulos);
+                        let longArt   = articulos.length;
+
+                        for(let l=0 ;l<longArt; l++ ){
+
+                            if(articulos[l].id = cod){
+                                
+                                Swal.fire({
+                                    
+                                    title: 'Esta Seguro que desea Borrar el articulo '+articulos[l].descripcion+'?',
+                                    text: "confirme la decisión!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Si, eliminar'
+
+                                }).then((result) => {
+
+                                    if (result.isConfirmed) {
+                        
+                                        location.href = '/articulos/'+cod+'/delete'; 
+                                    }
+                                });
+                            }
+                        }
+                    })
+                }
+</script>
 @endsection        
 
