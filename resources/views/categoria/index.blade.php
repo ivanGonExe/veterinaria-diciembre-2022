@@ -33,10 +33,6 @@ table td{
 @section('contenido')
 
 
-
-
-
-
 <div class="caja_tabla-2">
     <div class="container-fluid d-flex justify-content-center">
         <h2 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Listado de Categorías</h2>
@@ -48,7 +44,6 @@ table td{
     
         <table id="example" class="table table-striped" style="width:100% ">
         <thead>
-           
             <tr>
                 <th class=" text-center">Id</th>
                 <th class=" text-center">Descripción</th>
@@ -63,28 +58,20 @@ table td{
                     
                     <td>    
                         <a href="/categorias/{{$unaCategoria->id}}/edit " name="Editar" class="btn " title="Editar"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="/quitarUnaCategoria/{{$unaCategoria->id}}" name="delete" class="btn eliminar" title="delete"><i class="fa-solid fa-trash-can"></i></a> 
+                        <button class="btn btn eliminar" title="Eliminar" id="{{$unaCategoria->id}}" value= '{{$unaCategoria->id}}'><i class="fa-solid fa-trash-can"></i></button>  
                         
                     </td>
                 </tr>
             @endforeach
-
-        </tbody>
-    
-    
+        </tbody> 
     </table>
     </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
-
-    
-
-  <script src="  https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
-    <script>
-
-
+<script>
         $(document).ready(function () {
 
            $('#example').DataTable();
@@ -98,29 +85,27 @@ table td{
             }); 
         </script>
 <script>
+    let categorias = @json($categorias);
+    let longCate   = categorias.length;
     let id       = 0;
-        let botones  = document.getElementsByClassName("eliminar");
-        let boton    = [];
-        let cantidad = botones.length;
-
+    let botones  = document.getElementsByClassName("eliminar");
+    let boton    = [];
+    let cantidad = botones.length;
+    
             for(let i = 0; i < cantidad; i++){
                 
                 id      = botones[i].id;
                 boton[i]= document.getElementById(`${id}`);
                 
                 boton[i].addEventListener('click', function(){
-                    
-                        var cod       = boton[i].value;
-                        let articulos = @json($articulos);
-                        let longArt   = articulos.length;
+                        
+                        for(let J=0 ; J<longCate ; J++ ){
 
-                        for(let l=0 ;l<longArt; l++ ){
-
-                            if(articulos[l].id = cod){
+                            if(categorias[J].id == boton[i].value){
                                 
                                 Swal.fire({
                                     
-                                    title: 'Esta Seguro que desea Borrar el articulo '+articulos[l].descripcion+'?',
+                                    title: 'Esta Seguro que desea Borrar la categoria '+categorias[J].descripcion+'?',
                                     text: "confirme la decisión!",
                                     icon: 'warning',
                                     showCancelButton: true,
@@ -132,7 +117,7 @@ table td{
 
                                     if (result.isConfirmed) {
                         
-                                        location.href = '/articulos/'+cod+'/delete'; 
+                                        location.href = '/quitarUnaCategoria/'+boton[i].value;
                                     }
                                 });
                             }

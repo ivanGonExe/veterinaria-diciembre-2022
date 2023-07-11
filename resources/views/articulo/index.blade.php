@@ -160,7 +160,7 @@ table.dataTable th {
 
                         for(let l=0 ;l<longArt; l++ ){
 
-                            if(articulos[l].id = cod){
+                            if(articulos[l].id == cod){
                                 
                                 Swal.fire({
                                     
