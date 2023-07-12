@@ -18,8 +18,9 @@
         background-repeat:     no-repeat;
         background-position:   center !important;   
         background-attachment: fixed !important;
+        font-weight: 14px !important;
+      
     }
-
     input{
         border-radius: 10px !important;
     }
@@ -46,7 +47,7 @@
     }
 
     .card{
-        background-color: rgba(255, 255, 255, 0.6); 
+        background-color: rgba(255, 255, 255, 1); 
         border-radius: 10px !important;
     }
 
@@ -69,6 +70,12 @@
         height:47%;
         width:81%;
     }
+    .form-check{
+        padding-left: 8em !important;
+    }
+    .olvidaste{
+        padding-left: 50px !important;
+    }
 </style> 
 
 @section('content')
@@ -86,10 +93,10 @@
                         <div class="container-fluid d-flex justify-content-center ">
                         <img src="../iconos/logo_footer.png"  height="150" width="150"> 
                         </div>
-                        <div class="form-group row m-2">
+                        <div class="form-group row m-2 p-2">
                            
                             <div class="col-md-12">
-                                <input style="font: var(--fa-font-solid); content: '\f007'; font-size:11px;" id="email" type="email" class="form-control @error('email') is-invalid @enderror " name="email" value="{{ old('email') }}" placeholder= "&#xf0e0; Mail" required autocomplete="email" autofocus>
+                                <input style="font: var(--fa-font-solid); content: '\f007'; font-size:10px;" id="email" type="email" class="form-control @error('email') is-invalid @enderror " name="email" value="{{ old('email') }}" placeholder= "&#xf0e0; Mail" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -98,12 +105,12 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row m-2">
+                        
+                        <div class="form-group row m-2 p-2">
                             
-
+                              
                             <div class="col-md-12">
-                                <input style="font: var(--fa-font-solid); content: '\f007'; font-size:11px;"  id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder= "&#xf023; Password"required autocomplete="current-password">
+                                <input style="font: var(--fa-font-solid); content: '\f007'; font-size:10px;"  id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder= "&#xf023; Password"required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -111,10 +118,13 @@
                                     </span>
                                 @enderror
                             </div>
+
+
                         </div>
 
-                        <div class="form-group row m-2">
-                            <div class="col-md-7 ">
+                        <div class="form-group row "> 
+                         
+                            <div class="col-md-12 ">
                                 <div class="form-check">
                                     <input class="form-check-input recordar" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -123,16 +133,18 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-10">
+                         </div>
+                        
+                         <br>
+                        <div class="form-group row">
                             <div class="col-md-12 offset-md-1">
                                 <button type="submit" class="btn btn-primary col-md-10 botonEntrar">
                                     {{ __('Entrar') }}
                                 </button>
-
+                            </div>
+                            <div class="col-md-12 offset-md-1">
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link olvidaste" href="{{ route('password.request') }}">
                                         {{ __('¿Olvidaste tu contraseña?') }}
                                     </a>
                                 @endif

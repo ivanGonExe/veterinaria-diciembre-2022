@@ -1,77 +1,69 @@
 
-<head>
-  <!--  iconos -->
-  <script src="https://kit.fontawesome.com/b610c83f26.js" crossorigin="anonymous"></script>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-{{--         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-
-  
-        <!-- data table CSS-->
-  {{-- <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css"  href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
- --}}
- <!-- data table CSS-->
- <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">            
- <link rel="stylesheet" type="text/css"  href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" type="text/css"  href= "https://cdn.datatables.net/fixedheader/3.3.1/css/fixedHeader.bootstrap.min.css">
-  <link rel="stylesheet" type="text/css"  href= "https://cdn.datatables.net/responsive/2.4.0/css/responsive.bootstrap.min.css">
- 
- 
-
-     <!--  iconos -->
-     <script src="https://kit.fontawesome.com/b610c83f26.js" crossorigin="anonymous"></script>
- 
- <!-- data table CSS-->
 
 
+<!doctype html>
 
-  <title>Menu Administrador </title>
-  <!-- jquery-->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin ="anonymous"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" type="text/css" href="{{asset('estiloAdmin.css')}}">
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-</head>
+  <head>
+    <!--  iconos -->
+    <script src="https://kit.fontawesome.com/b610c83f26.js" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+      <!-- estilos CSS -->
+  {{--   <link rel="stylesheet" type="text/css" href="{{asset('estiloLogin.css')}}"> --}}
+    <link rel="icon" href={{asset('iconos/huella.png')}} >
+          <!-- data table CSS-->
+    <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"  href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title>Usuario Veterinario</title>
 
 <style>
-.boton_crear {
+  .boton_crear {
+  
+  color:#000000;
+  
+  margin: 10 0 10 -10 !important;
+  width: 160 !important;
+  border-radius: 20px !important;
+  
+   
+  }
 
-color:#000000;
-
-margin: 10 0 10 -10 !important;
-width: 160 !important;
-border-radius: 20px !important;
-
- 
+.form-label{
+   color:#ffffff;
 }
 
-table th{
-  background-color: rgba(100, 83, 153, 1) !important;
-  color:#ffffff;
+  table th{
+    background-color: rgba(100, 83, 153, 1) !important;
+    color:#ffffff;
 }
 table tr{
-  background-color: rgb(255, 255, 255,1) !important;
+    background-color: rgb(255, 255, 255,1) !important;
+    color:#000000;
+}
+
+ 
+
+.navbar-expand-lg .navbar-nav .nav-link{
+   padding-left:40px !important;
+  
+}
+body{
+  background-color: yellowgreen !important;
+	/* background-image: linear-gradient(120deg, #ffffffae, #b405ff); */
+}
+
+ a{
+  text-decoration: none;
   color:#000000;
 }
 
-.caja_tabla-2{
-
-    margin: 15px;
-}
-
-
-body{
- 
-  background-color: rgba(0, 0, 0, 0.3) !important;
-}
 .boton_cliente{
       width: 200px;
       height:200px;
@@ -145,29 +137,9 @@ background: radial-gradient(to bottom right, #5718EC, #43989E);
       background: radial-gradient(to bottom right, #1A01FF, #3AA6AD);
   }
 
-.dropdown {
-
-  position: relative;
-  text-decoration: none;
-}
-.dropdown-content {
-  display: none;
-  position: relative;
- 
-  width: 100%;
- 
-  overflow: auto;
-  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.dropdown-content a {
-  display: block;
-  color: #ffffff;
 
 
-}
+
 a{
   text-decoration: none;
 }
@@ -177,72 +149,118 @@ a{
   text-decoration: none;
 }
 
-.form-group{
-    background-color: rgba(100, 83, 153, 1) !important;
+ .form-group{
+  /*   background-color: rgba(100, 83, 153, 1) !important; */
     margin: 0px;
     padding: 15px;
     font-size: 20px;
-    color:#ffffff;
+    color:#000000 !important;
     
+}.form-label{
+  color:#000000 !important;
 }
-
-</style> 
+.dropdown-menu{
+  margin: 20px  !important;;
+  padding: 10px  !important;;
+}.li .a{
+  padding: 10px  !important;;
+}
+h2{
+padding: 20px;  
+}
+  </style>
 @php
-    $añoActual= Carbon\Carbon::now()->format('y');
-    $mesActual= Carbon\Carbon::now()->format('m');
- @endphp
+  $añoActual= Carbon\Carbon::now()->format('y');
+  $mesActual= Carbon\Carbon::now()->format('m');
+@endphp
 
-
-<body>
-
-<div class="wrapper">
-  <div class="sidebar">
-              <div class="text-center">
-              <img src="/iconos/logo_footer.png"  class="logo_principal" height=100 width=100 >
-              </div>
-     
-  <div class="content p-3">
-
+<!-- Inicio de Menu -->
+<body class="fondo_veterinario">
+<nav class="navbar navbar-expand-lg navbar-light  bg-white m-0 p-3" >
+  <div class="container-fluid" >
+    <div class="logo">
+      <img src="/iconos/logo_login.png"  class="logo_principal" height=140 width=100 >
+       </div>
+   
  
-        <ul class="p-2">
-            <li><a href="/login/administrador"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="{{'/usuario'}}" title="crear usuarios"><i class="fa-solid fa-users" ></i> Usuarios</a></li>
-            <li><a href="{{'/login/administrador/vistas'}}" title="interfaces"><i class="fas fa-project-diagram"></i>Vistas</a></li>
-            <li><a href="{{'/infoEmpresa'}}" title="interfaces"><i class="fa-solid fa-sliders"></i></i> Info empresa</a></li>
-            <li><a href="{{'/entradaNoticia'}}" title="EntradaNoticias"><i class="fa-solid fa-pen-to-square"></i> Noticias</a></li>
-            <li><a href="/copiadeseguridad" title="Backup"><i class="fa-solid fa-floppy-disk"></i> Copia de seguridad</a></li>
-            <div class="dropdown">
-              <li><a class="text-white"><i class="fa-sharp fa-solid fa-chart-simple text-white"></i> Estadisticas</a></li>
-              <div class="dropdown-content ">
-              <li><a href="/Estadistica/ventas/{{$añoActual}}">Ventas</a></li>
-                <li><a href="/estadistica/ganancia/por_mes/{{$añoActual}}">Ganancia</a></li>
-                  <li><a href="/estadistica/articulos/MasVendidos/{{$mesActual}}">Articulos</a></li>
-                    <li><a href="/estadistica/clientesNuevosPorMes/{{$añoActual}}">Clientes</a></li>
-              </div>
-            </div>
-           <br>
-           <br>
+      <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             
-{{--             <li><a href="#" ><i class="fa-solid fa-right-from-bracket"></i> Cerrar</a></li> --}}
-            <li><a href='#'   onclick ="event.preventDefault();
-              document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket"></i> Cerrar</a></li>
-               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            
+
+        
+            <li class="nav-item ">
+              <li><a href="/login/administrador" class="nav-link " ><i class="fas fa-home"></i> Inicio</a></li>
+            </li>
+            <li class="nav-item ">
+              <li><a href="{{'/usuario'}}" class="nav-link " title="crear usuarios"><i class="fa-solid fa-users" ></i> Usuarios</a>
+            </li>
+            <li class="nav-item ">
+              <a href="{{'/login/administrador/vistas'}}" class="nav-link" title="interfaces"><i class="fas fa-project-diagram"></i> Vistas</a>
+            </li>
+          
+           
+
+            <li class="nav-item ">
+              <a href="{{'/infoEmpresa'}}" class="nav-link" title="interfaces"><i class="fa-solid fa-sliders"></i></i> Info empresa</a>
+            </li>
+            <li class="nav-item ">
+              <a href="{{'/entradaNoticia'}}" class="nav-link" title="EntradaNoticias"><i class="fa-solid fa-pen-to-square"></i> Noticias</a>
+            </li>
+          
+          
+            <li class="nav-item">
+              <a href="/copiadeseguridad" class="nav-link" title="Backup"><i class="fa-solid fa-floppy-disk"></i> Copia de seguridad</a>
+            </li>
+          
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" title="Estadisticas"> <i class="fa-sharp fa-solid fa-chart-simple"></i> Estadisticas </a>
+               <ul class="dropdown-menu">
+                <li><a href="/Estadistica/ventas/{{$añoActual}}"><i class="fa-sharp fa-solid fa-cart-shopping"></i> Ventas</a></li>
+                <li><a href="/estadistica/ganancia/por_mes/{{$añoActual}}"><i class="fa-solid fa-sack-dollar fa-beat"></i> Ganancia</i></a></li>
+                <li><a href="/estadistica/articulos/MasVendidos/{{$mesActual}}"><i class="fa-solid fa-bag-shopping"></i> Articulos</i></a></li>
+                <li><a href="/estadistica/clientesNuevosPorMes/{{$añoActual}}"><i class="fa-solid fa-user-plus"></i> Nuevos Clientes</a></li>
+                </ul>
+            </li>
+
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" title="Usuario"> <i class="fa-solid fa-user"></i> {{auth()->user()->tipo}}</a>
+              <ul class="dropdown-menu cerrar">
+
+              <li><a href='#' class="dropdown-item"  onclick ="event.preventDefault();
+              document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-to-bracket"></i> Cerrar</a></li>
+              </ul>
+              </li>
+              
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
               </form>
-            
-          </ul> 
-
-   
-    </div>
-
-  </div>
-
-    @yield('contenido')
-
-
-
-
-<body>
 
  
+   
+
+  </div>
+   
+  
+
+   
+
+</nav>
+
+</div>
+
+<div class="container">
+  @yield('contenido')
+</div>
+
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+ 
+
+
 </body>

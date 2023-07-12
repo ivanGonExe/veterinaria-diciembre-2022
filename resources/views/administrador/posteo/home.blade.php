@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <a href="{{ route('create') }}" class="btn btn-primary rounded-pill ">+ Crear Posteo</a>
+            <a href="{{ route('create') }}" class="btn btn-primary rounded-pill ">+ Crear Noticia</a>
             <br>
             <br>
             <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
