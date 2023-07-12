@@ -17,158 +17,14 @@
       <!-- estilos CSS -->
   {{--   <link rel="stylesheet" type="text/css" href="{{asset('estiloLogin.css')}}"> --}}
     <link rel="icon" href={{asset('iconos/huella.png')}} >
+    <link rel="stylesheet" type="text/css" href="{{asset('estiloAdmin.css')}}">
           <!-- data table CSS-->
     <link rel="stylesheet" type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css"  href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Usuario Veterinario</title>
 
-<style>
-  .boton_crear {
-  
-  color:#000000;
-  
-  margin: 10 0 10 -10 !important;
-  width: 160 !important;
-  border-radius: 20px !important;
-  
-   
-  }
 
-.form-label{
-   color:#ffffff;
-}
-
-  table th{
-    background-color: rgba(100, 83, 153, 1) !important;
-    color:#ffffff;
-}
-table tr{
-    background-color: rgb(255, 255, 255,1) !important;
-    color:#000000;
-}
-
- 
-
-.navbar-expand-lg .navbar-nav .nav-link{
-   padding-left:40px !important;
-  
-}
-body{
-  background-color: yellowgreen !important;
-	/* background-image: linear-gradient(120deg, #ffffffae, #b405ff); */
-}
-
- a{
-  text-decoration: none;
-  color:#000000;
-}
-
-.boton_cliente{
-      width: 200px;
-      height:200px;
-      color:#ffffff;
-     background-color: rgb(121, 110, 110) !important;
-     border:1px solid rgb(255, 255, 255);
-     -moz-box-shadow:0 5px 5px rgba(182, 182, 182, 0.75);
-   -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
-   box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
-   border-radius: 5px 5px 0 0;  
-  }
-  .boton_cliente:hover{
-
-background: #5718EC;
-background: -webkit-radial-gradient(top left, #655980, #43989E);
-background: -moz-radial-gradient(top left, #655980, #43989E);
-background: radial-gradient(to bottom right, #655980, #43989E);
-  }
-
-  .boton_veterinario{
-      width: 200px;
-      height:200px;
-      color:#ffffff;
-     background-color: rgba(100, 83, 153, 1) !important;
-     border:1px solid rgb(255, 255, 255);
-     -moz-box-shadow:0 5px 5px rgba(182, 182, 182, 0.75);
-   -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
-   box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
-   border-radius: 5px 5px 0 0;  
-  }
-  .boton_veterinario:hover{
-
-background: #5718EC;
-background: -webkit-radial-gradient(top left, #5718EC, #43989E);
-background: -moz-radial-gradient(top left, #5718EC, #43989E);
-background: radial-gradient(to bottom right, #5718EC, #43989E);
-  }
-  .boton_cajero{
-      width: 200px;
-      height:200px;
-      color:#ffffff;
-      background-color: rgb(233, 46, 49) !important;
-      border:1px solid rgb(255, 255, 255);
-      -moz-box-shadow:0 5px 5px rgba(182, 182, 182, 0.75);
-   -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
-   box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75); 
-   border-radius: 5px 5px 0 0;  
-  }
-  .boton_cajero:hover{
-      background: #FF0119;
-      background: -webkit-radial-gradient(top left, #FF0119, #3AA6AD);
-      background: -moz-radial-gradient(top left, #FF0119, #3AA6AD);
-      background: radial-gradient(to bottom right, #FF0119, #3AA6AD);
-  }
-  .boton_peluquero{
-      width: 200px;
-      height:200px;
-      color:#ffffff;
-      background-color: rgb(62, 46, 233,1) !important;
-      border:1px solid rgb(255, 255, 255);
-      -moz-box-shadow:0 5px 5px rgba(182, 182, 182, 0.75);
-   -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
-   box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75); 
-   border-radius: 5px 5px 0 0;  
-  }
-  .boton_peluquero:hover{
-      
-      background: #1A01FF;
-      background: -webkit-radial-gradient(top left, #1A01FF, #3AA6AD);
-      background: -moz-radial-gradient(top left, #1A01FF, #3AA6AD);
-      background: radial-gradient(to bottom right, #1A01FF, #3AA6AD);
-  }
-
-
-
-
-a{
-  text-decoration: none;
-}
-.dropdown-content a:hover {
-  color: #FFFFFF;
-  background-color: rgba(100, 83, 153, 0.4) !important;
-  text-decoration: none;
-}
-
- .form-group{
-  /*   background-color: rgba(100, 83, 153, 1) !important; */
-    margin: 0px;
-    padding: 15px;
-    font-size: 20px;
-    color:#000000 !important;
-    
-}.form-label{
-  color:#000000 !important;
-}
-.dropdown-menu{
-  margin: 20px  !important;;
-  padding: 10px  !important;;
-}.li .a{
-  padding: 10px  !important;;
-}
-h2{
-padding: 20px;  
-}
-  </style>
 @php
   $añoActual= Carbon\Carbon::now()->format('y');
   $mesActual= Carbon\Carbon::now()->format('m');
@@ -192,9 +48,9 @@ padding: 20px;
             
 
         
-            <li class="nav-item ">
+            {{-- <li class="nav-item ">
               <li><a href="/login/administrador" class="nav-link " ><i class="fas fa-home"></i> Inicio</a></li>
-            </li>
+            </li> --}}
             <li class="nav-item ">
               <li><a href="{{'/usuario'}}" class="nav-link " title="crear usuarios"><i class="fa-solid fa-users" ></i> Usuarios</a>
             </li>
