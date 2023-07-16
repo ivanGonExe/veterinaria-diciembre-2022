@@ -125,11 +125,21 @@ background: radial-gradient(to bottom right, #5718EC, #43989E);
       background: radial-gradient(to bottom right, #1A01FF, #3AA6AD);
   }
 
-
-
+/* 
+.li .a{
+  text-decoration: none !important;
+  color:#000000 !important;
+} */
 
 a{
-  text-decoration: none;
+  text-decoration: none!important;
+  color:#000000 !important;
+
+}
+dropdown-menu{
+  color:#000000 !important;
+}.li {
+  background-color: rgba(100, 83, 153, 0.4) !important;
 }
 .dropdown-content a:hover {
   color: #FFFFFF;

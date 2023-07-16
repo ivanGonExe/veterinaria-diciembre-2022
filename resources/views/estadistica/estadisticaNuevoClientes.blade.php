@@ -9,7 +9,7 @@
 @endphp
 
  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <title>Estadisticas</title>
 <style>
@@ -97,7 +97,7 @@ let salida     = @json($labels);
 const ctx      = document.getElementById('myChart').getContext('2d');
 Chart.defaults.font.size = 18;
 const myChart  = new Chart(ctx, {
-   type: 'bar',
+   type: 'pie',
     data: {
         labels:@json($labels),
        
@@ -106,51 +106,74 @@ const myChart  = new Chart(ctx, {
             data: arreglo,
           
             backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(75, 12, 192, 1)',
-                'rgba(153, 152, 255, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 19, 64, 1)',
-                'rgba(65, 142, 192, 1)',
-                'rgba(153, 2, 255, 1)',
+                'rgba(255, 255, 0, 1)',
+                    'rgba(0, 128, 0, 1)',
+                    'rgba(102, 205, 170, 1)',
+                    'rgba(255, 165, 0, 1)',
+                    'rgba(221, 160, 221, 1)',
+                    'rgba(255, 0, 0, 1)',
+                    'rgba(0, 0, 255, 1)',
+                    'rgba(128, 0, 128, 1)',
+                    'rgba(0, 255, 255, 1)',
+                    'rgba(128, 128, 128, 1)',
+                    'rgba(255, 192, 203, 1)',
+                    'rgba(0, 0, 0, 1)',
+
             ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth:2,
-            borderColor:'#000',
+            // borderColor: [
+            //     'rgba(255, 99, 132, 1)',
+            //     'rgba(0, 0, 255, 1)',
+            //     'rgba(128, 0, 128, 1)',
+            //     'rgba(0, 255, 255, 1)',
+            //     'rgba(128, 128, 128, 1)',
+            
+            // ],
+            // borderWidth:1,
+            // borderColor:'#fff',
         
         }]
    
     },
-  /*   scales: {
-       y: {
-            grid: {
-              offset: true
-            }
-        }
-    } */
+
    
     options: {
-     
-    indexAxis: 'y',
-    y: {
-            grid: {
-              offset: true
+    plugins:{
+       tooltip:{
+
+        enabled: true
+       },
+            datalabels:{
+                    formatter:(value,context)=>{
+                        // console.log(context.chart.data.datasets[0].data)
+                    const datapoints = context.chart.data.datasets[0].data;
+                    function totalSum(total,datapoints){
+                            return total + datapoints; 
+                            }
+                    const totalvalue = datapoints.reduce(totalSum,0);
+                     
+                    const porcentajevalue= (value / totalvalue*100).toFixed(0);
+                    return  `${porcentajevalue}%`  ; 
+                    }
+               
+                 },
+            title: {
+                display: true,
+                text: 'Estadisticas de Clientes',
+                weight: 'bold'
+            },        
+            legend: {
+                display: true,
+                labels: {
+                    color: 'rgb(255, 99, 1)',
+                    fillStyle:'rgba(255, 0, 0, 1)',
             }
-        }
-  
-    } 
+        },
+     },
+    
+
+    
+    },
+    plugins:[ChartDataLabels]
   
 });
 </script>

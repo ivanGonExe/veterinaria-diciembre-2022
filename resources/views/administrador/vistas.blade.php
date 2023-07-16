@@ -1,5 +1,5 @@
       @extends('administrador.plantillaAdmin')
-      <link rel="stylesheet" type="text/css" href="{{asset('estiloAdmin.css')}}">
+   
         @section('contenido')
         <div class="main_content">
           <div class="content">
