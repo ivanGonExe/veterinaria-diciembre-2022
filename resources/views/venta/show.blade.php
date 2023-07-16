@@ -24,8 +24,11 @@
    
   
     <div class="container-fluid d-flex justify-content-center  text-light p-2">
-    <button type="button" class="btn btn-primary bg-danger tex-end m-2 p-2" id="pdf">
-    <i class="fa-solid fa-file-pdf"></i> pdf</button>
+    <!-- <button type="button" class="btn btn-primary bg-danger tex-end m-2 p-2" id="pdf">
+    <i class="fa-solid fa-file-pdf"></i> pdf</button> -->
+    <a class="btn btn-primary bg-danger tex-end m-2 p-2" href="/generarPdf/{{$venta->id}}" target="_blank">
+      <i class="fa-solid fa-file-pdf"></i> pdf
+    </a>
     </div>
 
 
@@ -73,13 +76,13 @@
     
    
    @php
-     $montoAdeudado = -($venta->total-$venta->montoPagado);
+     $vuelto = ($venta->montoPagado-$venta->total);
     @endphp
     <div class="container m-2 ">
         <div class="text-end">
             <h3 id="total">Total:<strong>${{$venta->total}}</strong></h3>
             <h3 id="pago">Pagó:<strong>${{$venta->montoPagado}}</strong></h3>
-            <h3 id="vuelto">Vuelto:<strong>${{$montoAdeudado}}</strong></h3>
+            <h3 id="vuelto">Vuelto:<strong>${{$vuelto}}</strong></h3>
         </div>
     </div> 
 

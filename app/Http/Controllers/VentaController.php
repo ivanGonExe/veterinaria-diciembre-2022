@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class VentaController extends Controller
 {
@@ -589,5 +590,35 @@ public function terminarVenta()
 
         return redirect('/ventas')
                         ->with('ventas', $ventas);
+    }
+
+    /**
+     * Display a listing of the resource.
+     **@param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     */
+    public function generarPDF($id)
+    {   
+        $venta    = venta::find($id);
+        $detalles = DB::Table('detalle_ventas')
+                            ->join('lote_descripcions', 'lote_descripcions.id','=','detalle_ventas.idLote')
+                            ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
+                            ->select('detalle_ventas.*','lote_descripcions.vencimiento','articulos.descripcion','articulos.precioVenta')
+                            ->where('detalle_ventas.idVenta','=',$id)
+                            ->get();
+
+        $data = [
+            'venta' => $venta,
+            'detalles' => $detalles,
+        ];
+         
+        $pdf = PDF::loadView('venta.pdf', $data);
+        
+        //Ésta sentencia es para ver el pdf
+        return $pdf->stream('venta.pdf');
+
+        //Ésta sentencia es para descargar directamente el pdf
+        //return $pdf->download('venta.pdf');
     }
 }

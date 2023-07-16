@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
             
             Route::resource('/articulos','App\Http\Controllers\ArticuloController');
         /*Rutas ventas*/
+            Route::get     ('/generarPdf/{id}',             [App\Http\Controllers\VentaController::class,'generarPdf'  ]);
             Route::get     ("/precioEspecial/{id}",         [App\Http\Controllers\VentaController::class,'cambiarEstadoPrecio'  ]);
             Route::get     ("/agregarArticuloVenta/{id}",   [App\Http\Controllers\VentaController::class,'agregarArticuloVenta' ]);
             Route::get     ("/eleminarUnArticuloVenta/{id}",[App\Http\Controllers\VentaController::class,'quitarUnArticuloVenta']);
