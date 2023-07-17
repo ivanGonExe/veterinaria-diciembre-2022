@@ -96,6 +96,8 @@ let arreglo    = Object.values(arregloAux);
 let salida     = @json($labels);
 const ctx      = document.getElementById('myChart').getContext('2d');
 Chart.defaults.font.size = 18;
+Chart.defaults.color = '#000';
+
 const myChart  = new Chart(ctx, {
    type: 'pie',
     data: {
@@ -105,19 +107,20 @@ const myChart  = new Chart(ctx, {
             label: /* 'Estadisticas del año '+@json($año), */'Nº de Personas Nueva',
             data: arreglo,
           
+          
             backgroundColor: [
-                'rgba(255, 255, 0, 1)',
-                    'rgba(0, 128, 0, 1)',
-                    'rgba(102, 205, 170, 1)',
-                    'rgba(255, 165, 0, 1)',
-                    'rgba(221, 160, 221, 1)',
-                    'rgba(255, 0, 0, 1)',
-                    'rgba(0, 0, 255, 1)',
-                    'rgba(128, 0, 128, 1)',
-                    'rgba(0, 255, 255, 1)',
-                    'rgba(128, 128, 128, 1)',
-                    'rgba(255, 192, 203, 1)',
-                    'rgba(0, 0, 0, 1)',
+                    'rgba(255, 141, 51,1)',
+                    'rgba(255, 249, 51,1)',
+                    'rgba(199, 255, 51,1)',
+                    'rgba(131, 255, 51, 1)',
+                    'rgba(51, 255, 150, 1)',
+                    'rgba(51, 255, 227, 1)',
+                    'rgba(131, 92, 255, 1)',
+                    'rgba(193, 92, 255, 1)',
+                    'rgba(235, 92, 255, 1)',
+                    'rgba(255, 92, 215, 1)',
+                    'rgba(255, 92, 171, 1)',
+                    'rgba(255, 92, 109, 1)',
 
             ],
             // borderColor: [
@@ -128,8 +131,8 @@ const myChart  = new Chart(ctx, {
             //     'rgba(128, 128, 128, 1)',
             
             // ],
-            // borderWidth:1,
-            // borderColor:'#fff',
+            borderWidth:1,
+             borderColor:'#000',
         
         }]
    
@@ -159,12 +162,13 @@ const myChart  = new Chart(ctx, {
             title: {
                 display: true,
                 text: 'Estadisticas de Clientes',
-                weight: 'bold'
+                weight: 'bold',
+               
             },        
             legend: {
                 display: true,
                 labels: {
-                    color: 'rgb(255, 99, 1)',
+                    color: '#000',
                     fillStyle:'rgba(255, 0, 0, 1)',
             }
         },

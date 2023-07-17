@@ -3,7 +3,7 @@
  <!-- Footer, pie de página -->
 
  {{-- <footer class="container-fluid  d-flex justify-content-center  p-2 m-4 border-1 footer"> --}}
-    <div class="row w-100 mb-3 p-4 footer">
+    <div class="row w-100 mb-3 p-4 footer" id="contacto">
       
     <div class="col-lg-4 col-md-12 p-1 ">
       <div class="container-fluid d-flex justify-content-center p-2">
@@ -13,8 +13,8 @@
       <div class="col-lg-4 col-md-12  p-1">
             <div class="container-fluid d-flex justify-content-center p-2">
               <p>
-        <a>Dirección<br> {{$empresa[0]->direccion}}<br> <a href="{{$empresa[0]->mapa}}" id="mapa" target="_blank"> <i class="fa-solid fa-location-dot"></i> Ubicación Maps</a><br>
-        <i class="fa-solid fa-phone"></i> Teléfono<br>{{$empresa[0]->telefonoFijo}} 
+        Dirección<br> {{$empresa[0]->direccion}}<br> <a href="{{$empresa[0]->mapa}}" id="mapa" target="_blank"> <i class="fa-solid fa-location-dot"></i> Ubicación Maps</a><br>
+        <i class="fa-solid fa-phone"></i> Teléfono<br> <a href="tel:{{$empresa[0]->telefonoFijo}}" class="text-white">{{$empresa[0]->telefonoFijo}}</a>
         
       
         </div>

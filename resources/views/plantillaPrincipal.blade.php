@@ -11,6 +11,13 @@
 h1,h2,h3,h4,h4,h5,h6,p,a{
 font-family: 'Gluten', cursive;
 }
+a:hover{
+  color: yellow !important;
+  text-decoration: none;
+}
+a{
+  text-decoration: none !important;
+}
 
 </style>
 
@@ -59,12 +66,15 @@ font-family: 'Gluten', cursive;
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#servicio"><i class="fa-solid fa-circle-info"></i> Servicios</a>
+                <a class="nav-link" href="#servicio" title="Nuestro Servicios"><i class="fa-solid fa-circle-info" ></i> Servicios</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{'/seleccionTurno'}}"><i class="fa-solid fa-calendar-week"></i> Turnos</a>
+                <a class="nav-link" href="{{'/seleccionTurno'}}" title="Elegí tu turno"><i class="fa-solid fa-calendar-week"></i> Turnos</a>
                 </li>
-             <a class="nav-link" href="{{'/noticias'}}"><i class="fa-solid fa-newspaper"></i> Noticias</a>
+             <a class="nav-link" href="{{'/noticias'}}" title="Noticia animal"><i class="fa-solid fa-newspaper"></i> Noticias</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contacto" title="Comunicate con nosotros"><i class="fa-solid fa-message"></i> Contacto</a>
               </li>
               @if(auth()->user())
                    @if(auth()->user()->tipo == 'admin')

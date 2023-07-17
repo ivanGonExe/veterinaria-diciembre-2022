@@ -44,13 +44,13 @@
 
 .navbar-expand-lg .navbar-nav .nav-link{
   padding-left: 0.5rem;
-  color:  rgb(235, 34, 58)  !important;
+  color:  rgb(255, 87, 51  )  !important;
 }. a:hover{
     color:#ffffff;
   
 }
 table th{
-      background-color: rgb(235, 34, 58) !important;
+      background-color: rgb(255, 87, 51 ) !important;
       color:#ffffff;
   }
   table td{
@@ -63,12 +63,12 @@ table th{
   }
   .btn-link:hover{
     
-    color: red;
+    color: rgb(255, 87, 51 ) !important;
   }
 
   .btn-link {
     text-decoration: none; 
-    color: red;
+    color: rgb(255, 87, 51 ) !important;
   }
   #notificacion:focus {
     outline: none;
@@ -78,15 +78,15 @@ table th{
   color: red;
 }
 .dropdown-item{
-  color: red !important; 
+  color: rgb(255, 87, 51 ) !important;
 }
 body{
 	min-height: 150vh;
-/* 	background-image: linear-gradient(120deg, #ff5e5ec6, #cd6109c6);  */
-background-color: silver;
+ /* background-image: linear-gradient(120deg, rgb(255, 255, 255) ,rgb(255, 87, 51 ));    */
+ background-color:#CACFD2 !important;
 }
 .form-group{
-    background-color: rgb(235, 34, 58) !important;
+    background-color:  rgb(255, 87, 51 ) !important;
   
     width:auto;
     height: auto;
