@@ -42,7 +42,7 @@
                     <td>${{$unaVenta->montoPagado}}</td>
                     <td>{{$unaVenta->tipoPago}}</td>
                     <td>                        
-                        <a href="{{ route('ventas.show', $unaVenta->id)}}" name="ver" class="btn  detalle" title="Ver detalle de una venta"><i class="fa-solid fa-file-lines"></i></a>  
+                        <a href="/generarPdf/{{$unaVenta->id}}" name="ver" class="btn  detalle" title="Ver detalle de una venta" target="_blank"><i class="fa-solid fa-file-lines"></i></a>  
                     </td>
                 </tr>
             @endforeach

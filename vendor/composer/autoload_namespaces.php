@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/graphviz/src', $vendorDir . '/phpdocumentor/graphviz/tests/unit'),
-    'Mockery' => array($vendorDir . '/mockery/mockery/library'),
 );
