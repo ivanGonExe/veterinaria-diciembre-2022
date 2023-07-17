@@ -56,6 +56,9 @@ font-family: 'Gluten', cursive;
               <li class="nav-item">
                 <a class="nav-link" href="{{'/noticias'}}"><i class="fa-solid fa-newspaper"></i> Noticias</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/#contacto" title="Comunicate con nosotros"><i class="fa-solid fa-message"></i> Contacto</a>
+              </li>
               @if(auth()->user())
                    @if(auth()->user()->tipo == 'admin')
                       <li class="nav-item">

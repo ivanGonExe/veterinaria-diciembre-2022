@@ -25,8 +25,8 @@
       <a class="nav-link" href="#barra"><i class="fa-solid fa-house"></i> Inicio</a>
       <a class="nav-link" href="#servicio"><i class="fa-solid fa-bars"></i> Servicios</a>
       <a class="nav-link" href="/seleccionTurno"><i class="fa-solid fa-calendar-check"></i> Turnos</a>
+      <a class="nav-link" href="{{'/noticias'}}" title="Noticia animal"><i class="fa-solid fa-newspaper"></i> Noticias</a>
       <br>
-     <br>
       </nav>
      </div>
      </div>

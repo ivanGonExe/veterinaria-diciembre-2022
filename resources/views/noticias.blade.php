@@ -1,6 +1,6 @@
      
      @extends('menu')
-  
+
   @section('formulario')
  <!-- estilos CSS -->
  <link rel="stylesheet" type="text/css" href="{{asset('estiloNoticias.css')}}">
@@ -158,7 +158,6 @@ for (let i = 0; i < elementos.length; i++) {
 
 
 </script>
-
 
 
 
