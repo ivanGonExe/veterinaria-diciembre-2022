@@ -10,6 +10,7 @@ use App\Http\Controllers\HistorialClinicoController;
 use App\Http\Controllers\DetalleClinicoController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\PDFController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,6 +63,9 @@ Route::group(['middleware' => 'auth'], function () {
                 return view('empresa.cajero.cajero');
             });
             Route::resource('/ventas','App\Http\Controllers\VentaController');
+            Route::get('/generarPdf/{id}',[App\Http\Controllers\VentaController::class,'generarPdf']);
+
+
 
         /*Rutas articulos */
             Route::post    ('/articulos/create',           [App\Http\Controllers\ArticuloController        ::class,'store'                ]);
@@ -79,9 +83,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete  ("/quitarArticuloDeVenta",       [App\Http\Controllers\VentaController::class,'quitarArticuloDeVenta'])->name('quitarArticulo');
             Route::get     ("/cancelarVenta",               [App\Http\Controllers\VentaController::class,'cancelarVenta'        ]);
             Route::get     ("/terminarVenta",               [App\Http\Controllers\VentaController::class,'terminarVenta'        ]);
-            Route::get     ("/ventas/total/{id}",           [App\Http\Controllers\VentaController::class,'ventasTotal'          ])->name('ventasTotal');
+            Route::get     ("/ventas/total",           [App\Http\Controllers\VentaController::class,'ventasTotal'          ])->name('ventasTotal');
             Route::get     ("/buscarProducto/{id}",         [App\Http\Controllers\VentaController::class,'buscarProducto'       ]);
-            Route::post    ("/ventas/confirmarVenta/{id}",  [App\Http\Controllers\VentaController::class,'confirmarVenta'       ]);
+            Route::post    ("/ventas/confirmarVenta",  [App\Http\Controllers\VentaController::class,'confirmarVenta'       ]);
             Route::post    ("/aplicarDescuento/{id}",       [App\Http\Controllers\VentaController::class,'aplicarDescuento'     ]);
             Route::resource('/ventas','App\Http\Controllers\VentaController');
 
