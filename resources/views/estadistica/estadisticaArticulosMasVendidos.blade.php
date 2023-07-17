@@ -123,7 +123,6 @@ const myChart  = new Chart(ctx, {
     }
   
 });
-</script>
 
 
 

@@ -13,40 +13,66 @@
 <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&display=swap" rel="stylesheet">
   
   
-  <style>
+<style>
+  body{
+    min-height:            100vh;
+	 
+    background-size:       cover;
+    background-repeat:     no-repeat;
+    background-position:   center !important;   
+    background-attachment: fixed !important;
+  }
+  
+  h1,h2,h3,h4,h4,h6,p,a{
+    font-family: 'Gluten', cursive;
+  }
 
+  p{
+    color:      #000000b2;
+    size:       14px;
+    text-align: justify;
+    padding:    10px ;
+  }
 
-h1,h2,h3,h4,h4,h6,p,a{
-font-family: 'Gluten', cursive;
-}
-p{
-   color:#000000b2;
-   size: 14px;
-   text-align: justify;
-   padding:10px ;
- }
- .limitar-texto{
-  font-family: 'Gluten', cursive;
-  text-align: justify;
- }
-.tituloNoticias{
+  .limitar-texto{
+    font-family: 'Gluten', cursive;
+    text-align:   justify;
+  }
 
-     font-family: 'Gluten', cursive;
-     color: black;
-     font-size: 40px;
-     padding: 10px;
-   }
-   h2{
-     font-family: 'Gluten', cursive;
-     text-align: center;
-     padding-top: 30px;
-     color: black;
-     font-size: 40px;
-    
-   }
-   a{
-     text-decoration: none;
-   }
+  .tituloNoticias{
+    font-family: 'Gluten', cursive;
+    color:        black;
+    font-size:    40px;
+    padding:      10px;
+  }
+
+  h2{
+    font-family: 'Gluten', cursive;
+    text-align:   center;
+    padding-top:  30px;
+    color:        black;
+    font-size:    40px;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  img{
+      width:             100% !important;
+      height:            100% !important;
+      background-size:   contain!important;
+      background-repeat: no-repeat !important;
+      /* object-fit: contain !important; Evita la distorsión y el recorte de la imagen */
+      /* justify-content: center !important; */
+      /* align-items: center !important; */
+      /* display: flex !important; */
+    } 
+
+  .card{
+    max-width:  100%;
+    max-height: 100%;
+    }
 </style>
 
 <body>
@@ -98,7 +124,7 @@ p{
  <div class="card p-2">
      <div class="row">
        <div class="col-4"> 
-           <img src="{{$unaNoticia2->file}}" alt="Imagen de la tarjeta" height="200" width="100%">
+           <img src="{{$unaNoticia2->file}}" alt="Imagen de la tarjeta" >
          </div>
        <div class="col-8">
            <h2>{{$unaNoticia2->titulo}}</h2>

@@ -30,7 +30,7 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         <h4 class="text-center p-2 m-2 fs-1 fw-bold text-dark" >Seleccione método de pago</h4>
     
     </div>
-<form action="/ventas/confirmarVenta/{{$venta->id}}" method="Post">
+<form action="/ventas/confirmarVenta" method="Post">
     @csrf
     @method('Post')
     <div class="container-fluid d-flex justify-content-center  text-light">
@@ -44,8 +44,8 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     <br>
         <div class="row text-center"> 
             <div class="col-6">
-                <h4 class="text-black" >Costo total: ${{$venta->total}}</h4>
-                <input type='hidden' id='total' id="total" value ='{{$venta->total}}' step="0.01">
+                <h4 class="text-black" >Costo total: ${{$total}}</h4>
+                <input type='hidden' id='total' id="total" value ='{{$total}}' step="0.01">
                 <div id="contenedorVuelto">
                         <h4 class="text-black " id="vuelto" step="0.01" >Vuelto: </h4>
                 </div>
@@ -59,6 +59,7 @@ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         <div class="col-2"></div>
             <div class="col-8 text-center">
             <button class="btn btn-primary" type="submit" id='boton' disabled><i class="fa-solid fa-sack-dollar"></i> Confirmar</button>
+            <a class="btn btn-primary" href="/ventas/create" id='botonlistado' disabled><i class="fa-solid fa-list-ul"></i> Volver a listado </a>
             </div>
             <div class="col-2"></div>
         </div>

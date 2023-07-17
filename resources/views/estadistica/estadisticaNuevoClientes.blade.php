@@ -97,7 +97,7 @@ let salida     = @json($labels);
 const ctx      = document.getElementById('myChart').getContext('2d');
 Chart.defaults.font.size = 18;
 const myChart  = new Chart(ctx, {
-   type: 'bar',
+   type: 'pie',
     data: {
         labels:@json($labels),
        

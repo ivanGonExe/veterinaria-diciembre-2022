@@ -477,7 +477,39 @@ private function buscarIndiceDeArticulo(string $id, array &$articulos)
 
 public function terminarVenta()
 {
-    // Crear una venta
+    $total        = 0;
+    $articulos    = $this->obtenerArticulos();
+    foreach ($articulos as $unArticulo) {
+        $total += ($unArticulo->unidad)*($unArticulo->precioVenta);
+    }
+    return view('venta.ventasTotal')
+                    ->with('total', $total);
+}
+//-----------------------------------------------------------
+
+//------------------------------------------------------------
+/**
+      * Trae todas las ventas.
+      *
+      * @param  int  $id
+      * @return \Illuminate\Http\Response
+      */
+      public function ventasTotal($id)
+      {   
+          $venta = Venta::find($id);
+ 
+          return view('venta.ventasTotal')
+                    ->with('venta', $venta);
+      }
+//-----------------------------------------------------------
+    /**
+    * Display the specified resource.
+    *@param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function confirmarVenta(Request $request)
+    {
+        // Crear una venta
     $venta        = new Venta();
     $venta->saveOrFail();
     $idVenta      = $venta->id;
@@ -524,20 +556,20 @@ public function terminarVenta()
             $notificacion  ->unidades    =  $articuloActualizado->cantidadTotal;
             $notificacion  ->descripcion = 'FALTA DEL STOCK DEL ARTICULO '. $articuloActualizado->descripcion ;
             $notificacion  ->saveOrFail();
-           
+
             if (session()->exists('notificacion')) {
                 session()->increment('notificacion', 1);
-                
+            
             }
             else{
                 session(['notificacion' => 1]);
             }
 
         }
-    
+
         $loteActualizado->saveOrFail();
     }
-    
+
     $venta->total = $total;
 
     if($venta->total>=0){
@@ -548,33 +580,6 @@ public function terminarVenta()
             $this->vaciarArticulos();
             return redirect(url()->previous());
     }
-
-    return redirect()->route('ventasTotal', ['id' => $venta->id]);
-}
-//-----------------------------------------------------------
-/**
-      * Trae todas las ventas.
-      *
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
-      public function ventasTotal($id)
-      {   
-          $venta = Venta::find($id);
- 
-          return view('venta.ventasTotal')
-                    ->with('venta', $venta);
-      }
-//-----------------------------------------------------------
-    /**
-    * Display the specified resource.
-    *@param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    * @param  int  $id
-    */
-    public function confirmarVenta(Request $request, $id)
-    { 
-        $venta = Venta::find($id);
 
         if($request->get('pago')<$venta->total){
 
