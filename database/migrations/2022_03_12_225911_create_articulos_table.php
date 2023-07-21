@@ -16,18 +16,17 @@ return new class extends Migration
         Schema::create('articulos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->String('codigo')->unsigned()->nullable();
-            $table->string('descripcion')->nullable();
-            $table->string('marca')->nullable();
-            $table->float('precioVenta')->nullable();
-            $table->float('cantidadTotal')->nullable();
-            $table->integer('minimoStock')->nullable();
-            $table->float('iva')->nullable();
-            $table->integer('alerta')->nullable();
-            $table->float('porcentGanancia')->nullable();
-            $table->boolean('estado')->nullable();
-            $table->foreignId('categoria_id')->nullable()->constrained('categorias')->onUpdate('cascade')->onDelete('cascade');
-            
+            $table->String    ('codigo')->nullable();
+            $table->string    ('descripcion')->nullable();
+            $table->string    ('marca')->nullable();
+            $table->float     ('precioVenta')->nullable();
+            $table->float     ('cantidadTotal')->nullable();
+            $table->integer   ('minimoStock')->nullable();
+            $table->float     ('iva')->nullable();
+            $table->integer   ('alerta')->nullable();
+            $table->float     ('porcentGanancia')->nullable();
+            $table->boolean   ('estado')->nullable();
+            $table->foreignId ('categoria_id')->nullable()->constrained('categorias')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

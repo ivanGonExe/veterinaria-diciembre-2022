@@ -1,6 +1,6 @@
      
      @extends('menu')
-
+  
   @section('formulario')
  <!-- estilos CSS -->
  <link rel="stylesheet" type="text/css" href="{{asset('estiloNoticias.css')}}">
@@ -13,42 +13,70 @@
 <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&display=swap" rel="stylesheet">
   
   
-  <style>
+<style>
+  body{
+    min-height:            100vh;
+	 
+    background-size:       cover;
+    background-repeat:     no-repeat;
+    background-position:   center !important;   
+    background-attachment: fixed !important;
+  }
+  
+  h1,h2,h3,h4,h4,h6,p,a{
+    font-family: 'Gluten', cursive;
+  }
 
+  p{
+    color:      #000000b2;
+    size:       14px;
+    text-align: justify;
+    padding:    10px ;
+  }
 
-h1,h2,h3,h4,h4,h6,p,a{
-font-family: 'Gluten', cursive;
-}
-p{
-   color:#000000b2;
-   size: 14px;
-   text-align: justify;
-   padding:10px ;
- }
- .limitar-texto{
-  font-family: 'Gluten', cursive;
-  text-align: justify;
- }
-.tituloNoticias{
+  .limitar-texto{
+    font-family: 'Gluten', cursive;
+    text-align:   justify;
+  }
 
-     font-family: 'Gluten', cursive;
-     color: black;
-     font-size: 40px;
-     padding: 10px;
-   }
-   h2{
-     font-family: 'Gluten', cursive;
-     text-align: center;
-     padding-top: 30px;
-     color: black;
-     font-size: 40px;
-    
-   }
-   a{
-     text-decoration: none;
-   }
+  .tituloNoticias{
+    font-family: 'Gluten', cursive;
+    color:        black;
+    font-size:    40px;
+    padding:      10px;
+  }
+
+  h2{
+    font-family: 'Gluten', cursive;
+    text-align:   center;
+    padding-top:  30px;
+    color:        black;
+    font-size:    40px;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  img{
+      width:             100% !important;
+      height:            100% !important;
+      background-size:   contain!important;
+      background-repeat: no-repeat !important;
+    } 
+
+  .card{
+    max-width:  90%;
+    }
 </style>
 
+
+
+
+
+
+
+<!-- __________________________________________________ -->
 <body>
 <body>
  <!--   Tarjetas-->
@@ -56,63 +84,51 @@ p{
 
 <div class="row"> 
  <div class="title-cards">
- 
-   @php
-   $contador = 0;
-   $contadorAux = 0;
-   @endphp
-<div class="container-card">
- @foreach($noticias as $unaNoticia)
-   @php
-     $contador++;      
-   @endphp
- @if($contador < 4)
- <div class="card">
-   <figure>
-     <!--imagen-->      
- <img src="{{$unaNoticia->file}}" >
-   </figure>
-   <div class="contenido-card">
-     <h4 type="text" id="titulo" name="titulo">{{$unaNoticia->titulo}}</h4><!--titulo abajo copete--> 
-     
-     <div type="type" id="asunto" class="limitar-texto-principal" name="asunto">{!! $unaNoticia->asunto !!}</div>
-     <a href="/noticias/posteo/{{$unaNoticia->id}}">Leer Más...</a>
-   </div>
- </div>
 
- @endif
- @endforeach
+@php
+    $cantidad = count($noticias); 
+    $filaAux  = ceil($cantidad/3);
+    $filas    = ceil($cantidad/3); 
+    $columnas = 3;
+    $posicion = 0;
+@endphp
+@for($i=0; $i<$filas; $i++)
+<div class="container-card row">
+    @for($j=0; $j< $columnas; $j++)
+        <div class="col">
+            <div class="card ">
+                <figure>
+                    <!--imagen-->      
+                    <img src="{{$noticias[$posicion]->file}}" >
+                </figure>
+                <div class="contenido-card">
+                    <h4 type="text" id="titulo" name="titulo">{{$noticias[$posicion]->titulo}}</h4><!--titulo abajo copete--> 
+                    <div type="type" id="asunto" class="limitar-texto-principal" name="asunto">
+                        {!! $noticias[$posicion]->asunto !!}
+                    </div>
+                        <a href="/noticias/posteo/{{$noticias[$posicion]->id}}">Leer Más...</a>
+                </div>
+            </div>  
+        </div>
+        
+        @php
+            $posicion++;
+            if ($posicion == $cantidad){
+                $j=$columnas;
+                $i=$filas;
+            }
+        @endphp 
+        
+    @endfor
+    </div>
+@endfor
 </div>
-<br>
-<div style="border-top: 1px solid black; width:100%;"></div>
-<h4 class="tituloNoticias"> Leer Más Noticias </h4>
-<div style="border-top: 1px solid black; width:100%;"></div>
-<br>
-<br>
 
-@foreach($noticias as $unaNoticia2)
- @php
-   $contadorAux++;      
- @endphp
- @if($contadorAux > 3)
- <div class="card p-2">
-     <div class="row">
-       <div class="col-4"> 
-           <img src="{{$unaNoticia2->file}}" alt="Imagen de la tarjeta" height="200" width="100%">
-         </div>
-       <div class="col-8">
-           <h2>{{$unaNoticia2->titulo}}</h2>
-       <div class="text-container">
-           <div class= "limitar-texto">{!! $unaNoticia2->asunto !!} </div>      
-       </div>
-     </div> 
-   <div class="row">
-     <div class="col-12 text-end"><a href="/noticias/posteo/{{$unaNoticia2->id}}" class="fw-bold" title="leer...">leer Más...<i class="fa-solid fa-plus"></i></a></div>
-   </div>
- </div>   
-</div>
- @endif
-@endforeach
+
+
+
+<!-- __________________________________________________ -->
+
 
 <!--Fin   Tarjetas 1, 2 3 -->
 
@@ -158,6 +174,7 @@ for (let i = 0; i < elementos.length; i++) {
 
 
 </script>
+
 
 
 

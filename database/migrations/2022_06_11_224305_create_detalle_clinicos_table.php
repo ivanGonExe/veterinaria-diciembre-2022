@@ -22,9 +22,6 @@ class CreateDetalleClinicosTable extends Migration
             $table->string('patologia');
             $table->float('peso')->nullable();
             $table->foreignId('historialClinico_id')->nullable()->constrained('historial_clinicos')->onUpdate('cascade')->onDelete('cascade');
-            /*$table->foreignId('artMedic_id')->nullable()->constrained('artMedic')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('artVacunac_id')->nullable()->constrained('artVacunac')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('persona_id')->nullable()->constrained('personas')->onUpdate('cascade')->onDelete('cascade');*/
 
         });
     }
