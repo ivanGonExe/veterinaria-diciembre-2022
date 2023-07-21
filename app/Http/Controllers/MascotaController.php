@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Mascota;
 use App\Models\Persona;
 use App\Models\HistorialClinico;
+use App\Models\historialServicio;
 use App\Models\Especie;
 use App\Models\Raza;
 use Illuminate\Support\Facades\DB;
@@ -78,8 +79,12 @@ class MascotaController extends Controller
 
         $historialClinico             = new HistorialClinico();
         $historialClinico->mascota_id = $mascota->id;
-
         $historialClinico->save();
+
+        $historialServicio             = new HistorialServicio();
+        $historialServivio->mascota_id = $mascota->id;
+        $historialServicio->save();
+
 
         return redirect($request->get('urlAnterior'));
 

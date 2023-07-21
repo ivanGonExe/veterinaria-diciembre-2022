@@ -68,12 +68,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         /*Rutas articulos */
-            Route::post    ('/articulos/create',           [App\Http\Controllers\ArticuloController        ::class,'store'                ]);
+            Route::post    ('/articulos/create',            [App\Http\Controllers\ArticuloController        ::class,'store'                ]);
             Route::post    ('/categorias/all',              [App\Http\Controllers\CategoriaController       ::class,'all'                  ]);
             Route::post    ('/articulos/filter',            [App\Http\Controllers\ArticuloController        ::class,'filter'               ]);
-            Route::get    ('/Guardar/ConfigArticulo',     [App\Http\Controllers\ArticuloController        ::class,'GuardarConfigArticulo']);
+            Route::get     ('/Guardar/ConfigArticulo',      [App\Http\Controllers\ArticuloController        ::class,'GuardarConfigArticulo']);
             Route::get     ('/Lotes/{id}/Vencimientodelete',[App\Http\Controllers\loteDescripcionController ::class,'Vencimientodelete'    ]);
-            Route::get     ('/Articulo/Por/Categoria/{id}',[App\Http\Controllers\ArticuloController        ::class,'ArticulosPorCategoria']);
+            Route::get     ('/Articulo/Por/Categoria/{id}', [App\Http\Controllers\ArticuloController        ::class,'ArticulosPorCategoria']);
             
             Route::resource('/articulos','App\Http\Controllers\ArticuloController');
         /*Rutas ventas*/
@@ -163,6 +163,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/vistaRoles/peluquero', function () {
                 return view('empresa.peluquero.peluquero');
             });
+            Route::get('/DetallesServicio/create/{id}',[App\Http\Controllers\DetalleServicioController::class, 'create'] );
+            Route::get('/historialServicios/{id}',     [App\Http\Controllers\DetalleServicioController::class, 'detalleServicios'] );
     });
     
     Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
