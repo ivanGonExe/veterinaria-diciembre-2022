@@ -2,7 +2,13 @@
  
 
 @section('contenido')
-
+<link rel="stylesheet" type="text/css" href="{{asset('estiloControl.css')}}">
+<style>
+    p{
+        font-size: 13px !important;
+        margin-bottom: 10px !important;
+    }
+</style>
 <body>
     <div class="main_content">
         <div class="content">
@@ -19,19 +25,27 @@
             <div class=" container-fluid d-flex justify-content-center">
     <div class= "container w-50 m-5">  
    
-    <form action="/usuario/guardar/{{$usuario->id}}" method="POST">
+    <form action="/usuario/guardar/{{$usuario->id}}" method="POST" id="formulario">
         @csrf
         @method('Post')
-        <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label">Nombre y Apellido *</label>
-            <input id="nombre" name="nombre" type="text" class="form-control" value="{{$usuario->name}}"  tabindex="3" required>
-            <p class="text-white">*Campo obligatorio</p>
+        <h5 class="text-white">*Campo obligatorio</h5>
+        <!--Grupo Nombre -->
+        <div class="formulario__grupo mt-3" id="grupo__nombre">
+            <label for="nombre" class="formulario__label">Nombre y apellido *</label>
+            <div class="formulario__grupo-input">
+                <input id="nombre" name="nombre" type="text" class="form-control formulario__input" value="{{$usuario->name}}"  tabindex="3" required>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>      
         </div>
 
-        <div class=" mb-3 ml-2 mr-2">
-            <label for="" class="form-label"> Mail *</label>
-            <input id="mail" name="mail" type="text" class="form-control" value="{{$usuario->email}}"  tabindex="3" required>
-          <p class="text-white">*Campo obligatorio</p>
+        <div class="formulario__grupo mt-3" id="grupo__mail">
+            <label for="mail" class="formulario__label">Email *</label>
+            <div class="formulario__grupo-input">
+                <input id="mail" name="mail" type="text" class="form-control formulario__input" value="{{$usuario->email}}"  tabindex="3" required>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">El email no es válido.</p>      
         </div>
         
         <label for="tipo" class=" col-form-label text-md-right">Rol*</label>
@@ -59,7 +73,7 @@
                                     <option class='form-option' value ='cajero'>Cajero</option>
                                 @endif
                                 </select>
-                                <p class="text-white">*Campo obligatorio</p>
+                                
                             <div>
                                 <br>
 
@@ -71,7 +85,8 @@
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script src="{{asset('validarUsuario.js')}}" defer></script>
 
 </body>
 

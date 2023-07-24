@@ -13,14 +13,9 @@ class HistorialServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function detalleServicios ()
+    public function index ()
     {
-        $historialServicios = DetalleServicio::where('id', $id)
-                                            ->orderby('created_at','desc')
-                                            ->get();
-
-        return view('servicios.historialServicios')
-                ->with('historialServicios', $historialServicios);   
+        
     }
 
     /**

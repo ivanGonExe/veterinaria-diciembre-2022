@@ -130,7 +130,7 @@ body{
 
 
     <form id="formulario" class="formulario">
-        <h1>Enviar WhatsApp del Cliente 🐶</h1>
+        <h1>Enviar WhatsApp al Cliente 🐶</h1>
       
         <div class="box-input">
             <label>Nombre del Cliente</label>

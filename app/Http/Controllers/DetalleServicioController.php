@@ -5,27 +5,58 @@ namespace App\Http\Controllers;
 use App\Models\detalle_servicio;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\historial_servicio;
+use App\Models\mascota;
+use Carbon\Carbon;
 
 class DetalleServicioController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function detalleServicios($id)
     {
-        
+        $servicio   = Historial_servicio::find($id);
+        $mascota    = $servicio->mascota;
+
+        $historialServicios = Detalle_servicio::where('id', $id)
+                            ->orderby('created_at','desc')
+                            ->get();
+
+        $fachaActual      = Carbon::now();
+        $nacimiento       = Carbon::parse($mascota->anioNacimiento);
+        $anio             = $nacimiento->diffInYears( $fachaActual );
+        $mes              = $nacimiento->diffInMonths( $fachaActual )-$anio*12;
+        if($anio>0){
+            $edad = $anio.' años y '.$mes.' meses';
+        }
+        else{
+            $edad = $mes.' meses';
+        }
+                            
+        return view('servicios.historialServicios')
+                ->with('historialServicios', $historialServicios)
+                ->with('servicio', $servicio)
+                ->with('mascota' , $mascota)
+                ->with('edad'    , $edad);   
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $servicio = Historial_servicio::find($id);
+        $mascota  = Mascota::find($servicio->mascota_id);
+
+        return view('servicios.historialServicios')
+        ->with('servicio', $servicio)
+        ->with('mascota', $mascota);
+
     }
 
     /**

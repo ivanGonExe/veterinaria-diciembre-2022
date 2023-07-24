@@ -98,9 +98,10 @@ table td{
             <tr>
                
                 <th>Tratamiento:</th><td colspan="2" >{{$unDetalle->tratamiento}}</td>
-            </tr>  
+            </tr>
+                <th>Peso: </th><td colspan="2" >{{$unDetalle->peso}} kg</td>
+            </tr> 
             <tr>
-               
                 <th>Observaciones:</th><td colspan="2" >{{$unDetalle->observaciones}}</td>
             </tr>  
             </table>                 

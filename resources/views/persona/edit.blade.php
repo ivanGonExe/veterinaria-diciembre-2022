@@ -28,38 +28,26 @@
         <p class="text-info">*Este campo es obligatorio</p>
         <div class="mb-3">
             <!--Grupo Nombre -->
-              <div class="formulario__grupo " id="grupo__nombre">
-            <label for="nombre" class="formulario__label">Nombre *</label>
-            <div class="formulario__grupo-input">
-             
-              <input type="text" class="form-control formulario__input" id="nombre" name="nombre" placeholder="Nombre del cliente" maxlength="30" value="{{$persona->nombre}}" required>
-     
-              <i class="formulario__validacion-estado fas fa-times-circle"></i>
-                  </div>
-          <br>
-                  <p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
+            <div class="formulario__grupo " id="grupo__nombre">
+              <label for="nombre" class="formulario__label">Nombre *</label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="form-control formulario__input" id="nombre" name="nombre" placeholder="Nombre del cliente" maxlength="30" value="{{$persona->nombre}}" required>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
               </div>
-
-        {{-- <div class="mb-3">
-            <label for="" class="form-label">Nombre</label>
-            <input id="nombre" name="nombre" type="text" class="form-control" tabindex="1" value="{{$persona->nombre}}">
-        </div> --}}
-{{-- 
-        <div class="mb-3">
-            <label for="" class="form-label">Apellido</label>
-            <input id="apellido" name="apellido" type="text" class="form-control" tabindex="2" value="{{$persona->apellido}}">
-        </div> --}}
- <!--Grupo Apellido -->
- <div class="mb-3">
-    <div class="formulario__grupo" id="grupo__apellido">
-     <label for="apellido" class="formulario__label">Apellido *</label>
-     <div class="formulario__grupo-input">
-     <input type="text" class="form-control formulario__input" id="apellido" name="apellido" value="{{$persona->apellido}}" maxlength="25" required>
-     <i class="formulario__validacion-estado fas fa-times-circle"></i>
-   </div>
-   <br>
-   <p class="formulario__input-error">El Apellido tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
- </div>
+              <br>
+              <p class="formulario__input-error">El Nombre tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
+            </div>
+    <!--Grupo Apellido -->
+    <div class="mb-3">
+      <div class="formulario__grupo" id="grupo__apellido">
+        <label for="apellido" class="formulario__label">Apellido *</label>
+        <div class="formulario__grupo-input">
+          <input type="text" class="form-control formulario__input" id="apellido" name="apellido" value="{{$persona->apellido}}" maxlength="25" required>
+          <i class="formulario__validacion-estado fas fa-times-circle"></i>
+        </div>
+        <br>
+        <p class="formulario__input-error">El Apellido tiene que ser de 2 a 25 caracteres y solo puede contener letras.</p>
+      </div>
 
 
     

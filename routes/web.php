@@ -11,6 +11,7 @@ use App\Http\Controllers\DetalleClinicoController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\DetalleServicioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,7 @@ use App\Http\Controllers\PDFController;
  Route::get ('/copiadeseguridad',[App\Http\Controllers\EmpresaController::class,'indexBackup']);
  Route::get ('/up/Backup/{id}',[App\Http\Controllers\EmpresaController::class,'upBackup']);
 
-
+ 
 
 // Rutas universales
     Route::get ('(register',           [App\Http\Controllers\Auth\LoginController   ::class,'redirecion'  ]);

@@ -95,8 +95,8 @@ color: #041182e1;
 }
 body{
   min-height: 150vh;
-  background-color: #87c9ecaf;
- /*  background-image: linear-gradient(120deg, #6251aee6, #1124ce71); */
+ 
+	background-image: linear-gradient(120deg, #ffffffae, #87c9ecaf);
 }
 
 .barra {

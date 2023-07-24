@@ -18,6 +18,10 @@ class Mascota extends Model
     {
         return $this->hasOne(HistorialClinico::class);
     }
+    public function historialservicio()
+    {
+        return $this->hasOne(Historial_servicio::class);
+    }
 
     public function raza()
     {

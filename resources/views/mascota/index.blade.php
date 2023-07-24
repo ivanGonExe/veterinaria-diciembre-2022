@@ -62,7 +62,6 @@ table.dataTable td {
                 <th scope="col" class="text-center">Sexo</th>
                 <th scope="col" class="text-center">Esterilizado</th>
                 <th scope="col" class="text-center">Fecha nacimiento</th>
-               {{--  <th scope="col">Dueño</th> --}}
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -78,17 +77,18 @@ table.dataTable td {
                     <td>{{$unaMascota->esterilizado}}</td>
                     <td >{{\Carbon\Carbon::parse($unaMascota->anioNacimiento)->format('d-m-Y')}}</td>
         
-{{--                     <td>{{$unaMascota->persona->nombre." ".$unaMascota->persona->apellido}}</td> --}}
                     <td>
-                         <div class="acciones">
+                        <div class="acciones">
                             <input type="hidden" name="urlAnterior" value="{{Request::path()}}">
                             @if ((auth()->user()->tipo == 'veterinario') or (auth()->user()->estadoIngreso =='veterinario') )
-                            <a href="/historialesClinicos/{{$unaMascota->historialClinico->id}}"  title="Ver historial clinico" class="historial"><i class="fa-solid fa-notes-medical"></i></a>
+                                <a href="/historialesClinicos/{{$unaMascota->historialClinico->id}}"  title="Ver historial clinico" class="historial"><i class="fa-solid fa-notes-medical"></i></a>
+                            @else 
+                            <a href="/historialServicios/{{$unaMascota->historialServicio->id}}"  title="Ver historial de servicios" class="historial"><i class="fa-solid fa-scissors"></i></a>
                             @endif
                             <a href="/mascotas/{{$unaMascota->id}}/edit"  title="Editar" class="editar"><i class="fa-solid fa-pen-to-square"></i></a>
                             
                             <button class="btn btn eliminar" title="Eliminar" id="{{$unaMascota->id}} " value= '{{$unaMascota->id}}'><i class="fa-solid fa-trash-can"></i></button>
-                         </div>
+                        </div>
                         </form>
                     </td>
                 </tr>

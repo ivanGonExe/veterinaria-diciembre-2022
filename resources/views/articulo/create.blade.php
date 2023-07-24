@@ -26,14 +26,14 @@
         <!--Grupo Descripcion -->
         <div class="mb-3">
             <div class="formulario__grupo" id="grupo__descripcion">
-            <label for="descripcion" class="formulario__label" title="Caracteristicas del producto.Breve descripción del mismo" >Descripción *</label>
-            <div class="formulario__grupo-input">
-            <input type="text" class="form-control formulario__input" id="descripcion" name="descripcion" placeholder=" " maxlength="200" required>
-            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-        </div>
-        <br>
-        <p class="formulario__input-error">La descripción puede contener letras y número hasta 50 caracteres</p>
-        </div>
+              <label for="descripcion" class="formulario__label" title="Caracteristicas del producto.Breve descripción del mismo" >Descripción *</label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="form-control formulario__input" id="descripcion" name="descripcion" placeholder=" " maxlength="200" required>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <br>
+              <p class="formulario__input-error">La descripción puede contener letras y número hasta 50 caracteres</p>
+            </div>
 
       <!-- Grupo: Precio Venta-->
       <div class="mb-3">
