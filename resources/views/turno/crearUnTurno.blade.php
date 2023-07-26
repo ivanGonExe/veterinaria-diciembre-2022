@@ -63,7 +63,7 @@
                     let arregloDatos = JSON.parse(res);
                      
                      Swal.fire({
-                             title: 'Turno superpuesto, existen turnos ya creados en la fecha '+ arregloDatos[0].start,
+                             title: 'Turno superpuesto, existen turnos ya creados en la fecha '+ new Date(arregloDatos[0].start).toLocaleString(),
                              text: "confirme la decisión, esto implica que se guardaran ambos turnos",
                              icon: 'warning',
                              showCancelButton: true,

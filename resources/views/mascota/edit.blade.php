@@ -55,7 +55,7 @@ ul {
     <a href="{{url()->previous()}}" class="btn btn-secondary rounded-pill m-3" title="volver"><i class="fa-solid fa-arrow-rotate-left"></i></a>
   </div>
   <div class="form-group  text-center">
-    <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Agregar Mascota</h2>
+    <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Editar Mascota</h2>
   </div>
   <div class="row container-fluid d-flex justify-content-center">
     <div class="col-md-6">
