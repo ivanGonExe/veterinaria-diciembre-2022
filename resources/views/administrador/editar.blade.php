@@ -12,14 +12,13 @@
 <body>
     <div class="main_content">
         <div class="content">
-       
-          <div class="header"><h2 class="text-dark fw-bold text-center">Editar Usuario</h2></div>    
-         
-          <div class="content text-center p-2">
+    
+        <div class="header"><h2 class="text-dark fw-bold text-center">Editar Usuario</h2></div>    
+        
+        <div class="content text-center p-2">
             <div class="row">
                 <div class="col-12 content-fluid d-flex justify-content-center p-2 "></div>
-       
- 
+    
         <div class="form-group">
         
             <div class=" container-fluid d-flex justify-content-center">

@@ -21,10 +21,10 @@ class DetalleServicioController extends Controller
         $servicio   = Historial_servicio::find($id);
         $mascota    = $servicio->mascota;
 
-        $historialServicios = Detalle_servicio::where('id', $id)
+        $historialServicios = Detalle_servicio::where('historialServicios_id', $id)
                             ->orderby('created_at','desc')
                             ->get();
-
+        
         $fachaActual      = Carbon::now();
         $nacimiento       = Carbon::parse($mascota->anioNacimiento);
         $anio             = $nacimiento->diffInYears( $fachaActual );
@@ -42,6 +42,26 @@ class DetalleServicioController extends Controller
                 ->with('mascota' , $mascota)
                 ->with('edad'    , $edad);   
     }
+    /**
+     * listado de servicios aplicado filtrado por una fecha.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function listaServiciosAplicados($id)
+    {   
+        $historialServicios = Detalle_servicio::where('fechaAtencion',$id)
+                                                ->select('personas.nombre as nombre_cliente','personas.apellido as apellido_cliente','mascotas.nombre as nombre_mascota','mascotas.raza','detalle_servicios.fechaAtencion','detalle_servicios.created_at','detalle_servicios.tipo','detalle_servicios.descripcion')
+                                                ->join('historial_servicios','historial_servicios.id','=','detalle_servicios.historialServicios_id')
+                                                ->join('mascotas','mascotas.id','=','historial_servicios.mascota_id')
+                                                ->join('personas','personas.id','=','mascotas.persona_id')
+                                                ->orderBY('detalle_servicios.fechaAtencion','Desc')
+                                            ->get();
+
+        return view('servicios.listadoDetalleServicio')
+                ->with('historialServicios', $historialServicios)
+                ->with('fecha', $id);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -52,22 +72,36 @@ class DetalleServicioController extends Controller
     {
         $servicio = Historial_servicio::find($id);
         $mascota  = Mascota::find($servicio->mascota_id);
-
-        return view('servicios.historialServicios')
-        ->with('servicio', $servicio)
-        ->with('mascota', $mascota);
+        
+        return view('servicios.createDetalleServicio')
+                    ->with('servicio', $servicio)
+                    ->with('mascota', $mascota);
 
     }
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @param  int  $id
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeServicios(Request $request, $id)
     {
-        //
+        $request->validate([
+            'tipo'        => 'required| string',
+            'descripcion' => 'required| string |max:300',  
+        ]);
+
+        $fachaActual                            = Carbon::now();
+
+        $detalleServicio                        = new Detalle_servicio();
+        $detalleServicio->tipo                  = $request->tipo;
+        $detalleServicio->descripcion           = $request->descripcion;
+        $detalleServicio->fechaAtencion         = $fachaActual;
+        $detalleServicio->historialServicios_id	= $id;
+        $detalleServicio->save();
+        
+        return redirect('/historialServicios/'.$id);
     }
 
     /**

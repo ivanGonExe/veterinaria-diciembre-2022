@@ -108,6 +108,7 @@ body{
 
 <!-- Estadisticas año y mes actual-->
 @php
+$fechaActual = Carbon\Carbon::now()->format('Y-m-d');
 $añoActual= Carbon\Carbon::now()->format('Y');
 $mesActual= Carbon\Carbon::now()->format('m');
 @endphp
@@ -119,8 +120,6 @@ $mesActual= Carbon\Carbon::now()->format('m');
   <div class="logo">
     <img src="{{asset('iconos/logo-sin-fondo.png')}}" alt="logo_principal" >
      </div>
- 
-
     <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -167,19 +166,26 @@ $mesActual= Carbon\Carbon::now()->format('m');
             <div class="dropdown">
               <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-dog"></i>
                 Mascotas
-         </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/mascotas"><i class="fa-solid fa-dog"></i>+  Mascotas Activas</a></li>
-            <li><a class="dropdown-item" href="/mascotas/verMascotasDeshabitadas"><i class="fa-solid fa-dog"></i>x Mascotas Inactivas</a></li>
-        </ul>
-      </li>
-          <li class="nav-item dropdown p-2">
-                
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/mascotas"><i class="fa-solid fa-dog"></i>+  Mascotas Activas</a></li>
+                <li><a class="dropdown-item" href="/mascotas/verMascotasDeshabitadas"><i class="fa-solid fa-dog"></i>x Mascotas Inactivas</a></li>
+              </ul>
+          </li>
+
+          
+          <li class="nav-item p-2">
+            <a class="nav-link " href="/listaServiciosAplicados/{{$fechaActual}}"  title="Servicios aplicados"><i class="fa-solid fa-scissors"></i> Servicios </a>
+          
+          </li>
+
+
+          <li class="nav-item dropdown p-2">    
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" title="Estadisticas"> <i class="fa-sharp fa-solid fa-chart-simple"></i> Estadisticas </a>
-          <ul class="dropdown-menu">
-          <li class="nav-item"><a class="dropdown-item"  href="/estadistica/clientesNuevosPorMes/{{$mesActual}}"> <i class="fa-solid fa-user-plus"></i>Nuevos Clientes</a></li>
-     
-          </ul>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="dropdown-item"  href="/estadistica/clientesNuevosPorMes/{{$mesActual}}"> <i class="fa-solid fa-user-plus"></i>Nuevos Clientes</a>
+              </li>
+              </ul>
           </li>
             
             <li class="nav-item dropdown p-2">

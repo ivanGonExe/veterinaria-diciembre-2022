@@ -30,7 +30,7 @@ table td{
     <div class="col-4 text-center pt-2"><img src="../iconos/banio.png" alt="emergencias" height="160" width="160" class="iconos" id="boton"> </div>
     <div class="col-4 text-center pt-5"><h1>Historia de servicios</h1></div>
     <div class="col-4 text-center pt-5"> <button type=""class="btn btn-secondary rounded-pill m-1 p-2"  id="botonVolver"><i class="fa-solid fa-arrow-rotate-left"></i></button>   
-        <a href="/DetallesServicio/create/{{$servicio}}" class="btn btn-primary rounded-pill " title="Nuevo registro de servicio">+ Registro Servicio <i class="fa-solid fa-clipboard"></i></a> </div>
+        <a href="/DetallesServicio/create/{{$servicio->id}}" class="btn btn-primary rounded-pill " title="Nuevo registro de servicio">+ Registro Servicio <i class="fa-solid fa-clipboard"></i></a> </div>
     </div>
 
    
@@ -86,7 +86,7 @@ table td{
                 <thead class="bg-secondary text-white">
             <tr>
                
-                <th><i class="fa-regular fa-circle"></i> N° Recetario:  <span class="text-danger fw-bold fs-5">{{$unDetalle->id}}</span> </th> <th>Fecha: {{$unDetalle->created_at->format('d-m-Y')}} </th></td><th>Hora: {{$unDetalle->created_at->format('H:i')}} </th></td>
+                <th><i class="fa-regular fa-circle"></i> N° de item servicio:  <span class="text-danger fw-bold fs-5">{{$unDetalle->id}}</span> </th> <th>Fecha: {{$unDetalle->created_at->format('d-m-Y')}} </th></td><th>Hora: {{$unDetalle->created_at->format('H:i')}} </th></td>
               
             </tr>   
          

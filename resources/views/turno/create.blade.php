@@ -15,8 +15,7 @@
         <div class="mb-3">
             <label for="" class="form-label"><i class="fa-regular fa-calendar-days"></i>  Selecionar Fecha</label><br>
             <input type="date" id='fecha' name="fecha" placeholder="20:30" title="fecha" required>
-         
-         </div>
+        </div>
         <div class="mb-3">
             
             <label for="" class="form-label">Inicio de Jornada</label><br>

@@ -164,8 +164,10 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/vistaRoles/peluquero', function () {
                 return view('empresa.peluquero.peluquero');
             });
+            Route::post('/DetallesServicio/store/{id}',[App\Http\Controllers\DetalleServicioController::class, 'storeServicios'] );
             Route::get('/DetallesServicio/create/{id}',[App\Http\Controllers\DetalleServicioController::class, 'create'] );
             Route::get('/historialServicios/{id}',     [App\Http\Controllers\DetalleServicioController::class, 'detalleServicios'] );
+            Route::get('/listaServiciosAplicados/{id}',[App\Http\Controllers\DetalleServicioController::class, 'listaServiciosAplicados'] );
     });
     
     Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
