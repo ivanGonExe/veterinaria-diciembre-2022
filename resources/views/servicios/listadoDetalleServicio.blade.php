@@ -14,7 +14,9 @@ table tr{
 table td{
     background-color: rgb(255, 255, 255,1) !important;
     color:#000000;
-   
+}
+.form-label{
+    color:black !important;
 }
 
 </style>
@@ -31,7 +33,7 @@ table td{
     <div class="col-4 text-center pt-5"><h1>Historia de servicios</h1></div>
 
     <div class="mb-3">
-            <label for="" class="form-label aligne "><i class="fa-regular fa-calendar-days"></i>  Selecionar Fecha</label><br>
+            <label for="" class="form-label aligne"><i class="fa-regular fa-calendar-days"></i>  Selecionar Fecha</label><br>
             <input type="date" id='fecha' name="fecha" title="fecha" value='{{$fecha}}'required >
         </div>
    <div class="table-responsive table-striped tabla_historia" style="width:100%">
