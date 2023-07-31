@@ -48,7 +48,10 @@ table td{
 
             <br>
             </table>
-            @if(count($historialServicios) == 0)
+            @php
+                $items = count($historialServicios);
+            @endphp
+            @if(count($historialServicios) <= 0)
                 <h4 class="text-center">No tiene detalles de servicios en la fecha</h4>
             @else 
         @foreach($historialServicios as $unDetalle ) 
@@ -57,7 +60,7 @@ table td{
                  
             <tr>
                
-                <th><i class="fa-regular fa-circle"></i> N° de item servicio:  <span class="text-danger fw-bold fs-5">{{$unDetalle->id}}</span> </th> <th>Fecha: {{$unDetalle->created_at->format('d-m-Y')}} </th></td><th>Hora: {{$unDetalle->created_at->format('H:i')}} </th></td>
+                <th><i class="fa-regular fa-circle"></i> N° de item servicio: {{$items}}<span class="text-danger fw-bold fs-5">{{$unDetalle->id}}</span> </th> <th>Fecha: {{$unDetalle->created_at->format('d-m-Y')}} </th></td><th>Hora: {{$unDetalle->created_at->format('H:i')}} </th></td>
               
             </tr> 
             <tr>
@@ -75,6 +78,9 @@ table td{
             </table>                 
         </tbody>    
     </table>
+    @php
+        $items = $items-1;
+    @endphp
     @endforeach
 @endif
 <script>

@@ -93,7 +93,6 @@ class DetalleServicioController extends Controller
         ]);
 
         $fachaActual                            = Carbon::now();
-
         $detalleServicio                        = new Detalle_servicio();
         $detalleServicio->tipo                  = $request->tipo;
         $detalleServicio->descripcion           = $request->descripcion;
