@@ -1,50 +1,44 @@
+
 const formulario = document.getElementById("formulario");
 const inputs     = document.querySelectorAll("#formulario input");
 const cambio     = document.getElementsByClassName("formulario__input");
 
 const expresiones = {
-    nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
-    apellido: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
-    dni: /^[0-9]{1,8}$/, // Validar Numero de Dni Solo Numeros y longitud 8
-    telefono: /^[0-9]{1,7}$/, // 0 - 9 numeros
-    codigoArea: /^[0-9]{3,7}$/, // 0 - 9 numeros
-    numeroCalle: /^[0-9]{1,4}$/, // 0 - 5 numeros
-    direccion: /^([a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]){1,30}$/, // Letras y espacios, pueden llevar acentos.
+    descripcion:  /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s,-]{10,300}$/, 
+    direccion:    /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s,-]{4,200}$/, 
+    celular:      /^\+\d{1,3}\s?\d{1,}\s?\d{1,}$/, 
+    telefonoFijo: /^\+\d{1,3}\s?\(\d{1,}\)\s?\d{1,}\s?\d{1,}$/, // 0 - 9 numeros
+    instagram:    /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/[a-zA-Z0-9_\.]+\/?$/, // 0 - 9 numeros
+    mapa:         /\S/, // 0 - 5 numeros
 };
-
 const campos = {
-    nombre: false,
-    apellido: false,
-    dni: false,
-    telefono: false,
-    codigoArea: false,
-    seleccionTurno: false,
-    numeroCalle: false,
-    direccion: false,
+    descripcion:  false,
+    direccion:    false,
+    celular:      false,
+    telefonoFijo: false,
+    intagram:     false,
+    mapa:         false,
 };
 
 const validarFormulario = (e) => {
     switch (e.target.name) {
-        case "nombre":
-            validarCampo(expresiones.nombre, e.target, "nombre");
-            break;
-        case "apellido":
-            validarCampo(expresiones.apellido, e.target, "apellido");
-            break;
-        case "telefono":
-            validarCampo(expresiones.telefono, e.target, "telefono");
-            break;
-        case "dni":
-            validarCampo(expresiones.dni, e.target, "dni");
-            break;
-        case "codigoArea":
-            validarCampo(expresiones.codigoArea, e.target, "codigoArea");
-            break;
-        case "numeroCalle":
-            validarCampo(expresiones.numeroCalle, e.target, "numeroCalle");
+        case "descripcion":
+            validarCampo(expresiones.descripcion, e.target, "descripcion");
             break;
         case "direccion":
             validarCampo(expresiones.direccion, e.target, "direccion");
+            break;
+        case "celular":
+            validarCampo(expresiones.celular, e.target, "celular");
+            break;
+        case "telefonoFijo":
+            validarCampo(expresiones.telefonoFijo, e.target, "telefonoFijo");
+            break;
+        case "intagram":
+            validarCampo(expresiones.intagram, e.target, "intagram");
+            break;
+        case "mapa":
+            validarCampo(expresiones.mapa, e.target, "mapa");
             break;
     }
 };
@@ -94,18 +88,17 @@ formulario.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (
-        campos.nombre &&
-        campos.apellido &&
-        campos.dni &&
-        campos.telefono &&
-        campos.codigoArea &&
+        campos.descripcion &&
         campos.direccion &&
-        campos.numeroCalle
+        campos.celular &&
+        campos.telefonoFijo &&
+        campos.instagram &&
+        campos.mapa 
     ) {
         Swal.fire({
             position: "top-center",
             icon: "success",
-            title: "Cliente Guardado",
+            title: "Información de empresa guardada",
             showConfirmButton: false,
             timer: 4000,
         });

@@ -41,10 +41,10 @@
 
 <div class="row m-2 p-2">
     <div class="col-3 text-center pt-2">
-        <img src="/iconos/logo_salud.png" alt="logo_salud" height="160" width="200" class="iconos" id="boton"> 
+        <img src="/iconos/img-peluqueria-canina.png" alt="logo_salud" height="160" width="160" class="iconos" id="boton"> 
     </div>
     <div class="col-6 text-center pt-5">
-        <h2 class="text-center fw-bold" >Detalle servicio</h2>
+        <h2 class="text-center fw-bold" >Detalle de servicio</h2>
     </div>
     <div class="col-3 text-center pt-5">
         <a href="{{url()->previous()}}" class="btn btn-secondary rounded-pill m-1 p-2"><i class="fa-solid fa-arrow-rotate-left"></i></a>

@@ -16,10 +16,7 @@
    <div class="col-md-6">
     <form action="/personas" method="POST" id="formulario">
         @csrf
-     
-        <p class="text-info">*Este campo es obligatorio</p>
         <div class="mb-3">
-          
           <!--Grupo Nombre -->
           <div class="formulario__grupo " id="grupo__nombre">
             <label for="nombre" class="formulario__label">Nombre *</label>
@@ -148,5 +145,5 @@
     </div>
 </div>
 
-<script src="{{asset('validarCliente.js')}}" defer></script>
+<script src="{{asset('validarInfoEmpresa.js')}}" defer></script>
 @endsection

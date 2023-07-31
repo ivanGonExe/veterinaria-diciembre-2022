@@ -1,5 +1,4 @@
 @extends('administrador.plantillaAdmin')
- 
 
 @section('contenido')
 <link rel="stylesheet" type="text/css" href="{{asset('estiloControl.css')}}">
@@ -12,13 +11,14 @@
 <body>
     <div class="main_content">
         <div class="content">
-    
-        <div class="header"><h2 class="text-dark fw-bold text-center">Editar Usuario</h2></div>    
-        
-        <div class="content text-center p-2">
+       
+          <div class="header"><h2 class="text-dark fw-bold text-center">Editar Usuario</h2></div>    
+         
+          <div class="content text-center p-2">
             <div class="row">
                 <div class="col-12 content-fluid d-flex justify-content-center p-2 "></div>
-    
+       
+ 
         <div class="form-group">
         
             <div class=" container-fluid d-flex justify-content-center">
@@ -30,7 +30,7 @@
         <h5 class="text-white">*Campo obligatorio</h5>
         <!--Grupo Nombre -->
         <div class="formulario__grupo mt-3" id="grupo__nombre">
-            <label for="nombre" class="formulario__label">Nombre y apellido *</label>
+            <label for="nombre" class="formulario__label">Nombre *</label>
             <div class="formulario__grupo-input">
                 <input id="nombre" name="nombre" type="text" class="form-control formulario__input" value="{{$usuario->name}}"  tabindex="3" required>
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -47,7 +47,7 @@
             <p class="formulario__input-error">El email no es válido.</p>      
         </div>
         
-        <label for="tipo" class=" col-form-label text-md-right">Rol*</label>
+        <label for="tipo" class=" formulario__label text-md-right">Rol*</label>
             
                             <div >
                                 <select class='form-control selecTipo' name= 'tipo'>

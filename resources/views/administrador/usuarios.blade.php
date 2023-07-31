@@ -1,11 +1,5 @@
 @extends('administrador.plantillaAdmin')
-    
-     
-
 @section('contenido')
-
-
-
 <div class="main_content">
   <div class="content">
  

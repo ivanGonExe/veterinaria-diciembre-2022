@@ -4,7 +4,7 @@ const cambio = document.getElementsByClassName("formulario__input");
 
 const expresiones = {
     nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
-    mail:  /@.*\.com$/i, // Letras y espacios, pueden llevar acentos.
+    mail:  /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, // Letras y espacios, pueden llevar acentos.
     // dni: /^[0-9]{1,8}$/, // Validar Numero de Dni Solo Numeros y longitud 8
     // telefono: /^[0-9]{1,7}$/, // 0 - 9 numeros
     // codigoArea: /^[0-9]{3,7}$/, // 0 - 9 numeros
@@ -28,7 +28,7 @@ const validarFormulario = (e) => {
             validarCampo(expresiones.nombre, e.target, "nombre");
             break;
         case "mail":
-            validarCampo(expresiones.apellido, e.target, "mail");
+            validarCampo(expresiones.mail, e.target, "mail");
             break;
         // case "telefono":
         //     validarCampo(expresiones.telefono, e.target, "telefono");
