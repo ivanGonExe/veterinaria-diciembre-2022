@@ -55,7 +55,7 @@ class DetalleServicioController extends Controller
                                                 ->join('historial_servicios','historial_servicios.id','=','detalle_servicios.historialServicios_id')
                                                 ->join('mascotas','mascotas.id','=','historial_servicios.mascota_id')
                                                 ->join('personas','personas.id','=','mascotas.persona_id')
-                                                ->orderBY('detalle_servicios.fechaAtencion','Desc')
+                                                ->orderBY('detalle_servicios.created_at','Desc')
                                             ->get();
 
         return view('servicios.listadoDetalleServicio')
