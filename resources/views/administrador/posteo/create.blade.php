@@ -13,37 +13,35 @@
             <div class="row">
                 <div class="col-12 content-fluid d-flex justify-content-center p-2 "></div>
        
-<div class="container">
-    <div class="row justify-content-center">
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-        
 
+
+<div class="container text-center" style='width:60% !important; height:90% !important;'>
+    <div class="card w-100">
+      <div class="text-center m-5 ">
         <form action="/guardarNoticia" method="POST"  enctype="multipart/form-data">
-                @csrf
-                    <div class="mb-3">
-                  <label for="titulo" class="form-label"><h3>Titulo</h3></label>
-                  <input type="text" name="titulo" class="form-control" id="titulo" placeholder="Titulo.." maxlength="60">
-                </div>
-                <div class="mb-3">
-                  <label for="asunto" class="form-label"><h3>Parrafo</h3></label>
-                  <textarea name="asunto" class="my-editor form-control" pattern="[A-Z]" id="my-editor" cols="30" rows="10"> </textarea>
-               <script>
-                        CKEDITOR.replace( 'asunto' );
-                </script>
-               
-                <div class="container ">
-                <div class="row w-50">
-                <img id="imgPreview" > 
-             <input type="file" aria-label="Archivo" accept="image/*" class="file" name="file" id="file" height="600" width="700"  onchange="previewImage(event, '#imgPreview')">
-                </div> 
-               
-                <br>
-                <a class="btn btn-danger" href="/entradaNoticia">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Enviar</button>
-              </form>
-        </div>
+          @csrf
+          <div class="mb-3">
+            <label for="titulo" class="form-label"><h3>Titulo</h3></label>
+            <input type="text" name="titulo" class="form-control" id="titulo" placeholder="Titulo.." maxlength="150">
+          </div>
+          <div class="mb-3">
+            <label for="asunto" class="form-label"><h3>Párrafo</h3></label>
+            <textarea name="asunto" class="my-editor form-control" pattern="[A-Z]" id="my-editor" cols="30" rows="10"> </textarea>
+          <script>
+            CKEDITOR.replace( 'asunto' );
+          </script>
+          <br>
+          <div class="container text-center w-50 ">
+            <div class="row">
+              <img id="imgPreview" > 
+              <input type="file" aria-label="Archivo" accept="image/*" class="file" name="file" id="file" height="600" width="700"  onchange="previewImage(event, '#imgPreview')">
+            </div> 
+            <br>
+          </div>
+          <a class="btn btn-secondary mb-0" href="/entradaNoticia">Cancelar</a>
+          <button type="submit" class="btn btn-primary mb-0">Enviar</button>
+        </form>
+      </div>
     </div>
 </div> 
 
@@ -107,43 +105,6 @@ $imgPreview.src = objectURL;
               
 }
 
-
-/* 
- 
-CKEDITOR.replace('asunto', {
-      // Define the toolbar groups as it is a more accessible solution.
-      toolbarGroups: [{
-          "name": "basicstyles",
-          "groups": ["basicstyles"]
-        },
-        {
-          "name": "links",
-          "groups": ["links"]
-        },
-        {
-          "name": "paragraph",
-          "groups": ["list", "blocks"]
-        },
-        {
-          "name": "document",
-          "groups": ["mode"]
-        },
-        {
-          "name": "insert",
-          "groups": ["insert"]
-        },
-        {
-          "name": "styles",
-          "groups": ["styles"]
-        },
-        {
-          "name": "about",
-          "groups": ["about"]
-        }
-      ],
-      // Remove the redundant buttons from toolbar groups defined above.
-      removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
-    }); */
   </script>
 
 @endsection

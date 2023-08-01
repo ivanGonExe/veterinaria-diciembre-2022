@@ -1,45 +1,35 @@
-
 const formulario = document.getElementById("formulario");
+const textareas  = document.querySelectorAll("#formulario textarea");
 const inputs     = document.querySelectorAll("#formulario input");
 const cambio     = document.getElementsByClassName("formulario__input");
 
-console.log(inputs);
 const expresiones = {
-    descripcion:  /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s,.]{10,300}$/,    
-    direccion:    /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s,.]{4,50}$/, 
-    celular:      /^\+\d{1,3}\s?\d{1,}\s?\d{1,}$/, 
-    telefonoFijo: /^\d{4}-\d{7}$/, // 0 - 9 numeros
-    instagram:    /^(?:https?:\/\/)?(?:www\.)?instagram\.com/, // 0 - 9 numeros
-    mapa:         /^https?:\/\/www\.google\.com\/maps\/place/, // 0 - 5 numeros 
+    patologia:     /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]{2,100}$/, // Letras y espacios, pueden llevar acentos.
+    tratamiento:   /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]{8,200}$/, // Letras y espacios, pueden llevar acentos.
+    observaciones: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]{2,300}$/, // Validar Numero de Dni Solo Numeros y longitud 8 // Letras y espacios, pueden llevar acentos.
+    peso:          /^[0-9]{1,3}$/, 
 };
+
 const campos = {
-    descripcion:  false,
-    direccion:    false,
-    celular:      false,
-    telefonoFijo: false,
-    intagram:     false,
-    mapa:         false,
+    patologia:     false,
+    tratamiento:   false,
+    observaciones: false,
+    peso:          false,
 };
 
 const validarFormulario = (e) => {
     switch (e.target.name) {
-        case "descripcion":
-            validarCampo(expresiones.descripcion, e.target, "descripcion");
+        case "patologia":
+            validarCampo(expresiones.patologia, e.target, "patologia");
             break;
-        case "direccion":
-            validarCampo(expresiones.direccion, e.target, "direccion");
+        case "tratamiento":
+            validarCampo(expresiones.tratamiento, e.target, "tratamiento");
             break;
-        case "celular":
-            validarCampo(expresiones.celular, e.target, "celular");
+        case "observaciones":
+            validarCampo(expresiones.observaciones, e.target, "observaciones");
             break;
-        case "telefonoFijo":
-            validarCampo(expresiones.telefonoFijo, e.target, "telefonoFijo");
-            break;
-        case "instagram":
-            validarCampo(expresiones.instagram, e.target, "instagram");
-            break;
-        case "mapa":
-            validarCampo(expresiones.mapa, e.target, "mapa");
+        case "peso":
+            validarCampo(expresiones.peso, e.target, "peso");
             break;
     }
 };
@@ -80,7 +70,12 @@ const validarCampo = (expresion, input, campo) => {
     }
 };
 
-inputs.forEach((input) => {
+textareas.forEach((textarea ) => {
+    textarea.addEventListener("keyup", validarFormulario); //cuando se levante la tecla
+    textarea.addEventListener("blur", validarFormulario); //cuando le de un click fuera del imput */ */
+});
+
+inputs.forEach((input ) => {
     input.addEventListener("keyup", validarFormulario); //cuando se levante la tecla
     input.addEventListener("blur", validarFormulario); //cuando le de un click fuera del imput */ */
 });
@@ -89,17 +84,15 @@ formulario.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (
-        campos.descripcion &&
-        campos.direccion &&
-        campos.celular &&
-        campos.telefonoFijo &&
-        campos.instagram &&
-        campos.mapa 
+        campos.patologia &&
+        campos.tratamiento &&
+        campos.observaciones &&
+        campos.peso
     ) {
         Swal.fire({
             position: "top-center",
             icon: "success",
-            title: "Información de empresa guardada",
+            title: "Detalle clinico guardado",
             showConfirmButton: false,
             timer: 4000,
         });

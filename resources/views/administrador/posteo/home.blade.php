@@ -31,8 +31,6 @@
                    
                     <th scope="col">Fecha</th>
                     <th scope="col">Titulo</th>
-                    <th scope="col">Imagen</th>
-                    <!-- <th scope="col">Asunto</th> -->
                     <th scope="col">Acciones</th>
                   </tr>
                 </thead>
@@ -44,11 +42,9 @@
                   @if(!$data->isEmpty())
                 
                   @foreach ($data as $data)
-                   <tr> 
+                  <tr> 
                     <td>{{ $data->fecha }}</td>
-                    <td>{!! Str::limit( strip_tags( $data->titulo ), 20 ) !!}</td>
-                    <td><img src='{{$data->file}}' height="60" width="60"></td>
-                    <!-- <td>{!! Str::limit( strip_tags( $data->asunto ), 10 ) !!}</td> -->
+                    <td class='text-break'>{{$data->titulo }}</td>
                     <td>
                       <button class="btn btn eliminar" title="Eliminar" id="{{$data->id}}" value= '{{$data->id}}'><i class="fa-solid fa-trash-can"></i></button>
                     

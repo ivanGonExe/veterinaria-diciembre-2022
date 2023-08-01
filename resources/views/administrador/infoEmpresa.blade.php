@@ -156,6 +156,14 @@ botonCancelar.addEventListener('click',function(){
         botonCancelar.style.display  = 'inline';
         botonGuardar.style.display   = 'inline';
         
+
+    validarCampo(expresiones.descripcion, inputDescripcion, "descripcion");
+    validarCampo(expresiones.direccion, inputDireccion, "direccion");
+    validarCampo(expresiones.celular, inputCelular, "celular");
+    validarCampo(expresiones.telefonoFijo, inputTelefonoFijo, "telefonoFijo");
+    validarCampo(expresiones.instagram, inputInstagram, "instagram");
+    validarCampo(expresiones.mapa, inputMapa, "mapa");
+        
     })
 
 </script>

@@ -64,7 +64,7 @@ class HomeController extends Controller
     {    
 
          $request->validate([
-            'titulo'   => 'required| string ',
+            'titulo'   => 'required| string| max:150',
             'asunto'   => 'required| string ',
             'file'     => 'required | image',
         ]); 

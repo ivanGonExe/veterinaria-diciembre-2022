@@ -185,7 +185,7 @@ class EmpresaController extends Controller
         $empresa[0]->mapa        = $request->mapa;
         $empresa[0]->save();
 
-        return redirect('/login/administrador'); 
+        return redirect('/infoEmpresa'); 
     }
 
     /**

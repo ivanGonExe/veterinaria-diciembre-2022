@@ -84,7 +84,6 @@
 </div>
 </div>
 
-
 <script src="{{asset('validarUsuario.js')}}" defer></script>
 
 </body>
