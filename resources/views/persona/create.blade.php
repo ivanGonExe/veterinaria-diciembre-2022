@@ -1,10 +1,13 @@
 @extends((auth()->user()->tipo == 'admin')? ((auth()->user()->estadoIngreso =='veterinario')? 'layouts.plantillaBase':'layouts.plantillaBase3') : ( (auth()->user()->tipo == 'veterinario')? 'layouts.plantillaBase' :'layouts.plantillaBase3'))
 
 <link rel="stylesheet" type="text/css" href="{{asset('estiloControl.css')}}">
+<style>
+  .swal2-confirm{
+    background-color: #dc3545 !important;
+  }
+</style>
 
 @section('contenido')
-
-
  
       <div class="form-group   text-center">
         <div class="container-fluid d-flex justify-content-end">
@@ -145,5 +148,17 @@
     </div>
 </div>
 
-<script src="{{asset('validarInfoEmpresa.js')}}" defer></script>
+<script src="{{asset('validarCliente.js')}}" defer></script>
+
+@isset($mensajeError)
+  <script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Ya existe un cliente registrado con el dni ingresado!',
+    })
+  </script>
+@endisset
+
+
 @endsection

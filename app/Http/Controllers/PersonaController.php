@@ -118,7 +118,10 @@ class PersonaController extends Controller
     ]);
         $persona = Persona::where('dni',$request->dni)->get();
         if(count($persona) > 0){
-            $persona[0]->delete();
+            //$persona[0]->delete();
+            //dd("dni ya registrado");
+            $mensajeError = true;
+            return view('persona.create')->with('mensajeError', $mensajeError);
         }
         $persona = new Persona();
 
