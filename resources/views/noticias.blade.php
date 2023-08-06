@@ -31,7 +31,7 @@
     color:      #000000b2;
     size:       14px;
     text-align: justify;
-    padding:    10px ;
+    /* padding:    10px ; */
   }
 
   .limitar-texto{
@@ -65,9 +65,10 @@
       background-repeat: no-repeat !important;
     } 
 
-  .card{
-    max-width:  90%;
-    }
+   .card{
+    max-width:  auto;
+    } 
+   
 </style>
 
 
@@ -103,7 +104,7 @@
                 </figure>
                 <div class="contenido-card">
                     <h4 type="text" id="titulo" name="titulo">{{$noticias[$posicion]->titulo}}</h4><!--titulo abajo copete--> 
-                    <div type="type" id="asunto" class="limitar-texto-principal" name="asunto">
+                    <div type="type" id="asunto" class="limitar-texto-principal" name="asunto" id="asunto">
                         {!! $noticias[$posicion]->asunto !!}
                     </div>
                         <a href="/noticias/posteo/{{$noticias[$posicion]->id}}">Leer Más...</a>

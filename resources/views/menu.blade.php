@@ -30,7 +30,7 @@ font-family: 'Gluten', cursive;
 <title>Clínica Veterinaria San Agustín</title>
   </head>
    <!-- Cabezera barra -->
-    <header class="container-fluid d-flex justify-content-center m-0 p-1" id="barra">
+    <header class="container-fluid d-flex justify-content-center m-0 p-0" id="barra">
     
     <p class="text-light fs-6" > </p> 
     </header>
