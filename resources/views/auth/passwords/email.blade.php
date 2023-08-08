@@ -115,12 +115,10 @@ input:active{
                         <br>
                         <div class="form-group row">
                             <div class="text-center">
-    
-                                    <a href="/login" class="btn btn-secondary" tabindex="6">Cancelar</a>
-                                    <button type="submit" class="btn btn-primary">
-                                        Aceptar
-                                    </button>
-
+                                <a href="/login" class="btn btn-secondary" tabindex="6">Cancelar</a>
+                                <button type="submit" class="btn btn-primary">
+                                    Aceptar
+                                </button>
                             </div>
                         </div>
                     </form>
