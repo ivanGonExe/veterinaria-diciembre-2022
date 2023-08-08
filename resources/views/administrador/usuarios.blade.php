@@ -20,7 +20,7 @@
           <thead>
              
               <tr>
-                  <th scope="col">Mail</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Nombre</th>
                   <th scope="col">Rol</th>
                   <th scope="col">Acciones</th>

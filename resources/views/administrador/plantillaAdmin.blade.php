@@ -2,7 +2,11 @@
 
 
 <!doctype html>
-
+<style>
+  .btn-secondary{
+    color: white !important;
+  }
+</style>
   <head>
     <!--  iconos -->
     <script src="https://kit.fontawesome.com/b610c83f26.js" crossorigin="anonymous"></script>

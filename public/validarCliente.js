@@ -102,6 +102,7 @@ formulario.addEventListener("submit", (e) => {
         campos.direccion &&
         campos.numeroCalle
     ) {
+        
         Swal.fire({
             position: "top-center",
             icon: "success",

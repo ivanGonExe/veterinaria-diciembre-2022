@@ -31,7 +31,6 @@
     color:      #000000b2;
     size:       14px;
     text-align: justify;
-    padding:    10px ;
   }
 
   .limitar-texto{
@@ -65,16 +64,7 @@
       background-repeat: no-repeat !important;
     } 
 
-  .card{
-    max-width:  90%;
-    }
 </style>
-
-
-
-
-
-
 
 <!-- __________________________________________________ -->
 <body>

@@ -28,7 +28,7 @@
         @csrf
         @method('Post')
         <div class=" mb-3 ">
-            <label for="" class="form-label">Mail</label>
+            <label for="" class="formulario__label text-center">Email*</label>
             <input id="mail" name="mail" type="text" class="form-control" value="{{$usuario->email}}"  tabindex="3" disabled>
         </div>
         <div class="formulario__grupo mt-3" id="grupo__password">

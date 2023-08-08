@@ -22,7 +22,7 @@ table.dataTable th {
   text-align: center;
 }
 .modal-header{
-    background-color: rgb(235, 34, 58) !important;
+    background-color: rgb(255, 87, 51 ) !important;
     color: white;
 }
 .btn-close{
@@ -35,6 +35,7 @@ table.dataTable th {
     border-radius: 10px;
     
 }
+
 </style>
 
 <div class="caja_tabla-2">

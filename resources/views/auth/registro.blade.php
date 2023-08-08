@@ -93,7 +93,7 @@ p{
                     
 
                         <div class="formulario__grupo mt-3 col-md-8" id="grupo__email">
-                            <label for="email" class="formulario__label text-center">{{ __('E-Mail*') }}</label>
+                            <label for="email" class="formulario__label text-center">Email *</label>
                             <div class="formulario__grupo-input">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror formulario__input" name="email" required autocomplete="email">
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>

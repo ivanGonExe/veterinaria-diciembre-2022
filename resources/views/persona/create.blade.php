@@ -126,9 +126,7 @@
                     </div>  
                   </div>
                   <br>
-         </div>
-         
-           
+        </div>
              <!-- Menesaje de Error -->
    <div class="row formulario__mensaje" id="formulario__mensaje">
              
