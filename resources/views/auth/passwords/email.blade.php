@@ -53,7 +53,6 @@ input:active{
         background-color: rgba(255, 255, 255, 1); 
         border-radius: 10px !important;
         width: 400px !important;
-
     }
 
     .card-body{
@@ -84,6 +83,7 @@ input:active{
 
 </style> 
 @section('content')
+
 <body>
 <div class="container-fluid d-flex justify-content-center mp-2">
         <div class="col-md-6 box">
@@ -95,7 +95,6 @@ input:active{
                             {{ session('status') }}
                         </div>
                     @endif
-
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <div class="container-fluid d-flex justify-content-center ">
