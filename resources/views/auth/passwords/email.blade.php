@@ -12,7 +12,7 @@
 
 body{
         min-height:            100vh;
-	    background-image:      url('../img_veterinaria/hacer-frente-urgencias-veterinarias.jpg') !important;
+	    background-image:      url('../img_veterinaria/perroContrasenia.jpg') !important;
         background-size:       cover;
         background-repeat:     no-repeat;
         background-position:   center !important;   
@@ -52,6 +52,8 @@ input:active{
     .card{
         background-color: rgba(255, 255, 255, 1); 
         border-radius: 10px !important;
+        width: 400px !important;
+
     }
 
     .card-body{
@@ -84,7 +86,7 @@ input:active{
 @section('content')
 <body>
 <div class="container-fluid d-flex justify-content-center mp-2">
-        <div class="col-md-8 box">
+        <div class="col-md-6 box">
             <div class="card">
                 <div class="card-header container-fluid d-flex justify-content-center">{{ __('Recuperar contraseña') }} </div>
                 <div class="card-body">
@@ -99,7 +101,7 @@ input:active{
                         <div class="container-fluid d-flex justify-content-center ">
                             <img src="/iconos/logo_footer.png"  height="150" width="150"> 
                         </div>
-                        <div class="form-group row m-2 p-2">
+                        <div class="form-group row m-1 p-1">
                             
                             <div class="col-md-12">
                                 <input style="font: var(--fa-font-solid); content: '\f007'; font-size:10px;"  id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder= "&#xf0e0; Email" required autocomplete="email" autofocus>
@@ -112,11 +114,13 @@ input:active{
                         </div>
                         <br>
                         <div class="form-group row">
-                            <div class="col-md-12 offset-md-1">
-                                <a href="/login" class="btn btn-danger" tabindex="6">Cancelar</a>
-                                <button type="submit" class="btn btn-primary">
-                                    Aceptar
-                                </button>
+                            <div class="text-center">
+    
+                                    <a href="/login" class="btn btn-secondary" tabindex="6">Cancelar</a>
+                                    <button type="submit" class="btn btn-primary">
+                                        Aceptar
+                                    </button>
+
                             </div>
                         </div>
                     </form>
