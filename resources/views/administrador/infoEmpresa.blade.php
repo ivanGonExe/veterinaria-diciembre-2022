@@ -81,7 +81,7 @@
             <p class="formulario__input-error">Ingrese un link de google map valido.</p>
         </div>
         
-        <button id="cancelar"class="btn btn-secondary" tabindex="6" style="display:none" >Cancelar</button>
+        <a id="cancelar"class="btn btn-secondary" tabindex="6" style="display:none" >Cancelar</a>
         <button type="submit" id="guardar"class="btn btn-primary" tabindex="7" style="display:none" >Guardar</button>
 
     </form>

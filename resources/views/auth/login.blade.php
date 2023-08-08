@@ -96,7 +96,7 @@
                         <div class="form-group row m-2 p-2">
                            
                             <div class="col-md-12">
-                                <input style="font: var(--fa-font-solid); content: '\f007'; font-size:10px;" id="email" type="email" class="form-control @error('email') is-invalid @enderror " name="email" value="{{ old('email') }}" placeholder= "&#xf0e0; Mail" required autocomplete="email" autofocus>
+                                <input style="font: var(--fa-font-solid); content: '\f007'; font-size:10px;" id="email" type="email" class="form-control @error('email') is-invalid @enderror " name="email" value="{{ old('email') }}" placeholder= "&#xf0e0; Email" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
