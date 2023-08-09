@@ -13,35 +13,28 @@
 
 <title>Estadisticas</title>
 <style>
-    .fa-regular{
+.fa-regular{
        padding: 10px;
        background:rgb(0, 0, 0,1); 
        border-radius: 60px;
-       color:rgb(255, 252, 252); 
+       color:rgb(255, 255, 255); 
     }
    /*  .barra{
    
         background:rgb(0, 0, 0,0.8); 
     } */
     body{
-	min-height: 150vh;
-	background-image: linear-gradient(120deg, #ffffffae, #ffffff);
-}
-.barra{
-    padding: 1px;
-    width: 100%;
-    height: 4px;
-  
- background-color:#a2a0a0;
- 
+	
+	background-color:rgb(255, 255, 255) !important; 
 
 }
+
    </style>
    <body>
    <div class="container ">
     <div class="row">
         <div class="col-12 p-2 m-2"><h4 class="text-center">  Clientes Nuevos</h4></div>
-        <div class="col-12 p-2"></div>
+      
         <div class="col-2"></div>
         <div class="col-8 text-center">
             <a class="btn" id="menosAnio" href="/estadistica/clientesNuevosPorMes/{{$año-1}}"><i class="fa-regular fa-circle-left"></i></a>
@@ -68,15 +61,14 @@
     </div> --}}
 </div>
 
-<br>  
-<p class="barra"><br></p>
-<div class="row">
-<div class="col-3"></div>
-<div class="col-6"><div class="container">
-<canvas id="myChart" width="50%" height="50%"></canvas>
-</div></div>
-<div class="col-3"></div>
 
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+    <canvas id="myChart" ></canvas>
+    </div>
+    <div class="col-4"></div>
+    <div class="row p-1"></div>
 </body>
 
 
@@ -159,12 +151,7 @@ const myChart  = new Chart(ctx, {
                     }
                
                  },
-            title: {
-                display: true,
-                text: 'Estadisticas de Clientes',
-                weight: 'bold',
-               
-            },        
+              
             legend: {
                 display: true,
                 labels: {

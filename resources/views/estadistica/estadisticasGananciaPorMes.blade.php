@@ -32,7 +32,7 @@
 <div class="container">
     <div class="row">
 
-               <div><h4 class="text-center p-2">  Ventas del Año </h4>
+               <div><h4 class="text-center p-2">  Ganancias del Año </h4>
         </div>
         <div class="col text-center">
             <a class="btn " id="menosAnio" href="/estadistica/ganancia/por_mes/{{$año-1}}"><i class="fa-regular fa-circle-left"></i></a>
@@ -93,22 +93,12 @@ const myChart  = new Chart(ctx, {
             label: 'Ganancia en pesos($) '+@json($año),
             data: arreglo,
             backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(75, 142, 192, 1)',
-                'rgba(153, 152, 255, 1)',
+                'rgba(255, 128, 0, 1)',
+              
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(0,0, 0, 1)',
+             
             ],
             borderWidth: 1,
         

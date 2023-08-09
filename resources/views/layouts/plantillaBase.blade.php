@@ -63,10 +63,7 @@ table tr{
   padding-left: 2rem;
  
 }
-body{
-	min-height: 150vh;
-	background-image: linear-gradient(120deg, #ffffffae, #8e44ad);
-}
+
 .barra { 
  background-color:#000000;
  }
