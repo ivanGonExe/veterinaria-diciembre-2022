@@ -10,57 +10,48 @@
 
  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <style>
-    .fa-regular{
+ .fa-regular{
        padding: 10px;
        background:rgb(0, 0, 0,1); 
        border-radius: 60px;
-       color:rgb(255, 252, 252); 
+       color:rgb(255, 255, 255); 
     }
    /*  .barra{
    
         background:rgb(0, 0, 0,0.8); 
     } */
     body{
-	min-height: 150vh;
-	background-image: linear-gradient(120deg, #ffffffae, #ffffff);
-}
-.barra{
-    padding: 1px;
-    width: 100%;
-    height: 4px;
-  
- background-color:#a2a0a0;
- 
+	
+	background-color:rgb(255, 255, 255) !important; 
 
+}
+.titulo{
+    margin-left: 50px !important;
+    padding: 10px !important;
 }
  </style>
 <title>Estadisticas</title>
-<div class="container bg-white m-1 p-1">
-    <div class="row text-center">
+<div class="container">
+    <div class="row ">
        
-        <div class="col-12 p-2"></div>
-        <div class="col-12 p-2 m-2"><h4>Articulos más vendidos en el mes </h4></div>
-        <div class="col-12 p-2"></div>
-
-        <div class="col-2"> </div>
-        <div class="col-8 p-2">
+      
+        <div class="text-center titulo" ><h4>Articulos más vendidos en el mes </h4></div>
+                 <div class="col text-center">
             <a class="btn" id="menosAnio" href="/estadistica/articulos/MasVendidos/{{$mes-1}}"><i class="fa-regular fa-circle-left"></i></a></a>
             <div class="btn" id="mes">{{$fecha}}</div>
             <a class="btn" id="masAnio" href="/estadistica/articulos/MasVendidos/{{$mes+1}}"><i class="fa-regular fa-circle-right"></i></a></a>
-     
-        <div class="col-2"> </div>
-       
-        <div>
+          
     </div>
 </div>
 
-<p class="barra"><br></p>
 <div class="row">
-<div class="col-3"></div>
-<div class="col-6"><div class="container">
-<canvas id="myChart" style="width:40% ;height:10%;"></canvas>
-</div></div>
-<div class="col-3"></div>
+    <div class="col-4"></div>
+    <div class="col-5">
+    <canvas id="myChart" ></canvas>
+    </div>
+    <div class="col-3"></div>
+    <div class="row p-1"></div>
+    
 
 <script>
     let botonMas  = document.getElementById('masAnio');

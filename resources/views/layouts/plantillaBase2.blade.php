@@ -81,7 +81,7 @@ table th{
   color: rgb(255, 87, 51 ) !important;
 }
 body{
-	min-height: 150vh;
+
  /* background-image: linear-gradient(120deg, rgb(255, 255, 255) ,rgb(255, 87, 51 ));    */
  background-color:#CACFD2 !important;
 }

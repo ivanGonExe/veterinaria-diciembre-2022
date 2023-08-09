@@ -14,34 +14,27 @@
        padding: 10px;
        background:rgb(0, 0, 0,1); 
        border-radius: 60px;
-       color:rgb(255, 252, 252); 
+       color:rgb(255, 255, 255); 
     }
    /*  .barra{
    
         background:rgb(0, 0, 0,0.8); 
     } */
     body{
-	min-height: 150vh;
-	background-image: linear-gradient(120deg, #ffffffae, #ffffff);
-}
-.barra{
-    padding: 1px;
-    width: 100%;
-    height: 4px;
-  
- background-color:#a2a0a0;
- 
+	
+	background-color:rgb(255, 255, 255) !important; 
 
 }
+
 
 </style>
 <title>Estadisticas</title>
-<div class="container bg-white m-1 p-1">
+<div class="container">
     <div class="row">
-        <div class="col-12 p-2 "></div>
-        <div class="col-12 p-2"><h4 class="text-center">  Ventas del Año </h4></div>
-        <div class="col-2"></div>
-        <div class="col-8 text-center">
+
+               <div><h4 class="text-center p-2">  Ventas del Año </h4>
+        </div>
+        <div class="col text-center">
             <a class="btn " id="menosAnio" href="/estadistica/ganancia/por_mes/{{$año-1}}"><i class="fa-regular fa-circle-left"></i></a>
             <div class="btn fs-2" id="anio">{{$año}}</div>
             <a class="btn" id="masAnio" href="/estadistica/ganancia/por_mes/{{$año+1}}"><i class="fa-regular fa-circle-right"></i></a>
@@ -60,14 +53,15 @@
         <div>
     </div>
 </div>
-<br>  
-<p class="barra"><br></p>
+
 <div class="row">
-<div class="col-2"></div>
-<div class="col-8"><div class="container">
-<canvas id="myChart" width="50%" height="50%"></canvas>
-</div></div>
-<div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-8">
+    <canvas id="myChart" ></canvas>
+    </div>
+    <div class="col-2"></div>
+    <div class="row"></div>
+    
 
 
 
