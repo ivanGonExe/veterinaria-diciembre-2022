@@ -11,6 +11,9 @@
       
 
     }
+    .formulario__input:hover{
+        background-color: silver;
+    }
     .formulario__input {
     width: 100%;
     background-color: silver;
