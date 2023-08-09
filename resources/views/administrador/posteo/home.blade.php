@@ -110,12 +110,13 @@ var id = 0;
                     var cod = boton[i].value;
 
                    Swal.fire({
-                       title: 'Esta Seguro que desea Borrar?',
+                       title: '¿Está Seguro que desea eliminar la noticia?',
                        text: "confirme la decisión!",
                        icon: 'warning',
                        showCancelButton: true,
-                       confirmButtonColor: '#3085d6',
                        cancelButtonColor: '#d33',
+                       confirmButtonColor: '#3085d6',
+                      
                        confirmButtonText: 'Si, eliminar'
 
                     }).then((result) => {

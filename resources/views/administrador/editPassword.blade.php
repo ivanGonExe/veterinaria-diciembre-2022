@@ -2,6 +2,41 @@
  
 
 @section('contenido')
+<style>
+<style>
+    p{
+        font-size: 13px !important;
+        margin-bottom: 10px !important;
+    }
+    .formulario{
+
+        background-color: #ffffff;
+       padding: 10px;
+       
+      
+
+    }
+    .formulario__input:hover{
+        background-color: silver;
+    }
+    .formulario__input {
+    width: 100%;
+    background-color: silver;
+    border: 1px solid #037ffc;
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px; /*cuando se escriba adentro*/
+    /*padding: arriba derecha abajo izquierda*/
+
+    padding: 0px 40px 0 10px;
+    transition: 0.3s ease all; /*transicion de tiempo para todas las propiedades*/
+}
+.card-header{
+
+    background-color: #f7f7f7 !important;  
+}
+</style>
+
 <body>  
   
     @foreach ($errors->all() as $error)
@@ -12,19 +47,21 @@
     <div class="main_content">
         <div class="content">
        
-          <div class="header"><h2 class="text-dark fw-bold text-center">Editar Password</h2></div>    
+
          
           <div class="content text-center p-2">
             <div class="row">
-                <div class="col-12 content-fluid d-flex justify-content-center p-2 "></div>
+       
        
  
         <div class="form-group">
         
             <div class=" container-fluid d-flex justify-content-center">
-    <div class= "container m-5 w-50">  
+    <div class= "container  w-50">  
+       
+            <div class="card-header text-center">Editar Contraseña</div>
 
-    <form action="/usuario/guardarPassword/{{$usuario->id}}" method="POST" id='formulario'>
+    <form action="/usuario/guardarPassword/{{$usuario->id}}" method="POST" id='formulario' class="formulario">
         @csrf
         @method('Post')
         <div class=" mb-3 ">
