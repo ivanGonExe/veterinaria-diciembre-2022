@@ -1,22 +1,55 @@
 @extends('administrador.plantillaAdmin')
- 
+<style>
+    p{
+        font-size: 13px !important;
+        margin-bottom: 10px !important;
+    }
+    .formulario{
+
+        background-color: #ffffff;
+       
+      
+
+    }
+    .formulario__input {
+    width: 100%;
+    background-color: silver;
+    border: 1px solid #037ffc;
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px; /*cuando se escriba adentro*/
+    /*padding: arriba derecha abajo izquierda*/
+
+    padding: 0px 40px 0 10px;
+    transition: 0.3s ease all; /*transicion de tiempo para todas las propiedades*/
+}
+.card-header{
+
+    background-color: #f7f7f7 !important;  
+}
+.fondo_editar{
+    background-color: #f7f7f7 !important;  
+    padding: 20px;
+}
+</style>
 @section('contenido')
 <link rel="stylesheet" type="text/css" href="{{asset('estiloControl.css')}}">
 
 <div class="main_content">
   <div class="content">
-  <div class="header"><h2 class="text-dark fw-bold text-center">Información de la Empresa en la página principal</h2></div>    
-    <div class="content text-center p-2">
+    <div class="content text-center ">
+  
       <div class="row">
-          <div class="col-12 content-fluid d-flex justify-content-center p-2 "></div>
+    
   
           <div class="form-group">
             <div class=" container-fluid d-flex justify-content-center">
-    <div class="col-md-6 ">
-   <div class="row">
+              
+                <div class= "container w-50 formulario">  
+                    <div class="card-header text-center">Editar información de empresa</div>
     <form  id="formulario" name='formulario'action="/storeEmpresa" method="POST" >
         @csrf
-        
+        <div class="m-2 p-1"></div>
         <!-- Grupo Descripcion -->
         <div class="formulario__grupo " id="grupo__descripcion">
             <label for="descripcion" class="formulario__label" title="descripcion general de la empresa"><i class="fa-solid fa-list-check"></i> Descripción *</label>
@@ -81,15 +114,17 @@
             <p class="formulario__input-error">Ingrese un link de google map valido.</p>
         </div>
         
-        <a id="cancelar"class="btn btn-secondary" tabindex="6" style="display:none" >Cancelar</a>
+        <button id="cancelar"class="btn btn-secondary" tabindex="6" style="display:none" >Cancelar</button>
         <button type="submit" id="guardar"class="btn btn-primary" tabindex="7" style="display:none" >Guardar</button>
 
     </form>
-   </div>
-    </div>
-   </div>
-   <br>
-    <button  id="botonEditar" class="btn btn-primary" tabindex="7">Editar</button>
+  
+ 
+        <button  id="botonEditar" class="btn btn-primary m-2" tabindex="7">Editar</button>
+
+  
+
+
 </div>
 
 

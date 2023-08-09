@@ -69,9 +69,7 @@ p{
         <div class="col-md-4">
             <div class="card m-1">
                 <div class="card-header text-center">{{ __('Registrar Usuario') }}</div>
-                <div class="container w-50 ">
-                    <img src="../iconos/logo_footer.png"  height="150" width="150"> 
-                    </div>
+                
                 <div class="card-body ">
                     <form method="POST" action="/registrado" class="form" id="formulario">
                         @csrf

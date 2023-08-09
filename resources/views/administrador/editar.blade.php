@@ -7,26 +7,50 @@
         font-size: 13px !important;
         margin-bottom: 10px !important;
     }
+    .formulario{
+
+        background-color: #ffffff;
+        padding: 20px;
+    }
+    .formulario__input {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px; /*cuando se escriba adentro*/
+    /*padding: arriba derecha abajo izquierda*/
+
+    padding: 0 40px 0 10px;
+    transition: 0.3s ease all; /*transicion de tiempo para todas las propiedades*/
+}
+.card-header{
+
+    background-color: #f7f7f7 !important;  
+}
+
 </style>
 <body>
     <div class="main_content">
         <div class="content">
        
-          <div class="header"><h2 class="text-dark fw-bold text-center">Editar Usuario</h2></div>    
+        
          
-          <div class="content text-center p-2">
+          <div class="content text-center ">
             <div class="row">
-                <div class="col-12 content-fluid d-flex justify-content-center p-2 "></div>
+              
        
  
         <div class="form-group">
         
             <div class=" container-fluid d-flex justify-content-center">
-    <div class= "container w-50 m-5">  
-   
-    <form action="/usuario/guardar/{{$usuario->id}}" method="POST" id="formulario">
+    <div class= "container w-50 ">  
+        <div class="card-header text-center">Editar Usuario</div>
+    <form action="/usuario/guardar/{{$usuario->id}}" method="POST" id="formulario" class="formulario">
         @csrf
         @method('Post')
+         
+      
         <h5 class="text-white">*Campo obligatorio</h5>
         <!--Grupo Nombre -->
         <div class="formulario__grupo mt-3" id="grupo__nombre">
