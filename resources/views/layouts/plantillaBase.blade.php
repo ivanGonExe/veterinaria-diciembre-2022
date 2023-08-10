@@ -32,6 +32,9 @@
   
    
   }
+  body{
+   background-color: rgba(100, 83, 153, 1);
+  }
   .form-group{
     background-color: rgba(100, 83, 153, 1) !important;
     margin: 5px;
