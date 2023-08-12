@@ -32,9 +32,12 @@
   
    
   }
-  body{
-   background-color: rgba(100, 83, 153, 1);
-  }
+
+    body{
+
+background-image: linear-gradient(120deg, #ffffffae, #8e44ad);
+}
+
   .form-group{
     background-color: rgba(100, 83, 153, 1) !important;
     margin: 5px;
