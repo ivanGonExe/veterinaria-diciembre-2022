@@ -103,10 +103,16 @@
                 
                   boton[i].addEventListener('click', function(){
                     
-                         var cod = boton[i].value;
+                        var cod          = boton[i].value;
+                        let notificacion = @json($notificaciones);
+                        let long         = notificacion.length;
+
+                        for(let l=0 ;l<long; l++ ){
+
+                            if(notificacion[l].id == cod){
 
                         Swal.fire({
-                            title: 'Esta Seguro que desea Borrar?',
+                            title: 'Está Seguro que desea Borrar la notificación: '+notificacion[l].descripcion+ '?',
                             text: "confirme la decisión!",
                             icon: 'warning',
                             showCancelButton: true,
@@ -126,7 +132,7 @@
                         ) */
                           }
                         })
-
+                      }}
                      });
 
                     }

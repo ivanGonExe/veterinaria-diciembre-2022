@@ -23,7 +23,7 @@ class CreateVentasTable extends Migration
             $table->boolean('estado')->nullable();
             $table->float('descuento')->nullable();     //CAMBIO
             $table->timestamps();
-            $table->foreignId('idCliente')->nullable()->constrained('personas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('cajero_fk')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

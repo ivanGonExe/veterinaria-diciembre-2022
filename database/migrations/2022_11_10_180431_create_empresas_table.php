@@ -22,6 +22,7 @@ class CreateEmpresasTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('mapa')->nullable();
             $table->timestamps();
+            $table->foreignId('admin_fk')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

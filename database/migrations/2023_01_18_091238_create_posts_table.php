@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->date('fecha');
             $table->string('file')->nullable();
             $table->timestamps();
+            $table->foreignId('admin_fk')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

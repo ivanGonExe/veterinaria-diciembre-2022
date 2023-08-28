@@ -19,7 +19,7 @@ class CreateNotificacionesTable extends Migration
             $table->string('categoria');
             $table->string('descripcion');
             $table->integer('unidades')->nullable();
-                     
+            $table->foreignId('articulo_fk')->nullable()->constrained('articulos')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

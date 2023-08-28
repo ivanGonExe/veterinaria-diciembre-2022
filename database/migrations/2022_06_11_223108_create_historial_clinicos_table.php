@@ -17,6 +17,7 @@ class CreateHistorialClinicosTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('mascota_id')->nullable()->constrained('mascotas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('veterinario_fk')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

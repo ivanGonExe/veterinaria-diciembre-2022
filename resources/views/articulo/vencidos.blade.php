@@ -82,10 +82,16 @@
                 
                   boton[i].addEventListener('click', function(){
                     
-                         var cod = boton[i].value;
+                        var cod = boton[i].value;
+                        let articulos = @json($resultados);
+                        let longArt   = articulos.length;
+
+                        for(let l=0 ;l<longArt; l++ ){
+
+                            if(articulos[l].id == cod){
 
                         Swal.fire({
-                            title: 'Esta Seguro que desea Borrar este lote?',
+                            title: 'Está Seguro que desea Borrar esta notificacion junto con el lote vencido:  '+articulos[l].descripcion+'?',
                             text: "confirme la decisión!",
                             icon: 'warning',
                             showCancelButton: true,
@@ -105,8 +111,10 @@
                         ) */
                           }
                         })
-
+                    }}
                      });
+                    
+                
 
                     }
 });

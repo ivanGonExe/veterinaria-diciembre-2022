@@ -24,6 +24,8 @@ class CreateTurnosTable extends Migration
             $table->string('asunto')->nullable();//informacion detallada del turno
             $table->timestamps();
             $table->foreignId('persona_id')->nullable()->constrained('personas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('usuario_fk')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('mascota_fk')->nullable()->constrained('mascotas')->onUpdate('cascade')->onDelete('cascade');
 
 
 
