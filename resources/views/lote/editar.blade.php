@@ -2,7 +2,7 @@
 
 <style>
 .modal_cuerpo{
-    background-color:#E53935!important;
+  background-color: rgb(255, 87, 51  )  !important;
     color:white !important;
     padding: 10px;
     margin: 10px;
@@ -21,7 +21,7 @@
   
 }
 #exampleModal{
-  background:rgb(245, 39, 30 ,0.6) !important;
+  background-color:  rgba(202, 207, 210, 0.6)  !important;
 }
 .simbolo{
   display: inline !important;

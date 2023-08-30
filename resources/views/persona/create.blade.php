@@ -20,6 +20,7 @@
     <form action="/personas" method="POST" id="formulario">
         @csrf
         <div class="mb-3">
+          <p>*Este campo es obligatorio</p>
           <!--Grupo Nombre -->
           <div class="formulario__grupo " id="grupo__nombre">
             <label for="nombre" class="formulario__label">Nombre *</label>

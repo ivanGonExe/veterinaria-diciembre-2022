@@ -129,7 +129,7 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                          
 
                         Swal.fire({
-                            title: '¿Esta seguro que desea dar de baja al cliente?',
+                            title: '¿Está seguro que desea dar de baja al cliente?',
                             text: "confirme la decisión",
                             icon: 'warning',
                             showCancelButton: true,

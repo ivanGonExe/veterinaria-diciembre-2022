@@ -25,8 +25,9 @@
     <form action="/personas/{{$persona->id}}" method="POST" id="formulario">
         @csrf
         @method('PUT')
-        <p class="text-info">*Este campo es obligatorio</p>
+       
         <div class="mb-3">
+          <p>*Este campo es obligatorio</p>
             <!--Grupo Nombre -->
             <div class="formulario__grupo " id="grupo__nombre">
               <label for="nombre" class="formulario__label">Nombre *</label>
@@ -101,7 +102,9 @@
   </div>  
 </div>
 </div>
+</div>
 <br>
+
 
          <div class="mb-3">
             <div class="row ">

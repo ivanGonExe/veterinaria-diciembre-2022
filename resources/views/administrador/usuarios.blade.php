@@ -84,7 +84,7 @@
                          var cod = boton[i].value;
                          
                         Swal.fire({
-                            title: '¿Esta seguro de dar de baja el usuario?',
+                            title: '¿Está seguro de dar de baja el usuario?',
                             text: "confirme la decisión",
                             icon: 'warning',
                             showCancelButton: true,

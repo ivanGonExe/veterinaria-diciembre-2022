@@ -55,17 +55,19 @@ ul
   $fechaActual = date('Y-m-d');
 @endphp
 
-<div class="form-group ml-auto  text-center">
+<div class="form-group  text-center">
   <div class="container-fluid d-flex justify-content-end" >
     <a href="{{url()->previous()}}" class="btn btn-secondary rounded-pill m-3" title="volver"><i class="fa-solid fa-arrow-rotate-left"></i></a>
   </div>
   <div class="form-group  text-center">
-    <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Agregar Mascota</h2>
+    <h2 class="text-center text-light p-2 m-2 fs-1 fw-bold" >Crear Mascota</h2>
   </div>
   <div class="row container-fluid d-flex justify-content-center">
     <div class="col-md-6">
+      
       <form action="/mascotas" method="POST" id="formulario">
         @csrf
+        <p>*Este campo es obligatorio</p>
         <!--Grupo Nombre -->
         <div class="formulario__grupo " id="grupo__nombre">
           <label for="nombre" class="formulario__label">Nombre *</label>

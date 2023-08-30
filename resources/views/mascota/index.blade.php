@@ -5,7 +5,10 @@
 
 <style>
 
-
+.volver{
+    margin-left: 90% !important;
+    display: inline;
+}
 .eliminar{
     padding: 5px!important;
  margin: 0 0px 6px 0!important;
@@ -40,15 +43,17 @@ table.dataTable td {
      
       
     </div>
-
+    
     @isset($persona)
-    <div class='container'>
-        <a type=""class="btn btn-secondary rounded-pill m-1 p-2"  id="botonVolver" href="{{$url}}"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+
+    <a type=""class="btn btn-secondary rounded-pill m-1 p-2 volver"  id="botonVolver" href="{{$url}}"><i class="fa-solid fa-arrow-rotate-left"></i></a>
         <a href="/mascotas/create/{{$persona->id}} " type="button" class="btn btn-primary rounded-pill  p-2" title="Nuevo mascota">+ Mascota <i class="fa-solid fa-dog"></i></a>
+           
+
         <p class="text-center p-2 m-2 fs-3 fw-bold text-dark" >Cliente: {{$persona->nombre}} {{$persona->apellido}} </p>  
-    </div>  
+  
     @endisset
-    <table id="example" class="table table-striped text-center" style="width:100%">
+    <table id="example" class="table table-striped text-center" >
         
    
         <thead>
@@ -139,7 +144,7 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                          var cod = boton[i].value;
 
                         Swal.fire({
-                            title: '¿ Esta Seguro que desea Borrar?',
+                            title: '¿ Está Seguro que desea Borrar la mascota?',
                             text: "confirme la decisión!",
                             icon: 'warning',
                             showCancelButton: true,

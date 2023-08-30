@@ -516,7 +516,7 @@
           var codCancelar = botonCanc[i].value;
 
           Swal.fire({
-            title:              '¿Esta Seguro que desea cancelar el turno?',
+            title:              '¿Está Seguro que desea cancelar el turno?',
             text:               "confirme la decisión",
             icon:               'warning',
             showCancelButton:    true,

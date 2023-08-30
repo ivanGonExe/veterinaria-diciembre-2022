@@ -61,6 +61,7 @@ ul {
     <div class="col-md-6">
       <form action="/mascotas/{{$mascota->id}}/edit" method="POST" id="formulario">
         @csrf
+        <p>*Este campo es obligatorio</p>
         <!--Grupo Nombre -->
         <div class="formulario__grupo " id="grupo__nombre">
           <label for="nombre" class="formulario__label">Nombre *</label>

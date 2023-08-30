@@ -68,7 +68,7 @@
               <a href="{{'/infoEmpresa'}}" class="nav-link" title="interfaces"><i class="fa-solid fa-sliders"></i></i> Info empresa</a>
             </li>
             <li class="nav-item ">
-              <a href="{{'/entradaNoticia'}}" class="nav-link" title="EntradaNoticias"><i class="fa-solid fa-pen-to-square"></i> Noticias</a>
+              <a href="{{'/entradaNoticia'}}" class="nav-link" title="EntradaNoticias"><i class="fa-solid fa-newspaper"></i> Noticias</a>
             </li>
           
           

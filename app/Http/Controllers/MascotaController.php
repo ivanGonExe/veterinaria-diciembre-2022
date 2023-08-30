@@ -33,11 +33,11 @@ class MascotaController extends Controller
      */
     public function create($id)
     {
-        $especie = Especie::all();
+        // $especie = Especie::all();
         
         return view('mascota.create')
                                 ->with('persona_id', $id)
-                                ->with('especie', $especie)
+                                // ->with('especie', $especie)
                                 ;
     }
 

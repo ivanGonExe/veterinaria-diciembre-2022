@@ -36,6 +36,7 @@
     body{
 
 background-image: linear-gradient(120deg, #ffffffae, #8e44ad);
+min-height: 600px !important;
 }
 
   .form-group{

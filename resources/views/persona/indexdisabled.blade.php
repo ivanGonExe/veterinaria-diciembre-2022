@@ -90,7 +90,7 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                          
 
                         Swal.fire({
-                            title: '¿ Esta Seguro que desea recuperar el cliente?',
+                            title: '¿ Está Seguro que desea recuperar el cliente?',
                             text: "confirme la decisión!",
                             icon: 'warning',
                             showCancelButton: true,
