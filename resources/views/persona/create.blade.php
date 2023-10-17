@@ -19,6 +19,7 @@
    <div class="col-md-6">
     <form action="/personas" method="POST" id="formulario">
         @csrf
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
         <div class="mb-3">
           <!--Grupo Nombre -->
           <div class="formulario__grupo " id="grupo__nombre">
@@ -139,7 +140,7 @@
 {{--        <a href="/personas" class="btn btn-secondary m-2" tabindex="6" id="cancelar">Cancelar</a>  --}}
 {{--         <button  class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</button>  --}}
         <a href="{{url()->previous()}}" class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
-        <button type="submit" class="btn btn-primary m-2" tabindex="7">Guardar</button>
+        <button class="btn btn-primary m-2" tabindex="7" id="enviar">Guardar</button>
         </div>
     </form>
         </div>
@@ -147,8 +148,82 @@
 </div>
 
 <script src="{{asset('validarCliente.js')}}" defer></script>
+<script>
+  let boton = document.getElementById("enviar");
+  let nombre = document.getElementById("nombre");
+  let apellido = document.getElementById("apellido");
+  let dni = document.getElementById("dni");
+  let direccion = document.getElementById("input");
+  let numeroCalle = document.getElementById("numeroCalle");
+  let codigoArea = document.getElementById("codigoArea");
+  let telefono = document.getElementById("telefono");
+  let token = document.getElementById("token");
 
-@isset($mensajeError)
+  boton.addEventListener("click", enviar);
+
+
+
+  async function enviar(e){
+    let objeto = {
+      nombre: nombre.value, 
+      apellido: apellido.value, 
+      dni: dni.value, 
+      direccion: direccion.value, 
+      numeroCalle: numeroCalle.value, 
+      codigoArea: codigoArea.value, 
+      telefono: telefono.value
+    };
+
+    const respuesta = await fetch('/personas/crear', {
+      method: 'POST',
+      mode: 'cors',
+      headers:{
+        'X-CSRF-TOKEN': token.value,
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify(objeto),
+    });
+
+
+    const data = await respuesta.json();
+    //Si hay errores
+    if(data["errores"]){
+    
+      let errores = data["errores"];
+      let mensaje = `<div class="text-center text-danger">`;
+      for(let i = 0; i < errores.length; i++){
+        mensaje += "<h6>" + errores[i] + "</h6>";
+      }
+      mensaje+= "</div>";
+      
+      
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        html: mensaje,
+      });
+    }
+
+    if(data["valido"]){ 
+      Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Cliente Guardado",
+            showConfirmButton: false,
+            timer: 4000,
+        });
+      
+      setTimeout(() => {
+        location.href = "/personas";
+      }, 4000);
+      
+    }
+    //clearInput();
+  }
+
+</script>
+<!-- @isset($mensajeError)
   <script>
     Swal.fire({
       icon: 'error',
@@ -156,7 +231,7 @@
       text: 'Ya existe un cliente registrado con el dni ingresado!',
     })
   </script>
-@endisset
+@endisset -->
 
 
 @endsection

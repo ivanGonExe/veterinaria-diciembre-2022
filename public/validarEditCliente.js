@@ -88,25 +88,25 @@ formulario.addEventListener("submit", (e) => {
         campos.direccion &&
         campos.numeroCalle
     ) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Cliente Guardado",
-            showConfirmButton: false,
-            timer: 3000,
-        });
-        /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
-        setTimeout(() => {
-            /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
+        // Swal.fire({
+        //     position: "top-center",
+        //     icon: "success",
+        //     title: "Cliente Guardado",
+        //     showConfirmButton: false,
+        //     timer: 3000,
+        // });
+        // /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
+        // setTimeout(() => {
+        //     /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
 
-            formulario.submit();
-        }, 3000);
+        //     formulario.submit();
+        // }, 3000);
 
-        document
-            .querySelectorAll(".formulario__grupo-correcto")
-            .forEach((icono) => {
-                icono.classList.remove("formulario__grupo-correcto");
-            });
+        // document
+        //     .querySelectorAll(".formulario__grupo-correcto")
+        //     .forEach((icono) => {
+        //         icono.classList.remove("formulario__grupo-correcto");
+        //     });
     } else {
         console.log("entro a la parte de mostrar el mensaje de error ");
         document

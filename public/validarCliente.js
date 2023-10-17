@@ -103,25 +103,25 @@ formulario.addEventListener("submit", (e) => {
         campos.numeroCalle
     ) {
         
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Cliente Guardado",
-            showConfirmButton: false,
-            timer: 4000,
-        });
+        // Swal.fire({
+        //     position: "top-center",
+        //     icon: "success",
+        //     title: "Cliente Guardado",
+        //     showConfirmButton: false,
+        //     timer: 4000,
+        // });
         /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
         setTimeout(() => {
             /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
 
-            formulario.submit();
+            //formulario.submit();
         }, 4000);
 
-        document
-            .querySelectorAll(".formulario__grupo-correcto")
-            .forEach((icono) => {
-                icono.classList.remove("formulario__grupo-correcto");
-            });
+        // document
+        //     .querySelectorAll(".formulario__grupo-correcto")
+        //     .forEach((icono) => {
+        //         icono.classList.remove("formulario__grupo-correcto");
+        //     });
     } else {
         console.log("entro a la parte de mostrar el mensaje de error ");
         document

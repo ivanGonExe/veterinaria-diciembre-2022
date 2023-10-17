@@ -30,7 +30,7 @@ table td{
   
     <div class="row m-2 p-2">
     <div class="col-4 text-center pt-2"><img src="../iconos/banio.png" alt="emergencias" height="160" width="160" class="iconos" id="boton"> </div>
-    <div class="col-4 text-center pt-5"><h1>Historia de servicios</h1></div>
+    <div class="col-4 text-center pt-5"><h1>Historial de servicios</h1></div>
 
     <div class="mb-3">
             <label for="" class="form-label aligne"><i class="fa-regular fa-calendar-days"></i>  Selecionar Fecha</label><br>

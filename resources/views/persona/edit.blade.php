@@ -25,6 +25,8 @@
     <form action="/personas/{{$persona->id}}" method="POST" id="formulario">
         @csrf
         @method('PUT')
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+        <input type="hidden" name="idPersona" id="idPersona" value="{{$persona->id}}">
         <p class="text-info">*Este campo es obligatorio</p>
         <div class="mb-3">
             <!--Grupo Nombre -->
@@ -130,9 +132,90 @@
    
         <button  class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</button> 
         
-        <button type="submit" class="btn btn-primary" id="botonGuardar" tabindex="7">Guardar</button>
+        <button class="btn btn-primary" id="botonGuardar" tabindex="7">Guardar</button>
     </form>
     <script src="{{asset('validarEditCliente.js')}}" defer></script>
+
+    <script>
+      let boton = document.getElementById("botonGuardar");
+      let nombreAux = document.getElementById("nombre");
+      let apellidoAux = document.getElementById("apellido");
+      let dniAux = document.getElementById("dni");
+      let direccionAux = document.getElementById("input");
+      let numeroCalleAux = document.getElementById("numeroCalle");
+      // let codigoAreaAux = document.getElementById("codigoArea");
+      // let telefonoAux = document.getElementById("telefono");
+      let tokenAux = document.getElementById("token");
+      let idPersona = document.getElementById("idPersona");
+
+      boton.addEventListener("click", enviar);
+
+
+
+      async function enviar(e){
+        let objeto = {
+          nombre: nombreAux.value, 
+          apellido: apellidoAux.value, 
+          dni: dniAux.value, 
+          direccion: direccionAux.value, 
+          numeroCalle: numeroCalleAux.value, 
+          // codigoArea: codigoAreaAux.value, 
+          // telefono: telefonoAux.value
+        };
+
+        const respuesta = await fetch('/personas/editar/' + idPersona.value, {
+          method: 'POST',
+          mode: 'cors',
+          headers:{
+            'X-CSRF-TOKEN': token.value,
+            'Content-Type': 'application/json'
+          },
+
+          body: JSON.stringify(objeto),
+        });
+
+
+        const data = await respuesta.json();
+        //Si hay errores
+        if(data["errores"]){
+        
+          let errores = data["errores"];
+          let mensaje = `<div class="text-center text-danger">`;
+          for(let i = 0; i < errores.length; i++){
+            mensaje += "<h6>" + errores[i] + "</h6>";
+          }
+          mensaje+= "</div>";
+          
+          
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            html: mensaje,
+          });
+        }
+
+        if(data["persona"]){
+          console.log(data["persona"]);
+        }
+
+        if(data["valido"]){ 
+          Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Cliente Guardado",
+                showConfirmButton: false,
+                timer: 4000,
+            });
+          
+          setTimeout(() => {
+            location.href = "/personas";
+          }, 4000);
+          
+        }
+        //clearInput();
+      }
+
+    </script>
 
 
     

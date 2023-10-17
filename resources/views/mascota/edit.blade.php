@@ -60,6 +60,9 @@ ul {
   <div class="row container-fluid d-flex justify-content-center">
     <div class="col-md-6">
       <form action="/mascotas/{{$mascota->id}}/edit" method="POST" id="formulario">
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+        <input type="hidden" name="idPersona" id="idPersona" value="{{$mascota->persona_id}}">
+        <input type="hidden" name="idMascota" id="idMascota" value="{{$mascota->id}}">
         @csrf
         <!--Grupo Nombre -->
         <div class="formulario__grupo " id="grupo__nombre">
@@ -146,7 +149,7 @@ ul {
         </div>
         <input name="urlAnterior" type="hidden" value="{{url()->previous()}}">
         <a href="{{url()->previous()}}" class="btn btn-secondary" tabindex="3">Cancelar</a>
-        <button type="submit" class="btn btn-primary" tabindex="7">Guardar</button>
+        <button class="btn btn-primary" tabindex="7" id="enviar">Guardar</button>
         <br>
       </form>
     </div>
@@ -194,5 +197,86 @@ ul {
     let macho     = document.getElementById('sexo1');
     macho.checked = true;
   }
+</script>
+<script>
+  let boton = document.getElementById("enviar");
+  let nombre = document.getElementById("nombre");
+  let color = document.getElementById("color");
+  let esterilizado1 = document.getElementById("esterilizado");
+  let especie = document.getElementById("especie");
+  let raza = document.getElementById("raza");
+  let anioNacimiento = document.getElementById("anioNacimiento");
+  let idPersona = document.getElementById("idPersona");
+  let idMascota = document.getElementById("idMascota");
+  let token = document.getElementById("token");
+
+  boton.addEventListener("click", enviar);
+
+
+
+  async function enviar(e){
+      
+    let sexo = document.querySelector('input[name="sexo"]:checked');
+    
+
+    let objeto = {
+      nombre: nombre.value, 
+      color: color.value, 
+      esterilizado: esterilizado1.value, 
+      especie: especie.value, 
+      raza: raza.value, 
+      sexo: sexo.value, 
+      anioNacimiento: anioNacimiento.value
+    };
+    
+
+    const respuesta = await fetch('/mascota/editar/' + idMascota.value, {
+      method: 'POST',
+      mode: 'cors',
+      headers:{
+        'X-CSRF-TOKEN': token.value,
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify(objeto),
+    });
+
+
+    const data = await respuesta.json();
+    //Si hay errores
+    if(data["errores"]){
+    
+      let errores = data["errores"];
+      let mensaje = `<div class="text-center text-danger">`;
+      for(let i = 0; i < errores.length; i++){
+        mensaje += "<h6>" + errores[i] + "</h6>";
+      }
+      mensaje+= "</div>";
+      
+      
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        html: mensaje,
+      });
+    }
+
+    if(data["valido"]){ 
+      Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Mascota Guardada",
+            showConfirmButton: false,
+            timer: 4000,
+        });
+      
+      setTimeout(() => {
+        location.href = "/mascotas/verMascota/" + idPersona.value;
+      }, 4000);
+      
+    }
+    //clearInput();
+  }
+
 </script>
 @endsection

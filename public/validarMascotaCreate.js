@@ -4,7 +4,7 @@ const cambio     = document.getElementsByClassName("formulario__input");
 
 
 const expresiones = {
-    nombre:         /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,25}$/, // Letras y espacios, pueden llevar acentos.
+    nombre:         /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,20}$/, // Letras y espacios, pueden llevar acentos.
     color:          /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
     raza:           /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
     anioNacimiento: /\d{4}-\d{2}-\d{2}/, // validacion de fecha  que solo contenga numeros   
@@ -78,25 +78,26 @@ formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     if (campos.nombre && campos.color && campos.raza && campos.anioNacimiento ) 
     {
-        Swal.fire({
-            position: "top-center",
-            icon:     "success",
-            title:    "Mascota Guardada",
-            showConfirmButton: false,
-            timer: 4000,
-        });
-        /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
-        setTimeout(() => {
-            /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
+        
+        // Swal.fire({
+        //     position: "top-center",
+        //     icon:     "success",
+        //     title:    "Mascota Guardada",
+        //     showConfirmButton: false,
+        //     timer: 4000,
+        // });
+        // /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
+        // setTimeout(() => {
+        //     /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
 
-            formulario.submit();
-        }, 4000);
+        //     formulario.submit();
+        // }, 4000);
 
-        document
-            .querySelectorAll(".formulario__grupo-correcto")
-            .forEach((icono) => {
-                icono.classList.remove("formulario__grupo-correcto");
-            });
+        // document
+        //     .querySelectorAll(".formulario__grupo-correcto")
+        //     .forEach((icono) => {
+        //         icono.classList.remove("formulario__grupo-correcto");
+        //     });
     } else {
         console.log("entro a la parte de mostrar el mensaje de error ");
         document
