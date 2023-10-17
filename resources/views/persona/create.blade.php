@@ -149,78 +149,78 @@
 
 <script src="{{asset('validarCliente.js')}}" defer></script>
 <script>
-  let boton = document.getElementById("enviar");
-  let nombre = document.getElementById("nombre");
-  let apellido = document.getElementById("apellido");
-  let dni = document.getElementById("dni");
-  let direccion = document.getElementById("input");
-  let numeroCalle = document.getElementById("numeroCalle");
-  let codigoArea = document.getElementById("codigoArea");
-  let telefono = document.getElementById("telefono");
-  let token = document.getElementById("token");
+  // let boton = document.getElementById("enviar");
+  // let nombre = document.getElementById("nombre");
+  // let apellido = document.getElementById("apellido");
+  // let dni = document.getElementById("dni");
+  // let direccion = document.getElementById("input");
+  // let numeroCalle = document.getElementById("numeroCalle");
+  // let codigoArea = document.getElementById("codigoArea");
+  // let telefono = document.getElementById("telefono");
+  // let token = document.getElementById("token");
 
-  boton.addEventListener("click", enviar);
-
-
-
-  async function enviar(e){
-    let objeto = {
-      nombre: nombre.value, 
-      apellido: apellido.value, 
-      dni: dni.value, 
-      direccion: direccion.value, 
-      numeroCalle: numeroCalle.value, 
-      codigoArea: codigoArea.value, 
-      telefono: telefono.value
-    };
-
-    const respuesta = await fetch('/personas/crear', {
-      method: 'POST',
-      mode: 'cors',
-      headers:{
-        'X-CSRF-TOKEN': token.value,
-        'Content-Type': 'application/json'
-      },
-
-      body: JSON.stringify(objeto),
-    });
+  // boton.addEventListener("click", enviar);
 
 
-    const data = await respuesta.json();
-    //Si hay errores
-    if(data["errores"]){
+
+  // async function enviar(e){
+  //   let objeto = {
+  //     nombre: nombre.value, 
+  //     apellido: apellido.value, 
+  //     dni: dni.value, 
+  //     direccion: direccion.value, 
+  //     numeroCalle: numeroCalle.value, 
+  //     codigoArea: codigoArea.value, 
+  //     telefono: telefono.value
+  //   };
+
+  //   const respuesta = await fetch('/personas/crear', {
+  //     method: 'POST',
+  //     mode: 'cors',
+  //     headers:{
+  //       'X-CSRF-TOKEN': token.value,
+  //       'Content-Type': 'application/json'
+  //     },
+
+  //     body: JSON.stringify(objeto),
+  //   });
+
+
+  //   const data = await respuesta.json();
+  //   //Si hay errores
+  //   if(data["errores"]){
     
-      let errores = data["errores"];
-      let mensaje = `<div class="text-center text-danger">`;
-      for(let i = 0; i < errores.length; i++){
-        mensaje += "<h6>" + errores[i] + "</h6>";
-      }
-      mensaje+= "</div>";
+  //     let errores = data["errores"];
+  //     let mensaje = `<div class="text-center text-danger">`;
+  //     for(let i = 0; i < errores.length; i++){
+  //       mensaje += "<h6>" + errores[i] + "</h6>";
+  //     }
+  //     mensaje+= "</div>";
       
       
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        html: mensaje,
-      });
-    }
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Error',
+  //       html: mensaje,
+  //     });
+  //   }
 
-    if(data["valido"]){ 
-      Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Cliente Guardado",
-            showConfirmButton: false,
-            timer: 4000,
-        });
+  //   if(data["valido"]){ 
+  //     Swal.fire({
+  //           position: "top-center",
+  //           icon: "success",
+  //           title: "Cliente Guardado",
+  //           showConfirmButton: false,
+  //           timer: 4000,
+  //       });
       
-      setTimeout(() => {
-        location.href = "/personas";
-      }, 4000);
+  //     setTimeout(() => {
+  //       location.href = "/personas";
+  //     }, 4000);
       
-    }
-    //clearInput();
-  }
+  //   }
+  //   //clearInput();
+  // }
 
 </script>
 <!-- @isset($mensajeError)

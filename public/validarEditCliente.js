@@ -1,6 +1,14 @@
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 
+let objeto = {
+    nombre: "", 
+    apellido: "", 
+    dni: "", 
+    direccion: "", 
+    numeroCalle: "" ,
+  };
+
 const expresiones = {
     nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
     apellido: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
@@ -21,18 +29,23 @@ const validarFormulario = (e) => {
     switch (e.target.name) {
         case "nombre":
             validarCampo(expresiones.nombre, e.target, "nombre");
+            objeto.nombre = e.target.value;
             break;
         case "apellido":
             validarCampo(expresiones.apellido, e.target, "apellido");
+            objeto.apellido = e.target.value;
             break;
         case "dni":
             validarCampo(expresiones.dni, e.target, "dni");
+            objeto.dni = e.target.value;
             break;
         case "numeroCalle":
             validarCampo(expresiones.numeroCalle, e.target, "numeroCalle");
+            objeto.numeroCalle = e.target.value;
             break;
         case "direccion":
             validarCampo(expresiones.direccion, e.target, "direccion");
+            objeto.direccion = e.target.value;
             break;
     }
 };
@@ -78,7 +91,7 @@ for (let i = 2; i < longitud - 1; i++) {
     inputs[i].addEventListener("blur", validarFormulario); //cuando le de un click fuera del imput */ */
 }
 
-formulario.addEventListener("submit", (e) => {
+formulario.addEventListener("submit", async(e) => {
     e.preventDefault();
 
     if (
@@ -88,13 +101,56 @@ formulario.addEventListener("submit", (e) => {
         campos.direccion &&
         campos.numeroCalle
     ) {
-        // Swal.fire({
-        //     position: "top-center",
-        //     icon: "success",
-        //     title: "Cliente Guardado",
-        //     showConfirmButton: false,
-        //     timer: 3000,
-        // });
+        let token = document.getElementById("token");
+        let idPersona = document.getElementById("idPersona");
+
+
+        const respuesta = await fetch('/personas/editar/' + idPersona.value, {
+            method: 'POST',
+            mode: 'cors',
+            headers:{
+            'X-CSRF-TOKEN': token.value,
+            'Content-Type': 'application/json'
+            },
+    
+            body: JSON.stringify(objeto),
+        });
+    
+    
+        const data = await respuesta.json();
+        //Si hay errores
+        if(data["errores"]){
+        
+            let errores = data["errores"];
+            let mensaje = `<div class="text-center text-danger">`;
+            for(let i = 0; i < errores.length; i++){
+            mensaje += "<h6>" + errores[i] + "</h6>";
+            }
+            mensaje+= "</div>";
+            
+            
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            html: mensaje,
+            });
+        }
+    
+        if(data["valido"]){ 
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Cliente Guardado",
+                showConfirmButton: false,
+                timer: 4000,
+            });
+            
+            setTimeout(() => {
+            location.href = "/personas";
+            }, 4000);
+            
+        }
+       
         // /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
         // setTimeout(() => {
         //     /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
@@ -133,6 +189,13 @@ validarCampo(expresiones.apellido, apellido[0], "apellido");
 validarCampo(expresiones.dni, dni[0], "dni");
 validarCampo(expresiones.numeroCalle, numeroCalle[0], "numeroCalle");
 validarCampo(expresiones.direccion, direccion[0], "direccion");
+
+objeto.nombre = nombre[0].value;
+objeto.apellido = apellido[0].value;
+objeto.dni = dni[0].value;
+objeto.numeroCalle = numeroCalle[0].value;
+objeto.direccion = direccion[0].value;
+
 formulario__mensaje.style.display = "none";
 
 //--------------------------------------------

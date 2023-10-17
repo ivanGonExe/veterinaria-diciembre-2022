@@ -198,37 +198,25 @@ class PersonaController extends Controller
     //         $mensajeError = true;
     //         return view('persona.create')->with('mensajeError', $mensajeError);
     //     }
+        $persona = new Persona();
+
+        $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
+        $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
+        $persona->dni         = $request->get('dni');
+        $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
+        $persona->numeroCalle = $request->numeroCalle;
+        $persona->estado      = 1;
         
+        $persona->save();
+        $telefono = new Telefono();
+        $telefono->numero     = $request->telefono;
+        $telefono->codigoArea = $request->codigoArea;
+        $telefono->persona_id = $persona->id;
+        $telefono->estado     = 1;
 
-        DB::beginTransaction();
-        try{
-            $persona = new Persona();
+        $telefono->save();
 
-            $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
-            $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
-            $persona->dni         = $request->get('dni');
-            $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
-            $persona->numeroCalle = $request->numeroCalle;
-            $persona->estado      = 1;
-            
-            $persona->save();
-            $telefono = new Telefono();
-            $telefono->numero     = $request->telefono;
-            $telefono->codigoArea = $request->codigoArea;
-            $telefono->persona_id = $persona->id;
-            $telefono->estado     = 1;
-    
-            $telefono->save();
-
-            return json_encode(["valido" => "¡Persona creada exitosamente!"]);
-        DB::commit();
-        }catch(Exception $e){
-            DB::rollBack();
-
-            return json_encode(["errores" => "Ocurrió un error inesperado, vuelva a intentarlo."]);
-        }
-
-        
+        return json_encode(["valido" => "¡Persona creada exitosamente!"]);
     }
 
     /**
