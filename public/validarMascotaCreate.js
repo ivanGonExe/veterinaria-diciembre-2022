@@ -14,21 +14,35 @@ const campos = {
     color:          false,
     raza:           false,
     anioNacimiento: false,
+};  
+
+let objeto = {
+    nombre: "", 
+    color: "", 
+    esterilizado: "", 
+    especie: "", 
+    raza: "", 
+    sexo: "", 
+    anioNacimiento: ""
 };
 
 const validarFormulario = (e) => {
     switch (e.target.name) {
         case "nombre":
             validarCampo(expresiones.nombre, e.target, "nombre");
+            objeto.nombre = e.target.value;
             break;
         case "color":
             validarCampo(expresiones.color, e.target, "color");
+            objeto.color = e.target.value;
             break;
         case "raza":
             validarCampo(expresiones.raza, e.target, "raza");
+            objeto.raza = e.target.value;
             break;
         case "anioNacimiento":
             validarCampo(expresiones.anioNacimiento, e.target, "anioNacimiento");
+            objeto.anioNacimiento = e.target.value;
             break;
     }
 };
@@ -74,11 +88,74 @@ inputs.forEach((input) => {
     input.addEventListener("blur", validarFormulario); //cuando le de un click fuera del imput */ */
 });
 
-formulario.addEventListener("submit", (e) => {
+formulario.addEventListener("submit", async(e) => {
     e.preventDefault();
     if (campos.nombre && campos.color && campos.raza && campos.anioNacimiento ) 
     {
+        objeto.esterilizado = document.getElementById("esterilizado").value;
+        objeto.especie = document.getElementById("especie").value;
+        objeto.sexo = document.querySelector('input[name="sexo"]:checked');
+
+        let token = document.getElementById("token");
+        let idPersona = document.getElementById("idPersona");
+
+        let url = "";
+
+        if (window.location.href.match("edit"))
+        {
+            let idMascota = document.getElementById("idMascota");
+
+            url = '/mascota/editar/' + idMascota.value;
+
+        }
+        else{
+            url = '/mascota/crear/' + idPersona.value;
+        }
         
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers:{
+              'X-CSRF-TOKEN': token.value,
+              'Content-Type': 'application/json'
+            },
+      
+            body: JSON.stringify(objeto),
+        });
+
+          const data = await respuesta.json();
+          //Si hay errores
+          if(data["errores"]){
+          
+            let errores = data["errores"];
+            let mensaje = `<div class="text-center text-danger">`;
+            for(let i = 0; i < errores.length; i++){
+              mensaje += "<h6>" + errores[i] + "</h6>";
+            }
+            mensaje+= "</div>";
+            
+            
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              html: mensaje,
+            });
+          }
+      
+          if(data["valido"]){ 
+            Swal.fire({
+                  position: "top-center",
+                  icon: "success",
+                  title: "Mascota Guardada",
+                  showConfirmButton: false,
+                  timer: 4000,
+              });
+            
+            setTimeout(() => {
+              location.href = "/mascotas/verMascota/" + idPersona.value;
+            }, 4000);
+            
+          }
         // Swal.fire({
         //     position: "top-center",
         //     icon:     "success",

@@ -123,6 +123,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get     ('/mascotas/habilitar/{id}',         [App\Http\Controllers\MascotaController::class,'habitarMascota'] );
             Route::get     ('/mascotas/create/{id}',            [App\Http\Controllers\MascotaController::class,'create'        ] )->name('crearMascota');
             Route::resource('/mascotas','App\Http\Controllers\MascotaController');
+            /*Rutas nuevas con fetch*/
             Route::post    ('/mascota/crear/{id}',               [App\Http\Controllers\MascotaController::class,'crearMascota']);
             Route::post    ('/mascota/editar/{id}',              [App\Http\Controllers\MascotaController::class,'editarMascota']);
             /*Rutas turno peluquero y veterinario*/
@@ -145,8 +146,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get     ('/telefonos/{id}/delete',     [App\Http\Controllers\TelefonoController  ::class,'destroy'         ] );
             Route::post    ('telefono/ver',               [App\Http\Controllers\TelefonoController  ::class,'ver'             ] );
             Route::get     ('telefonos/create/{id}',      [App\Http\Controllers\TelefonoController  ::class, 'create'         ] )->name('creartelefono');
+            /*Rutas nuevas con fetch*/
             Route::post     ('/personas/crear',      [App\Http\Controllers\PersonaController   ::class,'crearPersona'         ] );
-            Route::post     ('/personas/editar/{id}',      [App\Http\Controllers\PersonaController   ::class,'editarPersona'         ] );
+            Route::post     ('/personas/editar/{id}',      [App\Http\Controllers\PersonaController   ::class,'editarPersona'  ] );
             //Ruta de estadística
             Route::get('/estadistica/clientesNuevosPorMes/{id}',[App\Http\Controllers\PersonaController::class,'clientesNuevosPorMes'] );
             Route::resource('/personas','App\Http\Controllers\PersonaController');
