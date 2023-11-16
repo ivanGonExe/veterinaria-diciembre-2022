@@ -208,6 +208,9 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::get ('/eliminarNoticia/{id}',   [App\Http\Controllers\HomeController::class, 'destroy'] );
         Route::get ('/editarNoticia/{id}',     [App\Http\Controllers\HomeController::class, 'edit'   ] );
 
+        /*Rutas nuevas con fetch*/
+        Route::post('/empresa/editar',    [App\Http\Controllers\EmpresaController::class,'editarInformacionEmpresa']);
+
         Route::get('/estadisticas', function () {
             return view('estadistica.estadisticas');
 

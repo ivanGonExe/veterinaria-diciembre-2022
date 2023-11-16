@@ -16,6 +16,7 @@
    <div class="row">
     <form  id="formulario" name='formulario'action="/storeEmpresa" method="POST" >
         @csrf
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
         
         <!-- Grupo Descripcion -->
         <div class="formulario__grupo " id="grupo__descripcion">
@@ -97,74 +98,29 @@
 <script src="{{asset('validarInfoEmpresa.js')}}" defer></script>
 
 <script>
-    var formEdit     = document.getElementById('formulario');
-    let botonGuardar = document.getElementById('guardar');
+    // var formEdit     = document.getElementById('formulario');
+    // let botonGuardar = document.getElementById('guardar');
 
-    botonGuardar.addEventListener('click',function(event){
-            event.preventDefault();
+    // botonGuardar.addEventListener('click',function(event){
+    //         event.preventDefault();
 
-            Swal.fire({
-                            title: '¿Esta Seguro que desea guardar los cambios?',
-                            text: "confirme la decisión",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'aceptar',
-                            CancelButtonText: 'cancelar'
+    //         Swal.fire({
+    //                         title: '¿Esta Seguro que desea guardar los cambios?',
+    //                         text: "confirme la decisión",
+    //                         icon: 'warning',
+    //                         showCancelButton: true,
+    //                         confirmButtonColor: '#3085d6',
+    //                         cancelButtonColor: '#d33',
+    //                         confirmButtonText: 'aceptar',
+    //                         CancelButtonText: 'cancelar'
   
-                    }).then((result) => {
-                    if (result.isConfirmed) {    
+    //                 }).then((result) => {
+    //                 if (result.isConfirmed) {    
                         
-                        formEdit.submit(); 
+    //                     formEdit.submit(); 
                         
-                        }
-                        })     
-        })
-</script>
-
-
-<script>
-let botonCancelar = document.getElementById('cancelar');
-
-botonCancelar.addEventListener('click',function(){
-    location.href ="/login/administrador"; 
-})
-</script>
-
-
-<script>
-    let botonEditar = document.getElementById('botonEditar');
-    botonEditar.addEventListener('click',function(){
-        let inputDescripcion  = document.getElementById('descripcion');
-        let inputDireccion    = document.getElementById('direccion');
-        let inputCelular      = document.getElementById('celular');
-        let inputTelefonoFijo = document.getElementById('telefonoFijo');
-        let inputInstagram    = document.getElementById('instagram');
-        let inputMapa         = document.getElementById('mapa');
-        let botonCancelar     = document.getElementById('cancelar');
-        let botonGuardar      = document.getElementById('guardar');
-
-        inputDescripcion.disabled  = false;
-        inputDireccion.disabled    = false;
-        inputCelular.disabled      = false;
-        inputTelefonoFijo.disabled = false;
-        inputInstagram.disabled    = false;
-        inputMapa.disabled         = false;
-
-        botonEditar.style.display    = 'none';
-        botonCancelar.style.display  = 'inline';
-        botonGuardar.style.display   = 'inline';
-        
-
-    validarCampo(expresiones.descripcion, inputDescripcion, "descripcion");
-    validarCampo(expresiones.direccion, inputDireccion, "direccion");
-    validarCampo(expresiones.celular, inputCelular, "celular");
-    validarCampo(expresiones.telefonoFijo, inputTelefonoFijo, "telefonoFijo");
-    validarCampo(expresiones.instagram, inputInstagram, "instagram");
-    validarCampo(expresiones.mapa, inputMapa, "mapa");
-        
-    })
-
+    //                     }
+    //                     })     
+    //     })
 </script>
 @endsection

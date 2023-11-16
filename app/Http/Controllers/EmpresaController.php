@@ -164,17 +164,31 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function editarInformacionEmpresa(Request $request)
     {
-        $request->validate([
-            'descripcion'     => 'required| string',
-            'direccion'       => 'required| string',
-            'celular'         => 'required| string',
-            'direccion'       => 'required| string',
-            'instagram'       => 'nullable| string',
-            'mapa '           => 'nullable| string',
-            'telefonoFijo'    => 'required| string',  
-        ]);
+        $validator = Validator::make($request->all(), 
+            [
+                'descripcion'     => 'required| string',
+                'direccion'       => 'required| string',
+                'celular'         => 'required| string',
+                'instagram'       => 'nullable| string',
+                'mapa '           => 'nullable| string',
+                'telefonoFijo'    => 'required| string',
+            ], $messages = [
+                
+            ],
+            [
+                'descripcion' => 'descripción',
+                'direccion' => 'dirección',
+                'telefonoFijo' => 'teléfono fijo'
+            ]
+        );
+ 
+        if ($validator->fails()) {
+            $errores = $validator->errors()->all();
+            return json_encode(["errores" => $errores]);
+        }
+            
         $empresa= Empresa::all();
 
         $empresa[0]->descripcion = $request->descripcion;
@@ -185,51 +199,82 @@ class EmpresaController extends Controller
         $empresa[0]->mapa        = $request->mapa;
         $empresa[0]->save();
 
-        return redirect('/infoEmpresa'); 
+        return json_encode(["valido" => "¡Información editada exitosamente!"]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function show(empresa $empresa)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(empresa $empresa)
-    {
-        //
-    }
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'descripcion'     => 'required| string',
+    //         'direccion'       => 'required| string',
+    //         'celular'         => 'required| string',
+    //         'direccion'       => 'required| string',
+    //         'instagram'       => 'nullable| string',
+    //         'mapa '           => 'nullable| string',
+    //         'telefonoFijo'    => 'required| string',  
+    //     ]);
+    //     $empresa= Empresa::all();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, empresa $empresa)
-    {
-        //
-    }
+    //     $empresa[0]->descripcion = $request->descripcion;
+    //     $empresa[0]->direccion   = $request->direccion;
+    //     $empresa[0]->celular     = $request->celular;
+    //     $empresa[0]->telefonoFijo   = $request->telefonoFijo;
+    //     $empresa[0]->instagram   = $request->instagram;
+    //     $empresa[0]->mapa        = $request->mapa;
+    //     $empresa[0]->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\empresa  $empresa
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(empresa $empresa)
-    {
-        //
-    }
+    //     return redirect('/infoEmpresa'); 
+    // }
+
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  \App\Models\empresa  $empresa
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function show(empresa $empresa)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  *
+    //  * @param  \App\Models\empresa  $empresa
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function edit(empresa $empresa)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  \App\Models\empresa  $empresa
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function update(Request $request, empresa $empresa)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Remove the specified resource from storage.
+    //  *
+    //  * @param  \App\Models\empresa  $empresa
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function destroy(empresa $empresa)
+    // {
+    //     //
+    // }
 }

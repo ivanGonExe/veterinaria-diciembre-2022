@@ -37,6 +37,59 @@ class TurnoController extends Controller
 
         return view('turnos')->with('personas', $personas);
     }
+
+    //-------------------------------------------------------------------------------------
+      /**
+      * Retorna el tipo de turno dependiendo el rol del usuario logueado
+      */
+      private function getTipoTurnoPorUsuario(){
+
+        $tipoTurno = '';
+
+        if(auth()->user()->tipo == 'veterinario'){
+            $tipoTurno ='v';
+        }
+
+        if(auth()->user()->tipo == 'peluquero'){
+            $tipoTurno ='p';
+        }
+        if(auth()->user()->estadoIngreso == 'veterinario'){
+            $tipoTurno ='v';
+        }
+
+        if(auth()->user()->estadoIngreso == 'peluquero'){
+            $tipoTurno ='p';
+        }
+        
+        return $tipoTurno;
+      }
+
+      //-------------------------------------------------------------------------------------
+      /**
+      * Retorna el titulo de turno dependiendo el rol del usuario logueado
+      */
+      private function getTituloTurnoPorUsuario(){
+
+        $tituloTurno = '';
+
+        if(auth()->user()->tipo == 'veterinario'){
+            $tituloTurno ='Veterinario';
+        }
+    
+        if(auth()->user()->tipo == 'peluquero'){
+            $tituloTurno ='Peluquero';
+        }
+        if(auth()->user()->estadoIngreso == 'veterinario'){
+            $tituloTurno ='Veterinario';
+        }
+    
+        if(auth()->user()->estadoIngreso == 'peluquero'){
+            $tituloTurno ='Peluquero';
+        }
+        
+        return $tituloTurno;
+      }
+      
 //-------------------------------------------------------------------------------------
      /**
       * Display a listing of the resource.
@@ -59,20 +112,8 @@ class TurnoController extends Controller
       public function tipoTurno($id)
       {
         // Tipo de turnos traidos segun el rol
-        if(auth()->user()->tipo == 'veterinario'){
-            $tipoTurno ='v';
-        }
-
-        if(auth()->user()->tipo == 'peluquero'){
-            $tipoTurno ='p';
-        }
-        if(auth()->user()->estadoIngreso == 'veterinario'){
-            $tipoTurno ='v';
-        }
-
-        if(auth()->user()->estadoIngreso == 'peluquero'){
-            $tipoTurno ='p';
-        }
+        $tipoTurno = $this->getTipoTurnoPorUsuario();
+        
         //Paso de estado o eliminos los los turnos pasados si estan asignados pasan a estado pasado
 
         $fechaActual  = Carbon::now();
@@ -165,6 +206,8 @@ class TurnoController extends Controller
                               ->with('styleTurno',$id)
                               ->with('personas',$personas);
       } 
+
+      
 //-------------------------------------------------------------------------------------
     /**
       * Crear nueva jornada.
@@ -197,7 +240,7 @@ class TurnoController extends Controller
       */
      public function store(Request $request)
      { 
-    //validacion de los inputs
+        //validacion de los inputs
         $request->validate([
             'desde'     => 'required| date_format:H:i',
             'hasta'     => 'required| date_format:H:i|after:desde',
@@ -205,30 +248,15 @@ class TurnoController extends Controller
             'duracion'  => 'required| integer| max:120|min:15 ',
             'descanso'  => 'required| integer| max:30|min:10',
         ]);
-    //condidicion de que el hasta sea menor al desde de la jornada
+        //condidicion de que el hasta sea menor al desde de la jornada
         if($request->hasta < $request->desde){
             return redirect(url()->previous());
         }
-    //conciones para evaluar con que rol entro
-        if(auth()->user()->tipo == 'veterinario'){
-            $tipoTurno   ='v';
-            $tituloTurno ='Veterinario';
-        }
-
-        if(auth()->user()->tipo == 'peluquero'){
-            $tipoTurno   ='p';
-            $tituloTurno ='Peluquero';
-        }
-        if(auth()->user()->estadoIngreso == 'veterinario'){
-            $tipoTurno   ='v';
-            $tituloTurno ='Veterinario';
-        }
-
-        if(auth()->user()->estadoIngreso == 'peluquero'){
-            $tipoTurno   ='p';
-            $tituloTurno ='Peluquero';
-        }
-
+        
+        //conciones para evaluar con que rol entro
+        $tipoTurno = $this->getTipoTurnoPorUsuario();
+        $tituloTurno = $this->getTituloTurnoPorUsuario();
+        
         $to_time   = strtotime($request->hasta);
         $from_time = strtotime($request->desde);
         $minutes   = round(abs($to_time - $from_time) / 60);
@@ -274,24 +302,8 @@ class TurnoController extends Controller
         }
 
         //evaluacion de que tipo de turno crear
-        if(auth()->user()->tipo == 'veterinario'){
-            $tipoTurno   ='v';
-            $tituloTurno ='Veterinario';
-        }
-
-        if(auth()->user()->tipo == 'peluquero'){
-            $tipoTurno   ='p';
-            $tituloTurno ='Peluquero';
-        }
-        if(auth()->user()->estadoIngreso == 'veterinario'){
-            $tipoTurno   ='v';
-            $tituloTurno ='Veterinario';
-        }
-
-        if(auth()->user()->estadoIngreso == 'peluquero'){
-            $tipoTurno   ='p';
-            $tituloTurno ='Peluquero';
-        }
+        $tipoTurno = $this->getTipoTurnoPorUsuario();
+        $tituloTurno = $this->getTituloTurnoPorUsuario();
 
         //incersion de datos guardado del turno
         $turno         = new Turno();
@@ -317,21 +329,7 @@ class TurnoController extends Controller
     public function unTurnoSuperpuesto(Request  $request)
     {
       //Condiciones para traer los turnos
-      if(auth()->user()->tipo == 'veterinario'){
-          $tipoTurno   ='v';
-      }
-
-      if(auth()->user()->tipo == 'peluquero'){
-          $tipoTurno   ='p';
-      }
-      
-      if(auth()->user()->estadoIngreso == 'veterinario'){
-          $tipoTurno   ='v';
-      }
-
-      if(auth()->user()->estadoIngreso == 'peluquero'){
-          $tipoTurno   ='p';
-      }
+      $tipoTurno = $this->getTipoTurnoPorUsuario();
 
       // dar formato de fecha a tipo date time bd para la condicion
       $inicio   = new Carbon($request->fecha.' '.$request->desde);
@@ -359,24 +357,8 @@ class TurnoController extends Controller
     public function turnoSuperpuesto(Request  $request)
     {  
         
-        if(auth()->user()->tipo == 'veterinario'){
-            $tipoTurno   ='v';
-            $tituloTurno ='Veterinario';
-        }
-
-        if(auth()->user()->tipo == 'peluquero'){
-            $tipoTurno   ='p';
-            $tituloTurno ='Peluquero';
-        }
-        if(auth()->user()->estadoIngreso == 'veterinario'){
-            $tipoTurno   ='v';
-            $tituloTurno ='Veterinario';
-        }
-
-        if(auth()->user()->estadoIngreso == 'peluquero'){
-            $tipoTurno   ='p';
-            $tituloTurno ='Peluquero';
-        }
+        $tipoTurno = $this->getTipoTurnoPorUsuario();
+        $tituloTurno = $this->getTituloTurnoPorUsuario();
 
         $to_time   = strtotime($request->hasta);
         $from_time = strtotime($request->desde);
