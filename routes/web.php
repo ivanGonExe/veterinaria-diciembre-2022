@@ -118,9 +118,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post    ('/mascotas',                        [App\Http\Controllers\MascotaController::class,'store']); 
             Route::post    ('/mascotas/{id}/edit',              [App\Http\Controllers\MascotaController::class,'update']);
             Route::get     ('/mascotas/verMascotasDeshabitadas',[App\Http\Controllers\MascotaController::class,'verBajaMascota'] );
-            route::get     ('/mascotas/{id}/delete',            [App\Http\Controllers\MascotaController::class,'destroy'       ] );
+            route::post     ('/mascotas/delete',            [App\Http\Controllers\MascotaController::class,'destroy'       ] );
             Route::get     ('/mascotas/verMascota/{id}',        [App\Http\Controllers\MascotaController::class,'verMascota'    ] )->name('verMascotas'); 
-            Route::get     ('/mascotas/habilitar/{id}',         [App\Http\Controllers\MascotaController::class,'habitarMascota'] );
+            Route::post     ('/mascotas/habilitar',         [App\Http\Controllers\MascotaController::class,'habilitarMascota'] );
             Route::get     ('/mascotas/create/{id}',            [App\Http\Controllers\MascotaController::class,'create'        ] )->name('crearMascota');
             Route::resource('/mascotas','App\Http\Controllers\MascotaController');
             /*Rutas nuevas con fetch*/
@@ -135,9 +135,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get ('/turnos/createUnTurno',     [App\Http\Controllers\TurnoController::class,'crearUnTurno'      ] ); 
             
             /*Rutas personas*/
-            Route::get     ('/personas/{id}/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
+            Route::post     ('/personas/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
             Route::get     ('/personas/estado/{id}',      [App\Http\Controllers\PersonaController   ::class,'personasEstado'  ] );
-            Route::get     ('/personas/{id}/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
+            Route::post     ('/personas/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
             Route::get     ('/turnos/mostrar',            [App\Http\Controllers\TurnoController     ::class,'show'            ] );
             Route::get     ('/turnos/cancelar/{id}',       [App\Http\Controllers\TurnoController     ::class,'cancelar'        ] )->name('cancelarTurno');  
             Route::get     ('/tipoTurno/{id}',            [App\Http\Controllers\TurnoController     ::class,'tipoTurno'       ] );
@@ -160,7 +160,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/vistaRoles/veterinario', function () {
                 return view('empresa.veterinario.veterinario');
             });
-            Route::get('/DetallesClinicos/create/{id}',[App\Http\Controllers\DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
+            /*Rutas nuevas con fetch*/
+            Route::post('/detalleClinico/crear',[App\Http\Controllers\DetalleClinicoController::class, 'crearDetalleClinico'] );
+            //Route::get('/DetallesClinicos/create/{id}',[App\Http\Controllers\DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
             Route::resource('/historialesClinicos','App\Http\Controllers\HistorialClinicoController');
             Route::resource('/detallesClinicos','App\Http\Controllers\DetalleClinicoController');
     });

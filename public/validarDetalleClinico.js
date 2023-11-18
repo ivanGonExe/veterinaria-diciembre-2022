@@ -17,19 +17,31 @@ const campos = {
     peso:          false,
 };
 
+let objeto = {
+    patologia: "",
+    tratamiento: "",
+    observaciones: "" ,
+    peso: "" ,
+    idHistorialClinico: "" ,
+};
+
 const validarFormulario = (e) => {
     switch (e.target.name) {
         case "patologia":
             validarCampo(expresiones.patologia, e.target, "patologia");
+            objeto.patologia = e.target.value;
             break;
         case "tratamiento":
             validarCampo(expresiones.tratamiento, e.target, "tratamiento");
+            objeto.tratamiento = e.target.value;
             break;
         case "observaciones":
             validarCampo(expresiones.observaciones, e.target, "observaciones");
+            objeto.observaciones = e.target.value;
             break;
         case "peso":
             validarCampo(expresiones.peso, e.target, "peso");
+            objeto.peso = e.target.value;
             break;
     }
 };
@@ -80,7 +92,7 @@ inputs.forEach((input ) => {
     input.addEventListener("blur", validarFormulario); //cuando le de un click fuera del imput */ */
 });
 
-formulario.addEventListener("submit", (e) => {
+formulario.addEventListener("submit", async(e) => {
     e.preventDefault();
 
     if (
@@ -89,19 +101,62 @@ formulario.addEventListener("submit", (e) => {
         campos.observaciones &&
         campos.peso
     ) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Detalle clinico guardado",
-            showConfirmButton: false,
-            timer: 4000,
+        let token = document.getElementById("token");
+        let idHistorialClinico = document.getElementById("idHistorialClinico");
+
+        objeto.idHistorialClinico = idHistorialClinico.value;
+
+        const respuesta = await fetch('/detalleClinico/crear', {
+            method: 'POST',
+            mode: 'cors',
+            headers:{
+            'X-CSRF-TOKEN': token.value,
+            'Content-Type': 'application/json'
+            },
+    
+            body: JSON.stringify(objeto),
         });
+    
+    
+        const data = await respuesta.json();
+        //Si hay errores
+        if(data["errores"]){
+        
+            let errores = data["errores"];
+            let mensaje = `<div class="text-center text-danger">`;
+            for(let i = 0; i < errores.length; i++){
+            mensaje += "<h6>" + errores[i] + "</h6>";
+            }
+            mensaje+= "</div>";
+            
+            
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                html: mensaje,
+            });
+        }
+    
+        if(data["valido"]){ 
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Detalle clínico Guardado",
+                showConfirmButton: false,
+                timer: 4000,
+            });
+            
+            setTimeout(() => {
+                location.href = "/historialesClinicos/" + idHistorialClinico;
+            }, 4000);
+            
+        }
         /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
-        setTimeout(() => {
+        //setTimeout(() => {
             /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
 
-            formulario.submit();
-        }, 4000);
+            //formulario.submit();
+        //}, 4000);
 
         document
             .querySelectorAll(".formulario__grupo-correcto")

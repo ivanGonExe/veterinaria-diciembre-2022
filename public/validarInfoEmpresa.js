@@ -147,7 +147,7 @@ formulario.addEventListener("submit", async(e) => {
             Swal.fire({
                 position: "top-center",
                 icon: "success",
-                title: "Cliente Guardado",
+                title: "Imformación editada exitosamente",
                 html: mensaje,
                 showConfirmButton: false,
                 timer: 4000,

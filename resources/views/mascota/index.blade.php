@@ -119,6 +119,13 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
 }
 }); 
 
+function random() {
+    return Math.random().toString(36).substr(2); // Eliminar `0.`
+};
+ 
+function token() {
+    return random() + random(); // Para hacer el token más largo
+};
 
 /*------------------------------------------------ */
 
@@ -126,6 +133,8 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
         var botones = document.getElementsByClassName("eliminar");
 
         var boton = [];
+
+        let token = token();
         
          let cantidad = botones.length;
               for(let i = 0; i < cantidad; i++){
@@ -149,20 +158,52 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                             cancelButtonText: 'cancelar'
   
                          }).then((result) => {
-                     if (result.isConfirmed) {
-                         location.href = '/mascotas/'+cod+'/delete'; 
+                            if(result.isConfirmed){
+                                
+                                let objeto = {
+                                    idMascota: cod, 
+                                }; 
 
-                         /*  Swal.fire(
-                        'Eliminado',
-                        'Your file has been deleted.',
-                        'success'
-                        ) */
-                          }
+                                const respuesta = await fetch('/mascotas/delete', {
+                                    method: 'POST',
+                                    mode: 'cors',
+                                    headers:{
+                                    'X-CSRF-TOKEN': token,
+                                    'Content-Type': 'application/json'
+                                    },
+                            
+                                    body: JSON.stringify(objeto),
+                                });
+        
+        
+                                const data = await respuesta.json();
+        
+                                if(data["valido"]){ 
+                                    Swal.fire({
+                                        position: "top-center",
+                                        icon: "success",
+                                        title: "¡Mascota dada de baja exitosamente!",
+                                        showConfirmButton: false,
+                                        timer: 4000,
+                                    });
+                                    
+                                    setTimeout(() => {
+                                        location.reload()
+                                    }, 4000);
+                                    
+                                }
+
+                                /*  Swal.fire(
+                                'Eliminado',
+                                'Your file has been deleted.',
+                                'success'
+                                ) */
+                            }
                         })
 
-                     });
+                  });
 
-                    }
+              }
 
 
 
