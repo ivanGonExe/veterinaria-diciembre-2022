@@ -123,7 +123,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get     ('/mascotas/verMascotasDeshabitadas',[App\Http\Controllers\MascotaController::class,'verBajaMascota'] );
             route::get     ('/mascotas/{id}/delete',            [App\Http\Controllers\MascotaController::class,'destroy'       ] );
             Route::get     ('/mascotas/verMascota/{id}',        [App\Http\Controllers\MascotaController::class,'verMascota'    ] )->name('verMascotas'); 
-            Route::get     ('/mascotas/habilitar/{id}',         [App\Http\Controllers\MascotaController::class,'habitarMascota'] );
+            Route::get     ('/mascotas/habilitar/{id}',         [App\Http\Controllers\MascotaController::class,'habilitarMascota'] );
             Route::get     ('/mascotas/create/{id}',            [App\Http\Controllers\MascotaController::class,'create'        ] )->name('crearMascota');
             Route::resource('/mascotas','App\Http\Controllers\MascotaController');
 
@@ -190,6 +190,8 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::get('/login/administrador/vistas', function () {
             return view('administrador.vistas');
         });
+        Route::post     ('/usuarios/crear',         [App\Http\Controllers\Usuario  ::class,'crearUsuario'   ] );
+        Route::post     ('/usuarios/editar/{id}',   [App\Http\Controllers\Usuario  ::class,'editarUsuario'  ] );
         Route::get ('/infoEmpresa',              [App\Http\Controllers\EmpresaController::class,'indexEmpresa'] );
         Route::post('/storeEmpresa',             [App\Http\Controllers\EmpresaController::class,'store'       ] );
         Route::get ('/usuario',                  [App\Http\Controllers\Usuario          ::class,'index'       ] );

@@ -42,72 +42,72 @@ class MascotaController extends Controller
                                 ;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function store(Request $request)
+    // {
 
-        $request->validate([
-            'nombre'        => 'required| string |max:20',
-            'raza'          => 'required| string',
-            'especie'       => 'required| string',
-            'sexo'          => 'required| string|max:6|min:5',
-            'color'         => 'required| string| max:40',  
-            'esterilizado'  => 'required| string |max:2|min:2', 
-            'anioNacimiento'=> 'required|date', 
+    //     $request->validate([
+    //         'nombre'        => 'required| string |max:20',
+    //         'raza'          => 'required| string',
+    //         'especie'       => 'required| string',
+    //         'sexo'          => 'required| string|max:6|min:5',
+    //         'color'         => 'required| string| max:40',  
+    //         'esterilizado'  => 'required| string |max:2|min:2', 
+    //         'anioNacimiento'=> 'required|date', 
 
-        ]);
+    //     ]);
 
-        $mascota = Mascota::where([
-            ['nombre',         '=', mb_strtoupper($request->nombre,'UTF-8')],
-            ['raza',           '=', mb_strtoupper($request->raza,'UTF-8')],
-            ['especie',        '=', mb_strtoupper($request->especie,'UTF-8')],
-            ['sexo',           '=', mb_strtoupper($request->sexo,'UTF-8')],
-            ['color',          '=', mb_strtoupper($request->color,'UTF-8')],
-            ['esterilizado',   '=', mb_strtoupper($request->esterilizado,'UTF-8')],
-            ['anioNacimiento', '=', $request->get('anioNacimiento')],
-            ['persona_id',     '=', $request->get('id')],
-        ])->get();
+    //     $mascota = Mascota::where([
+    //         ['nombre',         '=', mb_strtoupper($request->nombre,'UTF-8')],
+    //         ['raza',           '=', mb_strtoupper($request->raza,'UTF-8')],
+    //         ['especie',        '=', mb_strtoupper($request->especie,'UTF-8')],
+    //         ['sexo',           '=', mb_strtoupper($request->sexo,'UTF-8')],
+    //         ['color',          '=', mb_strtoupper($request->color,'UTF-8')],
+    //         ['esterilizado',   '=', mb_strtoupper($request->esterilizado,'UTF-8')],
+    //         ['anioNacimiento', '=', $request->get('anioNacimiento')],
+    //         ['persona_id',     '=', $request->get('id')],
+    //     ])->get();
 
-        if(count($mascota) > 0){
-            dd();
-        }
-        else{
-            dd("No existe");
-        }
+    //     if(count($mascota) > 0){
+    //         dd();
+    //     }
+    //     else{
+    //         dd("No existe");
+    //     }
 
-        $mascota = new Mascota();
+    //     $mascota = new Mascota();
 
-        $persona = Persona::find($request->get('id'));
+    //     $persona = Persona::find($request->get('id'));
 
-        $mascota->nombre         = mb_strtoupper($request->nombre,'UTF-8');
-        $mascota->raza           = mb_strtoupper($request->raza,'UTF-8');
-        $mascota->especie        = mb_strtoupper($request->especie,'UTF-8');
-        $mascota->sexo           = mb_strtoupper($request->sexo,'UTF-8');
-        $mascota->color          = mb_strtoupper($request->color,'UTF-8');
-        $mascota->esterilizado   = mb_strtoupper($request->esterilizado,'UTF-8');
-        $mascota->estado         = 1;
-        $mascota->anioNacimiento = $request->get('anioNacimiento');
-        $mascota->persona_id     = $request->get('id');
+    //     $mascota->nombre         = mb_strtoupper($request->nombre,'UTF-8');
+    //     $mascota->raza           = mb_strtoupper($request->raza,'UTF-8');
+    //     $mascota->especie        = mb_strtoupper($request->especie,'UTF-8');
+    //     $mascota->sexo           = mb_strtoupper($request->sexo,'UTF-8');
+    //     $mascota->color          = mb_strtoupper($request->color,'UTF-8');
+    //     $mascota->esterilizado   = mb_strtoupper($request->esterilizado,'UTF-8');
+    //     $mascota->estado         = 1;
+    //     $mascota->anioNacimiento = $request->get('anioNacimiento');
+    //     $mascota->persona_id     = $request->get('id');
         
-        $mascota->save();
+    //     $mascota->save();
 
-        $historialClinico             = new HistorialClinico();
-        $historialClinico->mascota_id = $mascota->id;
-        $historialClinico->save();
+    //     $historialClinico             = new HistorialClinico();
+    //     $historialClinico->mascota_id = $mascota->id;
+    //     $historialClinico->save();
 
-        $historialServicio             = new historial_servicio();
-        $historialServicio->mascota_id = $mascota->id;
-        $historialServicio->save();
+    //     $historialServicio             = new historial_servicio();
+    //     $historialServicio->mascota_id = $mascota->id;
+    //     $historialServicio->save();
 
 
-        return redirect($request->get('urlAnterior'));
+    //     return redirect($request->get('urlAnterior'));
 
-    }
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -122,18 +122,15 @@ class MascotaController extends Controller
             ['nombre',         '=', mb_strtoupper($request->nombre,'UTF-8')],
             ['raza',           '=', mb_strtoupper($request->raza,'UTF-8')],
             ['especie',        '=', mb_strtoupper($request->especie,'UTF-8')],
+            ['sexo',           '=', mb_strtoupper($request->sexo,'UTF-8')],
+            ['color',          '=', mb_strtoupper($request->color,'UTF-8')],
+            ['esterilizado',   '=', mb_strtoupper($request->esterilizado,'UTF-8')],
+            ['anioNacimiento', '=', $request->get('anioNacimiento')],
             ['persona_id',     '=', $id],
         ])->get();
-        
+    
         if(count($mascota) > 0){
-        
-            if($mascota[0]->estado == 0){
-                return json_encode(["errores" => [0 =>"Esta mascota se encuentra dada de baja"], "mascota" => $mascota]);
-            }
-            else {
-                
-                return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
-            }
+            return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
         }
 
         $validator = Validator::make($request->all(), 
@@ -141,7 +138,7 @@ class MascotaController extends Controller
                 'nombre'        => 'required| string |max:20',
                 'raza'          => 'required| string',
                 'especie'       => 'required| string',
-                'sexo'          => 'required| string',
+                'sexo'          => 'required| string|max:6|min:5',
                 'color'         => 'required| string| max:40',  
                 'esterilizado'  => 'required| string |max:2|min:2', 
                 'anioNacimiento'=> 'required|date', 
@@ -255,6 +252,70 @@ class MascotaController extends Controller
                   ->with('mascota', $mascota);
     }
 
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function update(Request $request, $id)
+    // {   
+    //     $mascota = Mascota::find($id);
+
+    //     //Primero chequeo que no exista la mascota para el mismo cliente
+    //     $mascotaAux = Mascota::where([
+    //         ['nombre',         '=', mb_strtoupper($request->nombre,'UTF-8')],
+    //         ['raza',           '=', mb_strtoupper($request->raza,'UTF-8')],
+    //         ['especie',        '=', mb_strtoupper($request->especie,'UTF-8')],
+    //         ['sexo',           '=', mb_strtoupper($request->sexo,'UTF-8')],
+    //         ['color',          '=', mb_strtoupper($request->color,'UTF-8')],
+    //         ['esterilizado',   '=', mb_strtoupper($request->esterilizado,'UTF-8')],
+    //         ['anioNacimiento', '=', $request->get('anioNacimiento')],
+    //         ['persona_id',     '=', $mascota->persona_id],
+    //     ])->get();
+        
+    //     if(count($mascotaAux) > 0 && $mascota->id != $mascotaAux[0]->id){
+    //         dd("Entró");
+    //         return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
+    //     }
+
+    //     $validator = Validator::make($request->all(), 
+    //         [
+    //             'nombre'        => 'required| string |max:20',
+    //             'raza'          => 'required| string',
+    //             'especie'       => 'required| string',
+    //             'sexo'          => 'required| string|max:6|min:5',
+    //             'color'         => 'required| string| max:40',  
+    //             'esterilizado'  => 'required| string |max:2|min:2', 
+    //             'anioNacimiento'=> 'required|date', 
+    //         ], $messages = [
+                
+    //         ],
+    //         [
+    //             'anioNacimiento' => 'año de nacimiento'
+    //         ]
+    //     );
+ 
+    //     if ($validator->fails()) {
+    //         $errores = $validator->errors()->all();
+    //         return json_encode(["errores" => $errores]);
+    //     }
+        
+    //     $mascota->nombre         = mb_strtoupper($request->nombre, 'UTF-8');
+    //     $mascota->raza           = mb_strtoupper($request->raza,'UTF-8');
+    //     $mascota->especie        = mb_strtoupper($request->especie,'UTF-8');
+    //     $mascota->sexo           = mb_strtoupper($request->sexo,'UTF-8');
+    //     $mascota->color          = mb_strtoupper($request->color,'UTF-8');
+    //     $mascota->esterilizado   = mb_strtoupper($request->esterilizado,'UTF-8');
+    //     $mascota->anioNacimiento = $request->anioNacimiento;
+    //     //$mascota->persona_id     = $request->get('id');
+
+    //     $mascota->save();
+
+    //     return redirect($request->get('urlAnterior'));
+    // }
+
     /**
      * Update the specified resource in storage.
      *
@@ -262,8 +323,8 @@ class MascotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {   
+    public function editarMascota(Request $request, $id)
+    {
         $mascota = Mascota::find($id);
 
         //Primero chequeo que no exista la mascota para el mismo cliente
@@ -277,7 +338,7 @@ class MascotaController extends Controller
             ['anioNacimiento', '=', $request->get('anioNacimiento')],
             ['persona_id',     '=', $mascota->persona_id],
         ])->get();
-        
+    
         if(count($mascotaAux) > 0 && $mascota->id != $mascotaAux[0]->id){
             return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
         }
@@ -315,99 +376,47 @@ class MascotaController extends Controller
 
         $mascota->save();
 
-        return redirect($request->get('urlAnterior'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function editarMascota(Request $request, $id)
-    {
-        
-        $mascota = Mascota::find($id);
-        
-        //Primero chequeo que no exista la mascota para el mismo cliente
-        $mascotaAux = Mascota::where([
-            ['nombre',         '=', mb_strtoupper($request->nombre,'UTF-8')],
-            ['raza',           '=', mb_strtoupper($request->raza,'UTF-8')],
-            ['especie',        '=', mb_strtoupper($request->especie,'UTF-8')],
-            ['estado',         '=', 1],
-            ['esterilizado',   '=', mb_strtoupper($request->esterilizado,'UTF-8')],
-            ['anioNacimiento', '=', $request->anioNacimiento],
-            ['persona_id',     '=', $mascota->persona_id],
-        ])->get();
-        
-        if(count($mascotaAux) > 0 && $mascota->id != $mascotaAux[0]->id){
-            return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
-        }
-
-        $validator = Validator::make($request->all(), 
-            [
-                'nombre'        => 'required| string |max:20',
-                'raza'          => 'required| string',
-                'especie'       => 'required| string',
-                'sexo'          => 'required| string|max:6|min:5',
-                'color'         => 'required| string| max:40',  
-                'esterilizado'  => 'required| string |max:2|min:2', 
-                'anioNacimiento'=> 'required|date', 
-            ], $messages = [
-                
-            ],
-            [
-                'anioNacimiento' => 'año de nacimiento'
-            ]
-        );
- 
-        if ($validator->fails()) {
-            $errores = $validator->errors()->all();
-            return json_encode(["errores" => $errores]);
-        }
-        
-        $mascota->nombre         = mb_strtoupper($request->nombre, 'UTF-8');
-        $mascota->raza           = mb_strtoupper($request->raza,'UTF-8');
-        $mascota->especie        = mb_strtoupper($request->especie,'UTF-8');
-        $mascota->sexo           = mb_strtoupper($request->sexo,'UTF-8');
-        $mascota->color          = mb_strtoupper($request->color,'UTF-8');
-        $mascota->esterilizado   = mb_strtoupper($request->esterilizado,'UTF-8');
-        $mascota->anioNacimiento = $request->anioNacimiento;
-
-        $mascota->save();
-
-        return json_encode(["valido" => "¡Mascota creada exitosamente!"]);
+        return json_encode(["valido" => "¡Mascota editada exitosamente!"]);
     }
 
     /**
      * Remove the specified resource from storage.
      * 
      *@param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
-    {
-        $mascota         = Mascota::find($id);
-        $mascota->estado = 0;
-        $mascota->save();
-        return redirect()->route('mascotas.index');
+    public function darDeBajaMascota(Request $request)
+    {   
         
+        try {
+            $mascota         = Mascota::find($request->idMascota);
+            $mascota->estado = 0;
+            $mascota->save();
+
+        return json_encode(["valido" => "¡Mascota dada de baja exitosamente!"]);
+
+        } catch (Exeption $e) {
+            return json_encode(["errores" => "¡Error inesperado!"]);
+        }
     }
+        
+    
      /**
      * Enable the specified resource from storage.
      * 
      *@param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function habitarMascota($id, Request $request)
+    public function habilitarMascota(Request $request)
     {
-        $mascota         = Mascota::find($id);
+    
+        $mascota         = Mascota::find($request->idMascota);
         $mascota->estado = 1;
         $mascota->save();
-        return redirect()->route('mascotas.index');
+
+        return json_encode(["valido" => "¡Mascota habilitada exitosamente!"]);
+
+        //return redirect()->route('mascotas.index');
         
     }
     

@@ -88,19 +88,44 @@ class Usuario extends Controller
      
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {   $request->validate([
-        'nombre'   => 'required| string |max:255 ',
-        'mail'     => 'required| string |email |max:255 ',
-        'tipo'     => 'required| string',
-     ]);
+    public function editarUsuario(Request $request, $id)
+    
+    {   
+        $validator = Validator::make($request->all(), 
+            [
+                'name'     => 'required| string | max:255',
+                'email'    => 'required| string |email |max:255 ',
+                'tipo'     => 'required| string',
+            ], $messages = [
+                
+            ],
+            [
+                'name' => 'nombre de usuario',
+                'tipo'     => 'rol',
+            ]
+        );
+        
+        $consulta = User::where('email', '=',$request->email)
+                        ->where('id','<>', $id)
+                        ->get();
 
-        $usuario = user::find($id);
+        if ($consulta != null) {
+            return json_encode(["errores" => [0 => 'Ya existe un usuario con el correo ingresado']]);
+        }
+
+        if ($validator->fails()) {
+            $errores = $validator->errors()->all();
+            return json_encode(["errores" => $errores]);
+        }
+
+        $usuario         = user::find($id);
         $usuario->name   = $request->nombre;
         $usuario->email  = $request->mail;
         $usuario->tipo   = $request->tipo;
         $usuario->save();
-        return redirect('/usuario');
+
+        return json_encode(["valido" => "¡Usuario editado exitosamente!"]);
+
     }
 
 
@@ -135,51 +160,53 @@ class Usuario extends Controller
     public function create()
     {
         return view('auth.registro');
-        //if(auth()->user()->tipo == 'admin'){
-        //    return view('auth.registro');
-       // }
-        // else{
-        //     return redirect('/login');
-        // }
+        
     }
 
- /**
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function crearUsuario(Request $request)
     {
-        // if(auth()->user()->tipo != 'admin'){
-        //     return redirect('/login');
-        // }
 
         $request->validate([
-             'name'     => 'required| string | max:255',
-             'email'    => 'required| string |email |max:255 |unique:users',
-             'password' => 'required| string|min:8|confirmed',
-             'tipo'     => 'required| string',
+             
         ]);
 
-        $usuario = User::Where('email',$request->email)->get();
+        $validator = Validator::make($request->all(), 
+            [
+                'name'     => 'required| string | max:255',
+                'email'    => 'required| string |email |max:255 |unique:users',
+                'password' => 'required| string|min:8|confirmed',
+                'tipo'     => 'required| string',
+            ], $messages = [
+                'email.unique' => '¡Ya existe un usuario con el email ingresado!',
+            ],
+            [
+                'name' => 'nombre de usuario',
+                'tipo'     => 'rol',
+                'password' => 'contraseña'
+            ]
+        );
 
-        if($usuario->isEmpty()){
-        
-            $usuario = new User();
-            $usuario->name     = $request->name;
-            $usuario->email    = $request->email;
-            $usuario->password = Hash::make($request->password);
-            $usuario->tipo     = $request->tipo;
-            $usuario->save();
-        return redirect('/usuario');
+        if ($validator->fails()) {
+            $errores = $validator->errors()->all();
+            return json_encode(["errores" => $errores]);
+        }
 
-        }
-        else{
-            
-        Session::flash('message','El usuario ingresado ya se encuentra registrado');
-        return redirect('/registro/usuario');
-        }
+        $usuario = new User();
+        $usuario->name     = $request->name;
+        $usuario->email    = $request->email;
+        $usuario->password = Hash::make($request->password);
+        $usuario->tipo     = $request->tipo;
+        $usuario->save();
+
+        return json_encode(["valido" => "¡Usuario creado exitosamente!"]);
+
     }
 
 

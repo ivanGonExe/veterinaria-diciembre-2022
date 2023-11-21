@@ -5,46 +5,30 @@ const cambio = document.getElementsByClassName("formulario__input");
 const expresiones = {
     nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
     mail:  /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, // Letras y espacios, pueden llevar acentos.
-    // dni: /^[0-9]{1,8}$/, // Validar Numero de Dni Solo Numeros y longitud 8
-    // telefono: /^[0-9]{1,7}$/, // 0 - 9 numeros
-    // codigoArea: /^[0-9]{3,7}$/, // 0 - 9 numeros
-    // numeroCalle: /^[0-9]{1,4}$/, // 0 - 5 numeros
-    // direccion: /^([a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]){1,30}$/, // Letras y espacios, pueden llevar acentos.
+
 };
 const campos = {
     nombre: false,
     mail: false,
-    // dni: false,
-    // telefono: false,
-    // codigoArea: false,
-    // seleccionTurno: false,
-    // numeroCalle: false,
-    // direccion: false,
+};
+
+let objeto = {
+    nombre: "", 
+    email: "", 
+    password: "", 
+    tipo: ""
 };
 
 const validarFormulario = (e) => {
     switch (e.target.name) {
         case "nombre":
             validarCampo(expresiones.nombre, e.target, "nombre");
+            objeto.nombre = e.target.value;
             break;
         case "mail":
             validarCampo(expresiones.mail, e.target, "mail");
+            objeto.email = e.target.value;
             break;
-        // case "telefono":
-        //     validarCampo(expresiones.telefono, e.target, "telefono");
-        //     break;
-        // case "dni":
-        //     validarCampo(expresiones.dni, e.target, "dni");
-        //     break;
-        // case "codigoArea":
-        //     validarCampo(expresiones.codigoArea, e.target, "codigoArea");
-        //     break;
-        // case "numeroCalle":
-        //     validarCampo(expresiones.numeroCalle, e.target, "numeroCalle");
-        //     break;
-        // case "direccion":
-        //     validarCampo(expresiones.direccion, e.target, "direccion");
-        //     break;
     }
 };
 
@@ -93,43 +77,103 @@ if (window.location.href.match("edit"))
 {
     let nombre = document.getElementById('nombre');
     let mail = document.getElementById('mail');
-    
+    objeto.nombre = nombre.value;
+    objeto.email = mail.value;
     validarCampo(expresiones.nombre, nombre, "nombre");
     validarCampo(expresiones.mail, mail, "mail");
     
+}else {
+    objeto.password = document.getElementById("password").value;
+    
 }
 
-formulario.addEventListener("submit", (e) => {
+formulario.addEventListener("submit", async(e) => {
     e.preventDefault();
 
     if (
         campos.nombre &&
         campos.mail
-        // campos.dni &&
-        // campos.telefono &&
-        // campos.codigoArea &&
-        // campos.direccion &&
-        // campos.numeroCalle
     ) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Usuario Guardado",
-            showConfirmButton: false,
-            timer: 4000,
+        
+        objeto.tipo = document.getElementById("tipo").value;
+        let token = document.getElementById("token");
+
+        let url = "";
+
+        if (window.location.href.match("edit"))
+        {
+            let idUsuario = document.getElementById("idUsuario");
+            url = '/usuarios/editar/' + idUsuario.value;
+
+        }
+        else{
+            url = '/usuarios/crear/';
+        }
+console.log(url);
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers:{
+              'X-CSRF-TOKEN': token.value,
+              'Content-Type': 'application/json'
+            },
+      
+            body: JSON.stringify(objeto),
         });
-        /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
-        setTimeout(() => {
-            /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
 
-            formulario.submit();
-        }, 4000);
-
-        document
-            .querySelectorAll(".formulario__grupo-correcto")
-            .forEach((icono) => {
-                icono.classList.remove("formulario__grupo-correcto");
+          const data = await respuesta.json();
+          //Si hay errores
+          if(data["errores"]){
+          
+            let errores = data["errores"];
+            let mensaje = `<div class="text-center text-danger">`;
+            for(let i = 0; i < errores.length; i++){
+              mensaje += "<h6>" + errores[i] + "</h6>";
+            }
+            mensaje+= "</div>";
+            
+            
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              html: mensaje,
             });
+          }
+      
+          if(data["valido"]){ 
+            Swal.fire({
+                  position: "top-center",
+                  icon: "success",
+                  title: "Usuario Guardado",
+                  showConfirmButton: false,
+                  timer: 4000,
+              });
+            
+            setTimeout(() => {
+              location.href = "/usuario";
+            }, 4000);
+            
+          }
+
+        // Swal.fire({
+        //     position: "top-center",
+        //     icon: "success",
+        //     title: "Usuario Guardado",
+        //     showConfirmButton: false,
+        //     timer: 4000,
+        // });
+        // /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
+        // setTimeout(() => {
+        //     /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
+
+        //     formulario.submit();
+        // }, 4000);
+
+        // document
+        //     .querySelectorAll(".formulario__grupo-correcto")
+        //     .forEach((icono) => {
+        //         icono.classList.remove("formulario__grupo-correcto");
+        //     });
     } else {
         console.log("entro a la parte de mostrar el mensaje de error ");
         document

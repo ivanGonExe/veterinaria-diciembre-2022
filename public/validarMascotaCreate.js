@@ -91,24 +91,21 @@ inputs.forEach((input) => {
 formulario.addEventListener("submit", async(e) => {
     e.preventDefault();
     if (campos.nombre && campos.color && campos.raza && campos.anioNacimiento ) 
-    {   
+    {
         objeto.esterilizado = document.getElementById("esterilizado").value;
-        objeto.especie      = document.getElementById("especie").value;
-        objeto.sexo         = document.querySelector('input[name="sexo"]:checked').value;
-        let token           = document.getElementById("token");
-        let idPersona       = document.getElementById("idPersona");
+        objeto.especie = document.getElementById("especie").value;
+        objeto.sexo = document.querySelector('input[name="sexo"]:checked');
+
+        let token = document.getElementById("token");
+        let idPersona = document.getElementById("idPersona");
 
         let url = "";
 
         if (window.location.href.match("edit"))
         {
-            let idMascota         = document.getElementById("idMascota");
-            objeto.nombre         = nombre.value;
-            objeto.raza           = raza.value;
-            objeto.color          = color.value;
-            objeto.anioNacimiento = anioNacimiento.value;
+            let idMascota = document.getElementById("idMascota");
+
             url = '/mascota/editar/' + idMascota.value;
-            
 
         }
         else{
@@ -116,7 +113,7 @@ formulario.addEventListener("submit", async(e) => {
         }
         
         const respuesta = await fetch(url, {
-            method:'POST',
+            method: 'POST',
             mode: 'cors',
             headers:{
               'X-CSRF-TOKEN': token.value,
@@ -127,7 +124,6 @@ formulario.addEventListener("submit", async(e) => {
         });
 
           const data = await respuesta.json();
-          
           //Si hay errores
           if(data["errores"]){
           

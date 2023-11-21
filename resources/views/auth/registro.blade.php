@@ -73,7 +73,7 @@ p{
                     <img src="../iconos/logo_footer.png"  height="150" width="150"> 
                     </div>
                 <div class="card-body ">
-                    <form method="POST" action="/registrado" class="form" id="formulario">
+                    <form method="POST"class="form" id="formulario">
                         @csrf
                         @method('Post')
 
@@ -137,7 +137,7 @@ p{
                 
                         <label for="tipo" class="formulario__label text-center">Rol de Usuario*</label>
                         <div class="col-md-8 ">
-                            <select class='form-select selecTipo form-control text-center' name= 'tipo'>
+                            <select class='form-select selecTipo form-control text-center'  id = 'tipo' name= 'tipo'>
                                 <option class='form-option' value ='admin'>Administrador</option>
                                 <option class='form-option' value ='veterinario'>Veterinario</option>
                                 <option class='form-option' value ='peluquero'>Peluquero</option>

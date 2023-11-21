@@ -89,11 +89,10 @@ table.dataTable td {
                             
                             <button class="btn btn eliminar" title="Eliminar" id="{{$unaMascota->id}} " value= '{{$unaMascota->id}}'><i class="fa-solid fa-trash-can"></i></button>
                         </div>
-                        </form>
                     </td>
                 </tr>
             @endforeach
-
+            <meta name="csrf-token" content="{{ csrf_token() }}">
         </tbody>
     </table>
     </div>
@@ -126,6 +125,8 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
         var botones = document.getElementsByClassName("eliminar");
 
         var boton = [];
+
+        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         
          let cantidad = botones.length;
               for(let i = 0; i < cantidad; i++){
@@ -149,20 +150,51 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                             cancelButtonText: 'cancelar'
   
                          }).then((result) => {
-                     if (result.isConfirmed) {
-                         location.href = '/mascotas/'+cod+'/delete'; 
+                            if(result.isConfirmed){
+                                
+                                let objeto = {
+                                    idMascota: cod, 
+                                }; 
 
-                         /*  Swal.fire(
-                        'Eliminado',
-                        'Your file has been deleted.',
-                        'success'
-                        ) */
-                          }
+                                enviarConsulta(objeto, token);
+                            }
                         })
 
-                     });
+                  });
 
-                    }
+              }
+            
+async function enviarConsulta(objeto, token){
+    const respuesta = await fetch('/mascotas/deshabilitar', {
+            method: 'POST',
+            mode: 'cors',
+        headers:{
+            'X-CSRF-TOKEN': token,
+            'Content-Type': 'application/json'
+        },
+        
+        body: JSON.stringify(objeto),
+    });
+
+
+    const data = await respuesta.json();
+        console.log(data);
+
+        if(data["valido"]){ 
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "¡Mascota dada de baja exitosamente!",
+                showConfirmButton: false,
+                timer: 4000,
+            });
+                
+            setTimeout(() => {
+                location.reload()
+            }, 4000);
+                
+        }
+    }
 
 
 

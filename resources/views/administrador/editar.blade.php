@@ -24,9 +24,11 @@
             <div class=" container-fluid d-flex justify-content-center">
     <div class= "container w-50 m-5">  
    
-    <form action="/usuario/guardar/{{$usuario->id}}" method="POST" id="formulario">
+    <form method="POST" id="formulario">
         @csrf
         @method('Post')
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+        <input type="hidden" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}">
         <h5 class="text-white">*Campo obligatorio</h5>
         <!--Grupo Nombre -->
         <div class="formulario__grupo mt-3" id="grupo__nombre">
@@ -50,7 +52,7 @@
         <label for="tipo" class=" formulario__label text-md-right">Rol*</label>
             
                             <div >
-                                <select class='form-control selecTipo' name= 'tipo'>
+                                <select class='form-control selecTipo'  id ='tipo' name= 'tipo'>
                                 @if($usuario->tipo == 'admin' )
                                     <option class='form-option' value ='admin' selected>Administrador</option>
                                 @else
