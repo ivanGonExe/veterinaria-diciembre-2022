@@ -157,13 +157,6 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                                 }; 
 
                                 enviarConsulta(objeto, token);
-                               
-
-                                /*  Swal.fire(
-                                'Eliminado',
-                                'Your file has been deleted.',
-                                'success'
-                                ) */
                             }
                         })
 
@@ -171,37 +164,37 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
 
               }
             
-        async function enviarConsulta(objeto, token){
-            const respuesta = await fetch('/mascotas/deshabilitar', {
-                method: 'POST',
-                mode: 'cors',
-                headers:{
-                'X-CSRF-TOKEN': token,
-                'Content-Type': 'application/json'
-                },
+async function enviarConsulta(objeto, token){
+    const respuesta = await fetch('/mascotas/deshabilitar', {
+            method: 'POST',
+            mode: 'cors',
+        headers:{
+            'X-CSRF-TOKEN': token,
+            'Content-Type': 'application/json'
+        },
         
-                body: JSON.stringify(objeto),
+        body: JSON.stringify(objeto),
+    });
+
+
+    const data = await respuesta.json();
+        console.log(data);
+
+        if(data["valido"]){ 
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "¡Mascota dada de baja exitosamente!",
+                showConfirmButton: false,
+                timer: 4000,
             });
-
-
-            const data = await respuesta.json();
-            console.log(data);
-
-            if(data["valido"]){ 
-                Swal.fire({
-                    position: "top-center",
-                    icon: "success",
-                    title: "¡Mascota dada de baja exitosamente!",
-                    showConfirmButton: false,
-                    timer: 4000,
-                });
                 
-                setTimeout(() => {
-                    location.reload()
-                }, 4000);
+            setTimeout(() => {
+                location.reload()
+            }, 4000);
                 
-            }
         }
+    }
 
 
 

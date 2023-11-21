@@ -385,35 +385,22 @@ class MascotaController extends Controller
      *@param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
-    {   return json_encode(["valido" => "¡Mascota dada de baja exitosamente!"]);
-        $mascota         = Mascota::find($request->idMascota);
-        $mascota->estado = 0;
-        $mascota->save();
-
-        return json_encode(["valido" => "¡Mascota dada de baja exitosamente!"]);
-
-        //return redirect()->route('mascotas.index');
-        
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * 
-     *@param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function darDeBajaMascota(Request $request)
-    {   return json_encode(["valido" => "¡Mascota dada de baja exitosamente!"]);
-        $mascota         = Mascota::find($request->idMascota);
-        $mascota->estado = 0;
-        $mascota->save();
+    {   
+        
+        try {
+            $mascota         = Mascota::find($request->idMascota);
+            $mascota->estado = 0;
+            $mascota->save();
 
         return json_encode(["valido" => "¡Mascota dada de baja exitosamente!"]);
 
-        //return redirect()->route('mascotas.index');
-        
+        } catch (Exeption $e) {
+            return json_encode(["errores" => "¡Error inesperado!"]);
+        }
     }
+        
+    
      /**
      * Enable the specified resource from storage.
      * 
