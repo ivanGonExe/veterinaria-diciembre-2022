@@ -96,7 +96,7 @@ table td{
             </tr>   
             <tr>
                
-                <th>Descripcoión:</th><td colspan="2" >{{$unDetalle->descripcion}}</td>
+                <th>Descripción:</th><td colspan="2" >{{$unDetalle->descripcion}}</td>
             </tr>  
             
             </table>                 

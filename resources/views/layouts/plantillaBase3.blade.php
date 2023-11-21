@@ -96,7 +96,7 @@ color: #041182e1;
 body{
   min-height: 150vh;
  
-	background-image: linear-gradient(120deg, #ffffffae, #87c9ecaf);
+	/* background-image: linear-gradient(120deg, #ffffffae, #87c9ecaf); */
 }
 
 .barra {

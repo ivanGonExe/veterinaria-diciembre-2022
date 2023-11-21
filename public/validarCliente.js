@@ -120,7 +120,7 @@ formulario.addEventListener("submit", async(e) => {
         campos.direccion &&
         campos.numeroCalle
     ) {
-
+        
     let token = document.getElementById("token");
 
 

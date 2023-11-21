@@ -64,7 +64,7 @@ ul
   </div>
   <div class="row container-fluid d-flex justify-content-center">
     <div class="col-md-6">
-      <form action="/mascotas" method="POST" id="formulario">
+      <form  method="POST" id="formulario">
       <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
       <input type="hidden" name="idPersona" id="idPersona" value="{{$persona_id}}">
         @csrf

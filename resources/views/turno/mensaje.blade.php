@@ -8,49 +8,43 @@
 <script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
 <style>
 
-
-*{
-	margin: 0;
-	padding: 0;
-	text-decoration: none;
-	font-family: "Montserrat", sans-serif;
-}
-
-body{
-	min-height: 150vh;
-	background-image: linear-gradient(120deg, #ef0f56, #8e44ad);
-    
-}
-
 .formulario{
-	width: 600px;
-	background: #f1f1f1;
-	height: auto px;
-	padding: 20px 20px; 
-	border-radius: 10px;
-	position: absolute;
-	left: 50%;
-	top: 65%;
-	transform: translate(-50%, -50%);
-	box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
-}
+background-color: #ffffff;
+padding: 20px;
+margin: 5px;
+border-radius: 10px;
 
-.formulario h1{
-	text-align: center;
-	margin-bottom: 60px;
-	color: #333;
-	font-weight: 600;
-    font-size: 30px;
 }
-
+.formulario__input:hover{
+background-color: silver;
+}
+.formulario__input {
+width: 100%;
+height: 45px;
+line-height: 45px; /*cuando se escriba adentro*/
+/*padding: arriba derecha abajo izquierda*/
+padding: 0px 40px 0 10px;
+transition: 0.3s ease all; /*transicion de tiempo para todas las propiedades*/
+}.a{
+    font-size: 16px;
+}
+.card-header{
+font-size: 16px;
+border-radius: 10px;
+background-color: #fff !important;
+}
 .box-input{
-	border-bottom: 2px solid #adadad;
+	border-bottom: 1px solid #000000;
 	position: relative;
-	margin: 30px 0;
+	margin: 30px 0px;
+  
+} 
+label{
+    margin: 5px;
 }
-
 .box-input input{
-	font-size: 16px;
+
+    font-size: 14px;
 	color: #333;
 	border: none;
 	width: 100%;
@@ -58,57 +52,49 @@ body{
 	background: none;
 	padding: 0 5px;
 	height: 40px;
+   
+} 
+.box-input .mensaje{
+
+    font-size: 20px;
+ 
+}.mensaje:hover{
+    background-color: rgb(122, 116, 116,0.3);
+    zoom: 101%;
 }
 
-.box-input span::before{
-	content: attr(data-placeholder);
-	position: absolute;
-	top: 50%;
-	left: 5px;
-	color: #adadad;
-	transform: translateY(-50%);
-	z-index: -1;
-	transition: .5s;
-}
 
-.box-input span::after{
-	content: '';
-	position: absolute;
-	width: 0%;
-	height: 2px;
-	background: linear-gradient(120deg, #3498db, #8e44ad);
-	transition: .5s;
-}
-
-.focus + span::before{
-	top: -5px;
-}
-
-.focus + span::after{
-	width: 100%;
-}
 
 .boton{
 	display: block;
-	width: 100%;
+	width: 50%;
 	height: 50px;
-	background-color: #48bb78;
-	border: solid 2px #48bb78;
+   
+    align-content: center;
+	
+	background-color: #0b743f;
 	color: #fff;
+    border: solid 2px #2F855A;
 	border-radius: 5px;
 	font-weight: 600;
 	font-size: 18px;
 	box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 40px;
 }
 
 .boton:hover{
-	background-color: #2F855A;
+	
+    background-color: #48bb78;
+    color:#000000;
 	border: solid 2px #2F855A;
-	transition: .5s;
-}
+	transition: 0.2s;
+  
+} */
 
 .botonVolver{
-    padding-top: 50px;
+
+    
 }
 
 </style>
@@ -121,38 +107,42 @@ body{
 </head>
 <body>
 <div class='text-end botonVolver '>
-    <a type=""class="btn btn-secondary rounded-pill m-1 p-2"  id="botonVolver" href="{{url()->previous()}}"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+    <a type=""class="btn btn-secondary rounded-pill botonVolver"  id="botonVolver" href="{{url()->previous()}}"><i class="fa-solid fa-arrow-rotate-left"></i></a>
 </div>
 <input type="hidden" id="nombre" value="{{$persona->nombre}} {{$persona->apellido}}">
 <input type="hidden" id="telefono" value="{{$celular}}">
 <input type="hidden" id="fecha" value="{{$fecha}}">
 <input type="hidden" id="hora" value="{{$hora}}">
 
-
-    <form id="formulario" class="formulario">
-        <h1>Enviar WhatsApp al Cliente 🐶</h1>
-      
-        <div class="box-input">
-            <label>Nombre del Cliente</label>
-            <input name="nombre" id="nombre" type="text" class="text-center text-white fs-3 bg-success" value="{{$persona->nombre}} {{$persona->apellido}}" disabled>
-             </div>
-             <div class="box-input">
-                <label>Teléfono</label>
-                <input name="telefono" id="telefono" type="text" class="text-center text-white fs-3 bg-success" value="{{$celular}}" disabled>
-                 </div>
-        <!-- <div class="box-input">
-            <label>Turno</label>
-            <input name="fecha_hora" id="fecha_hora" class="text-center fs-4" type="text" value="Fecha: {{$fecha}} &nbsp; Hora: {{$hora}}" disabled>
-          
-        </div> -->
-        <div class="box-input m-2" >
-            <label>Mensaje</label>
-            <input name="mensaje" id="mensaje" class="text-center text-dark" type="areatext" value="" placeholder="Escriba su mensaje..." >
+   <div class="container-fluid d-flex justify-content-center"> 
             
+            <form id="formulario" class="formulario">
+              
+                <div class="card-header text-center">Enviar WhatsApp al Cliente</div>
+                <div class="box-input">
+                    <label>Nombre</label>
+                    <input name="nombre" id="nombre" type="text" class="text-center text-white  bg-success" value="{{$persona->nombre}} {{$persona->apellido}}" disabled>
+                    </div>
+                    <div class="box-input">
+                        <label>Celular</label>
+                        <input name="telefono" id="telefono" type="text" class="text-center text-white  bg-success" value="{{$celular}}" disabled>
+                        </div>
+            
+                <div class="box-input" >
+                    <label>Mensaje</label>
+                    <input name="mensaje" id="mensaje" class="mensaje" type="areatext" value="" placeholder="Escriba su mensaje..." >
+                    
+                </div>
+                <div class="container-fluid d-flex justify-content-center"> 
+
+               
+                <button id="submit" type="submit" class="boton text-center"><i class="fab fa-whatsapp"></i> Enviar</button>
+                   </div>           
+            </form>
+
         </div>
-       
-        <button id="submit" type="submit" class="boton"><i class="fab fa-whatsapp"></i> Enviar WhatsApp</button>
-    </form>
+   </div>
+    
 
 <script>
      function isMobile() {

@@ -114,6 +114,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 //-------------------------------------------------------------------------------------------------------
     Route::group(['middleware' => 'Usuario_Vet_pel'], function () {
+                    /*Rutas nuevas con fetch*/
+                    Route::post    ('/mascota/crear/{id}',               [App\Http\Controllers\MascotaController::class,'crearMascota']);
+                    Route::post    ('/mascota/editar/{id}',              [App\Http\Controllers\MascotaController::class,'editarMascota']);
         /*Rutas mascotas*/
             Route::post    ('/mascotas',                        [App\Http\Controllers\MascotaController::class,'store']); 
             Route::post    ('/mascotas/{id}/edit',              [App\Http\Controllers\MascotaController::class,'update']);
@@ -123,9 +126,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get     ('/mascotas/habilitar/{id}',         [App\Http\Controllers\MascotaController::class,'habitarMascota'] );
             Route::get     ('/mascotas/create/{id}',            [App\Http\Controllers\MascotaController::class,'create'        ] )->name('crearMascota');
             Route::resource('/mascotas','App\Http\Controllers\MascotaController');
-            /*Rutas nuevas con fetch*/
-            Route::post    ('/mascota/crear/{id}',               [App\Http\Controllers\MascotaController::class,'crearMascota']);
-            Route::post    ('/mascota/editar/{id}',              [App\Http\Controllers\MascotaController::class,'editarMascota']);
+
             /*Rutas turno peluquero y veterinario*/
             Route::post('/mascotas/create/{id}',     [App\Http\Controllers\TurnoController::class,'storeUnTurno'      ] );
             Route::post('/turnos/superpuesto',       [App\Http\Controllers\TurnoController::class,'turnoSuperpuesto'  ] );

@@ -122,15 +122,18 @@ class MascotaController extends Controller
             ['nombre',         '=', mb_strtoupper($request->nombre,'UTF-8')],
             ['raza',           '=', mb_strtoupper($request->raza,'UTF-8')],
             ['especie',        '=', mb_strtoupper($request->especie,'UTF-8')],
-            ['sexo',           '=', mb_strtoupper($request->sexo,'UTF-8')],
-            ['color',          '=', mb_strtoupper($request->color,'UTF-8')],
-            ['esterilizado',   '=', mb_strtoupper($request->esterilizado,'UTF-8')],
-            ['anioNacimiento', '=', $request->get('anioNacimiento')],
             ['persona_id',     '=', $id],
         ])->get();
-    
+        
         if(count($mascota) > 0){
-            return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
+        
+            if($mascota[0]->estado == 0){
+                return json_encode(["errores" => [0 =>"Esta mascota se encuentra dada de baja"], "mascota" => $mascota]);
+            }
+            else {
+                
+                return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
+            }
         }
 
         $validator = Validator::make($request->all(), 
@@ -138,7 +141,7 @@ class MascotaController extends Controller
                 'nombre'        => 'required| string |max:20',
                 'raza'          => 'required| string',
                 'especie'       => 'required| string',
-                'sexo'          => 'required| string|max:6|min:5',
+                'sexo'          => 'required| string',
                 'color'         => 'required| string| max:40',  
                 'esterilizado'  => 'required| string |max:2|min:2', 
                 'anioNacimiento'=> 'required|date', 
@@ -276,7 +279,6 @@ class MascotaController extends Controller
         ])->get();
         
         if(count($mascotaAux) > 0 && $mascota->id != $mascotaAux[0]->id){
-            dd("Entró");
             return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
         }
 
@@ -325,20 +327,20 @@ class MascotaController extends Controller
      */
     public function editarMascota(Request $request, $id)
     {
+        
         $mascota = Mascota::find($id);
-
+        
         //Primero chequeo que no exista la mascota para el mismo cliente
         $mascotaAux = Mascota::where([
             ['nombre',         '=', mb_strtoupper($request->nombre,'UTF-8')],
             ['raza',           '=', mb_strtoupper($request->raza,'UTF-8')],
             ['especie',        '=', mb_strtoupper($request->especie,'UTF-8')],
-            ['sexo',           '=', mb_strtoupper($request->sexo,'UTF-8')],
-            ['color',          '=', mb_strtoupper($request->color,'UTF-8')],
+            ['estado',         '=', 1],
             ['esterilizado',   '=', mb_strtoupper($request->esterilizado,'UTF-8')],
-            ['anioNacimiento', '=', $request->get('anioNacimiento')],
+            ['anioNacimiento', '=', $request->anioNacimiento],
             ['persona_id',     '=', $mascota->persona_id],
         ])->get();
-    
+        
         if(count($mascotaAux) > 0 && $mascota->id != $mascotaAux[0]->id){
             return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
         }
@@ -372,7 +374,6 @@ class MascotaController extends Controller
         $mascota->color          = mb_strtoupper($request->color,'UTF-8');
         $mascota->esterilizado   = mb_strtoupper($request->esterilizado,'UTF-8');
         $mascota->anioNacimiento = $request->anioNacimiento;
-        //$mascota->persona_id     = $request->get('id');
 
         $mascota->save();
 

@@ -59,7 +59,7 @@ ul {
   </div>
   <div class="row container-fluid d-flex justify-content-center">
     <div class="col-md-6">
-      <form action="/mascotas/{{$mascota->id}}/edit" method="POST" id="formulario">
+      <form  method="POST" id="formulario">
         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
         <input type="hidden" name="idPersona" id="idPersona" value="{{$mascota->persona_id}}">
         <input type="hidden" name="idMascota" id="idMascota" value="{{$mascota->id}}">

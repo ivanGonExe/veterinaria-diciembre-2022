@@ -132,7 +132,7 @@
    
         <button  class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</button> 
         
-        <button class="btn btn-primary" id="botonGuardar" tabindex="7">Guardar</button>
+        <button type="submit" class="btn btn-primary" id="botonGuardar" tabindex="7">Guardar</button>
     </form>
     <script src="{{asset('validarEditCliente.js')}}" defer></script>
 
