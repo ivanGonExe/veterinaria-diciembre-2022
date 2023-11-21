@@ -27,6 +27,8 @@
     <form action="/usuario/guardar/{{$usuario->id}}" method="POST" id="formulario">
         @csrf
         @method('Post')
+        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+        <input type="hidden" name="idUsuario" id="idUsuario" value="{{ $usuario->id }}">
         <h5 class="text-white">*Campo obligatorio</h5>
         <!--Grupo Nombre -->
         <div class="formulario__grupo mt-3" id="grupo__nombre">

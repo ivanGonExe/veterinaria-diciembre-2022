@@ -201,6 +201,9 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::post('/usuario/guardarPassword/{id}','App\Http\Controllers\Usuario@updatePassword');
         Route::post('/usuario/guardar/{id}','App\Http\Controllers\Usuario@update');
         Route::get ('/usuario/Admin/ingresoAOtro/{id}','App\Http\Controllers\Usuario@CambioEstadoInicio');
+
+        Route::post     ('/usuarios/crear',         [App\Http\Controllers\PersonaController   ::class,'crearUsuario'   ] );
+        Route::post     ('/usuarios/editar/{id}',   [App\Http\Controllers\PersonaController   ::class,'editarUsuario'  ] );
     /* posteo ckeditor */
     //noticias 
         Route::post('/guardarNoticia',         [App\Http\Controllers\HomeController::class, 'store'  ] )->name('store');

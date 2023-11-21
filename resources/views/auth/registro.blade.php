@@ -76,6 +76,7 @@ p{
                     <form method="POST" action="/registrado" class="form" id="formulario">
                         @csrf
                         @method('Post')
+                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
                         <div class="formulario__grupo mt-3 col-md-8" id="grupo__name">
                             <label for="name" class="formulario__label text-center">{{ __('Nombre*') }}</label>

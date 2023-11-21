@@ -22,13 +22,22 @@ const campos = {
     // direccion: false,
 };
 
+let objeto = {
+    nombre: "", 
+    email: "", 
+    password: "", 
+    tipo: ""
+};
+
 const validarFormulario = (e) => {
     switch (e.target.name) {
         case "nombre":
             validarCampo(expresiones.nombre, e.target, "nombre");
+            objeto.nombre = e.target.value;
             break;
         case "mail":
             validarCampo(expresiones.mail, e.target, "mail");
+            objeto.email = e.target.value;
             break;
         // case "telefono":
         //     validarCampo(expresiones.telefono, e.target, "telefono");
@@ -99,7 +108,7 @@ if (window.location.href.match("edit"))
     
 }
 
-formulario.addEventListener("submit", (e) => {
+formulario.addEventListener("submit", async(e) => {
     e.preventDefault();
 
     if (
@@ -111,25 +120,87 @@ formulario.addEventListener("submit", (e) => {
         // campos.direccion &&
         // campos.numeroCalle
     ) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Usuario Guardado",
-            showConfirmButton: false,
-            timer: 4000,
+        objeto.password = document.getElementById("password").value;
+        objeto.tipo = document.getElementsByClassName("tipo")[0].value;
+        let token = document.getElementById("token");
+
+        let url = "";
+
+        if (window.location.href.match("edit"))
+        {
+            let idUsuario = document.getElementById("idUsuario");
+
+            url = '/usuarios/editar/' + idUsuario.value;
+
+        }
+        else{
+            url = '/usuarios/crear/';
+        }
+
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers:{
+              'X-CSRF-TOKEN': token.value,
+              'Content-Type': 'application/json'
+            },
+      
+            body: JSON.stringify(objeto),
         });
-        /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
-        setTimeout(() => {
-            /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
 
-            formulario.submit();
-        }, 4000);
-
-        document
-            .querySelectorAll(".formulario__grupo-correcto")
-            .forEach((icono) => {
-                icono.classList.remove("formulario__grupo-correcto");
+          const data = await respuesta.json();
+          //Si hay errores
+          if(data["errores"]){
+          
+            let errores = data["errores"];
+            let mensaje = `<div class="text-center text-danger">`;
+            for(let i = 0; i < errores.length; i++){
+              mensaje += "<h6>" + errores[i] + "</h6>";
+            }
+            mensaje+= "</div>";
+            
+            
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              html: mensaje,
             });
+          }
+      
+          if(data["valido"]){ 
+            Swal.fire({
+                  position: "top-center",
+                  icon: "success",
+                  title: "Usuario Guardado",
+                  showConfirmButton: false,
+                  timer: 4000,
+              });
+            
+            setTimeout(() => {
+              location.href = "/usuario";
+            }, 4000);
+            
+          }
+
+        // Swal.fire({
+        //     position: "top-center",
+        //     icon: "success",
+        //     title: "Usuario Guardado",
+        //     showConfirmButton: false,
+        //     timer: 4000,
+        // });
+        // /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
+        // setTimeout(() => {
+        //     /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
+
+        //     formulario.submit();
+        // }, 4000);
+
+        // document
+        //     .querySelectorAll(".formulario__grupo-correcto")
+        //     .forEach((icono) => {
+        //         icono.classList.remove("formulario__grupo-correcto");
+        //     });
     } else {
         console.log("entro a la parte de mostrar el mensaje de error ");
         document
