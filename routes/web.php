@@ -118,10 +118,11 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post    ('/mascotas',                        [App\Http\Controllers\MascotaController::class,'store']); 
             Route::post    ('/mascotas/{id}/edit',              [App\Http\Controllers\MascotaController::class,'update']);
             Route::get     ('/mascotas/verMascotasDeshabitadas',[App\Http\Controllers\MascotaController::class,'verBajaMascota'] );
-            route::post     ('/mascotas/delete',            [App\Http\Controllers\MascotaController::class,'destroy'       ] );
+            //Route::post     ('/mascotas/delete',            [App\Http\Controllers\MascotaController::class,'destroy'       ] );
             Route::get     ('/mascotas/verMascota/{id}',        [App\Http\Controllers\MascotaController::class,'verMascota'    ] )->name('verMascotas'); 
             Route::post     ('/mascotas/habilitar',         [App\Http\Controllers\MascotaController::class,'habilitarMascota'] );
             Route::get     ('/mascotas/create/{id}',            [App\Http\Controllers\MascotaController::class,'create'        ] )->name('crearMascota');
+            Route::post     ('/mascotas/deshabilitar',            [App\Http\Controllers\MascotaController::class,'darDeBajaMascota'] );
             Route::resource('/mascotas','App\Http\Controllers\MascotaController');
             /*Rutas nuevas con fetch*/
             Route::post    ('/mascota/crear/{id}',               [App\Http\Controllers\MascotaController::class,'crearMascota']);
