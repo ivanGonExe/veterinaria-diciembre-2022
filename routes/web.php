@@ -114,9 +114,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 //-------------------------------------------------------------------------------------------------------
     Route::group(['middleware' => 'Usuario_Vet_pel'], function () {
-                    /*Rutas nuevas con fetch*/
-                    Route::post    ('/mascota/crear/{id}',               [App\Http\Controllers\MascotaController::class,'crearMascota']);
-                    Route::post    ('/mascota/editar/{id}',              [App\Http\Controllers\MascotaController::class,'editarMascota']);
+            /*Rutas nuevas con fetch*/
+            Route::post    ('/mascota/crear/{id}',               [App\Http\Controllers\MascotaController::class,'crearMascota']);
+            Route::post    ('/mascota/editar/{id}',              [App\Http\Controllers\MascotaController::class,'editarMascota']);
         /*Rutas mascotas*/
             Route::post    ('/mascotas',                        [App\Http\Controllers\MascotaController::class,'store']); 
             Route::post    ('/mascotas/{id}/edit',              [App\Http\Controllers\MascotaController::class,'update']);
@@ -198,14 +198,15 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::get('/login/administrador/vistas', function () {
             return view('administrador.vistas');
         });
-        Route::post     ('/usuarios/crear',         [App\Http\Controllers\Usuario  ::class,'crearUsuario'   ] );
-        Route::post     ('/usuarios/editar/{id}',   [App\Http\Controllers\Usuario  ::class,'editarUsuario'  ] );
-        Route::get ('/infoEmpresa',              [App\Http\Controllers\EmpresaController::class,'indexEmpresa'] );
-        Route::post('/storeEmpresa',             [App\Http\Controllers\EmpresaController::class,'store'       ] );
-        Route::get ('/usuario',                  [App\Http\Controllers\Usuario          ::class,'index'       ] );
-        Route::get ('/usuario/{id}/delete',      [App\Http\Controllers\Usuario          ::class,'destroy'     ] );
-        Route::get ('/usuario/{id}/edit',        [App\Http\Controllers\Usuario          ::class,'edit'        ] );
-        Route::get ('/usuario/{id}/editPassword',[App\Http\Controllers\Usuario          ::class,'editPassword'] );
+        Route::post('/usuario/eliminar',         [App\Http\Controllers\Usuario          ::class,'eliminarUsuario'] );
+        Route::post('/usuarios/crear',           [App\Http\Controllers\Usuario          ::class,'crearUsuario'   ] );
+        Route::post('/usuarios/editar/{id}',     [App\Http\Controllers\Usuario          ::class,'editarUsuario'  ] );
+        Route::get ('/infoEmpresa',              [App\Http\Controllers\EmpresaController::class,'indexEmpresa'   ] );
+        Route::post('/storeEmpresa',             [App\Http\Controllers\EmpresaController::class,'store'          ] );
+        Route::get ('/usuario',                  [App\Http\Controllers\Usuario          ::class,'index'          ] );
+        Route::get ('/usuario/{id}/delete',      [App\Http\Controllers\Usuario          ::class,'destroy'        ] );
+        Route::get ('/usuario/{id}/edit',        [App\Http\Controllers\Usuario          ::class,'edit'           ] );
+        Route::get ('/usuario/{id}/editPassword',[App\Http\Controllers\Usuario          ::class,'editPassword'   ] );
         Route::post('/storeEmpresa','App\Http\Controllers\EmpresaController@store');
         Route::post('/usuario/guardarPassword/{id}','App\Http\Controllers\Usuario@updatePassword');
         Route::post('/usuario/guardar/{id}','App\Http\Controllers\Usuario@update');

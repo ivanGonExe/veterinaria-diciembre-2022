@@ -41,7 +41,7 @@
                   </tr>
                   
                 @endforeach
-               
+                <meta name="csrf-token" content="{{ csrf_token() }}">
           </tbody>
       </table>
       </div>
@@ -72,6 +72,7 @@
         var botones = document.getElementsByClassName("eliminar");
         var boton = [];
         
+        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         
          let cantidad = botones.length;
               for(let i = 0; i < cantidad; i++){
@@ -95,6 +96,12 @@
   
                          }).then((result) => {
                      if (result.isConfirmed) {
+
+                        let objeto = {
+                            idUsuario: cod, 
+                        }; 
+
+                        enviarConsulta(objeto, token);
                         
                          location.href = '/usuario/'+cod+'/delete'; 
 
@@ -105,6 +112,49 @@
 
                     }
 });
+
+async function enviarConsulta(objeto, token){
+    const respuesta = await fetch('/usuario/eliminar', {
+            method: 'POST',
+            mode: 'cors',
+        headers:{
+            'X-CSRF-TOKEN': token,
+            'Content-Type': 'application/json'
+        },
+        
+        body: JSON.stringify(objeto),
+    });
+
+
+    const data = await respuesta.json();
+    console.log(data);
+
+    if(data["valido"]){ 
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "¡Usuario eliminado exitosamente!",
+            showConfirmButton: false,
+            timer: 4000,
+        });
+            
+        setTimeout(() => {
+            location.reload()
+        }, 4000);
+            
+    }
+
+    if(data["errores"]){ 
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "¡Error inesperado!",
+            showConfirmButton: false,
+            timer: 4000,
+        });
+    }
+}
+
 
   
   </script>

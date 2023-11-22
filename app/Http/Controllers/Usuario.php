@@ -210,6 +210,21 @@ class Usuario extends Controller
     }
 
 
+        // /**
+        //  * Remove the specified resource from storage.
+        // * 
+        // * @param  \Illuminate\Http\Request  $request
+        // * @param  int  $id
+        // * @return \Illuminate\Http\Response
+        // */
+        // public function destroy($id, Request $request)
+        // {   if(auth()->user()->id != $id){
+        //         $usuario = user::find($id);
+        //         $usuario->delete();
+        //     }
+        //     return redirect('/usuario');
+        // }
+
         /**
          * Remove the specified resource from storage.
         * 
@@ -217,12 +232,19 @@ class Usuario extends Controller
         * @param  int  $id
         * @return \Illuminate\Http\Response
         */
-        public function destroy($id, Request $request)
-        {   if(auth()->user()->id != $id){
-                $usuario = user::find($id);
-                $usuario->delete();
+        public function eliminarUsuario(Request $request)
+        {   
+            try {
+                if(auth()->user()->id != $request->idUsuario){
+                    $usuario = user::find($request->idUsuario);
+                    $usuario->delete();
+                }
+    
+                return json_encode(["valido" => "¡Usuario eliminado exitosamente!"]);
+    
+            } catch (Exeption $e) {
+                return json_encode(["errores" => "¡Error inesperado!"]);
             }
-            return redirect('/usuario');
         }
 
 

@@ -194,6 +194,17 @@ async function enviarConsulta(objeto, token){
             }, 4000);
                 
         }
+
+        if(data["errores"]){ 
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "¡Error inesperado!",
+                showConfirmButton: false,
+                timer: 4000,
+            });
+        }
+        
     }
 
 
