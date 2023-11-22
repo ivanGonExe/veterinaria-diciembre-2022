@@ -29,14 +29,58 @@ class DetalleClinicoController extends Controller
         return view('detalleClinico.create')->with('historialClinico_id', $id);
     }
 
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function store(Request $request)
+    // {
+    //     $detalleClinico = new DetalleClinico();
+
+    //     $fecha = Carbon::now();
+
+    //     $detalleClinico->observaciones       = $request->get('observaciones');
+    //     $detalleClinico->tratamiento         = $request->get('tratamiento');
+    //     $detalleClinico->patologia           = $request->get('patologia');
+    //     $detalleClinico->peso                = $request->peso;
+    //     $detalleClinico->historialClinico_id = $request->get('idHistorialClinico');
+    //     $detalleClinico->fechaAtencion       = $fecha;
+        
+    //     $detalleClinico->save();
+        
+
+    //     return redirect('historialesClinicos/'.$detalleClinico->historialClinico_id);
+    // }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function crearDetalleClinico(Request $request)
     {
+        $validator = Validator::make($request->all(), 
+            [
+                'observaciones'     => 'string',
+                'tratamiento'       => 'required| string',
+                'patologia'         => 'required| string',
+                'peso'              => 'nullable| float',
+            ], $messages = [
+                
+            ],
+            [
+                'patologia' => 'patología',
+            ]
+        );
+ 
+        if ($validator->fails()) {
+            $errores = $validator->errors()->all();
+            return json_encode(["errores" => $errores]);
+        }
+
         $detalleClinico = new DetalleClinico();
 
         $fecha = Carbon::now();
@@ -50,8 +94,7 @@ class DetalleClinicoController extends Controller
         
         $detalleClinico->save();
         
-
-        return redirect('historialesClinicos/'.$detalleClinico->historialClinico_id);
+        return json_encode(["valido" => "¡Detalle clínico creado exitosamente!"]);
     }
 
     /**

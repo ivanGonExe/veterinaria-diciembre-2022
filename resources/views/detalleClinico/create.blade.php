@@ -36,7 +36,7 @@ label{
     <div class="form-group  text-center ">
         <div class="row container-fluid d-flex justify-content-center m-2 p-2 ">
             <div class="col-md-6">
-        <form action="/detallesClinicos" method="POST" id='formulario'>
+        <form method="POST" id='formulario'>
             @csrf
             <div class="formulario__grupo " id="grupo__patologia">
                 <label for="patologia" class="formulario__label">Patología *</label>
@@ -68,7 +68,7 @@ label{
             <div class="formulario__grupo " id="grupo__observaciones">
                 <label for="observaciones" class="form-label">Observaciones</label>
                 <div class="formulario__grupo-input">
-                    <textarea  type="text" class="form-control formulario__input" id="observaciones" name="observaciones" maxlength='301' tabindex="1" style="overflow: hidden"required></textarea>
+                    <textarea  type="text" class="form-control formulario__input" id="observaciones" name="observaciones" maxlength='301' tabindex="1" style="overflow: hidden"></textarea>
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
                 <p class="formulario__input-error">La descripción tiene que ser de 2 a 300 caracteres y solo puede contener letras y numeros.</p>
@@ -76,7 +76,7 @@ label{
 
             <div class="mb-3">
                 <label for="" class="form-label"></label>
-                <input id="id" name="idHistorialClinico" type="hidden" class="form-control" tabindex="5" value="{{$historialClinico_id}}"required>
+                <input id="idHistorialClinico" name="idHistorialClinico" type="hidden" class="form-control" tabindex="5" value="{{$historialClinico_id}}"required>
             </div>
             
             <input name="urlAnterior" type="hidden" value="{{url()->previous()}}">
