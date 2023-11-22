@@ -36,26 +36,27 @@
 
         <tbody>
         @foreach($mascotas as $unaMascota) 
-                <tr style="text-align:left">
-                    <td >{{$unaMascota->nombre}}</td>
-                    <td >{{$unaMascota->raza}}</td>
-                    <td >{{$unaMascota->especie}}</td>
-                    <td >{{$unaMascota->color}}</td>
-                    <td >{{$unaMascota->sexo}}</td>
-                    <td>{{$unaMascota->esterilizado}}</td>
-                    <td >{{\Carbon\Carbon::parse($unaMascota->anioNacimiento)->format('d-m-Y')}}</td>
-        
+            <tr style="text-align:left">
+                <td >{{$unaMascota->nombre}}</td>
+                <td >{{$unaMascota->raza}}</td>
+                <td >{{$unaMascota->especie}}</td>
+                <td >{{$unaMascota->color}}</td>
+                <td >{{$unaMascota->sexo}}</td>
+                <td>{{$unaMascota->esterilizado}}</td>
+                <td >{{\Carbon\Carbon::parse($unaMascota->anioNacimiento)->format('d-m-Y')}}</td>
+    
 {{--                     <td>{{$unaMascota->persona->nombre." ".$unaMascota->persona->apellido}}</td> --}}
-                    <td style="text-align:left">
-                            <input type="hidden" name="urlAnterior" value="{{Request::path()}}">
-                           
-                            {{-- <a href="/mascotas/{{$unaMascota->id}}/edit" class="btn btn" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a> --}}
-                            
-                            <button class="btn btn eliminar" title="habilitar" id="{{$unaMascota->id}} " value= '{{$unaMascota->id}}'><div class="text-success"><i class="fa-solid fa-dog"></i>+</div></button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
+                <td style="text-align:left">
+                        <input type="hidden" name="urlAnterior" value="{{Request::path()}}">
+                        
+                        {{-- <a href="/mascotas/{{$unaMascota->id}}/edit" class="btn btn" title="Editar"><i class="fa-solid fa-pen-to-square"></i></a> --}}
+                        
+                        <button class="btn btn eliminar" title="habilitar" id="{{$unaMascota->id}} " value= '{{$unaMascota->id}}'><div class="text-success"><i class="fa-solid fa-dog"></i>+</div></button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         </tbody>
     </table>
@@ -112,17 +113,63 @@ $(document).ready(function (){
                             cancelButtonText: 'cancelar'
   
                          }).then((result) => {
-                     if (result.isConfirmed) {
-                         location.href = '/mascotas/habilitar/'+cod;
+                            if (result.isConfirmed) {
+                                let objeto = {
+                                    idMascota: cod, 
+                                }; 
 
-                    
-                          }
+                                enviarConsulta(objeto, token);
+
+                            }
                         })
 
                      });
 
                     }
 });
+
+async function enviarConsulta(objeto, token){
+    const respuesta = await fetch('/mascotas/habilitar', {
+            method: 'POST',
+            mode: 'cors',
+        headers:{
+            'X-CSRF-TOKEN': token,
+            'Content-Type': 'application/json'
+        },
+        
+        body: JSON.stringify(objeto),
+    });
+
+
+    const data = await respuesta.json();
+    console.log(data);
+
+    if(data["valido"]){ 
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "¡Mascota dada de baja exitosamente!",
+            showConfirmButton: false,
+            timer: 4000,
+        });
+            
+        setTimeout(() => {
+            location.reload()
+        }, 4000);
+            
+    }
+
+    if(data["errores"]){ 
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "¡Error inesperado!",
+            showConfirmButton: false,
+            timer: 4000,
+        });
+    }
+        
+}
 
 
 

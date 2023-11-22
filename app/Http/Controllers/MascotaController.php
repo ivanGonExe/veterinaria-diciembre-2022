@@ -409,14 +409,16 @@ class MascotaController extends Controller
      */
     public function habilitarMascota(Request $request)
     {
-    
-        $mascota         = Mascota::find($request->idMascota);
-        $mascota->estado = 1;
-        $mascota->save();
+        try {
+            $mascota         = Mascota::find($request->idMascota);
+            $mascota->estado = 1;
+            $mascota->save();
 
-        return json_encode(["valido" => "¡Mascota habilitada exitosamente!"]);
+            return json_encode(["valido" => "¡Mascota habilitada exitosamente!"]);
 
-        //return redirect()->route('mascotas.index');
+        } catch (Exeption $e) {
+            return json_encode(["errores" => "¡Error inesperado!"]);
+        }
         
     }
     

@@ -140,7 +140,7 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                          var cod = boton[i].value;
 
                         Swal.fire({
-                            title: '¿ Esta Seguro que desea Borrar?',
+                            title: '¿ Esta Seguro que desea dar de baja la mascota?',
                             text: "confirme la decisión!",
                             icon: 'warning',
                             showCancelButton: true,
