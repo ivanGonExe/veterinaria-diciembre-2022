@@ -140,9 +140,11 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get ('/turnos/createUnTurno',     [App\Http\Controllers\TurnoController::class,'crearUnTurno'      ] ); 
             
             /*Rutas personas*/
-            Route::get     ('/personas/{id}/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
+            Route::post     ('/personas/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
+            Route::post     ('/personas/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
+            //Route::get     ('/personas/{id}/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
             Route::get     ('/personas/estado/{id}',      [App\Http\Controllers\PersonaController   ::class,'personasEstado'  ] );
-            Route::get     ('/personas/{id}/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
+            //Route::get     ('/personas/{id}/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
             Route::get     ('/turnos/mostrar',            [App\Http\Controllers\TurnoController     ::class,'show'            ] );
             Route::get     ('/turnos/cancelar/{id}',       [App\Http\Controllers\TurnoController     ::class,'cancelar'        ] )->name('cancelarTurno');  
             Route::get     ('/tipoTurno/{id}',            [App\Http\Controllers\TurnoController     ::class,'tipoTurno'       ] );
@@ -165,7 +167,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/vistaRoles/veterinario', function () {
                 return view('empresa.veterinario.veterinario');
             });
-            Route::get('/DetallesClinicos/create/{id}',[App\Http\Controllers\DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
+            /*Rutas nuevas con fetch*/
+            Route::post('/detalleClinico/crear',[App\Http\Controllers\DetalleClinicoController::class, 'crearDetalleClinico'] );
+            //Route::get('/DetallesClinicos/create/{id}',[App\Http\Controllers\DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
             Route::resource('/historialesClinicos','App\Http\Controllers\HistorialClinicoController');
             Route::resource('/detallesClinicos','App\Http\Controllers\DetalleClinicoController');
     });
@@ -206,6 +210,7 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::post('/usuario/guardarPassword/{id}','App\Http\Controllers\Usuario@updatePassword');
         Route::post('/usuario/guardar/{id}','App\Http\Controllers\Usuario@update');
         Route::get ('/usuario/Admin/ingresoAOtro/{id}','App\Http\Controllers\Usuario@CambioEstadoInicio');
+        
     /* posteo ckeditor */
     //noticias 
         Route::post('/guardarNoticia',         [App\Http\Controllers\HomeController::class, 'store'  ] )->name('store');

@@ -278,7 +278,7 @@ class PersonaController extends Controller
         
         $persona->save();
 
-        return json_encode(["valido" => "¡Persona creada exitosamente!"]);
+        return json_encode(["valido" => "¡Persona editada exitosamente!"]);
     }
 
     /**
