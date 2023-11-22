@@ -140,13 +140,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get ('/turnos/createUnTurno',     [App\Http\Controllers\TurnoController::class,'crearUnTurno'      ] ); 
             
             /*Rutas personas*/
-            Route::post     ('/personas/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
-            Route::post     ('/personas/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
+            Route::post     ('/personas/deshabilitar',    [App\Http\Controllers\PersonaController   ::class,'deshabilitarPersona'         ] );
+            Route::post     ('/personas/habilitar',       [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
             //Route::get     ('/personas/{id}/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
             Route::get     ('/personas/estado/{id}',      [App\Http\Controllers\PersonaController   ::class,'personasEstado'  ] );
             //Route::get     ('/personas/{id}/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
             Route::get     ('/turnos/mostrar',            [App\Http\Controllers\TurnoController     ::class,'show'            ] );
-            Route::get     ('/turnos/cancelar/{id}',       [App\Http\Controllers\TurnoController     ::class,'cancelar'        ] )->name('cancelarTurno');  
+            Route::get     ('/turnos/cancelar/{id}',      [App\Http\Controllers\TurnoController     ::class,'cancelar'        ] )->name('cancelarTurno');  
             Route::get     ('/tipoTurno/{id}',            [App\Http\Controllers\TurnoController     ::class,'tipoTurno'       ] );
             Route::get     ('/turnos/{id}/delete',        [App\Http\Controllers\TurnoController     ::class,'destroy'         ] );
             Route::get     ('/turnos/mensaje/{id}',       [App\Http\Controllers\TurnoController     ::class,'mensaje'         ] );
@@ -154,8 +154,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post    ('telefono/ver',               [App\Http\Controllers\TelefonoController  ::class,'ver'             ] );
             Route::get     ('telefonos/create/{id}',      [App\Http\Controllers\TelefonoController  ::class, 'create'         ] )->name('creartelefono');
             /*Rutas nuevas con fetch*/
-            Route::post     ('/personas/crear',      [App\Http\Controllers\PersonaController   ::class,'crearPersona'         ] );
-            Route::post     ('/personas/editar/{id}',      [App\Http\Controllers\PersonaController   ::class,'editarPersona'  ] );
+            Route::post     ('/personas/crear',           [App\Http\Controllers\PersonaController   ::class,'crearPersona'    ] );
+            Route::post     ('/personas/editar/{id}',     [App\Http\Controllers\PersonaController   ::class,'editarPersona'   ] );
             //Ruta de estadística
             Route::get('/estadistica/clientesNuevosPorMes/{id}',[App\Http\Controllers\PersonaController::class,'clientesNuevosPorMes'] );
             Route::resource('/personas','App\Http\Controllers\PersonaController');

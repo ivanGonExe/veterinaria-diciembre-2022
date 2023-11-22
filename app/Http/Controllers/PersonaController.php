@@ -339,35 +339,80 @@ class PersonaController extends Controller
         return redirect('/personas/estado/1');
     }
 
+    // /**
+    //  * Remove the specified resource from storage.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function destroy($id)
+    // {
+    //     $persona = Persona::find($id);
+    //     $persona->estado = 0;
+    //     $persona->telefonos->estado = 0;
+    //     $persona->telefonos->save();
+    //     $persona->save();
+    //     return redirect('/personas');
+    // }
+
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
+     * 
+     *@param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $persona = Persona::find($id);
-        $persona->estado = 0;
-        $persona->telefonos->estado = 0;
-        $persona->telefonos->save();
-        $persona->save();
-        return redirect('/personas');
+    public function deshabilitarPersona(Request $request)
+    {   
+        try {
+            $persona = Persona::find($request->idPersona);
+            $persona->estado = 0;
+            $persona->telefonos->estado = 0;
+            $persona->telefonos->save();
+            $persona->save();
+
+            return json_encode(["valido" => "¡Persona deshabilitada exitosamente!"]);
+
+        } catch (Exeption $e) {
+            return json_encode(["errores" => "¡Error inesperado!"]);
+        }
     }
     
-    /**
+    // /**
+    //  * Enable the specified resource from storage.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function habilitarCliente($id)
+    // {
+    //     $persona = Persona::find($id);
+    //     $persona->estado = 1;
+    //     $persona->telefonos->estado = 1;
+    //     $persona->telefonos->save();
+    //     $persona->save();
+    //     return redirect('/personas/estado/0');
+    // }
+
+     /**
      * Enable the specified resource from storage.
-     *
-     * @param  int  $id
+     * 
+     *@param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function habilitarCliente($id)
+    public function habilitarCliente(Request $request)
     {
-        $persona = Persona::find($id);
-        $persona->estado = 1;
-        $persona->telefonos->estado = 1;
-        $persona->telefonos->save();
-        $persona->save();
-        return redirect('/personas/estado/0');
+        try {
+            $persona = Persona::find($request->idPersona);
+            $persona->estado = 1;
+            $persona->telefonos->estado = 1;
+            $persona->telefonos->save();
+            $persona->save();
+
+            return json_encode(["valido" => "¡Persona habilitada exitosamente!"]);
+
+        } catch (Exeption $e) {
+            return json_encode(["errores" => "¡Error inesperado!"]);
+        }
+        
     }
 }

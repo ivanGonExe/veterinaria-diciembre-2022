@@ -38,6 +38,7 @@
                     </td>
                 </tr>
             @endforeach
+            <meta name="csrf-token" content="{{ csrf_token() }}">
 
         </tbody>
     </table>
@@ -100,21 +101,62 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                             cancelButtonText: 'cancelar'
   
                          }).then((result) => {
-                     if (result.isConfirmed) {
+                            if (result.isConfirmed) {
 
-                         location.href = '/personas/'+cod+'/habilitar'; 
+                                let objeto = {
+                                    idPersona: cod, 
+                                }; 
 
-                         /*  Swal.fire(
-                        'Eliminado',
-                        'Your file has been deleted.',
-                        'success'
-                        ) */
-                          }
+                                enviarConsulta(objeto, token);
+                            }
                         })
 
                      });
 
                     }
+            
+    async function enviarConsulta(objeto, token){
+        const respuesta = await fetch('/personas/habilitar', {
+                method: 'POST',
+                mode: 'cors',
+            headers:{
+                'X-CSRF-TOKEN': token,
+                'Content-Type': 'application/json'
+            },
+            
+            body: JSON.stringify(objeto),
+        });
+
+
+        const data = await respuesta.json();
+            console.log(data);
+
+        if(data["valido"]){ 
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "¡Cliente habilitado exitosamente!",
+                showConfirmButton: false,
+                timer: 4000,
+            });
+                
+            setTimeout(() => {
+                location.reload()
+            }, 4000);
+                
+        }
+
+        if(data["errores"]){ 
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "¡Error inesperado!",
+                showConfirmButton: false,
+                timer: 4000,
+            });
+        }
+        
+    }
 
 
 
