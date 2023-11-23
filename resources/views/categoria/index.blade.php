@@ -65,6 +65,7 @@ table td{
             @endforeach
         </tbody> 
     </table>
+    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
     </div>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -97,29 +98,57 @@ table td{
                 id      = botones[i].id;
                 boton[i]= document.getElementById(`${id}`);
                 
-                boton[i].addEventListener('click', function(){
-                        
+                boton[i].addEventListener('click', async()=>{
+                    console.log(boton[i]);
                         for(let J=0 ; J<longCate ; J++ ){
 
                             if(categorias[J].id == boton[i].value){
-                                
-                                Swal.fire({
-                                    
-                                    title: 'Esta Seguro que desea Borrar la categoria '+categorias[J].descripcion+'?',
-                                    text: "confirme la decisión!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Si, eliminar'
-
-                                }).then((result) => {
-
-                                    if (result.isConfirmed) {
-                        
-                                        location.href = '/quitarUnaCategoria/'+boton[i].value;
-                                    }
+                                let objeto = {
+                                    id: categorias[J].id,
+                                };
+                                let url ='/categorias/borrar';
+                                const respuesta = await fetch(url, {
+                                    method: 'POST',
+                                    mode: 'cors',
+                                    headers:{
+                                    'X-CSRF-TOKEN': token.value,
+                                    'Content-Type': 'application/json'
+                                },
+      
+                                    body: JSON.stringify(objeto),
                                 });
+                                const data = await respuesta.json();
+
+                                //Si hay errores
+                                if(data["errores"]){
+                                
+                                    let errores = data["errores"];
+                                    let mensaje = `<div class="text-center text-danger">`;
+                                    for(let i = 0; i < errores.length; i++){
+                                    mensaje += "<h6>" + errores[i] + "</h6>";
+                                    }
+                                    mensaje+= "</div>";
+                                    
+                                    
+                                    Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    html: mensaje,
+                                    });
+                                }
+                            
+                                if(data["valido"]){ 
+                                    Swal.fire({
+                                        position: "top-center",
+                                        icon: "success",
+                                        title: data["valido"][0],
+                                        showConfirmButton: false,
+                                        timer: 4000,
+                                    });
+                                    setTimeout(() => {
+                                        location.href = '/categorias';
+                                    }, 4000);
+                                }    
                             }
                         }
                     })

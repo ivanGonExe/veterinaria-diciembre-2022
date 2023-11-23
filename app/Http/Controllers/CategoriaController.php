@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\categoria;
+use App\Models\articulo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -112,15 +113,26 @@ class CategoriaController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $categoria = Categoria::find($id);
-        $categoria->delete();
-        $categorias  = Categoria::all();
-        
-        return view ('categoria.index')->with('categorias',$categorias);
+    public function borrarCategoria(Request $request)
+    {   
+        $categoriaArticulo = Articulo::where('categoria_id', $request->id)
+                                    ->get();
+
+        if(count($categoriaArticulo)>0){
+            return json_encode(["errores" => [0 =>"¡La categoria deseada a borrar se encuentra en uso de un articulo!"]]);
+        }
+
+        try {
+            
+            $categoria = Categoria::find($request->id);
+            $categoria->delete();
+            return json_encode(["valido" => [0 =>"¡Categoria borrada correctamante!"]]);
+
+        } catch (Exeption $e) {
+            return json_encode(["errores" => "¡Error inesperado!"]);
+        }
     }
 }

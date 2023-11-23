@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
         /*Rutas articulos */
             Route::post    ('/articulos/create',            [App\Http\Controllers\ArticuloController        ::class,'store'                ]);
             Route::post    ('/categorias/all',              [App\Http\Controllers\CategoriaController       ::class,'all'                  ]);
+            Route::post    ('/categorias/borrar',           [App\Http\Controllers\CategoriaController       ::class,'borrarCategoria'      ]);
             Route::post    ('/articulos/filter',            [App\Http\Controllers\ArticuloController        ::class,'filter'               ]);
             Route::get     ('/Guardar/ConfigArticulo',      [App\Http\Controllers\ArticuloController        ::class,'GuardarConfigArticulo']);
             Route::get     ('/Lotes/{id}/Vencimientodelete',[App\Http\Controllers\loteDescripcionController ::class,'Vencimientodelete'    ]);
@@ -114,23 +115,21 @@ Route::group(['middleware' => 'auth'], function () {
 
 //-------------------------------------------------------------------------------------------------------
     Route::group(['middleware' => 'Usuario_Vet_pel'], function () {
-            /*Rutas nuevas con fetch*/
-            Route::post    ('/mascota/crear/{id}',               [App\Http\Controllers\MascotaController::class,'crearMascota']);
-            Route::post    ('/mascota/editar/{id}',              [App\Http\Controllers\MascotaController::class,'editarMascota']);
+                    /*Rutas nuevas con fetch*/
+                    Route::post    ('/mascota/crear/{id}',               [App\Http\Controllers\MascotaController::class,'crearMascota']);
+                    Route::post    ('/mascota/editar/{id}',              [App\Http\Controllers\MascotaController::class,'editarMascota']);
         /*Rutas mascotas*/
-            Route::post    ('/mascotas',                         [App\Http\Controllers\MascotaController::class,'store']); 
-            Route::post    ('/mascotas/{id}/edit',               [App\Http\Controllers\MascotaController::class,'update']);
-            Route::get     ('/mascotas/verMascotasDeshabitadas', [App\Http\Controllers\MascotaController::class,'verBajaMascota'] );
+            Route::post    ('/mascotas',                        [App\Http\Controllers\MascotaController::class,'store']); 
+            Route::post    ('/mascotas/{id}/edit',              [App\Http\Controllers\MascotaController::class,'update']);
+            Route::get     ('/mascotas/verMascotasDeshabitadas',[App\Http\Controllers\MascotaController::class,'verBajaMascota'] );
             //route::get     ('/mascotas/{id}/delete',            [App\Http\Controllers\MascotaController::class,'destroy'       ] );
-            Route::get     ('/mascotas/verMascota/{id}',         [App\Http\Controllers\MascotaController::class,'verMascota'    ] )->name('verMascotas'); 
-            Route::post    ('/mascotas/habilitar',               [App\Http\Controllers\MascotaController::class,'habilitarMascota'] );
-            //Route::get     ('/mascotas/habilitar',               [App\Http\Controllers\MascotaController::class,'habilitarMascota'] );
-            Route::get     ('/mascotas/create/{id}',             [App\Http\Controllers\MascotaController::class,'create'        ] )->name('crearMascota'); 
-            Route::post    ('/mascotas/deshabilitar',            [App\Http\Controllers\MascotaController::class,'darDeBajaMascota'] );
+            Route::get     ('/mascotas/verMascota/{id}',        [App\Http\Controllers\MascotaController::class,'verMascota'    ] )->name('verMascotas'); 
+            Route::post     ('/mascotas/habilitar',         [App\Http\Controllers\MascotaController::class,'habilitarMascota'] );
+            Route::get     ('/mascotas/habilitar/{id}',         [App\Http\Controllers\MascotaController::class,'habilitarMascota'] );
+            Route::get     ('/mascotas/create/{id}',            [App\Http\Controllers\MascotaController::class,'create'        ] )->name('crearMascota'); 
+            Route::post     ('/mascotas/deshabilitar',            [App\Http\Controllers\MascotaController::class,'darDeBajaMascota'] );
             Route::resource('/mascotas','App\Http\Controllers\MascotaController');
-             /*Rutas nuevas con fetch*/
-            Route::post    ('/mascota/crear/{id}',               [App\Http\Controllers\MascotaController::class,'crearMascota']);
-            Route::post    ('/mascota/editar/{id}',              [App\Http\Controllers\MascotaController::class,'editarMascota']);
+             
             /*Rutas turno peluquero y veterinario*/
             Route::post('/mascotas/create/{id}',     [App\Http\Controllers\TurnoController::class,'storeUnTurno'      ] );
             Route::post('/turnos/superpuesto',       [App\Http\Controllers\TurnoController::class,'turnoSuperpuesto'  ] );
@@ -140,13 +139,11 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get ('/turnos/createUnTurno',     [App\Http\Controllers\TurnoController::class,'crearUnTurno'      ] ); 
             
             /*Rutas personas*/
-            Route::post     ('/personas/deshabilitar',    [App\Http\Controllers\PersonaController   ::class,'deshabilitarPersona'         ] );
-            Route::post     ('/personas/habilitar',       [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
-            //Route::get     ('/personas/{id}/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
+            Route::get     ('/personas/{id}/delete',      [App\Http\Controllers\PersonaController   ::class,'destroy'         ] );
             Route::get     ('/personas/estado/{id}',      [App\Http\Controllers\PersonaController   ::class,'personasEstado'  ] );
-            //Route::get     ('/personas/{id}/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
+            Route::get     ('/personas/{id}/habilitar',   [App\Http\Controllers\PersonaController   ::class,'habilitarCliente'] );
             Route::get     ('/turnos/mostrar',            [App\Http\Controllers\TurnoController     ::class,'show'            ] );
-            Route::get     ('/turnos/cancelar/{id}',      [App\Http\Controllers\TurnoController     ::class,'cancelar'        ] )->name('cancelarTurno');  
+            Route::get     ('/turnos/cancelar/{id}',       [App\Http\Controllers\TurnoController     ::class,'cancelar'        ] )->name('cancelarTurno');  
             Route::get     ('/tipoTurno/{id}',            [App\Http\Controllers\TurnoController     ::class,'tipoTurno'       ] );
             Route::get     ('/turnos/{id}/delete',        [App\Http\Controllers\TurnoController     ::class,'destroy'         ] );
             Route::get     ('/turnos/mensaje/{id}',       [App\Http\Controllers\TurnoController     ::class,'mensaje'         ] );
@@ -154,8 +151,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post    ('telefono/ver',               [App\Http\Controllers\TelefonoController  ::class,'ver'             ] );
             Route::get     ('telefonos/create/{id}',      [App\Http\Controllers\TelefonoController  ::class, 'create'         ] )->name('creartelefono');
             /*Rutas nuevas con fetch*/
-            Route::post     ('/personas/crear',           [App\Http\Controllers\PersonaController   ::class,'crearPersona'    ] );
-            Route::post     ('/personas/editar/{id}',     [App\Http\Controllers\PersonaController   ::class,'editarPersona'   ] );
+            Route::post     ('/personas/crear',      [App\Http\Controllers\PersonaController   ::class,'crearPersona'         ] );
+            Route::post     ('/personas/editar/{id}',      [App\Http\Controllers\PersonaController   ::class,'editarPersona'  ] );
             //Ruta de estadística
             Route::get('/estadistica/clientesNuevosPorMes/{id}',[App\Http\Controllers\PersonaController::class,'clientesNuevosPorMes'] );
             Route::resource('/personas','App\Http\Controllers\PersonaController');
@@ -167,9 +164,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/vistaRoles/veterinario', function () {
                 return view('empresa.veterinario.veterinario');
             });
-            /*Rutas nuevas con fetch*/
-            Route::post('/detalleClinico/crear',[App\Http\Controllers\DetalleClinicoController::class, 'crearDetalleClinico'] );
-            //Route::get('/DetallesClinicos/create/{id}',[App\Http\Controllers\DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
+            Route::get('/DetallesClinicos/create/{id}',[App\Http\Controllers\DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
             Route::resource('/historialesClinicos','App\Http\Controllers\HistorialClinicoController');
             Route::resource('/detallesClinicos','App\Http\Controllers\DetalleClinicoController');
     });
@@ -198,20 +193,18 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::get('/login/administrador/vistas', function () {
             return view('administrador.vistas');
         });
-        Route::post('/usuario/eliminar',         [App\Http\Controllers\Usuario          ::class,'eliminarUsuario'] );
-        Route::post('/usuarios/crear',           [App\Http\Controllers\Usuario          ::class,'crearUsuario'   ] );
-        Route::post('/usuarios/editar/{id}',     [App\Http\Controllers\Usuario          ::class,'editarUsuario'  ] );
-        Route::get ('/infoEmpresa',              [App\Http\Controllers\EmpresaController::class,'indexEmpresa'   ] );
-        Route::post('/storeEmpresa',             [App\Http\Controllers\EmpresaController::class,'store'          ] );
-        Route::get ('/usuario',                  [App\Http\Controllers\Usuario          ::class,'index'          ] );
-        Route::get ('/usuario/{id}/delete',      [App\Http\Controllers\Usuario          ::class,'destroy'        ] );
-        Route::get ('/usuario/{id}/edit',        [App\Http\Controllers\Usuario          ::class,'edit'           ] );
-        Route::get ('/usuario/{id}/editPassword',[App\Http\Controllers\Usuario          ::class,'editPassword'   ] );
+        Route::post     ('/usuarios/crear',         [App\Http\Controllers\Usuario  ::class,'crearUsuario'   ] );
+        Route::post     ('/usuarios/editar/{id}',   [App\Http\Controllers\Usuario  ::class,'editarUsuario'  ] );
+        Route::get ('/infoEmpresa',              [App\Http\Controllers\EmpresaController::class,'indexEmpresa'] );
+        Route::post('/storeEmpresa',             [App\Http\Controllers\EmpresaController::class,'store'       ] );
+        Route::get ('/usuario',                  [App\Http\Controllers\Usuario          ::class,'index'       ] );
+        Route::get ('/usuario/{id}/delete',      [App\Http\Controllers\Usuario          ::class,'destroy'     ] );
+        Route::get ('/usuario/{id}/edit',        [App\Http\Controllers\Usuario          ::class,'edit'        ] );
+        Route::get ('/usuario/{id}/editPassword',[App\Http\Controllers\Usuario          ::class,'editPassword'] );
         Route::post('/storeEmpresa','App\Http\Controllers\EmpresaController@store');
         Route::post('/usuario/guardarPassword/{id}','App\Http\Controllers\Usuario@updatePassword');
         Route::post('/usuario/guardar/{id}','App\Http\Controllers\Usuario@update');
         Route::get ('/usuario/Admin/ingresoAOtro/{id}','App\Http\Controllers\Usuario@CambioEstadoInicio');
-        
     /* posteo ckeditor */
     //noticias 
         Route::post('/guardarNoticia',         [App\Http\Controllers\HomeController::class, 'store'  ] )->name('store');

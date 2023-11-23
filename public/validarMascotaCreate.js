@@ -98,7 +98,6 @@ formulario.addEventListener("submit", async(e) => {
 
         let token = document.getElementById("token");
         let idPersona = document.getElementById("idPersona");
-
         let url = "";
 
         if (window.location.href.match("edit"))

@@ -132,7 +132,7 @@ class MascotaController extends Controller
         if(count($mascota) > 0){
             return json_encode(["errores" => [0 =>"¡La mascota ingresada ya existe!"], "mascota" => $mascota]);
         }
-
+        
         $validator = Validator::make($request->all(), 
             [
                 'nombre'        => 'required| string |max:20',
