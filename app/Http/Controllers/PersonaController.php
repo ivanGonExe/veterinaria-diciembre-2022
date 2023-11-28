@@ -9,11 +9,12 @@ use App\Models\Turno;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Exception;
 
 class PersonaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Visualización de personas habilitadas.
      *
      * @return \Illuminate\Http\Response
      */
@@ -90,7 +91,7 @@ class PersonaController extends Controller
     
 
     /**
-     * Show the form for creating a new resource.
+     * Visualización del formulario de creación de persona.
      *
      * @return \Illuminate\Http\Response
      */
@@ -100,57 +101,7 @@ class PersonaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-            
-     $request->validate([
-        'nombre'     => 'required| string',
-        'apellido'   => 'required| string',
-        'dni'        => 'required|integer|max:100000000|min:1000000',
-        'direccion'  => 'required|string|max:256| min:4',
-        'numeroCalle'=> 'required|integer|min:1|max:9999',
-        'codigoArea' => 'required|numeric|max:9999|min:99',
-        'telefono'   => 'required|numeric|max:9999999|min:999999',  
-    ]);
-    $errors = session()->get('errors');
-    dd($errors);
-    
-        $persona = Persona::where('dni',$request->dni)->get();
-        if(count($persona) > 0){
-            //$persona[0]->delete();
-            //dd("dni ya registrado");
-            $mensajeError = true;
-            return view('persona.create')->with('mensajeError', $mensajeError);
-        }
-        $persona = new Persona();
-
-        $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
-        $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
-        $persona->dni         = $request->get('dni');
-        $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
-        $persona->numeroCalle = $request->numeroCalle;
-        $persona->estado      = 1;
-        
-        $persona->save();
-        $telefono = new Telefono();
-        $telefono->numero     = $request->telefono;
-        $telefono->codigoArea = $request->codigoArea;
-        $telefono->persona_id = $persona->id;
-        $telefono->estado     = 1;
-
-        $telefono->save();
-
-        return redirect('/personas/estado/1');
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
+     * Chequeo, validación y almacenamiento de persona.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -181,46 +132,35 @@ class PersonaController extends Controller
             $errores = $validator->errors()->all();
             return json_encode(["errores" => $errores]);
         }
-            
-    //  $request->validate([
-    //     'nombre'     => 'required| string',
-    //     'apellido'   => 'required| string',
-    //     'dni'        => 'required|integer|max:100000000|min:1000000',
-    //     'direccion'  => 'required|string|max:256| min:4',
-    //     'numeroCalle'=> 'required|integer|min:1|max:9999',
-    //     'codigoArea' => 'required|numeric|max:9999|min:99',
-    //     'telefono'   => 'required|numeric|max:9999999|min:999999',  
-    // ]);
-    //     $persona = Persona::where('dni',$request->dni)->get();
-    //     if(count($persona) > 0){
-    //         //$persona[0]->delete();
-    //         //dd("dni ya registrado");
-    //         $mensajeError = true;
-    //         return view('persona.create')->with('mensajeError', $mensajeError);
-    //     }
-        $persona = new Persona();
-
-        $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
-        $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
-        $persona->dni         = $request->get('dni');
-        $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
-        $persona->numeroCalle = $request->numeroCalle;
-        $persona->estado      = 1;
         
-        $persona->save();
-        $telefono = new Telefono();
-        $telefono->numero     = $request->telefono;
-        $telefono->codigoArea = $request->codigoArea;
-        $telefono->persona_id = $persona->id;
-        $telefono->estado     = 1;
+        try {
+            $persona = new Persona();
 
-        $telefono->save();
+            $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
+            $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
+            $persona->dni         = $request->get('dni');
+            $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
+            $persona->numeroCalle = $request->numeroCalle;
+            $persona->estado      = 1;
+            
+            $persona->save();
+            $telefono = new Telefono();
+            $telefono->numero     = $request->telefono;
+            $telefono->codigoArea = $request->codigoArea;
+            $telefono->persona_id = $persona->id;
+            $telefono->estado     = 1;
 
-        return json_encode(["valido" => "¡Persona creada exitosamente!"]);
+            $telefono->save();
+
+            return json_encode(["valido" =>[ 0 => "¡Persona creada exitosamente!"]]);
+
+        } catch (Exception $e) {
+            return json_encode(["errores" => "¡Error inesperado!"]);
+        }
     }
 
     /**
-     * Update the specified resource in storage.
+     * Chequeo, validación y almacenamiento de persona editada.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -241,9 +181,7 @@ class PersonaController extends Controller
             ],
             [
                 'direccion' => 'dirección',
-                'numeroCalle' => 'número de calle',
-                // 'codigoArea' => 'código área',
-                // 'telefono' => 'teléfono'
+                'numeroCalle' => 'número de calle'
             ]
         );
  
@@ -252,37 +190,35 @@ class PersonaController extends Controller
             return json_encode(["errores" => $errores]);
         }
 
-        // $request->validate([
-        //     'nombre'     => 'required| string',
-        //     'apellido'   => 'required| string',
-        //     'dni'        => 'required|integer|max:100000000|min:1000000',
-        //     'direccion'  => 'required|string|max:256| min:4',
-        //     'numeroCalle'=> 'required|integer|min:1|max:9999',  
-        // ]);
+        try {
+            $persona = Persona::find($id);
 
-        $persona = Persona::find($id);
+            $personaAux = Persona::where('dni',$request->get('dni'))
+                                ->get();
 
-        $personaAux = Persona::where('dni',$request->get('dni'))
-                             ->get();
+            if($personaAux[0]->id != $id){
+                return json_encode(["errores" => [0 =>"¡Ya existe una persona con el dni ingresado!"]]);
+            }
 
-        if($personaAux[0]->id != $id){
-            return json_encode(["errores" => [0 =>"¡Ya existe una persona con el dni ingresado!"]]);
+            $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
+            $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
+            $persona->dni         = $request->get('dni');
+            $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
+            $persona->numeroCalle = $request->numeroCalle;
+            $persona->telefonos($request->get('telefono'));
+            
+            $persona->save();
+
+            return json_encode(["valido" => [ 0 => "¡Persona editada exitosamente!"]]);
+
+        } catch (Exception $e) {
+            return json_encode(["errores" => "¡Error inesperado!"]);
         }
 
-        $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
-        $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
-        $persona->dni         = $request->get('dni');
-        $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
-        $persona->numeroCalle = $request->numeroCalle;
-        $persona->telefonos($request->get('telefono'));
-        
-        $persona->save();
-
-        return json_encode(["valido" => "¡Persona editada exitosamente!"]);
     }
 
     /**
-     * Display the specified resource.
+     * Visualización de una persona.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -296,7 +232,7 @@ class PersonaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Visialización de formulario de edición de persona.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -309,54 +245,7 @@ class PersonaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {   
-        $request->validate([
-            'nombre'     => 'required| string',
-            'apellido'   => 'required| string',
-            'dni'        => 'required|integer|max:100000000|min:1000000',
-            'direccion'  => 'required|string|max:256| min:4',
-            'numeroCalle'=> 'required|integer|min:1|max:9999',  
-        ]);
-
-        $persona = Persona::find($id);
-
-        $persona->nombre      = mb_strtoupper($request->nombre,'UTF-8');
-        $persona->apellido    = mb_strtoupper($request->apellido,'UTF-8');
-        $persona->dni         = $request->get('dni');
-        $persona->direccion   = mb_strtoupper($request->direccion,'UTF-8');
-        $persona->numeroCalle = $request->numeroCalle;
-        $persona->telefonos($request->get('telefono'));
-        
-        $persona->save();
-
-        return redirect('/personas/estado/1');
-    }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy($id)
-    // {
-    //     $persona = Persona::find($id);
-    //     $persona->estado = 0;
-    //     $persona->telefonos->estado = 0;
-    //     $persona->telefonos->save();
-    //     $persona->save();
-    //     return redirect('/personas');
-    // }
-
-    /**
-     * Remove the specified resource from storage.
+     * Función para deshabilitar una persona.
      * 
      *@param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -370,31 +259,15 @@ class PersonaController extends Controller
             $persona->telefonos->save();
             $persona->save();
 
-            return json_encode(["valido" => "¡Persona deshabilitada exitosamente!"]);
+            return json_encode(["valido" => [ 0 => "¡Persona deshabilitada exitosamente!"]]);
 
-        } catch (Exeption $e) {
+        } catch (Exception $e) {
             return json_encode(["errores" => "¡Error inesperado!"]);
         }
     }
-    
-    // /**
-    //  * Enable the specified resource from storage.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function habilitarCliente($id)
-    // {
-    //     $persona = Persona::find($id);
-    //     $persona->estado = 1;
-    //     $persona->telefonos->estado = 1;
-    //     $persona->telefonos->save();
-    //     $persona->save();
-    //     return redirect('/personas/estado/0');
-    // }
 
      /**
-     * Enable the specified resource from storage.
+     * Función para habilitar una persona.
      * 
      *@param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -408,9 +281,9 @@ class PersonaController extends Controller
             $persona->telefonos->save();
             $persona->save();
 
-            return json_encode(["valido" => "¡Persona habilitada exitosamente!"]);
+            return json_encode(["valido" => [ 0 => "¡Persona habilitada exitosamente!"]]);
 
-        } catch (Exeption $e) {
+        } catch (Exception $e) {
             return json_encode(["errores" => "¡Error inesperado!"]);
         }
         

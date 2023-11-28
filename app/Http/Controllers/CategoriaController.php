@@ -6,6 +6,7 @@ use App\Models\categoria;
 use App\Models\articulo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class CategoriaController extends Controller
 {
@@ -131,7 +132,7 @@ class CategoriaController extends Controller
             $categoria->delete();
             return json_encode(["valido" => [0 =>"¡Categoria borrada correctamante!"]]);
 
-        } catch (Exeption $e) {
+        } catch (Exception $e) {
             return json_encode(["errores" => "¡Error inesperado!"]);
         }
     }

@@ -153,6 +153,8 @@ Route::group(['middleware' => 'auth'], function () {
             /*Rutas nuevas con fetch*/
             Route::post     ('/personas/crear',      [App\Http\Controllers\PersonaController   ::class,'crearPersona'         ] );
             Route::post     ('/personas/editar/{id}',      [App\Http\Controllers\PersonaController   ::class,'editarPersona'  ] );
+            Route::post     ('/personas/deshabilitar',         [App\Http\Controllers\PersonaController::class,'deshabilitarPersona'] );
+            Route::post     ('/personas/habilitar',         [App\Http\Controllers\PersonaController::class,'habilitarCliente'] );
             //Ruta de estadística
             Route::get('/estadistica/clientesNuevosPorMes/{id}',[App\Http\Controllers\PersonaController::class,'clientesNuevosPorMes'] );
             Route::resource('/personas','App\Http\Controllers\PersonaController');

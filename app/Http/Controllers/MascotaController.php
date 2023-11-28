@@ -11,6 +11,7 @@ use App\Models\Especie;
 use App\Models\Raza;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Exception;
 
 
 class MascotaController extends Controller
@@ -113,7 +114,7 @@ class MascotaController extends Controller
 
             return json_encode(["valido" => [0 =>"¡Mascota creada exitosamente!"]]);
 
-        } catch (Exeption $e) {
+        } catch (Exception $e) {
             return json_encode(["errores" => "¡Error inesperado!"]);
         }
 
@@ -242,7 +243,7 @@ class MascotaController extends Controller
 
             return json_encode(["valido" => [0 =>"¡Mascota editada exitosamente!"]]);
 
-        } catch (Exeption $e) {
+        } catch (Exception $e) {
             return json_encode(["errores" => "¡Error inesperado!"]);
         }
 
@@ -263,7 +264,7 @@ class MascotaController extends Controller
 
         return json_encode(["valido" => [0 =>"¡Mascota dada de baja exitosamente!"]]);
 
-        } catch (Exeption $e) {
+        } catch (Exception $e) {
             return json_encode(["errores" => "¡Error inesperado!"]);
         }
     }
@@ -283,7 +284,7 @@ class MascotaController extends Controller
             $mascota->save();
 
             return json_encode(["valido" => [0 =>"¡Mascota habilitada exitosamente!"]]);
-        } catch (Exeption $e) {
+        } catch (Exception $e) {
             return json_encode(["errores" => "¡Error inesperado!"]);
         }
         

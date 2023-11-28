@@ -117,6 +117,8 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
         var botones = document.getElementsByClassName("eliminar");
         var boton = [];
         
+        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
          let cantidad = botones.length;
               for(let i = 0; i < cantidad; i++){
                   //botones[i].addEventListener('click', () => {
@@ -168,13 +170,12 @@ url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
 
 
         const data = await respuesta.json();
-            console.log(data);
 
         if(data["valido"]){ 
             Swal.fire({
                 position: "top-center",
                 icon: "success",
-                title: "¡Cliente deshabilitado exitosamente!",
+                title: data["valido"],
                 showConfirmButton: false,
                 timer: 4000,
             });

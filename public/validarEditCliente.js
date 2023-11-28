@@ -140,7 +140,7 @@ formulario.addEventListener("submit", async(e) => {
             Swal.fire({
                 position: "top-center",
                 icon: "success",
-                title: "Cliente Guardado",
+                title: data["valido"],
                 showConfirmButton: false,
                 timer: 4000,
             });
