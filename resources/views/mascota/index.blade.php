@@ -184,7 +184,7 @@ async function enviarConsulta(objeto, token){
             Swal.fire({
                 position: "top-center",
                 icon: "success",
-                title: "¡Mascota dada de baja exitosamente!",
+                title: data["valido"],
                 showConfirmButton: false,
                 timer: 4000,
             });

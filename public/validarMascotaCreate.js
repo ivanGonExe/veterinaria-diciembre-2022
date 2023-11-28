@@ -94,7 +94,7 @@ formulario.addEventListener("submit", async(e) => {
     {
         objeto.esterilizado = document.getElementById("esterilizado").value;
         objeto.especie = document.getElementById("especie").value;
-        objeto.sexo = document.querySelector('input[name="sexo"]:checked');
+        objeto.sexo = document.querySelector('input[name="sexo"]:checked').value;
 
         let token = document.getElementById("token");
         let idPersona = document.getElementById("idPersona");
@@ -145,7 +145,7 @@ formulario.addEventListener("submit", async(e) => {
             Swal.fire({
                   position: "top-center",
                   icon: "success",
-                  title: "Mascota Guardada",
+                  title: data["valido"],
                   showConfirmButton: false,
                   timer: 4000,
               });
@@ -200,6 +200,11 @@ if (window.location.href.match("edit"))
     validarCampo(expresiones.color         ,color          ,"color");
     validarCampo(expresiones.raza          ,raza           ,"raza");
     validarCampo(expresiones.anioNacimiento,anioNacimiento,"anioNacimiento");
+
+    objeto.nombre = nombre.value;
+    objeto.color = color.value;
+    objeto.raza = raza.value;
+    objeto.anioNacimiento = anioNacimiento.value;
 }
 
 

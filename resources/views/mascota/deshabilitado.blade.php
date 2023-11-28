@@ -90,6 +90,8 @@ $(document).ready(function (){
         var botones = document.getElementsByClassName("eliminar");
 
         var boton = [];
+
+        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         
          let cantidad = botones.length;
               for(let i = 0; i < cantidad; i++){
@@ -142,13 +144,12 @@ async function enviarConsulta(objeto, token){
 
 
     const data = await respuesta.json();
-    console.log(data);
 
     if(data["valido"]){ 
         Swal.fire({
             position: "top-center",
             icon: "success",
-            title: "¡Mascota dada de baja exitosamente!",
+            title: data["valido"],
             showConfirmButton: false,
             timer: 4000,
         });
