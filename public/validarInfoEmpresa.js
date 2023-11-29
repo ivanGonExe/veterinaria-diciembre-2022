@@ -147,8 +147,7 @@ formulario.addEventListener("submit", async(e) => {
             Swal.fire({
                 position: "top-center",
                 icon: "success",
-                title: "Imformación editada exitosamente",
-                html: mensaje,
+                title: data["valido"],
                 showConfirmButton: false,
                 timer: 4000,
             });
@@ -206,6 +205,13 @@ let botonEditar = document.getElementById('botonEditar');
     validarCampo(expresiones.telefonoFijo, inputTelefonoFijo, "telefonoFijo");
     validarCampo(expresiones.instagram, inputInstagram, "instagram");
     validarCampo(expresiones.mapa, inputMapa, "mapa");
+
+    objeto.descripcion = inputDescripcion.value;
+    objeto.direccion = inputDireccion.value;
+    objeto.celular = inputCelular.value;
+    objeto.telefonoFijo = inputTelefonoFijo.value;
+    objeto.instagram = inputInstagram.value;
+    objeto.mapa = inputMapa.value;
         
 });
 

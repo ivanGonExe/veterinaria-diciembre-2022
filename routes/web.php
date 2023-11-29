@@ -22,12 +22,8 @@ use App\Http\Controllers\DetalleServicioController;
 | contains the "web" middleware group. Now create something great!
 |
 */
- //copia de seguridad nuevo 
- Route::get ('/create/backup'   ,[App\Http\Controllers\EmpresaController::class,'createBackup']);
- Route::get ('/copiadeseguridad',[App\Http\Controllers\EmpresaController::class,'indexBackup']);
- Route::get ('/up/Backup/{id}',[App\Http\Controllers\EmpresaController::class,'upBackup']);
 
- 
+Route::get ('/up/Backup/{id}',[App\Http\Controllers\EmpresaController::class,'upBackup']);
 
 // Rutas universales
     Route::get ('(register',           [App\Http\Controllers\Auth\LoginController   ::class,'redirecion'  ]);
@@ -195,10 +191,10 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::get('/login/administrador/vistas', function () {
             return view('administrador.vistas');
         });
-        Route::post     ('/usuarios/crear',         [App\Http\Controllers\Usuario  ::class,'crearUsuario'   ] );
-        Route::post     ('/usuarios/editar/{id}',   [App\Http\Controllers\Usuario  ::class,'editarUsuario'  ] );
+        Route::post('/usuarios/crear',           [App\Http\Controllers\Usuario  ::class,'crearUsuario'   ] );
+        Route::post('/usuarios/editar/{id}',     [App\Http\Controllers\Usuario  ::class,'editarUsuario'  ] );
         Route::get ('/infoEmpresa',              [App\Http\Controllers\EmpresaController::class,'indexEmpresa'] );
-        Route::post('/storeEmpresa',             [App\Http\Controllers\EmpresaController::class,'store'       ] );
+        Route::post('/empresa/editar',           [App\Http\Controllers\EmpresaController::class,'editarInformacionEmpresa']);
         Route::get ('/usuario',                  [App\Http\Controllers\Usuario          ::class,'index'       ] );
         Route::get ('/usuario/{id}/delete',      [App\Http\Controllers\Usuario          ::class,'destroy'     ] );
         Route::get ('/usuario/{id}/edit',        [App\Http\Controllers\Usuario          ::class,'edit'        ] );
@@ -216,9 +212,11 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         Route::get ('/eliminarNoticia/{id}',   [App\Http\Controllers\HomeController::class, 'destroy'] );
         Route::get ('/editarNoticia/{id}',     [App\Http\Controllers\HomeController::class, 'edit'   ] );
 
-        /*Rutas nuevas con fetch*/
-        Route::post('/empresa/editar',    [App\Http\Controllers\EmpresaController::class,'editarInformacionEmpresa']);
-
+        //copia de seguridad nuevo 
+        Route::post ('/create/backup'   ,[App\Http\Controllers\EmpresaController::class,'createBackup']);
+        Route::get ('/copiadeseguridad',[App\Http\Controllers\EmpresaController::class,'indexBackup']);
+        
+        
         Route::get('/estadisticas', function () {
             return view('estadistica.estadisticas');
 

@@ -7,12 +7,14 @@ use Carbon\Carbon;
 
 use App\Models\empresa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Exception;
 
 class EmpresaController extends Controller
 {
 
  /**
-     * Display a listing of the resource.
+     * Visualización de listado de backups.
      *
      * @return \Illuminate\Http\Response
      */
@@ -50,11 +52,6 @@ class EmpresaController extends Controller
         $empresa= Empresa::all();
       return view('administrador.infoEmpresa')->with('empresa', $empresa);
     }
-    
-
-
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -62,7 +59,7 @@ class EmpresaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function createBackup()
-    {
+    {   
         $fileName = 'backup_Veterinaria_' . Carbon::now()->format('Y-m-d_H-i-s').'.json';
 
         $tables = [
@@ -103,7 +100,15 @@ class EmpresaController extends Controller
         
         Storage::disk('local')->put($fileName, $jsonData);
 
-        return redirect("/copiadeseguridad");
+        $jsonData = Storage::get($fileName);
+
+        if($jsonData != null){
+            return json_encode(["valido" => [ 0 => "¡Copia de seguridad creada exitosamente!"]]);
+        }
+        else{
+            return json_encode(["errores" => "¡Error inesperado!"]);
+        }
+
     }
     
     
@@ -125,6 +130,7 @@ class EmpresaController extends Controller
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');   //desahabilitar la clase foraneas 
 
             $tables = DB::select('SHOW TABLES');
+            
             foreach ($tables as $table) 
             {
                 $tableName = $table->{'Tables_in_' . env('DB_DATABASE')};
@@ -159,13 +165,13 @@ class EmpresaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Chequeo, validación y almacenamiento de empresa editada.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function editarInformacionEmpresa(Request $request)
-    {
+    {  
         $validator = Validator::make($request->all(), 
             [
                 'descripcion'     => 'required| string',
@@ -188,93 +194,24 @@ class EmpresaController extends Controller
             $errores = $validator->errors()->all();
             return json_encode(["errores" => $errores]);
         }
-            
-        $empresa= Empresa::all();
+        
+        try {
+            $empresa= Empresa::all();
 
-        $empresa[0]->descripcion = $request->descripcion;
-        $empresa[0]->direccion   = $request->direccion;
-        $empresa[0]->celular     = $request->celular;
-        $empresa[0]->telefonoFijo   = $request->telefonoFijo;
-        $empresa[0]->instagram   = $request->instagram;
-        $empresa[0]->mapa        = $request->mapa;
-        $empresa[0]->save();
+            $empresa[0]->descripcion = $request->descripcion;
+            $empresa[0]->direccion   = $request->direccion;
+            $empresa[0]->celular     = $request->celular;
+            $empresa[0]->telefonoFijo   = $request->telefonoFijo;
+            $empresa[0]->instagram   = $request->instagram;
+            $empresa[0]->mapa        = $request->mapa;
+            $empresa[0]->save();
 
-        return json_encode(["valido" => "¡Información editada exitosamente!"]);
+            return json_encode(["valido" => [ 0 => "¡Información editada exitosamente!"]]);
+
+        } catch (Exception $e) {
+            return json_encode(["errores" => "¡Error inesperado!"]);
+        }
+        
     }
 
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'descripcion'     => 'required| string',
-    //         'direccion'       => 'required| string',
-    //         'celular'         => 'required| string',
-    //         'direccion'       => 'required| string',
-    //         'instagram'       => 'nullable| string',
-    //         'mapa '           => 'nullable| string',
-    //         'telefonoFijo'    => 'required| string',  
-    //     ]);
-    //     $empresa= Empresa::all();
-
-    //     $empresa[0]->descripcion = $request->descripcion;
-    //     $empresa[0]->direccion   = $request->direccion;
-    //     $empresa[0]->celular     = $request->celular;
-    //     $empresa[0]->telefonoFijo   = $request->telefonoFijo;
-    //     $empresa[0]->instagram   = $request->instagram;
-    //     $empresa[0]->mapa        = $request->mapa;
-    //     $empresa[0]->save();
-
-    //     return redirect('/infoEmpresa'); 
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\empresa  $empresa
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(empresa $empresa)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\empresa  $empresa
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(empresa $empresa)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  \App\Models\empresa  $empresa
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, empresa $empresa)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\empresa  $empresa
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy(empresa $empresa)
-    // {
-    //     //
-    // }
 }

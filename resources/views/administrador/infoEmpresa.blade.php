@@ -14,7 +14,7 @@
             <div class=" container-fluid d-flex justify-content-center">
     <div class="col-md-6 ">
    <div class="row">
-    <form  id="formulario" name='formulario'action="/storeEmpresa" method="POST" >
+    <form  id="formulario" name='formulario' method="POST" >
         @csrf
         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
         
@@ -97,30 +97,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="{{asset('validarInfoEmpresa.js')}}" defer></script>
 
-<script>
-    // var formEdit     = document.getElementById('formulario');
-    // let botonGuardar = document.getElementById('guardar');
-
-    // botonGuardar.addEventListener('click',function(event){
-    //         event.preventDefault();
-
-    //         Swal.fire({
-    //                         title: '¿Esta Seguro que desea guardar los cambios?',
-    //                         text: "confirme la decisión",
-    //                         icon: 'warning',
-    //                         showCancelButton: true,
-    //                         confirmButtonColor: '#3085d6',
-    //                         cancelButtonColor: '#d33',
-    //                         confirmButtonText: 'aceptar',
-    //                         CancelButtonText: 'cancelar'
-  
-    //                 }).then((result) => {
-    //                 if (result.isConfirmed) {    
-                        
-    //                     formEdit.submit(); 
-                        
-    //                     }
-    //                     })     
-    //     })
-</script>
 @endsection

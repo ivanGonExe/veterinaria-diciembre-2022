@@ -36,7 +36,7 @@ td{
                
       </div>
       <div class="content">
-      <a href="/create/backup" type="button" class="btn btn-primary rounded-pill boton_crear text-white" id="boton_crear" title="Crear Copia de Seguridad"><i class="fa-solid fa-download"></i> Crear Copia</a>
+      <a type="button" class="btn btn-primary rounded-pill boton_crear text-white" id="boton_crear" title="Crear Copia de Seguridad"><i class="fa-solid fa-download"></i> Crear Copia</a>
       </div>
      <div class="row" >
       <div class="col-1"></div>
@@ -70,6 +70,7 @@ td{
                 @endforeach
           </tbody>
                  </table>
+          <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             
               
       <div class="col-1"></div>
@@ -132,20 +133,68 @@ var id = 0;
 
 
   //------------------------------------------------------------
-   document.getElementById("boton_crear").addEventListener('click', function(e) {
+   document.getElementById("boton_crear").addEventListener('click', async(e) => {
    e.preventDefault(); 
-    Swal.fire({
+    // Swal.fire({
+    //         position: "top-center",
+    //         icon: "success",
+    //         title: "Copia de Seguridad Creada",
+    //         showConfirmButton: false,
+    //         timer: 4000,
+    //     });
+    //     setTimeout(() => {
+    //         /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
+
+    //         location.href="/create/backup";
+    //     }, 2000);
+
+    let token = document.getElementById("token");
+        
+    const respuesta = await fetch('/create/backup', {
+        method: 'POST',
+        mode: 'cors',
+        headers:{
+        'X-CSRF-TOKEN': token.value,
+        'Content-Type': 'application/json'
+        },
+
+        //body: JSON.stringify(objeto),
+    });
+
+
+    const data = await respuesta.json();
+    //Si hay errores
+    if(data["errores"]){
+    
+        let errores = data["errores"];
+        let mensaje = `<div class="text-center text-danger">`;
+        for(let i = 0; i < errores.length; i++){
+        mensaje += "<h6>" + errores[i] + "</h6>";
+        }
+        mensaje+= "</div>";
+        
+        
+        Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        html: mensaje,
+        });
+    }
+
+    if(data["valido"]){ 
+        Swal.fire({
             position: "top-center",
             icon: "success",
-            title: "Copia de Seguridad Creada",
+            title: data["valido"],
             showConfirmButton: false,
             timer: 4000,
         });
+        
         setTimeout(() => {
-            /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
-
-            location.href="/create/backup";
-        }, 2000);
+        location.href = "/copiadeseguridad";
+        }, 4000);
+        
+    }
         
 });    
 
