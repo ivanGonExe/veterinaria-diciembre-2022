@@ -16,9 +16,9 @@ class CreateDetalleServiciosTable extends Migration
         Schema::create('detalle_servicios', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date      ('fechaAtencion');
-            $table->string    ('descripcion');
-            $table->string    ('tipo');
+            $table->date      ('fechaAtencion')->nullable();
+            $table->string    ('descripcion')->nullable();
+            $table->string    ('tipo')->nullable();
             $table->foreignId ('historialServicios_id')->nullable()->constrained('historial_servicios')->onUpdate('cascade')->onDelete('cascade');
         });
     }
