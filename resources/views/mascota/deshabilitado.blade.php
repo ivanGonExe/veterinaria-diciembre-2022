@@ -102,7 +102,7 @@ $(document).ready(function (){
                          var cod = boton[i].value;
 
                         Swal.fire({
-                            title: '¿ Esta Seguro que desea habilitar la mascota?',
+                            title: '¿ Está Seguro que desea habilitar la mascota?',
                             text: "confirme la decisión!",
                             icon: 'warning',
                             showCancelButton: true,
