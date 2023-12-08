@@ -130,7 +130,7 @@
     
   </div>              
    
-        <button  class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</button> 
+        <a  href="{{url()->previous()}}" class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</a> 
         
         <button type="submit" class="btn btn-primary" id="botonGuardar" tabindex="7">Guardar</button>
     </form>
