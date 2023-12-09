@@ -40,7 +40,7 @@ table.dataTable th {
 
 <div class="caja_tabla-2">
     <div class="container-fluid d-flex justify-content-center  text-light">
-        <h2 class="text-center p-2 m-3 fs-1 fw-bold text-dark" > Listado de los Articulos </h2>
+        <h2 class="text-center p-2 m-3 fs-1 fw-bold text-dark" > Listado de los Artículos </h2>
     </div>
     <a href="/articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Artículo <i class="fa-solid fa-store"></i></a>
     <div class="contendorCategoria">

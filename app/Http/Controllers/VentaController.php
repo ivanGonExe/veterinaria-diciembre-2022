@@ -160,7 +160,7 @@ class VentaController extends Controller
                                 ->join('detalle_ventas','ventas.id','=','detalle_ventas.idVenta')
                                 ->join('lote_descripcions','detalle_ventas.idLote','=','lote_descripcions.id')
                                 ->join('articulos','articulos.id','=','lote_descripcions.articulo_id')
-                              ->select(DB::raw('SUM(detalle_ventas.subtotal-((detalle_ventas.cantidad*lote_descripcions.precioCompra)+(detalle_ventas.subtotal*articulos.iva / 100))) AS ganancia'))
+                              ->select(DB::raw('SUM(detalle_ventas.subtotal-((detalle_ventas.cantidad*lote_descripcions.precioCompra))) AS ganancia'))
                               ->whereBetween('fecha',[$mesInicio, $mesFin ])
                               ->get();
 

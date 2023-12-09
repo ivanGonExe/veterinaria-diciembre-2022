@@ -39,7 +39,7 @@
 <div class="container bg-white m-1 p-1">
     <div class="row">
         <div class="col-12 p-2 "></div>
-        <div class="col-12 p-2"><h4 class="text-center">  Ventas del Año </h4></div>
+        <div class="col-12 p-2"><h4 class="text-center">  Ganancias anuales </h4></div>
         <div class="col-2"></div>
         <div class="col-8 text-center">
             <a class="btn " id="menosAnio" href="/estadistica/ganancia/por_mes/{{$año-1}}"><i class="fa-regular fa-circle-left"></i></a>
