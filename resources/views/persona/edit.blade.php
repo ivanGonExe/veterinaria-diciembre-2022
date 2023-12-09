@@ -22,7 +22,7 @@
 <div class="container-fluid d-flex justify-content-center">
 <div class="col-md-6">
     <div class="form-group  text-center">
-    <form action="/personas/{{$persona->id}}" method="POST" id="formulario">
+    <form  method="POST" id="formulario">
         @csrf
         @method('PUT')
         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
@@ -130,7 +130,7 @@
     
   </div>              
    
-        <button  class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</button> 
+        <a href="{{url()->previous()}}" class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</a> 
         
         <button type="submit" class="btn btn-primary" id="botonGuardar" tabindex="7">Guardar</button>
     </form>

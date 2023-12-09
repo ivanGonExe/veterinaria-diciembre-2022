@@ -17,7 +17,7 @@
     
     <div class="row container-fluid d-flex justify-content-center">
    <div class="col-md-6">
-    <form action="/personas" method="POST" id="formulario">
+    <form  method="POST" id="formulario">
         @csrf
         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
         <div class="mb-3">
@@ -140,7 +140,7 @@
 {{--        <a href="/personas" class="btn btn-secondary m-2" tabindex="6" id="cancelar">Cancelar</a>  --}}
 {{--         <button  class="btn btn-secondary m-2" tabindex="6" id="cancelar" name="cancelar">Cancelar</button>  --}}
         <a href="{{url()->previous()}}" class="btn btn-secondary m-2" name="cancelar" id="cancelar" tabindex="6">Cancelar</a>
-        <button class="btn btn-primary m-2" tabindex="7" id="enviar">Guardar</button>
+        <button class="btn btn-primary m-2"  type="submit" tabindex="7" id="enviar">Guardar</button>
         </div>
     </form>
         </div>
