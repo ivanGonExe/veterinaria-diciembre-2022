@@ -14,13 +14,16 @@
  color:red !important;
 }
 .modal_cuerpo{
-    background-color:#E53935!important;
+    background-color: rgb(255, 87, 51  )  !important;
     color:white !important;
     padding: 10px;
     margin: 10px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px !important;
 
+}
+.barra_total{
+    background-color:   rgb(255, 87, 51  )  !important;
 }
 input:focus{
     background-color:#D7DBDD!important;
@@ -76,9 +79,9 @@ input[type=number] { -moz-appearance:textfield; }
                         </div>
             </div>
             <div class="col-4"> 
-                    <div class="buscar">
-                        <form class="form-inline " title="Selección por codigo">
-                            <div class="btn btn-primary m-1" style="height: 28px ;line-height: 15px;" title=""> Código <i class="fa-solid fa-magnifying-glass" ></i></div>
+            <div class="buscar">
+            <form class="form-inline " >
+                            <div class="btn btn-primary m-1" style="height: 28px ;line-height: 15px;"> Código <i class="fa-solid fa-magnifying-glass"></i></div>
                             <select  id='codigoArticulo' class="js-example-basic-single p-3" name="codigoarticulo"  placeholder="Código" aria-label="Search" style="width:120px;height: 28px" >
                                         <option value="0"></option>
                                         @foreach($lotes as $unLote)
@@ -182,7 +185,7 @@ input[type=number] { -moz-appearance:textfield; }
         
     @endforeach
 </table>
-<tr><h5 class="text-end bg-danger btn-success p-2">Total:<strong> ${{$total}}<strong></tr>
+<tr><h5 class="text-end  barra_total p-2">Total:<strong> ${{$total}}<strong></tr>
 </div>
     
     </div>
@@ -218,7 +221,7 @@ input[type=number] { -moz-appearance:textfield; }
       <div class="modal-content">
 
         <div class="modal-header bg-dar text-center">
-          <h5 class="modal-title text-center " id="exampleModalLabel">Aplicar Descuento al Producto</h5>
+        <h5 class="modal-title text-center " id="exampleModalLabel">Aplicar Descuento al articulo</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

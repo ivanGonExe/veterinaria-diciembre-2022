@@ -510,10 +510,11 @@ public function terminarVenta()
     public function confirmarVenta(Request $request)
     {
         // Crear una venta
-    $venta        = new Venta();
+    $venta            = new Venta();
+    $venta->cajero_fk = auth()->user()->id;
     $venta->saveOrFail();
-    $idVenta      = $venta->id;
-    $venta->fecha = Carbon::now();
+    $idVenta          = $venta->id;
+    $venta->fecha     = Carbon::now();
 
     $articulos    = $this->obtenerArticulos();
     $estado       = $this->obtenerEstados();
