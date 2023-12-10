@@ -162,6 +162,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/vistaRoles/veterinario', function () {
                 return view('empresa.veterinario.veterinario');
             });
+            Route::post('/detalleClinico/store',[App\Http\Controllers\DetalleClinicoController::class, 'storeDetalleClinico'] );
             Route::get('/DetallesClinicos/create/{id}',[App\Http\Controllers\DetalleClinicoController::class, 'create'] )->name('crearDetalleClinico');
             Route::resource('/historialesClinicos','App\Http\Controllers\HistorialClinicoController');
             Route::resource('/detallesClinicos','App\Http\Controllers\DetalleClinicoController');

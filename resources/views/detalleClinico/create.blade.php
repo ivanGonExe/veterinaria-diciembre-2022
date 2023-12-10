@@ -38,6 +38,7 @@ label{
             <div class="col-md-6">
         <form method="POST" id='formulario'>
             @csrf
+            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <div class="formulario__grupo " id="grupo__patologia">
                 <label for="patologia" class="formulario__label">Patología *</label>
                 <div class="formulario__grupo-input">

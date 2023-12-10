@@ -105,8 +105,8 @@ formulario.addEventListener("submit", async(e) => {
         let idHistorialClinico = document.getElementById("idHistorialClinico");
 
         objeto.idHistorialClinico = idHistorialClinico.value;
-
-        const respuesta = await fetch('/detalleClinico/crear', {
+        console.log(objeto);
+        const respuesta = await fetch('/detalleClinico/store', {
             method: 'POST',
             mode: 'cors',
             headers:{
@@ -121,7 +121,7 @@ formulario.addEventListener("submit", async(e) => {
         const data = await respuesta.json();
         //Si hay errores
         if(data["errores"]){
-        
+            console.log(data["errores"]);
             let errores = data["errores"];
             let mensaje = `<div class="text-center text-danger">`;
             for(let i = 0; i < errores.length; i++){
@@ -147,7 +147,7 @@ formulario.addEventListener("submit", async(e) => {
             });
             
             setTimeout(() => {
-                location.href = "/historialesClinicos/" + idHistorialClinico;
+                location.href = "/historialesClinicos/" + objeto.idHistorialClinico;
             }, 4000);
             
         }

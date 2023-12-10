@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetalleClinico;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class DetalleClinicoController extends Controller
 {
@@ -60,22 +61,22 @@ class DetalleClinicoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function crearDetalleClinico(Request $request)
+    public function storeDetalleClinico(Request $request)
     {
         $validator = Validator::make($request->all(), 
             [
                 'observaciones'     => 'string',
                 'tratamiento'       => 'required| string',
                 'patologia'         => 'required| string',
-                'peso'              => 'nullable| float',
+                'peso'              => 'nullable| integer',
             ], $messages = [
                 
             ],
             [
-                'patologia' => 'patología',
+            
             ]
         );
- 
+        
         if ($validator->fails()) {
             $errores = $validator->errors()->all();
             return json_encode(["errores" => $errores]);
@@ -85,11 +86,11 @@ class DetalleClinicoController extends Controller
 
         $fecha = Carbon::now();
 
-        $detalleClinico->observaciones       = $request->get('observaciones');
-        $detalleClinico->tratamiento         = $request->get('tratamiento');
-        $detalleClinico->patologia           = $request->get('patologia');
+        $detalleClinico->observaciones       = $request->observaciones;
+        $detalleClinico->tratamiento         = $request->tratamiento;
+        $detalleClinico->patologia           = $request->patologia;
         $detalleClinico->peso                = $request->peso;
-        $detalleClinico->historialClinico_id = $request->get('idHistorialClinico');
+        $detalleClinico->historialClinico_id = $request->idHistorialClinico;
         $detalleClinico->fechaAtencion       = $fecha;
         
         $detalleClinico->save();
