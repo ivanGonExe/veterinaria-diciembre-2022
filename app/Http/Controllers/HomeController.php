@@ -125,7 +125,7 @@ class HomeController extends Controller
 
         if($request->file ==''){
             $request->validate([
-                'titulo'   => 'required| string ',
+                'titulo'   => 'required| string |max:150 ',
                 'asunto'   => 'required| string ',
                 'imagen'   => 'required| string ',
              ]); 

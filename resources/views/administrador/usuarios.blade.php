@@ -95,17 +95,15 @@
                             cancelButtonText: 'cancelar'
   
                          }).then((result) => {
-                     if (result.isConfirmed) {
+                            if (result.isConfirmed) {
 
-                        let objeto = {
-                            idUsuario: cod, 
-                        }; 
+                                let objeto = {
+                                    idUsuario: cod, 
+                                }; 
 
-                        enviarConsulta(objeto, token);
-                        
-                         location.href = '/usuario/'+cod+'/delete'; 
+                                enviarConsulta(objeto, token);
 
-                          }
+                            }
                         })
 
                      });

@@ -194,6 +194,7 @@ Route::group(['middleware' => 'UsuarioAdministrador'], function () {
         });
         Route::post('/usuarios/crear',           [App\Http\Controllers\Usuario  ::class,'crearUsuario'   ] );
         Route::post('/usuarios/editar/{id}',     [App\Http\Controllers\Usuario  ::class,'editarUsuario'  ] );
+        Route::post('/usuario/eliminar',         [App\Http\Controllers\Usuario  ::class,'eliminarUsuario'] );
         Route::get ('/infoEmpresa',              [App\Http\Controllers\EmpresaController::class,'indexEmpresa'] );
         Route::post('/empresa/editar',           [App\Http\Controllers\EmpresaController::class,'editarInformacionEmpresa']);
         Route::get ('/usuario',                  [App\Http\Controllers\Usuario          ::class,'index'       ] );

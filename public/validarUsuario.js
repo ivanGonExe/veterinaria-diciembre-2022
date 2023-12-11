@@ -109,7 +109,7 @@ formulario.addEventListener("submit", async(e) => {
         else{
             url = '/usuarios/crear/';
         }
-console.log(url);
+
         const respuesta = await fetch(url, {
             method: 'POST',
             mode: 'cors',

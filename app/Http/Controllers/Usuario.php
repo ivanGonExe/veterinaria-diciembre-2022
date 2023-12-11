@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use Exception;
 
 
 class Usuario extends Controller
@@ -124,7 +125,7 @@ class Usuario extends Controller
         $usuario->tipo   = $request->tipo;
         $usuario->save();
 
-        return json_encode(["valido" => "¡Usuario editado exitosamente!"]);
+        return json_encode(["valido" => [0 => "¡Usuario editado exitosamente!"]]);
 
     }
 
@@ -205,7 +206,7 @@ class Usuario extends Controller
         $usuario->tipo     = $request->tipo;
         $usuario->save();
 
-        return json_encode(["valido" => "¡Usuario creado exitosamente!"]);
+        return json_encode(["valido" => [0 => "¡Usuario creado exitosamente!"]]);
 
     }
 
@@ -240,9 +241,9 @@ class Usuario extends Controller
                     $usuario->delete();
                 }
     
-                return json_encode(["valido" => "¡Usuario eliminado exitosamente!"]);
+                return json_encode(["valido" => [0 => "¡Usuario eliminado exitosamente!"]]);
     
-            } catch (Exeption $e) {
+            } catch (Exception $e) {
                 return json_encode(["errores" => "¡Error inesperado!"]);
             }
         }
