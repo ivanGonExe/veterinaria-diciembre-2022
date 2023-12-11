@@ -124,7 +124,7 @@ p{
                         <div class="formulario__grupo mt-3 col-md-8" id="grupo__password-confirm">
                             <label for="password-confirm" class="formulario__label text-center">{{ __('Confirmar Contraseña*') }}</label>
                             <div class="formulario__grupo-input">
-                                <input id="password-confirm"   type="password" class="form-control formulario__input" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm"   type="password" class="form-control formulario__input" name="ppassword-confirm" required autocomplete="new-password">
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                 <a id="mostrarContrasenia" class="text-info"><i class="fa-solid fa-eye" style="color: #000000;"></i></a>
                             </div>

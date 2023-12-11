@@ -92,39 +92,41 @@ class Usuario extends Controller
     public function editarUsuario(Request $request, $id)
     
     {   
+       
         $validator = Validator::make($request->all(), 
             [
-                'name'     => 'required| string | max:255',
+                'nombre'     => 'required| string | max:255',
                 'email'    => 'required| string |email |max:255 ',
                 'tipo'     => 'required| string',
             ], $messages = [
                 
             ],
             [
-                'name' => 'nombre de usuario',
+                'nombre' => 'nombre de usuario',
                 'tipo'     => 'rol',
             ]
         );
-        
+       
         $consulta = User::where('email', '=',$request->email)
                         ->where('id','<>', $id)
                         ->get();
 
-        if ($consulta != null) {
+        if (count($consulta)>0) {
             return json_encode(["errores" => [0 => 'Ya existe un usuario con el correo ingresado']]);
         }
-
+        
         if ($validator->fails()) {
             $errores = $validator->errors()->all();
             return json_encode(["errores" => $errores]);
         }
+         
 
-        $usuario         = user::find($id);
+        $usuario         = user::find($request->id);
+        
         $usuario->name   = $request->nombre;
-        $usuario->email  = $request->mail;
+        $usuario->email  = $request->email;
         $usuario->tipo   = $request->tipo;
         $usuario->save();
-
         return json_encode(["valido" => [0 => "¡Usuario editado exitosamente!"]]);
 
     }

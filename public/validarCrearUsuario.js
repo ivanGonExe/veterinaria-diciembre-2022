@@ -6,8 +6,7 @@ const expresiones = {
     name: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
     email: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, // email. /@.*\.com$/i
     password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$/, // Debe contener al menos una letra, un número, una mayúscula y mínimo 8 caracteres.
-    passwordConfirmation: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$/, //Debe contener al menos una letra, un número, una mayúscula y mínimo 8 caracteres.
-    // codigoArea: /^[0-9]{3,7}$/, // 0 - 9 numeros
+   
     // numeroCalle: /^[0-9]{1,4}$/, // 0 - 5 numeros
     // direccion: /^([a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]){1,30}$/, // Letras y espacios, pueden llevar acentos.
 };
@@ -15,7 +14,7 @@ const campos = {
     name: false,
     email: false,
     password: false,
-    passwordConfirmation: false,
+  
     // codigoArea: false,
     // seleccionTurno: false,
     // numeroCalle: false,
@@ -33,9 +32,7 @@ const validarFormulario = (e) => {
         case "password":
             validarCampo(expresiones.password, e.target, "password");
             break;
-        case "password-confirmation":
-            validarCampo(expresiones.passwordConfirmation, e.target, "password-confirm");
-            break;
+        
         // case "codigoArea":
         //     validarCampo(expresiones.codigoArea, e.target, "codigoArea");
         //     break;
@@ -95,22 +92,65 @@ formulario.addEventListener("submit", (e) => {
     if (
         campos.name &&
         campos.email&&
-        campos.password&&
-        campos.passwordConfirmation
+        campos.password
+        
     ) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Usuario Guardado",
-            showConfirmButton: false,
-            timer: 4000,
-        });
-        /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
-        setTimeout(() => {
-            /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
 
-            formulario.submit();
-        }, 4000);
+
+
+        objeto.tipo = document.getElementById("tipo").value;
+        let token = document.getElementById("token");
+
+        let url = "";
+
+        let idUsuario = document.getElementById("idUsuario");
+        url = '/usuarios/editar/'+idUsuario.value;
+        console.log(url);   
+
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers:{
+              'X-CSRF-TOKEN': token.value,
+              'Content-Type': 'application/json'
+            },
+      
+            body: JSON.stringify(objeto),
+        });
+
+          const data = await respuesta.json();
+          //Si hay errores
+          if(data["errores"]){
+          
+            let errores = data["errores"];
+            let mensaje = `<div class="text-center text-danger">`;
+            for(let i = 0; i < errores.length; i++){
+              mensaje += "<h6>" + errores[i] + "</h6>";
+            }
+            mensaje+= "</div>";
+            
+            
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              html: mensaje,
+            });
+          }
+      
+          if(data["valido"]){ 
+            Swal.fire({
+                  position: "top-center",
+                  icon: "success",
+                  title: "Usuario Guardado",
+                  showConfirmButton: false,
+                  timer: 4000,
+              });
+            
+            setTimeout(() => {
+              location.href = "/usuario";
+            }, 4000);
+            
+          }
 
         document
             .querySelectorAll(".formulario__grupo-correcto")
