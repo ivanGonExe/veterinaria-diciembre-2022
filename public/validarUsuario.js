@@ -1,6 +1,6 @@
 const formulario = document.getElementById("formulario");
-const inputs = document.querySelectorAll("#formulario input");
-const cambio = document.getElementsByClassName("formulario__input");
+const inputs     = document.querySelectorAll("#formulario input");
+const cambio     = document.getElementsByClassName("formulario__input");
 
 const expresiones = {
     nombre: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{2,30}$/, // Letras y espacios, pueden llevar acentos.
@@ -68,10 +68,11 @@ const validarCampo = (expresion, input, campo) => {
     }
 };
 
-inputs.forEach((input) => {
+let longitud = inputs.length;
+for (let i = 0; i < 2; i++) {
     input.addEventListener("keyup", validarFormulario); //cuando se levante la tecla
     input.addEventListener("blur", validarFormulario); //cuando le de un click fuera del imput */ */
-});
+}
 
 if (window.location.href.match("edit"))
 {
@@ -96,7 +97,7 @@ formulario.addEventListener("submit", async(e) => {
     ) {
         
         objeto.tipo = document.getElementById("tipo").value;
-        let token = document.getElementById("token");
+        let token   = document.getElementById("token");
 
         let url = "";
 
@@ -109,7 +110,7 @@ formulario.addEventListener("submit", async(e) => {
         else{
             url = '/usuarios/crear/';
         }
-console.log(url);
+
         const respuesta = await fetch(url, {
             method: 'POST',
             mode: 'cors',
@@ -154,26 +155,12 @@ console.log(url);
             }, 4000);
             
           }
-
-        // Swal.fire({
-        //     position: "top-center",
-        //     icon: "success",
-        //     title: "Usuario Guardado",
-        //     showConfirmButton: false,
-        //     timer: 4000,
-        // });
-        // /* 		document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo'); */
-        // setTimeout(() => {
-        //     /* 	document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo'); */
-
-        //     formulario.submit();
-        // }, 4000);
-
-        // document
-        //     .querySelectorAll(".formulario__grupo-correcto")
-        //     .forEach((icono) => {
-        //         icono.classList.remove("formulario__grupo-correcto");
-        //     });
+          document
+          .querySelectorAll(".formulario__grupo-correcto")
+          .forEach((icono) => {
+              icono.classList.remove("formulario__grupo-correcto");
+          });   
+  
     } else {
         console.log("entro a la parte de mostrar el mensaje de error ");
         document

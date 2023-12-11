@@ -103,7 +103,7 @@
 
                         enviarConsulta(objeto, token);
                         
-                         location.href = '/usuario/'+cod+'/delete'; 
+            
 
                           }
                         })

@@ -59,8 +59,7 @@
                         <div class="formulario__grupo " id="grupo__tipo">
                             <label for="tipoServicio" class="formulario__label my-2 ">Tipo de servicio *</label>
                             <select class="form-select" aria-label="Default select example" name="tipo" id="tipo" required>
-                                <option value="Baño con shampoo medicado"    >Baño con shampoo medicado    </option>
-                                <option value="Baño de antipulgas y garrapatas" >Baño de pulgas y garrapatas </option>
+                                <option value="Baño con shampoo medicado"    >Baño con shampoo medicado    </option> 
                                 <option value="Baño y secado"               >Baño y secado               </option>
                                 <option value="Corte de pelo y desenredado" >Corte de pelo y Desenredado </option>
                                 <option value="Corte de uñas"               >Corte de uñas               </option>
