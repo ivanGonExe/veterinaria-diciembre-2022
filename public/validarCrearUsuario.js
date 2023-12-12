@@ -25,7 +25,8 @@ let objeto = {
     nombre: "", 
     email: "", 
     password: "", 
-    tipo: ""
+    tipo: "",
+    password_confirmation: "",
 };
 
 const validarFormulario = (e) => {
@@ -106,8 +107,9 @@ formulario.addEventListener("submit", async(e) => {
         
     ) {
 
-        objeto.tipo = document.getElementById("tipo").value;
-        let token = document.getElementById("token");
+        objeto.tipo          = document.getElementById("tipo").value;
+        objeto.password_confirmation  = document.getElementById("password-confirm").value
+        let token            = document.getElementById("token");
 
         const respuesta = await fetch("/usuarios/crear", {
             method: 'POST',

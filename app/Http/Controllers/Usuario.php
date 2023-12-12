@@ -176,16 +176,15 @@ class Usuario extends Controller
     public function crearUsuario(Request $request)
     {
 
-        $request->validate([
-             
-        ]);
+
 
         $validator = Validator::make($request->all(), 
             [
-                'name'     => 'required| string | max:255',
-                'email'    => 'required| string |email |max:255 |unique:users',
-                'password' => 'required| string|min:8|confirmed',
-                'tipo'     => 'required| string',
+                'nombre'           => 'required| string | max:255',
+                'email'            => 'required| string |email |max:255 |unique:users',
+                'password'         => 'required| string|min:8|confirmed',
+                'password_confirmation' => 'required| string|min:8',
+                'tipo'             => 'required| string',
             ], $messages = [
                 'email.unique' => '¡Ya existe un usuario con el email ingresado!',
             ],
@@ -193,6 +192,7 @@ class Usuario extends Controller
                 'name' => 'nombre de usuario',
                 'tipo'     => 'rol',
                 'password' => 'contraseña'
+                
             ]
         );
 
@@ -200,9 +200,9 @@ class Usuario extends Controller
             $errores = $validator->errors()->all();
             return json_encode(["errores" => $errores]);
         }
-
+        
         $usuario = new User();
-        $usuario->name     = $request->name;
+        $usuario->name     = $request->nombre;
         $usuario->email    = $request->email;
         $usuario->password = Hash::make($request->password);
         $usuario->tipo     = $request->tipo;
