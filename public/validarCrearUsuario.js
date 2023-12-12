@@ -21,16 +21,26 @@ const campos = {
     // direccion: false,
 };
 
+let objeto = {
+    nombre: "", 
+    email: "", 
+    password: "", 
+    tipo: ""
+};
+
 const validarFormulario = (e) => {
     switch (e.target.name) {
         case "name":
             validarCampo(expresiones.name, e.target, "name");
+            objeto.nombre = e.target.value;
             break;
         case "email":
             validarCampo(expresiones.email, e.target, "email");
+            objeto.email = e.target.value;
             break;
         case "password":
             validarCampo(expresiones.password, e.target, "password");
+            objeto.password = e.target.value;
             break;
         
         // case "codigoArea":
@@ -86,7 +96,7 @@ inputs.forEach((input) => {
     input.addEventListener("blur", validarFormulario); //cuando le de un click fuera del imput */ */
 });
 
-formulario.addEventListener("submit", (e) => {
+formulario.addEventListener("submit", async(e) => {
     e.preventDefault();
 
     if (
@@ -96,18 +106,10 @@ formulario.addEventListener("submit", (e) => {
         
     ) {
 
-
-
         objeto.tipo = document.getElementById("tipo").value;
         let token = document.getElementById("token");
 
-        let url = "";
-
-        let idUsuario = document.getElementById("idUsuario");
-        url = '/usuarios/editar/'+idUsuario.value;
-        console.log(url);   
-
-        const respuesta = await fetch(url, {
+        const respuesta = await fetch("/usuarios/crear", {
             method: 'POST',
             mode: 'cors',
             headers:{

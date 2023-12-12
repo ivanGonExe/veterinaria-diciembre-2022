@@ -127,7 +127,6 @@ async function enviarConsulta(objeto, token){
 
 
     const data = await respuesta.json();
-    console.log(data);
 
     if(data["valido"]){ 
         Swal.fire({
