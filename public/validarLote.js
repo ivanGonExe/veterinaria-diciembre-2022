@@ -283,13 +283,16 @@ formulario.addEventListener("submit", (e) => {
 
 //comprobar los input al inicio
 
-let precioCosto         = document.getElementsByName("precioCosto");
+let precioCosto         = document.getElementsByName("precioCompra");
 let unidades            = document.getElementsByName("unidades");
 let formulario__mensaje = document.getElementById("formulario__mensaje");
 
-validarCampo(expresiones.precioCosto,precioCosto[0],"precioCosto");
+validarCampo(expresiones.precioCompra,precioCosto[0],"precioCompra");
 validarCampo(expresiones.unidades,unidades[0],"unidades");
-formulario__mensaje.style.display = "none"; 
+
+if(formulario__mensaje){
+    formulario__mensaje.style.display = "none";
+} 
 
 aumento.addEventListener('input',function(){
     if (this.value > 100 ) 

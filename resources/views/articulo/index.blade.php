@@ -45,7 +45,7 @@ table.dataTable th {
     <a href="/articulos/create" type="button" class="btn btn-primary rounded-pill ">+ Artículo <i class="fa-solid fa-store"></i></a>
     <div class="contendorCategoria">
         <select  id='categoria' class="btn btn-primary rounded-pill" name="categoria" style="width:150px">
-            <option  id ="0" value = "0" class="seleccion" title="todas las categorías" >Categorías <span><i class="fa-solid fa-list-ul"></i> </span><i class="fa-solid fa-store"></option>
+            <option  id ="0" value = "0" class="seleccion" title="todas las categorías" >Categorías <span><i class="fa-solid fa-list-ul"></i> </span></option>
             @foreach($categoria as $unaCategoria)
                 @if($unaCategoria->id == $idCategoria)
                 <option  id ="{{$unaCategoria->id}}" value = "{{$unaCategoria->id}}" class="seleccion" selected>{{$unaCategoria->id}}-{{$unaCategoria->descripcion}}</option>
